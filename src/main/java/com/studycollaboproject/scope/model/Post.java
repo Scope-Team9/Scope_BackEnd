@@ -18,32 +18,42 @@ public class Post {
     @Column(name = "post_id")
     private Long id;
 
+    @Column(nullable = false)
     private PostType postType;
 
+    @Column(nullable = false)
     private String title;
 
     private LocalDate startDate;
 
     private LocalDate endDate;
 
+    @Column(nullable = false)
     private String summary;
 
+    @Column(nullable = false)
     private String contents;
 
+    @Column(nullable = false)
     private int totalMember;
 
+    @Column(nullable = false)
     private int recruitmentMember;
 
+    @Column(nullable = false)
     private ProjectStatus projectStatus;
 
+    @Column(nullable = false)
     private boolean recommendationAgree;
 
     private String frontUrl;
 
     private String backUrl;
 
+    @Column(nullable = false)
     private String userTestResult;
 
+    @Column(nullable = false)
     private String memberTestResult;
 
     @OneToMany(mappedBy = "post")

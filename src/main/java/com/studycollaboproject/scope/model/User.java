@@ -26,24 +26,31 @@ public class User {
     @Column(unique = true)
     private Long googleId;
 
-    @Column(unique = true)
+
+    @Column(unique = true, nullable = false)
     private String email;
 
+    @Column(nullable = false)
     private String userPropensityType;
 
+    @Column(nullable = false)
     private String memberPropensityType;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String nickname;
 
     private String introduction;
 
+    @Column(nullable = false)
     private boolean emailReceiveAgreement;
 
+    @Column(nullable = false)
     private boolean recommendationAgreement;
 
+    @Column(nullable = false)
     private String memberTestResult;
 
+    @Column(nullable = false)
     private String userTestResult;
 
     @OneToMany(mappedBy = "user")
