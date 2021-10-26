@@ -4,14 +4,17 @@ package com.studycollaboproject.scope.service;
 import com.studycollaboproject.scope.dto.PostListDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
-import com.studycollaboproject.scope.model.Bookmark;
-import com.studycollaboproject.scope.model.Post;
-import com.studycollaboproject.scope.model.Team;
-import com.studycollaboproject.scope.model.User;
+import com.studycollaboproject.scope.model.*;
 import com.studycollaboproject.scope.repository.BookmarkRepository;
 import com.studycollaboproject.scope.repository.TeamRepository;
 import com.studycollaboproject.scope.repository.UserRepository;
+import com.studycollaboproject.scope.security.JwtTokenProvider;
+import com.studycollaboproject.scope.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,6 +27,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final BookmarkRepository bookmarkRepository;
     private final TeamRepository teamRepository;
+    private final JwtTokenProvider jwtTokenProvider;
 
 
     public User getUserInfo(String userNickname) {
@@ -75,5 +79,19 @@ public class UserService {
         return userRepository.findById(userId).orElseThrow(
                 () -> new RestApiException(ErrorCode.NO_USER_ERROR)
         );
+    }
+
+    public String  signup(User user) {
+        userRepository.save(user);
+        forceLogin(user);
+        return jwtTokenProvider.createToken(user.getNickname());
+
+    }
+
+    private void forceLogin(User user) {
+        // 4. 강제 로그인 처리
+        UserDetails userDetails = new UserDetailsImpl(user);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 }
