@@ -31,4 +31,10 @@ public class Team {
         this.user = user;
     }
 
+    public void setUrl(String frontUrl, String backUrl){
+        this.post.setUrl(frontUrl,backUrl);
+    }
+
+
+
 }

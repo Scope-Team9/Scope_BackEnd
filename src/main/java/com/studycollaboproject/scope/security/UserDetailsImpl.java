@@ -1,7 +1,7 @@
-package com.sparta.kerly_clone.security;
+package com.studycollaboproject.scope.security;
 
 
-import com.sparta.kerly_clone.model.User;
+import com.studycollaboproject.scope.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -19,17 +19,22 @@ public class UserDetailsImpl implements UserDetails {
     public User getUser() {
         return user;
     }
-    //인증관리자가 대조할때 쓰는 메서드
 
-    public String getName(){return user.getUsername();}
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+
+
+        return Collections.emptyList();
+    }
+
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return "";
     }
-    //인증관리자가 대조할때 쓰는 메서드
+
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return user.getNickname();
     }
 
     @Override
@@ -52,11 +57,4 @@ public class UserDetailsImpl implements UserDetails {
         return true;
     }
 
-
-    //스프링 시큐리티의 권한 파악 (유저권한으로 주소창에 api 주소치면 관리자로 접속되던 문제 해결)
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        return Collections.emptyList();
-    }
 }

@@ -9,4 +9,6 @@ public class ResponseDto {
     private String status;
     private String msg;
     private Object data;
+
+
 }

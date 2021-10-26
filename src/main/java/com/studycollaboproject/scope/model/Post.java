@@ -59,5 +59,9 @@ public class Post {
     @OneToMany(mappedBy = "post")
     private List<Team> teamList;
 
+    public void setUrl(String frontUrl,String backUrl){
+        this.frontUrl = frontUrl;
+        this.backUrl = backUrl;
+    }
 
 }
