@@ -19,9 +19,6 @@ public class Post {
     private Long id;
 
     @Column(nullable = false)
-    private PostType postType;
-
-    @Column(nullable = false)
     private String title;
 
     private LocalDate startDate;
