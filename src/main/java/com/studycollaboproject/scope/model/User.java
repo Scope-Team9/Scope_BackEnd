@@ -1,5 +1,6 @@
 package com.studycollaboproject.scope.model;
 
+import com.studycollaboproject.scope.dto.SignupRequestDto;
 import com.studycollaboproject.scope.util.Timestamped;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -19,13 +20,13 @@ public class User extends Timestamped {
     private Long id;
 
     @Column(unique = true)
-    private Long kakaoId;
+    private String kakaoId;
 
     @Column(unique = true)
-    private Long githubId;
+    private String githubId;
 
     @Column(unique = true)
-    private Long googleId;
+    private String googleId;
 
     @Column(unique = true, nullable = false)
     private String email;
@@ -64,4 +65,14 @@ public class User extends Timestamped {
 
     @OneToMany(mappedBy = "user")
     private List<Applicant> applicantList;
+
+    public User(SignupRequestDto signupRequestDto){
+        this.email =signupRequestDto.getEmail();
+        this.githubId = signupRequestDto.getGithubId();
+        this.googleId = signupRequestDto.getGoogleId();
+        this.kakaoId = signupRequestDto.getKakaoId();
+        this.nickname = signupRequestDto.getNickname();
+        this.techStackList = signupRequestDto.getTechStack();
+    }
+
 }
