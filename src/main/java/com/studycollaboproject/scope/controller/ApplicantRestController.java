@@ -71,10 +71,18 @@ public class ApplicantRestController {
 
     @Operation(summary = "모집 현황")
     @GetMapping("/api/applicant/{postId}")
-    public ResponseDto getApplicant(@Parameter(in = ParameterIn.PATH, description = "게시글 ID") @PathVariable Long postId) {
+    public ResponseDto getApplicant(@Parameter(in = ParameterIn.PATH, description = "게시글 ID") @PathVariable Long postId,
+                                    @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("GET, [{}], /api/applicant/{}", MDC.get("UUID"), postId);
 
+        if (userDetails == null) {
+            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
+        }
+
         Post post = postService.loadPostByPostId(postId);
+        if (!post.getUser().getNickname().equals(userDetails.getNickname())) {
+            throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
+        }
         List<MemberListResponseDto> responseDto = applicantService.getApplicant(post);
         return new ResponseDto("200", "", responseDto);
     }
