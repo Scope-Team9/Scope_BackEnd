@@ -2,6 +2,7 @@ package com.studycollaboproject.scope.service;
 
 
 import com.studycollaboproject.scope.dto.PostListDto;
+import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.*;
@@ -93,5 +94,18 @@ public class UserService {
         UserDetails userDetails = new UserDetailsImpl(user);
         Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
+    }
+
+    public ResponseDto emailCheck(String email, String username) {
+        userRepository.findByNickname(username).orElseThrow(
+                ()-> new IllegalArgumentException("사용자를 찾을 수 없습니다.")
+        );
+        if (userRepository.findByEmail(email).isPresent()){
+                return new ResponseDto("400","중복된 이메일이 존재합니다.","");
+        }else{
+            return new ResponseDto("200","사용가능한 메일입니다.","");
+
+
+        }
     }
 }
