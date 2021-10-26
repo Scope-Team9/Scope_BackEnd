@@ -1,5 +1,6 @@
 package com.studycollaboproject.scope.model;
 
+import com.studycollaboproject.scope.util.Timestamped;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import java.util.List;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User {
+public class User extends Timestamped {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -26,15 +27,14 @@ public class User {
     @Column(unique = true)
     private Long googleId;
 
-
     @Column(unique = true, nullable = false)
     private String email;
 
     @Column(nullable = false)
-    private String userPropensityType;
+    private PropensityType userPropensityType;
 
     @Column(nullable = false)
-    private String memberPropensityType;
+    private PropensityType memberPropensityType;
 
     @Column(unique = true, nullable = false)
     private String nickname;
@@ -61,4 +61,7 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<TechStack> techStackList;
+
+    @OneToMany(mappedBy = "user")
+    private List<Applicant> applicantList;
 }
