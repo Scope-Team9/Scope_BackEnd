@@ -54,7 +54,7 @@ public class ApplicantRestController {
 
     @Operation(summary = "모집 지원취소")
     @DeleteMapping("/api/applicant/{postId}")
-    public ResponseDto cancelApply(@PathVariable Long postId,
+    public ResponseDto cancelApply(@Parameter(in = ParameterIn.PATH, description = "게시글 ID") @PathVariable Long postId,
                                    @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("DELETE, [{}], /api/applicant/{}", MDC.get("UUID"), postId);
 
@@ -71,7 +71,7 @@ public class ApplicantRestController {
 
     @Operation(summary = "모집 현황")
     @GetMapping("/api/applicant/{postId}")
-    public ResponseDto getApplicant(@PathVariable Long postId) {
+    public ResponseDto getApplicant(@Parameter(in = ParameterIn.PATH, description = "게시글 ID") @PathVariable Long postId) {
         log.info("GET, [{}], /api/applicant/{}", MDC.get("UUID"), postId);
 
         Post post = postService.loadPostByPostId(postId);
