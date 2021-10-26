@@ -24,14 +24,14 @@ public class LogFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        String requestURI = httpRequest.getRequestURI();
-        String hostIp = httpRequest.getRemoteAddr();
 
         String uuid = UUID.randomUUID().toString();
+        MDC.put("UUID", uuid);
 
         try {
-            log.info("REQUEST [{}][{}][{}]", uuid, hostIp, requestURI);
-            MDC.put("UUID", uuid);
+//            String requestURI = httpRequest.getRequestURI();
+//            String hostIp = httpRequest.getRemoteAddr();
+//            log.info("REQUEST [{}][{}][{}]", uuid, hostIp, requestURI);
             chain.doFilter(request, response);
         } catch (RuntimeException e) {
             errorResponse((HttpServletResponse) response, e.getLocalizedMessage());

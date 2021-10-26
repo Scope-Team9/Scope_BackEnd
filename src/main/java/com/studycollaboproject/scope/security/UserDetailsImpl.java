@@ -1,6 +1,5 @@
 package com.studycollaboproject.scope.security;
 
-
 import com.studycollaboproject.scope.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,19 +18,16 @@ public class UserDetailsImpl implements UserDetails {
     public User getUser() {
         return user;
     }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-
-
-        return Collections.emptyList();
+    //인증관리자가 대조할때 쓰는 메서드
+    public String getNickname() {
+        return user.getNickname();
     }
 
     @Override
     public String getPassword() {
         return "";
     }
-
+    //인증관리자가 대조할때 쓰는 메서드
     @Override
     public String getUsername() {
         return user.getNickname();
@@ -57,4 +53,11 @@ public class UserDetailsImpl implements UserDetails {
         return true;
     }
 
+
+    //스프링 시큐리티의 권한 파악 (유저권한으로 주소창에 api 주소치면 관리자로 접속되던 문제 해결)
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+
+        return Collections.emptyList();
+    }
 }

@@ -1,5 +1,7 @@
 package com.studycollaboproject.scope.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.studycollaboproject.scope.util.Timestamped;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +13,7 @@ import java.util.List;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Post {
+public class Post extends Timestamped {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -53,15 +55,24 @@ public class Post {
     @Column(nullable = false)
     private String memberTestResult;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @OneToMany(mappedBy = "post")
+    @JsonIgnore
     private List<Bookmark> bookmarkList;
 
     @OneToMany(mappedBy = "post")
+    @JsonIgnore
     private List<Team> teamList;
 
-    public void setUrl(String frontUrl,String backUrl){
+    @OneToMany(mappedBy = "post")
+    @JsonIgnore
+    private List<Applicant> applicantList;
+
+    public void setUrl(String frontUrl, String backUrl) {
         this.frontUrl = frontUrl;
         this.backUrl = backUrl;
     }
-
 }

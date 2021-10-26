@@ -13,14 +13,10 @@ public class PostListDto {
     private List<Post> inProgress;
     private List<Post> end;
 
-
-
-
-    public PostListDto(List<Post> bookmark,List<Post> recruitment,List<Post> inProgress,List<Post> end){
+    public PostListDto(List<Post> bookmark, List<Post> recruitment, List<Post> inProgress, List<Post> end) {
         this.recruitment = recruitment;
         this.end = end;
         this.inProgress = inProgress;
         this.boomark = bookmark;
     }
-
 }

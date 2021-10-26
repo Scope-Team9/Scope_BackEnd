@@ -2,6 +2,8 @@ package com.studycollaboproject.scope.service;
 
 
 import com.studycollaboproject.scope.dto.PostListDto;
+import com.studycollaboproject.scope.exception.ErrorCode;
+import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.Bookmark;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.Team;
@@ -25,7 +27,8 @@ public class UserService {
 
 
     public User getUserInfo(String userNickname) {
-        return userRepository.findByNickname(userNickname);
+        return userRepository.findByNickname(userNickname).orElseThrow(
+                () -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다."));
 
     }
 
@@ -39,17 +42,17 @@ public class UserService {
     }
 
 
-    public PostListDto getPostList(User user, List<Post> bookmarkList){
+    public PostListDto getPostList(User user, List<Post> bookmarkList) {
         List<Team> teamList = teamRepository.findAllByUser(user);
 
-        List<Post> inprogressList = new ArrayList<>();
+        List<Post> inProgressList = new ArrayList<>();
         List<Post> endList = new ArrayList<>();
         List<Post> recruitmentList = new ArrayList<>();
 
         for (Team team : teamList) {
-            switch (team.getPost().getProjectStatus().getProjectStatus()){
+            switch (team.getPost().getProjectStatus().getProjectStatus()) {
                 case "진행중":
-                    inprogressList.add(team.getPost());
+                    inProgressList.add(team.getPost());
                     break;
                 case "종료":
                     endList.add(team.getPost());
@@ -59,6 +62,18 @@ public class UserService {
                     break;
             }
         }
-        return new PostListDto(bookmarkList,recruitmentList,inprogressList,endList);
+        return new PostListDto(bookmarkList, recruitmentList, inProgressList, endList);
+    }
+
+    public User loadUserByNickname(String nickname) {
+        return userRepository.findByNickname(nickname).orElseThrow(
+                () -> new RestApiException(ErrorCode.NO_USER_ERROR)
+        );
+    }
+
+    public User loadUserByUserId(Long userId) {
+        return userRepository.findById(userId).orElseThrow(
+                () -> new RestApiException(ErrorCode.NO_USER_ERROR)
+        );
     }
 }
