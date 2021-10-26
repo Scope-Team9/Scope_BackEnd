@@ -8,6 +8,7 @@ import com.studycollaboproject.scope.model.TechStack;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.service.PostService;
 import com.studycollaboproject.scope.service.UserService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -49,6 +50,11 @@ public class UserRestController {
 
         return new ResponseDto("200","",token);
 
+    }
+
+    @GetMapping("/api/login")
+    public ResponseDto emailCheck(@PathVariable String email, @AuthenticationPrincipal UserDetails userDetails){
+        return userService.emailCheck(email,userDetails.getUsername());
     }
 
 }
