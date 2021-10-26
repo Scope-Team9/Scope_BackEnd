@@ -1,6 +1,7 @@
 package com.studycollaboproject.scope.controller;
 
 import com.studycollaboproject.scope.dto.ResponseDto;
+import com.studycollaboproject.scope.dto.MemberListResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.Post;
@@ -17,11 +18,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -68,5 +67,15 @@ public class ApplicantRestController {
         applicantService.cancelApply(user, post);
 
         return new ResponseDto("200", "", "");
+    }
+
+    @Operation(summary = "모집 현황")
+    @GetMapping("/api/applicant/{postId}")
+    public ResponseDto getApplicant(@PathVariable Long postId) {
+        log.info("GET, [{}], /api/applicant/{}", MDC.get("UUID"), postId);
+
+        Post post = postService.loadPostByPostId(postId);
+        List<MemberListResponseDto> responseDto = applicantService.getApplicant(post);
+        return new ResponseDto("200", "", responseDto);
     }
 }

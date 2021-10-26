@@ -2,7 +2,7 @@ package com.studycollaboproject.scope.controller;
 
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.TeamRequestDto;
-import com.studycollaboproject.scope.dto.TeamResponseDto;
+import com.studycollaboproject.scope.dto.MemberListResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.Post;
@@ -44,7 +44,7 @@ public class TeamRestController {
         Post post = postService.loadPostIfOwner(postId, requestDto.getUserId());  //로그인 사용자가 해당 게시글의 생성자 인지 확인
         User applyUser = userService.loadUserByUserId(requestDto.getUserId());    //지원자 정보 확인
         teamService.acceptMember(post, applyUser, requestDto.getAccept());        //지원자 승인/거절
-        List<TeamResponseDto> responseDto = teamService.getMember(postId);
+        List<MemberListResponseDto> responseDto = teamService.getMember(postId);
         return new ResponseDto("200", "", responseDto);
     }
 
@@ -52,7 +52,7 @@ public class TeamRestController {
     @GetMapping("/api/team/{postId}")
     public ResponseDto getMember(@PathVariable Long postId) {
         log.info("GET, [{}], /api/team/{}", MDC.get("UUID"), postId);
-        List<TeamResponseDto> responseDto = teamService.getMember(postId);
+        List<MemberListResponseDto> responseDto = teamService.getMember(postId);
         return new ResponseDto("200", "", responseDto);
     }
 }
