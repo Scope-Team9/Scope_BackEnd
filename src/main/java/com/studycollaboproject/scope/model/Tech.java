@@ -7,11 +7,7 @@ public enum Tech {
 
     TECH_JAVA("Java"),
     TECH_JS("JavaScript"),
-    TECH_RUBY("Ruby"),
     TECH_PYTHON("Python"),
-    TECH_PHP("PHP"),
-    TECH_MYSQL("MYSQL"),
-    TECH_MONGODB("MongDB"),
     TECH_NODEJS("Node.js"),
     TECH_CPP("C++"),
     TECH_FLASK("Flask"),
@@ -19,16 +15,12 @@ public enum Tech {
     TECH_VUE("Vue.js"),
     TECH_REACT("React"),
     TECH_REACTNATIVE("React Native"),
-    TECH_GO("Go"),
+    TECH_PHP("PHP"),
     TECH_SWIFT("Swift"),
     TECH_KOTLIN("Kotlin"),
-    TECH_C("C"),
     TECH_TYPESCRIPT("TypeScript"),
     TECH_ANGULAR("Angular.js"),
-    TECH_CSHARP("C#"),
-    TECH_SPRING("Spring"),
-    TECH_R("R"),
-    TECH_JQUERY("jQuery");
+    TECH_SPRING("Spring");
 
     private final String tech;
 
