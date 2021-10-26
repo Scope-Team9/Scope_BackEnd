@@ -20,9 +20,7 @@ public class PostService {
 
     @Transactional
     public void updateUrl(String backUrl, String frontUrl,String nickname,Long postId){
-        User user = userRepository.findByNickname(nickname).orElseThrow(
-                ()-> new IllegalArgumentException("해당 사용자를 찾을 수 없습니다.")
-        );
+        User user = userRepository.findByNickname(nickname);
         Post post = postRepository.findById(postId).orElseThrow(
                 ()-> new IllegalArgumentException("해당 게시글을 찾을 수 없습니다.")
         );
