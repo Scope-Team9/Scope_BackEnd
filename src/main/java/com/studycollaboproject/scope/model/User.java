@@ -66,13 +66,13 @@ public class User extends Timestamped {
     @OneToMany(mappedBy = "user")
     private List<Applicant> applicantList;
 
-    public User(SignupRequestDto signupRequestDto){
-        this.email =signupRequestDto.getEmail();
+    public User(SignupRequestDto signupRequestDto) {
+        this.email = signupRequestDto.getEmail();
         this.githubId = signupRequestDto.getGithubId();
         this.googleId = signupRequestDto.getGoogleId();
         this.kakaoId = signupRequestDto.getKakaoId();
         this.nickname = signupRequestDto.getNickname();
-        this.techStackList = signupRequestDto.getTechStack();
+//        this.techStackList = signupRequestDto.getTechStack();
     }
 
     public PropensityType updateUserPropensityType(String propensityResult) {
