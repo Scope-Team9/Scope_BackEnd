@@ -15,4 +15,15 @@ public enum ProjectStatus {
         this.projectStatus = projectStatus;
     }
 
+
+    public static ProjectStatus projectStatusOf(String status) {
+        for (ProjectStatus projectStatus : ProjectStatus.values()) {
+            if (status.equals(projectStatus.getProjectStatus()))
+            {
+                return projectStatus;
+            }
+        }
+        throw new IllegalArgumentException("올바른 상태가 아닙니다.");
+    }
+
 }

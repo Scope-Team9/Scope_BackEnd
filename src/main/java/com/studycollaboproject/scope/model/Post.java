@@ -1,7 +1,6 @@
 package com.studycollaboproject.scope.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.studycollaboproject.scope.util.Timestamped;
+import com.studycollaboproject.scope.dto.PostReqeustDto;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +12,8 @@ import java.util.List;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Post extends Timestamped {
+
+public class Post extends Timestamped{
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -40,39 +40,66 @@ public class Post extends Timestamped {
     private int recruitmentMember;
 
     @Column(nullable = false)
+
+    @Enumerated(value = EnumType.STRING)
     private ProjectStatus projectStatus;
 
     @Column(nullable = false)
     private boolean recommendationAgree;
 
+    @Column(nullable = true)
     private String frontUrl;
 
+    @Column(nullable = true)
     private String backUrl;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String userTestResult;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String memberTestResult;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @OneToMany(mappedBy = "post")
+    private List<TechStack> techStackList;
 
     @OneToMany(mappedBy = "post")
-    @JsonIgnore
+
     private List<Bookmark> bookmarkList;
 
     @OneToMany(mappedBy = "post")
-    @JsonIgnore
     private List<Team> teamList;
 
-    @OneToMany(mappedBy = "post")
-    @JsonIgnore
-    private List<Applicant> applicantList;
 
-    public void setUrl(String frontUrl, String backUrl) {
-        this.frontUrl = frontUrl;
-        this.backUrl = backUrl;
+    public Post(PostReqeustDto postReqeustDto){
+        this.title = postReqeustDto.getTitle();
+        this.startDate = postReqeustDto.getStartDate();
+        this.endDate = postReqeustDto.getEndDate();
+        this.summary = postReqeustDto.getSummary();
+        this.contents = postReqeustDto.getContents();
+        this.totalMember = postReqeustDto.getTotalMember();
+        this.recruitmentMember = postReqeustDto.getRecruitmentMember();
+        this.projectStatus = ProjectStatus.projectStatusOf(postReqeustDto.getProjectStatus());
+        this.bookmarkList = postReqeustDto.getBookmarkList();
+        this.teamList = postReqeustDto.getTeamList();
+        this.techStackList = postReqeustDto.getTechStackList();
+        this.backUrl = postReqeustDto.getBackUrl();
+        this.frontUrl = postReqeustDto.getFrontUrl();
+    }
+
+    public void update(PostReqeustDto postReqeustDto) {
+
+        this.title = postReqeustDto.getTitle();
+        this.startDate = postReqeustDto.getStartDate();
+        this.endDate = postReqeustDto.getEndDate();
+        this.summary = postReqeustDto.getSummary();
+        this.contents = postReqeustDto.getContents();
+        this.totalMember = postReqeustDto.getTotalMember();
+        this.recruitmentMember = postReqeustDto.getRecruitmentMember();
+        this.projectStatus = ProjectStatus.projectStatusOf(postReqeustDto.getProjectStatus());
+        this.bookmarkList = postReqeustDto.getBookmarkList();
+        this.teamList = postReqeustDto.getTeamList();
+        this.techStackList = postReqeustDto.getTechStackList();
+        this.backUrl = postReqeustDto.getBackUrl();
+        this.frontUrl = postReqeustDto.getFrontUrl();
     }
 }

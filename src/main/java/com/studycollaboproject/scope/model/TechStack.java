@@ -11,6 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class TechStack {
 
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "techStack_id")
@@ -20,7 +21,13 @@ public class TechStack {
     private Tech tech;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "techStack")
+
+    @JoinColumn(name = "post_id")
+    private Post post;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+
     private User user;
 
     public TechStack(Tech tech,User user){
