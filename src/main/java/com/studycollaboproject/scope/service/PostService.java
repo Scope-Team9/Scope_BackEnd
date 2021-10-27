@@ -14,10 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
@@ -31,13 +28,13 @@ public class PostService {
     public ResponseDto writePost(PostReqeustDto postReqeustDto) {
         Post post = new Post(postReqeustDto);
         postRepository.save(post);
-        return new ResponseDto("200","","");
+        return new ResponseDto("200", "", "");
     }
 
     @Transactional
-    public ResponseDto editPost(Long id, PostReqeustDto postReqeustDto){
+    public ResponseDto editPost(Long id, PostReqeustDto postReqeustDto) {
         Post post = postRepository.findById(id).orElseThrow(
-                ()-> new IllegalArgumentException("포스트가 존재하지 않습니다."));
+                () -> new IllegalArgumentException("포스트가 존재하지 않습니다."));
         post.update(postReqeustDto);
         return new ResponseDto("200", "", post);
     }
@@ -45,9 +42,9 @@ public class PostService {
     @Transactional
     public ResponseDto deletePost(Long id) {
         postRepository.findById(id).orElseThrow(
-                ()-> new IllegalArgumentException("포스트가 존재하지 않습니다."));
+                () -> new IllegalArgumentException("포스트가 존재하지 않습니다."));
         postRepository.deleteById(id);
-        return new ResponseDto("200", "","");
+        return new ResponseDto("200", "", "");
     }
 
 
@@ -58,56 +55,65 @@ public class PostService {
                                 String nickname) {
 
         List<Post> filterPosts = new ArrayList<>();
-        List<Tech>techList = new ArrayList<>();
+        List<Tech> techList = new ArrayList<>();
         List<TechStack> techStackList;
         List<String> filterList;
 
-        // String으로 받아온 filter 값을 세미콜론으로 스플릿
-        // String[] splitStr = filter.split(";");
-        // filterList = new ArrayList<>(Arrays.asList(splitStr));
-        filterList = Arrays.asList(filter.split(";"));
+        // 선택한 기술스택 있으면 filterPosts에 필터링된 값을 담아준다.
+        if (filter != null && !filter.isEmpty()) {
+            // String으로 받아온 filter 값을 세미콜론으로 스플릿
+            // String[] splitStr = filter.split(";");
+            // filterList = new ArrayList<>(Arrays.asList(splitStr));
+            filterList = Arrays.asList(filter.split(";"));
 
-        // 스플릿 한 값으로 techStack에서 검색
-        for(String techFilter:filterList)
-        {
-            //프론트에서 받아온 String을 Enumtype으로 변경
-            Tech tech = Tech.valueOf(techFilter);
-            techList.add(tech);
+            // 스플릿 한 값으로 techStack에서 검색
+            for (String techFilter : filterList) {
+                //프론트에서 받아온 String을 Enumtype으로 변경
+                Tech tech = Tech.valueOf(techFilter);
+                techList.add(tech);
+            }
+            // techList에 포함된 TehcStack을 techStackList에 저장
+            techStackList = techStackRepository.findAllByTechIn(techList);
+
+            // 저장된 techStackList에서 post를 가져옴
+            for (TechStack techStack : techStackList) {
+                Post post = techStack.getPost();
+                filterPosts.add(post);
+            }
         }
-        // techList에 포함된 TehcStack을 techStackList에 저장
-        techStackList = techStackRepository.findAllByTechIn(techList);
-
-        // 저장된 techStackList에서 post를 가져옴
-        for (TechStack techStack : techStackList){
-            Post post = techStack.getPost();
-            filterPosts.add(post);
+        // 선택된 기술스택이 없으면 전체  포스트를 담아준다.
+        else {
+            filterPosts = postRepository.findAll();
         }
-
 
         List<Post> allPosts = new ArrayList<>();
         List<Post> posts = new ArrayList<>();
 
-        switch (sort){
-               case "bookmark" :
-                   List<Bookmark> bookmarkList = bookmarkRepository.findAllByPostInAndUserNickname(filterPosts,nickname);
-                   for (Bookmark bookmark :bookmarkList){
-                       Post post = bookmark.getPost();
-                       allPosts.add(post);
-                   }
-                   break;
+        switch (sort) {
+            case "bookmark":
+                List<Bookmark> bookmarkList = bookmarkRepository.findAllByPostInAndUserNickname(filterPosts, nickname);
+                for (Bookmark bookmark : bookmarkList) {
+                    Post post = bookmark.getPost();
+                    allPosts.add(post);
+                }
+                break;
+            case "createdAt":
+                filterPosts.sort(Comparator.comparing(Post::getCreatedAt));
+                break;
 
-               case "latest":
-                   allPosts = postRepository.findAllByOrderByCreatedAtDesc();
-                   break;
-           }
-
-           for (int i=0; i< displayNumber; i++){
-               posts.add(allPosts.get(i));
-           }
+            case "deadline":
+                filterPosts.sort(Comparator.comparing(Post::getStartDate, Comparator.reverseOrder()));
+                break;
+        }
+        for (int i = 0; i < displayNumber; i++) {
+            posts.add(allPosts.get(i));
+        }
         int totalPost = allPosts.size();
-
         return new ResponseDto("200", "success", posts);
+
+
     }
+
     public PostListDto getPostList(User user, List<Post> bookmarkList) {
         List<Team> teamList = teamRepository.findAllByUser(user);
 
@@ -132,15 +138,15 @@ public class PostService {
     }
 
     @Transactional
-    public void updateUrl(String backUrl, String frontUrl, String nickname, Long postId){
+    public void updateUrl(String backUrl, String frontUrl, String nickname, Long postId) {
         User user = userRepository.findByNickname(nickname).orElseThrow(
-                ()-> new IllegalArgumentException("해당 유저를 찾을 수 없습니다.")
+                () -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다.")
         );
         Post post = postRepository.findById(postId).orElseThrow(
-                ()->new IllegalArgumentException("해당 게시물을 찾을 수 없습니다.")
+                () -> new IllegalArgumentException("해당 게시물을 찾을 수 없습니다.")
         );
-        Team team = teamRepository.findByUserAndPost(user,post).orElseThrow(
-                ()->new IllegalArgumentException("해당 게시물을 찾을 수 없습니다.")
+        Team team = teamRepository.findByUserAndPost(user, post).orElseThrow(
+                () -> new IllegalArgumentException("해당 게시물을 찾을 수 없습니다.")
         );
         team.setUrl(frontUrl, backUrl);
 
