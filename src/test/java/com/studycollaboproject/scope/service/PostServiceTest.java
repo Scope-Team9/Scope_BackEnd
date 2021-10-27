@@ -1,6 +1,7 @@
 package com.studycollaboproject.scope.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.studycollaboproject.scope.dto.PostRequestDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.repository.*;
