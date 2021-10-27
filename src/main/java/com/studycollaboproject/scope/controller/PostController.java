@@ -36,24 +36,22 @@ public class PostController {
         return postService.readPost(filter, displayNumber, page, sort , username);
     }
 
-    @PostMapping("/api/post{postId}")
+    @PostMapping("/api/post/{postId}")
     public ResponseDto editPost(
             @PathVariable Long postId,
             @RequestBody PostReqeustDto postReqeustDto,
             @AuthenticationPrincipal UserDetails userDetails
     )
     {
-        String username = userDetails.getUsername();
         return postService.editPost(postId,postReqeustDto);
     }
 
-    @DeleteMapping("/api/post/{postId}")
+    @DeleteMapping("/api/delete/{postId}")
     public ResponseDto deletePost(
             @PathVariable Long postId,
             @AuthenticationPrincipal UserDetails userDetails
     )
     {
-        String username = userDetails.getUsername();
         return postService.deletePost(postId);
 
     }

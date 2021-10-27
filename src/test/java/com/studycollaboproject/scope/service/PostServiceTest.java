@@ -77,7 +77,6 @@ class PostServiceTest {
         String projectStatus = "진행중";
         String startDate = "2021-10-27";
         String endDate = "2021-11-27";
-
         Long id = 1L;
 
         PostReqeustDto postReqeustDto = new PostReqeustDto(
@@ -106,6 +105,36 @@ class PostServiceTest {
 
         //then
         assertEquals(data,"");
+
+    }
+    @Test
+    @DisplayName("Post 읽어오기")
+    void readPost(){
+        String title = "제목입니다.";
+        String summary = "자기소개입니다.";
+        String contents = "컨텐츠입니다.";
+        String techStack = "Spring;React;jQuery";
+        Integer totalMember = 10;
+        Integer recruitmentMember = 6;
+        String projectStatus = "진행중";
+        String startDate = "2021-10-27";
+        String endDate = "2021-11-27";
+        Long id = 1L;
+
+
+        PostReqeustDto postReqeustDto = new PostReqeustDto(
+                title,
+                summary,
+                contents,
+                techStack,
+                totalMember,
+                recruitmentMember,
+                projectStatus,
+                startDate,
+                endDate
+        );
+
+        Post post = new Post(postReqeustDto);
 
     }
 }

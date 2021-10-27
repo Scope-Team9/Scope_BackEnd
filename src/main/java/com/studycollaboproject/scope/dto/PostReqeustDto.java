@@ -38,7 +38,8 @@ public class PostReqeustDto {
                           Integer recruitmentMember,
                           String projectStatus,
                           String startDate,
-                          String endDate)
+                          String endDate
+    )
     {
         List<String> techStackToList = Arrays.asList(techStack.split(";"));
         this.title = title;

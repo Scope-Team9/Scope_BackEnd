@@ -45,15 +45,16 @@ public class Post extends Timestamped{
     @Column(nullable = false)
     private boolean recommendationAgree;
 
+    @Column(nullable = true)
     private String frontUrl;
 
+    @Column(nullable = true)
     private String backUrl;
 
-
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String userTestResult;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String memberTestResult;
 
     @OneToMany(mappedBy = "post")

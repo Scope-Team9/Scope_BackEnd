@@ -58,10 +58,9 @@ public class PostService {
         List<TechStack> techStackList;
         List<String> filterList;
 
-
         // String으로 받아온 filter 값을 세미콜론으로 스플릿
-//        String[] splitStr = filter.split(";");
-//        filterList = new ArrayList<>(Arrays.asList(splitStr));
+        // String[] splitStr = filter.split(";");
+        // filterList = new ArrayList<>(Arrays.asList(splitStr));
         filterList = Arrays.asList(filter.split(";"));
 
         // 스플릿 한 값으로 techStack에서 검색
@@ -79,6 +78,7 @@ public class PostService {
             Post post = techStack.getPost();
             filterPosts.add(post);
         }
+
 
         List<Post> allPosts = new ArrayList<>();
         List<Post> posts = new ArrayList<>();
