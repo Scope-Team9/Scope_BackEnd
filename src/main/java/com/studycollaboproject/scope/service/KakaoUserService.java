@@ -3,6 +3,7 @@ package com.studycollaboproject.scope.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.studycollaboproject.scope.dto.SnsInfoDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -17,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class KakaoUserService {
 
-    public String kakaoLogin(String code) throws JsonProcessingException {
+    public SnsInfoDto kakaoLogin(String code) throws JsonProcessingException {
         String accessToken = getAccessToken(code);
         return getKakaoUserInfo(accessToken);
 
@@ -55,7 +56,7 @@ public class KakaoUserService {
     }
 
 
-    private String getKakaoUserInfo(String accessToken) throws JsonProcessingException {
+    private SnsInfoDto getKakaoUserInfo(String accessToken) throws JsonProcessingException {
         // HTTP Header 생성
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer " + accessToken);
@@ -72,8 +73,9 @@ public class KakaoUserService {
         String responseBody = response.getBody();
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(responseBody);
-
-        return jsonNode.get("kakao_account").get("email").asText();
+        Long id = jsonNode.get("id").asLong();
+        String email = jsonNode.get("kakao_account").get("email").asText();
+        return new SnsInfoDto(email,id);
 
     }
 }
