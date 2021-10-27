@@ -31,6 +31,7 @@ public class Team extends Timestamped {
     public Team(User user, Post post){
         this.post = post;
         this.user = user;
+        post.updateMember();
     }
 
     public void setUrl(String frontUrl, String backUrl){

@@ -121,4 +121,8 @@ public class Post extends Timestamped{
     public void updateStatus(ProjectStatus projectStatus) {
         this.projectStatus = projectStatus;
     }
+
+    public void updateMember() {
+        this.recruitmentMember += 1;
+    }
 }
