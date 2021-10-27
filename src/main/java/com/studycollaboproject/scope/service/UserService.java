@@ -2,7 +2,6 @@ package com.studycollaboproject.scope.service;
 
 
 import com.studycollaboproject.scope.dto.LoginReponseDto;
-import com.studycollaboproject.scope.dto.PostListDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.SignupResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
@@ -12,14 +11,8 @@ import com.studycollaboproject.scope.repository.BookmarkRepository;
 import com.studycollaboproject.scope.repository.TeamRepository;
 import com.studycollaboproject.scope.repository.UserRepository;
 import com.studycollaboproject.scope.security.JwtTokenProvider;
-import com.studycollaboproject.scope.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,28 +44,62 @@ public class UserService {
     }
 
 
-    public PostListDto getPostList(User user, List<Post> bookmarkList) {
-        List<Team> teamList = teamRepository.findAllByUser(user);
-
-        List<Post> inProgressList = new ArrayList<>();
-        List<Post> endList = new ArrayList<>();
-        List<Post> recruitmentList = new ArrayList<>();
-
-        for (Team team : teamList) {
-            switch (team.getPost().getProjectStatus().getProjectStatus()) {
-                case "진행중":
-                    inProgressList.add(team.getPost());
+    public void setTechStack(List<String> techStack, User user) {
+        for (String tech : techStack) {
+            switch (tech) {
+                case "java":
+                    user.addTechStack(new TechStack(Tech.TECH_JAVA,user));
                     break;
-                case "종료":
-                    endList.add(team.getPost());
+                case "JavaScript":
+                    user.addTechStack(new TechStack(Tech.TECH_JS,user));
                     break;
-                case "모집중":
-                    recruitmentList.add(team.getPost());
+                case "Python":
+                    user.addTechStack(new TechStack(Tech.TECH_PYTHON,user));
+                    break;
+                case "Node.js":
+                    user.addTechStack(new TechStack(Tech.TECH_NODEJS,user));
+                    break;
+                case "C++":
+                    user.addTechStack(new TechStack(Tech.TECH_CPP,user));
+                    break;
+                case "Flask":
+                    user.addTechStack(new TechStack(Tech.TECH_FLASK,user));
+                    break;
+                case "Django":
+                    user.addTechStack(new TechStack(Tech.TECH_DJANGO,user));
+                    break;
+                case "Vue.js":
+                    user.addTechStack(new TechStack(Tech.TECH_VUE,user));
+                    break;
+                case "React":
+                    user.addTechStack(new TechStack(Tech.TECH_REACT,user));
+                    break;
+                case "React Native":
+                    user.addTechStack(new TechStack(Tech.TECH_REACTNATIVE,user));
+                    break;
+                case "PHP":
+                    user.addTechStack(new TechStack(Tech.TECH_PHP,user));
+                    break;
+                case "Swift":
+                    user.addTechStack(new TechStack(Tech.TECH_SWIFT,user));
+                    break;
+                case "Kotlin":
+                    user.addTechStack(new TechStack(Tech.TECH_KOTLIN,user));
+                    break;
+                case "TypeScript":
+                    user.addTechStack(new TechStack(Tech.TECH_TYPESCRIPT,user));
+                    break;
+                case "Angular.js":
+                    user.addTechStack(new TechStack(Tech.TECH_ANGULAR,user));
+                    break;
+                case "Spring":
+                    user.addTechStack(new TechStack(Tech.TECH_SPRING,user));
                     break;
             }
         }
-        return new PostListDto(bookmarkList, recruitmentList, inProgressList, endList);
+        userRepository.save(user);
     }
+
 
     public User loadUserByNickname(String nickname) {
         return userRepository.findByNickname(nickname).orElseThrow(

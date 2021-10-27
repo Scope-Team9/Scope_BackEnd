@@ -29,4 +29,9 @@ public class TechStack {
     @JoinColumn(name = "user_id")
 
     private User user;
+
+    public TechStack(Tech tech,User user){
+        this.tech = tech;
+        this.user = user;
+    }
 }

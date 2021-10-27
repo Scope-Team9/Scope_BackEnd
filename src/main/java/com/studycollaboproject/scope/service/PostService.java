@@ -1,8 +1,14 @@
 package com.studycollaboproject.scope.service;
 
+
 import com.studycollaboproject.scope.dto.PostReqeustDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.model.Bookmark;
+
+import com.studycollaboproject.scope.dto.PostListDto;
+import com.studycollaboproject.scope.exception.ErrorCode;
+import com.studycollaboproject.scope.exception.RestApiException;
+
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.Tech;
 import com.studycollaboproject.scope.model.TechStack;
@@ -14,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -104,6 +111,26 @@ public class PostService {
 
         return new ResponseDto("200", "success", posts);
     }
+    public PostListDto getPostList(User user, List<Post> bookmarkList) {
+        List<Team> teamList = teamRepository.findAllByUser(user);
 
+        List<Post> inProgressList = new ArrayList<>();
+        List<Post> endList = new ArrayList<>();
+        List<Post> recruitmentList = new ArrayList<>();
 
+        for (Team team : teamList) {
+            switch (team.getPost().getProjectStatus().getProjectStatus()) {
+                case "진행중":
+                    inProgressList.add(team.getPost());
+                    break;
+                case "종료":
+                    endList.add(team.getPost());
+                    break;
+                case "모집중":
+                    recruitmentList.add(team.getPost());
+                    break;
+            }
+        }
+        return new PostListDto(bookmarkList, recruitmentList, inProgressList, endList);
+    }
 }
