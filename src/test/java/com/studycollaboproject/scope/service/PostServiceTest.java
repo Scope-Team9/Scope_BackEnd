@@ -1,12 +1,10 @@
 package com.studycollaboproject.scope.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.studycollaboproject.scope.dto.PostReqeustDto;
+import com.studycollaboproject.scope.dto.PostRequestDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.model.Post;
-import com.studycollaboproject.scope.repository.BookmarkRepository;
-import com.studycollaboproject.scope.repository.PostRepository;
-import com.studycollaboproject.scope.repository.TechStackRepository;
+import com.studycollaboproject.scope.repository.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,6 +25,10 @@ class PostServiceTest {
     BookmarkRepository bookmarkRepository;
     @Mock
     TechStackRepository techStackRepository;
+    @Mock
+    TeamRepository teamRepository;
+    @Mock
+    UserRepository userRepository;
 
     @Test
     @DisplayName("새로운 Post 추가")
@@ -43,7 +45,7 @@ class PostServiceTest {
         String startDate = "2021-10-27";
         String endDate = "2021-11-27";
 
-        PostReqeustDto postReqeustDto = new PostReqeustDto(
+        PostRequestDto postRequestDto = new PostRequestDto(
                 title,
                 summary,
                 contents,
@@ -55,9 +57,10 @@ class PostServiceTest {
                 endDate
         );
 
-        PostService postService = new PostService(postRepository, bookmarkRepository, techStackRepository);
+        PostService postService = new PostService(postRepository, bookmarkRepository, techStackRepository, teamRepository, userRepository);
+
         //when
-        ResponseDto result = postService.writePost(postReqeustDto);
+        ResponseDto result = postService.writePost(postRequestDto);
         Object data = result.getData();
         //then
         assertEquals(data,"");
@@ -79,7 +82,7 @@ class PostServiceTest {
         String endDate = "2021-11-27";
         Long id = 1L;
 
-        PostReqeustDto postReqeustDto = new PostReqeustDto(
+        PostRequestDto postRequestDto = new PostRequestDto(
                 title,
                 summary,
                 contents,
@@ -93,8 +96,8 @@ class PostServiceTest {
 
         );
 
-        Post post = new Post(postReqeustDto);
-        PostService postService = new PostService(postRepository, bookmarkRepository, techStackRepository);
+        Post post = new Post(postRequestDto);
+        PostService postService = new PostService(postRepository, bookmarkRepository, techStackRepository, teamRepository, userRepository);
         when(postRepository.findById(id))
                 .thenReturn(Optional.of(post));
 
@@ -122,7 +125,7 @@ class PostServiceTest {
         Long id = 1L;
 
 
-        PostReqeustDto postReqeustDto = new PostReqeustDto(
+        PostRequestDto postRequestDto = new PostRequestDto(
                 title,
                 summary,
                 contents,
@@ -134,7 +137,7 @@ class PostServiceTest {
                 endDate
         );
 
-        Post post = new Post(postReqeustDto);
+        Post post = new Post(postRequestDto);
 
     }
 }
