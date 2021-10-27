@@ -12,7 +12,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class PostReqeustDto {
+public class PostRequestDto {
 
     private String title;
     private String summary;
@@ -30,7 +30,7 @@ public class PostReqeustDto {
     private String backUrl;
     private String frontUrl;
 
-    public PostReqeustDto(String title,
+    public PostRequestDto(String title,
                           String summary,
                           String contents,
                           String techStack,
