@@ -1,5 +1,7 @@
 package com.studycollaboproject.scope.model;
 
+import com.studycollaboproject.scope.dto.SignupRequestDto;
+import com.studycollaboproject.scope.util.Timestamped;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +12,7 @@ import java.util.List;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User {
+public class User extends Timestamped {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -18,23 +20,22 @@ public class User {
     private Long id;
 
     @Column(unique = true)
-    private Long kakaoId;
+    private String kakaoId;
 
     @Column(unique = true)
-    private Long githubId;
+    private String githubId;
 
     @Column(unique = true)
-    private Long googleId;
-
+    private String googleId;
 
     @Column(unique = true, nullable = false)
     private String email;
 
     @Column(nullable = false)
-    private String userPropensityType;
+    private PropensityType userPropensityType;
 
     @Column(nullable = false)
-    private String memberPropensityType;
+    private PropensityType memberPropensityType;
 
     @Column(unique = true, nullable = false)
     private String nickname;
@@ -61,4 +62,28 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<TechStack> techStackList;
+
+    @OneToMany(mappedBy = "user")
+    private List<Applicant> applicantList;
+
+    public User(SignupRequestDto signupRequestDto){
+        this.email =signupRequestDto.getEmail();
+        this.githubId = signupRequestDto.getGithubId();
+        this.googleId = signupRequestDto.getGoogleId();
+        this.kakaoId = signupRequestDto.getKakaoId();
+        this.nickname = signupRequestDto.getNickname();
+        this.techStackList = signupRequestDto.getTechStack();
+    }
+
+    public PropensityType updateUserPropensityType(String propensityResult) {
+        this.userPropensityType = PropensityType.valueOf(propensityResult);
+
+        return this.userPropensityType;
+    }
+
+    public PropensityType updateMemberPropensityType(String propensityResult) {
+        this.memberPropensityType = PropensityType.valueOf(propensityResult);
+
+        return this.memberPropensityType;
+    }
 }

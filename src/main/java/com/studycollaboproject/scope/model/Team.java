@@ -1,5 +1,6 @@
 package com.studycollaboproject.scope.model;
 
+import com.studycollaboproject.scope.util.Timestamped;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Team {
+public class Team extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,4 +32,7 @@ public class Team {
         this.user = user;
     }
 
+    public void setUrl(String frontUrl, String backUrl){
+        this.post.setUrl(frontUrl,backUrl);
+    }
 }
