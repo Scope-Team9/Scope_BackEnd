@@ -20,9 +20,9 @@ public class PostController {
     }
 
     @PostMapping("/api/post")
-    public ResponseDto writePost (@AuthenticationPrincipal UserDetails userDetails, @RequestBody PostReqeustDto postReqeustDto){
+    public ResponseDto writePost (@RequestBody PostReqeustDto postReqeustDto){
 
-        return postService.writePost(postReqeustDto,userDetails);
+        return postService.writePost(postReqeustDto);
     }
 
     @GetMapping("/api/post")

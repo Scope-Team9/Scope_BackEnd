@@ -82,7 +82,6 @@ public class Post extends Timestamped{
         this.frontUrl = postReqeustDto.getFrontUrl();
     }
 
-
     public void update(PostReqeustDto postReqeustDto) {
 
         this.title = postReqeustDto.getTitle();

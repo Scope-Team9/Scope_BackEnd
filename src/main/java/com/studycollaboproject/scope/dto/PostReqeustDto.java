@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 @Getter
@@ -29,4 +30,26 @@ public class PostReqeustDto {
     private String backUrl;
     private String frontUrl;
 
+    public PostReqeustDto(String title,
+                          String summary,
+                          String contents,
+                          String techStack,
+                          Integer totalMember,
+                          Integer recruitmentMember,
+                          String projectStatus,
+                          String startDate,
+                          String endDate)
+    {
+        List<String> techStackToList = Arrays.asList(techStack.split(";"));
+        this.title = title;
+        this.summary = summary;
+        this.contents = contents;
+        this.techStack = techStackToList;
+        this.totalMember = totalMember;
+        this.recruitmentMember = recruitmentMember;
+        this.projectStatus = projectStatus;
+        this.startDate = LocalDate.parse(startDate);
+        this.endDate = LocalDate.parse(endDate);
+
+    }
 }

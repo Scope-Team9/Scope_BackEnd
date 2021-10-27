@@ -17,7 +17,8 @@ public enum ProjectStatus {
 
     public static ProjectStatus projectStatusOf(String status) {
         for (ProjectStatus projectStatus : ProjectStatus.values()) {
-            if (status.equalsIgnoreCase(projectStatus.toString())) {
+            if (status.equals(projectStatus.getProjectStatus()))
+            {
                 return projectStatus;
             }
         }

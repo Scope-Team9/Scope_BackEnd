@@ -10,9 +10,9 @@ import com.studycollaboproject.scope.repository.BookmarkRepository;
 import com.studycollaboproject.scope.repository.PostRepository;
 import com.studycollaboproject.scope.repository.TechStackRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,12 +24,13 @@ public class PostService {
     public final BookmarkRepository bookmarkRepository;
     public final TechStackRepository techStackRepository;
 
-    public ResponseDto writePost(PostReqeustDto postReqeustDto, UserDetails userDetails) {
+    public ResponseDto writePost(PostReqeustDto postReqeustDto) {
         Post post = new Post(postReqeustDto);
         postRepository.save(post);
         return new ResponseDto("200","","");
     }
 
+    @Transactional
     public ResponseDto editPost(Long id, PostReqeustDto postReqeustDto){
         Post post = postRepository.findById(id).orElseThrow(
                 ()-> new IllegalArgumentException("포스트가 존재하지 않습니다."));
@@ -37,6 +38,7 @@ public class PostService {
         return new ResponseDto("200", "", post);
     }
 
+    @Transactional
     public ResponseDto deletePost(Long id) {
         postRepository.findById(id).orElseThrow(
                 ()-> new IllegalArgumentException("포스트가 존재하지 않습니다."));
