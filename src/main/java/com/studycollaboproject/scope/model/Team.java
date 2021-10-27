@@ -1,6 +1,7 @@
 package com.studycollaboproject.scope.model;
 
 import com.studycollaboproject.scope.util.Timestamped;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

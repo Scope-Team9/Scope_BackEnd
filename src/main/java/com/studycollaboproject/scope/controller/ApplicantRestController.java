@@ -73,7 +73,7 @@ public class ApplicantRestController {
     @Operation(summary = "모집 현황")
     @GetMapping("/api/applicant/{postId}")
     public ResponseDto getApplicant(@Parameter(in = ParameterIn.PATH, description = "게시글 ID") @PathVariable Long postId,
-                                    @AuthenticationPrincipal UserDetailsImpl userDetails) {
+                                    @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("GET, [{}], /api/applicant/{}", MDC.get("UUID"), postId);
 
         if (userDetails == null) {

@@ -3,11 +3,11 @@ package com.studycollaboproject.scope.service;
 
 import com.studycollaboproject.scope.dto.PostReqeustDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
+import com.studycollaboproject.scope.exception.ErrorCode;
+import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.*;
 
 import com.studycollaboproject.scope.dto.PostListDto;
-import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
 
 import com.studycollaboproject.scope.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -145,4 +145,17 @@ public class PostService {
         team.setUrl(frontUrl, backUrl);
 
     }
+
+    public Post loadPostByPostId(Long postId) {
+        return postRepository.findById(postId).orElseThrow(
+                () -> new RestApiException(ErrorCode.NO_POST_ERROR)
+        );
+    }
+
+    public Post loadPostIfOwner(Long postId, User user) {
+        return postRepository.findByIdAndUser(postId, user).orElseThrow(
+                () -> new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR)
+        );
+    }
+
 }
