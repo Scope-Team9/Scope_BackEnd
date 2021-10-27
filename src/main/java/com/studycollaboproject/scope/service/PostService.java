@@ -132,4 +132,20 @@ public class PostService {
         }
         return new PostListDto(bookmarkList, recruitmentList, inProgressList, endList);
     }
+
+    public Post loadPostByPostId(Long postId) {
+        return postRepository.findById(postId).orElseThrow(
+                () -> new RestApiException(ErrorCode.NO_POST_ERROR)
+        );
+    }
+
+    public void updateUrl(String backUrl, String frontUrl, String username, Long postId) {
+    }
+
+    public Post loadPostIfOwner(Long postId, Long userId) {
+        return postRepository.findByIdAndUserId(postId, userId).orElseThrow(
+                () -> new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR)
+        );
+    }
+
 }

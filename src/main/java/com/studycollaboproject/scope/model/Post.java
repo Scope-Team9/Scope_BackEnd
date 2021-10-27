@@ -1,5 +1,6 @@
 package com.studycollaboproject.scope.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.studycollaboproject.scope.dto.PostReqeustDto;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -59,16 +60,25 @@ public class Post extends Timestamped{
     @Column(nullable = true)
     private String memberTestResult;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @OneToMany(mappedBy = "post")
+    @JsonIgnore
     private List<TechStack> techStackList;
 
     @OneToMany(mappedBy = "post")
-
+    @JsonIgnore
     private List<Bookmark> bookmarkList;
 
     @OneToMany(mappedBy = "post")
+    @JsonIgnore
     private List<Team> teamList;
 
+    @OneToMany(mappedBy = "post")
+    @JsonIgnore
+    private List<Applicant> applicantList;
 
     public Post(PostReqeustDto postReqeustDto){
         this.title = postReqeustDto.getTitle();
@@ -101,5 +111,10 @@ public class Post extends Timestamped{
         this.techStackList = postReqeustDto.getTechStackList();
         this.backUrl = postReqeustDto.getBackUrl();
         this.frontUrl = postReqeustDto.getFrontUrl();
+    }
+
+    public void setUrl(String frontUrl, String backUrl) {
+        this.frontUrl = frontUrl;
+        this.backUrl = backUrl;
     }
 }

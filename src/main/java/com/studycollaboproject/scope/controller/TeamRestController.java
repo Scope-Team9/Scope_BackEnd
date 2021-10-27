@@ -37,10 +37,10 @@ public class TeamRestController {
     public ResponseDto acceptMember(@PathVariable Long postId, @RequestBody TeamRequestDto requestDto, @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("POST, [{}], /api/team/{}, userId={}, accept={}", MDC.get("UUID"), postId, requestDto.getUserId(), requestDto.getAccept());
 
-        if (userDetails == null) {
+        if (userDetails == null) {        //로그인 사용자 불러오기
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
-        //로그인 사용자 불러오기
+
         Post post = postService.loadPostIfOwner(postId, requestDto.getUserId());  //로그인 사용자가 해당 게시글의 생성자 인지 확인
         User applyUser = userService.loadUserByUserId(requestDto.getUserId());    //지원자 정보 확인
         teamService.acceptMember(post, applyUser, requestDto.getAccept());        //지원자 승인/거절
