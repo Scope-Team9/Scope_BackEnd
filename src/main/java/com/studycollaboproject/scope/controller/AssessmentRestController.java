@@ -7,8 +7,10 @@ import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
 import com.studycollaboproject.scope.service.AssessmentService;
 import com.studycollaboproject.scope.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
@@ -23,11 +25,13 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+@Tag(name = "Assessment Controller", description = "팀원 평가")
 public class AssessmentRestController {
 
     private final AssessmentService assessmentService;
     private final UserService userService;
 
+    @Operation(summary = "팀원 평가")
     @PostMapping("/api/assessment/{postId}")
     public ResponseDto assessmentMember(@Parameter(description = "게시글 ID", in = ParameterIn.PATH) @PathVariable Long postId,
                                        @ModelAttribute("userIds") List<Long> userIds,
