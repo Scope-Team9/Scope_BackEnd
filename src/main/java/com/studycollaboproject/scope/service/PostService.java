@@ -3,17 +3,15 @@ package com.studycollaboproject.scope.service;
 
 import com.studycollaboproject.scope.dto.PostReqeustDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
-import com.studycollaboproject.scope.model.Bookmark;
+import com.studycollaboproject.scope.model.*;
 
 import com.studycollaboproject.scope.dto.PostListDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 
-import com.studycollaboproject.scope.model.Post;
-import com.studycollaboproject.scope.model.Tech;
-import com.studycollaboproject.scope.model.TechStack;
 import com.studycollaboproject.scope.repository.BookmarkRepository;
 import com.studycollaboproject.scope.repository.PostRepository;
+import com.studycollaboproject.scope.repository.TeamRepository;
 import com.studycollaboproject.scope.repository.TechStackRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,6 +28,7 @@ public class PostService {
     public final PostRepository postRepository;
     public final BookmarkRepository bookmarkRepository;
     public final TechStackRepository techStackRepository;
+    public final TeamRepository teamRepository;
 
     public ResponseDto writePost(PostReqeustDto postReqeustDto) {
         Post post = new Post(postReqeustDto);
