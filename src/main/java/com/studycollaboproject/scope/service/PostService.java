@@ -3,16 +3,13 @@ package com.studycollaboproject.scope.service;
 
 import com.studycollaboproject.scope.dto.PostReqeustDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
+import com.studycollaboproject.scope.exception.ErrorCode;
+import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.*;
 
 import com.studycollaboproject.scope.dto.PostListDto;
-import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
 
-import com.studycollaboproject.scope.repository.BookmarkRepository;
-import com.studycollaboproject.scope.repository.PostRepository;
-import com.studycollaboproject.scope.repository.TeamRepository;
-import com.studycollaboproject.scope.repository.TechStackRepository;
+import com.studycollaboproject.scope.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +26,7 @@ public class PostService {
     public final BookmarkRepository bookmarkRepository;
     public final TechStackRepository techStackRepository;
     public final TeamRepository teamRepository;
+    private final UserRepository userRepository;
 
     public ResponseDto writePost(PostReqeustDto postReqeustDto) {
         Post post = new Post(postReqeustDto);
@@ -133,17 +131,29 @@ public class PostService {
         return new PostListDto(bookmarkList, recruitmentList, inProgressList, endList);
     }
 
+    @Transactional
+    public void updateUrl(String backUrl, String frontUrl, String nickname, Long postId){
+        User user = userRepository.findByNickname(nickname).orElseThrow(
+                ()-> new IllegalArgumentException("해당 유저를 찾을 수 없습니다.")
+        );
+        Post post = postRepository.findById(postId).orElseThrow(
+                ()->new IllegalArgumentException("해당 게시물을 찾을 수 없습니다.")
+        );
+        Team team = teamRepository.findByUserAndPost(user,post).orElseThrow(
+                ()->new IllegalArgumentException("해당 게시물을 찾을 수 없습니다.")
+        );
+        team.setUrl(frontUrl, backUrl);
+
+    }
+
     public Post loadPostByPostId(Long postId) {
         return postRepository.findById(postId).orElseThrow(
                 () -> new RestApiException(ErrorCode.NO_POST_ERROR)
         );
     }
 
-    public void updateUrl(String backUrl, String frontUrl, String username, Long postId) {
-    }
-
-    public Post loadPostIfOwner(Long postId, Long userId) {
-        return postRepository.findByIdAndUserId(postId, userId).orElseThrow(
+    public Post loadPostIfOwner(Long postId, User user) {
+        return postRepository.findByIdAndUser(postId, user).orElseThrow(
                 () -> new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR)
         );
     }

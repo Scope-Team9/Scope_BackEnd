@@ -41,10 +41,11 @@ public class TeamRestController {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
 
-        Post post = postService.loadPostIfOwner(postId, requestDto.getUserId());  //로그인 사용자가 해당 게시글의 생성자 인지 확인
+        User user = userService.loadUserByNickname(userDetails.getNickname());    //로그인 사용자 정보 불러오기
+        Post post = postService.loadPostIfOwner(postId, user);                    //로그인 사용자가 해당 게시글의 생성자 인지 확인
         User applyUser = userService.loadUserByUserId(requestDto.getUserId());    //지원자 정보 확인
         teamService.acceptMember(post, applyUser, requestDto.getAccept());        //지원자 승인/거절
-        List<MemberListResponseDto> responseDto = teamService.getMember(postId);
+        List<MemberListResponseDto> responseDto = teamService.getMember(postId);  //지원지 목록 출력
         return new ResponseDto("200", "", responseDto);
     }
 
