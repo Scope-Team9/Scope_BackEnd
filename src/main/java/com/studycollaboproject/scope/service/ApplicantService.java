@@ -1,5 +1,6 @@
 package com.studycollaboproject.scope.service;
 
+import com.studycollaboproject.scope.dto.MemberListResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.Applicant;
@@ -9,6 +10,10 @@ import com.studycollaboproject.scope.repository.ApplicantRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -31,5 +36,10 @@ public class ApplicantService {
         );
         applicant.deleteApply();
         applicantRepository.delete(applicant);
+    }
+
+    public List<MemberListResponseDto> getApplicant(Post post) {
+        return applicantRepository.findAllByPost(post)
+                .stream().map(MemberListResponseDto::new).collect(Collectors.toCollection(ArrayList::new));
     }
 }

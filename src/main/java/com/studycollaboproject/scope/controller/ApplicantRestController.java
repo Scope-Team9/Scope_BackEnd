@@ -1,6 +1,7 @@
 package com.studycollaboproject.scope.controller;
 
 import com.studycollaboproject.scope.dto.ResponseDto;
+import com.studycollaboproject.scope.dto.MemberListResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.Post;
@@ -17,11 +18,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -55,7 +54,7 @@ public class ApplicantRestController {
 
     @Operation(summary = "모집 지원취소")
     @DeleteMapping("/api/applicant/{postId}")
-    public ResponseDto cancelApply(@PathVariable Long postId,
+    public ResponseDto cancelApply(@Parameter(in = ParameterIn.PATH, description = "게시글 ID") @PathVariable Long postId,
                                    @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("DELETE, [{}], /api/applicant/{}", MDC.get("UUID"), postId);
 
@@ -68,5 +67,23 @@ public class ApplicantRestController {
         applicantService.cancelApply(user, post);
 
         return new ResponseDto("200", "", "");
+    }
+
+    @Operation(summary = "모집 현황")
+    @GetMapping("/api/applicant/{postId}")
+    public ResponseDto getApplicant(@Parameter(in = ParameterIn.PATH, description = "게시글 ID") @PathVariable Long postId,
+                                    @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        log.info("GET, [{}], /api/applicant/{}", MDC.get("UUID"), postId);
+
+        if (userDetails == null) {
+            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
+        }
+
+        Post post = postService.loadPostByPostId(postId);
+        if (!post.getUser().getNickname().equals(userDetails.getNickname())) {
+            throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
+        }
+        List<MemberListResponseDto> responseDto = applicantService.getApplicant(post);
+        return new ResponseDto("200", "", responseDto);
     }
 }

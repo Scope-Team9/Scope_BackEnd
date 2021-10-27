@@ -1,6 +1,6 @@
 package com.studycollaboproject.scope.service;
 
-import com.studycollaboproject.scope.dto.TeamResponseDto;
+import com.studycollaboproject.scope.dto.MemberListResponseDto;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.Team;
 import com.studycollaboproject.scope.model.User;
@@ -30,8 +30,8 @@ public class TeamService {
         }
     }
 
-    public List<TeamResponseDto> getMember(Long postId) {
+    public List<MemberListResponseDto> getMember(Long postId) {
         return teamRepository.findAllByPostId(postId)
-                .stream().map(TeamResponseDto::new).collect(Collectors.toCollection(ArrayList::new));
+                .stream().map(MemberListResponseDto::new).collect(Collectors.toCollection(ArrayList::new));
     }
 }
