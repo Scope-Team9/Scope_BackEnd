@@ -1,7 +1,7 @@
 package com.studycollaboproject.scope.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.studycollaboproject.scope.dto.PostReqeustDto;
+import com.studycollaboproject.scope.dto.PostRequestDto;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -80,41 +80,45 @@ public class Post extends Timestamped{
     @JsonIgnore
     private List<Applicant> applicantList;
 
-    public Post(PostReqeustDto postReqeustDto){
-        this.title = postReqeustDto.getTitle();
-        this.startDate = postReqeustDto.getStartDate();
-        this.endDate = postReqeustDto.getEndDate();
-        this.summary = postReqeustDto.getSummary();
-        this.contents = postReqeustDto.getContents();
-        this.totalMember = postReqeustDto.getTotalMember();
-        this.recruitmentMember = postReqeustDto.getRecruitmentMember();
-        this.projectStatus = ProjectStatus.projectStatusOf(postReqeustDto.getProjectStatus());
-        this.bookmarkList = postReqeustDto.getBookmarkList();
-        this.teamList = postReqeustDto.getTeamList();
-        this.techStackList = postReqeustDto.getTechStackList();
-        this.backUrl = postReqeustDto.getBackUrl();
-        this.frontUrl = postReqeustDto.getFrontUrl();
+    public Post(PostRequestDto postRequestDto){
+        this.title = postRequestDto.getTitle();
+        this.startDate = postRequestDto.getStartDate();
+        this.endDate = postRequestDto.getEndDate();
+        this.summary = postRequestDto.getSummary();
+        this.contents = postRequestDto.getContents();
+        this.totalMember = postRequestDto.getTotalMember();
+        this.recruitmentMember = postRequestDto.getRecruitmentMember();
+        this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
+        this.bookmarkList = postRequestDto.getBookmarkList();
+        this.teamList = postRequestDto.getTeamList();
+        this.techStackList = postRequestDto.getTechStackList();
+        this.backUrl = postRequestDto.getBackUrl();
+        this.frontUrl = postRequestDto.getFrontUrl();
     }
 
-    public void update(PostReqeustDto postReqeustDto) {
+    public void update(PostRequestDto postRequestDto) {
 
-        this.title = postReqeustDto.getTitle();
-        this.startDate = postReqeustDto.getStartDate();
-        this.endDate = postReqeustDto.getEndDate();
-        this.summary = postReqeustDto.getSummary();
-        this.contents = postReqeustDto.getContents();
-        this.totalMember = postReqeustDto.getTotalMember();
-        this.recruitmentMember = postReqeustDto.getRecruitmentMember();
-        this.projectStatus = ProjectStatus.projectStatusOf(postReqeustDto.getProjectStatus());
-        this.bookmarkList = postReqeustDto.getBookmarkList();
-        this.teamList = postReqeustDto.getTeamList();
-        this.techStackList = postReqeustDto.getTechStackList();
-        this.backUrl = postReqeustDto.getBackUrl();
-        this.frontUrl = postReqeustDto.getFrontUrl();
+        this.title = postRequestDto.getTitle();
+        this.startDate = postRequestDto.getStartDate();
+        this.endDate = postRequestDto.getEndDate();
+        this.summary = postRequestDto.getSummary();
+        this.contents = postRequestDto.getContents();
+        this.totalMember = postRequestDto.getTotalMember();
+        this.recruitmentMember = postRequestDto.getRecruitmentMember();
+        this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
+        this.bookmarkList = postRequestDto.getBookmarkList();
+        this.teamList = postRequestDto.getTeamList();
+        this.techStackList = postRequestDto.getTechStackList();
+        this.backUrl = postRequestDto.getBackUrl();
+        this.frontUrl = postRequestDto.getFrontUrl();
     }
 
     public void setUrl(String frontUrl, String backUrl) {
         this.frontUrl = frontUrl;
         this.backUrl = backUrl;
+    }
+
+    public void updateStatus(ProjectStatus projectStatus) {
+        this.projectStatus = projectStatus;
     }
 }

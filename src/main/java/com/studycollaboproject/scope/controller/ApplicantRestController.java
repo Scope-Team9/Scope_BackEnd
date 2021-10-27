@@ -1,6 +1,5 @@
 package com.studycollaboproject.scope.controller;
 
-import com.studycollaboproject.scope.dto.ApplyRequestDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.MemberListResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
@@ -14,6 +13,7 @@ import com.studycollaboproject.scope.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,9 +37,8 @@ public class ApplicantRestController {
     @Operation(summary = "모집 지원하기")
     @PostMapping("/api/applicant/{postId}")
     public ResponseDto apply(@Parameter(in = ParameterIn.PATH, description = "게시글 ID") @PathVariable Long postId,
-                             @RequestBody ApplyRequestDto requestDto,
+                             @Schema(description = "한줄 소개") @ModelAttribute("comment") String comment,
                              @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        String comment = requestDto.getComment();
         log.info("POST, [{}], /api/applicant/{}, comment={}", MDC.get("UUID"), postId, comment);
 
         if (userDetails == null) {
