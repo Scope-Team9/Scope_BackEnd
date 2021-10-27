@@ -20,6 +20,6 @@ public class SignupRequestDto {
 
     private String nickname;
 
-    private List<TechStack> techStack;
+    private List<String> techStack;
 
 }

@@ -6,8 +6,10 @@ import com.studycollaboproject.scope.dto.PostListDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.SignupRequestDto;
 import com.studycollaboproject.scope.model.Post;
+import com.studycollaboproject.scope.model.TechStack;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.service.PostService;
+import com.studycollaboproject.scope.service.TechStackService;
 import com.studycollaboproject.scope.service.UserService;
 import com.studycollaboproject.scope.service.KakaoUserService;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @RestController
 public class UserRestController {
+    private final TechStackService techStackService;
     private final PostService postService;
     private final UserService userService;
     private final KakaoUserService kakaoUserService;
@@ -31,7 +34,7 @@ public class UserRestController {
 
         User user = userService.getUserInfo(userDetails.getUsername());
         List<Post> bookmarkList = userService.getBookmarkList(user);
-        PostListDto postListDto = userService.getPostList(user, bookmarkList);
+        PostListDto postListDto = postService.getPostList(user, bookmarkList);
         return new ResponseDto("200", "", postListDto);
     }
 
@@ -45,7 +48,9 @@ public class UserRestController {
 
     @PostMapping("/api/signup")
     public ResponseDto signup(@RequestBody SignupRequestDto signupRequestDto) {
+
         User user = new User(signupRequestDto);
+        userService.setTechStack(signupRequestDto.getTechStack(),user);
 
         Map<String, String> token = new HashMap<>();
         token.put("token", userService.signup(user));
