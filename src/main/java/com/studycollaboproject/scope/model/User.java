@@ -75,4 +75,15 @@ public class User extends Timestamped {
         this.techStackList = signupRequestDto.getTechStack();
     }
 
+    public PropensityType updateUserPropensityType(String propensityResult) {
+        this.userPropensityType = PropensityType.valueOf(propensityResult);
+
+        return this.userPropensityType;
+    }
+
+    public PropensityType updateMemberPropensityType(String propensityResult) {
+        this.memberPropensityType = PropensityType.valueOf(propensityResult);
+
+        return this.memberPropensityType;
+    }
 }

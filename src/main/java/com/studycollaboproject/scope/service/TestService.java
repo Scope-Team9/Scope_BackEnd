@@ -1,0 +1,52 @@
+package com.studycollaboproject.scope.service;
+
+import com.studycollaboproject.scope.dto.TestResultDto;
+import com.studycollaboproject.scope.exception.ErrorCode;
+import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.model.User;
+import com.studycollaboproject.scope.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.*;
+
+@Service
+@RequiredArgsConstructor
+public class TestService {
+    private final UserRepository userRepository;
+
+    @Transactional
+    public TestResultDto updatePropensityType(String nickname, List<String> userPropensityType, List<String> memberPropensityType) {
+        User user = userRepository.findByNickname(nickname).orElseThrow(
+                () -> new RestApiException(ErrorCode.NO_USER_ERROR)
+        );
+
+        String userType = testResult(userPropensityType);       //user의 성향 테스트 결과
+        String memberType = testResult(memberPropensityType);   //user가 원하는 성향 테스트 결과
+
+        return new TestResultDto(user.updateUserPropensityType(userType),
+                user.updateMemberPropensityType(memberType));
+    }
+
+    private String testResult(List<String> userPropensityType) {
+        Map<String, Integer> userTypeMap = new HashMap<>();
+        StringBuilder userType = new StringBuilder();
+        for (String userSelected : userPropensityType) {
+            userTypeMap.put(userSelected, userTypeMap.getOrDefault(userSelected, 0) + 1);
+        }
+        userType.append(userTypeMap.get("L") > userTypeMap.get("F") ? 'L' : 'F');
+        userType.append(userTypeMap.get("V") > userTypeMap.get("H") ? 'V' : 'H');
+        userType.append(userTypeMap.get("P") > userTypeMap.get("G") ? 'P' : 'G');
+
+        return new String(userType);
+    }
+
+    public TestResultDto getPropensityType(String nickname) {
+        User user = userRepository.findByNickname(nickname).orElseThrow(
+                () -> new RestApiException(ErrorCode.NO_USER_ERROR)
+        );
+
+        return new TestResultDto(user.getUserPropensityType(), user.getMemberPropensityType());
+    }
+}
