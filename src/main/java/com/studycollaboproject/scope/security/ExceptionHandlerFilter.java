@@ -1,4 +1,4 @@
-package com.studycollaboproject.scope.exception;
+package com.studycollaboproject.scope.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.studycollaboproject.scope.dto.ResponseDto;

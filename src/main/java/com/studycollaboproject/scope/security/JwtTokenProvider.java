@@ -1,11 +1,12 @@
 package com.studycollaboproject.scope.security;
 
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import com.studycollaboproject.scope.exception.ErrorCode;
+import com.studycollaboproject.scope.exception.RestApiException;
+import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,11 +14,14 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.util.Base64;
 import java.util.Date;
 
 @RequiredArgsConstructor
 @Component
+@Slf4j
 public class JwtTokenProvider {
 
     private String secretKey = "lwekfsodif"; // 암호 키 설정
@@ -35,6 +39,11 @@ public class JwtTokenProvider {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
+    private Key getSigninKey() {
+        byte[] keyBytes = secretKey.getBytes(StandardCharsets.UTF_8);
+        return Keys.hmacShaKeyFor(keyBytes);
+    }
+
     // JWT 토큰 생성
     public String createToken(String nickname) {
         Claims claims = Jwts.claims().setSubject(nickname);
@@ -44,7 +53,7 @@ public class JwtTokenProvider {
                 .setClaims(claims) // 정보 저장
                 .setIssuedAt(now) // 토큰 발행 시간 정보
                 .setExpiration(new Date(now.getTime() + tokenUseTime)) // set Expire Time
-                .signWith(signatureAlgorithm, secretKey)// 사용할 암호화 알고리즘과 시크릿 키
+                .signWith(getSigninKey(), signatureAlgorithm)// 사용할 암호화 알고리즘과 시크릿 키
                 .compact();
     }
 
@@ -53,27 +62,41 @@ public class JwtTokenProvider {
     // SecurityContextHolder.getContext에 최종적으로 담겨서 로그아웃 하기 전까지 계속 사용되어진다.
     public Authentication getAuthentication(String token) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
+        log.info("============getAuthentication===========");
+        log.info("nickname={}", userDetails.getUsername());
+        log.info("============getAuthentication===========");
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
     // 토큰에서 회원 정보 추출
     public String getUserPk(String token) {
-        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
+        JwtParser parser = Jwts.parserBuilder().setSigningKey(getSigninKey()).build();
+        Jws<Claims> claims = parser.parseClaimsJws(token);
+        return claims.getBody().getSubject();
     }
 
-    // Request의 Header에서 token 값을 가져옴. "X-AUTH-TOKEN" : "TOKEN값'
+    // Request의 Header에서 token 값을 가져옴. "authorization" : "TOKEN값"
     public String resolveToken(HttpServletRequest request) {
-
-        return request.getHeader("X-AUTH-TOKEN");
+        final String header = request.getHeader("authorization");
+        if (header != null && (header.toLowerCase().indexOf("bearer ") == 0))
+            return header.substring(7);
+        else return header;
     }
 
     // 토큰의 유효성 + 만료일자 확인
     public boolean validateToken(String jwtToken) {
+        if (jwtToken == null) {
+            log.info("토큰이 존재하지 않습니다.");
+            throw new RestApiException(ErrorCode.NO_TOKEN_ERROR);
+        }
         try {
-            Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken);
+            JwtParser parser = Jwts.parserBuilder().setSigningKey(getSigninKey()).build();
+            Jws<Claims> claims = parser.parseClaimsJws(jwtToken);
+
             return !claims.getBody().getExpiration().before(new Date());
         } catch (Exception e) {
-            return false;
+            log.info("정상적인 토큰이 아닙니다.");
+            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
     }
 }
