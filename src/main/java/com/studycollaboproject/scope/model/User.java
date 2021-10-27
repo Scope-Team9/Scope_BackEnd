@@ -72,7 +72,9 @@ public class User extends Timestamped {
         this.googleId = signupRequestDto.getGoogleId();
         this.kakaoId = signupRequestDto.getKakaoId();
         this.nickname = signupRequestDto.getNickname();
-        this.techStackList = signupRequestDto.getTechStack();
+    }
+    public void addTechStack(TechStack techStack){
+        this.techStackList.add(techStack);
     }
 
 }

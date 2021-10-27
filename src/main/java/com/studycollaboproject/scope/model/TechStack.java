@@ -22,4 +22,9 @@ public class TechStack {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "techStack")
     private User user;
+
+    public TechStack(Tech tech,User user){
+        this.tech = tech;
+        this.user = user;
+    }
 }
