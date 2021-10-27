@@ -1,5 +1,6 @@
 package com.studycollaboproject.scope.controller;
 
+import com.studycollaboproject.scope.dto.ApplyRequestDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.MemberListResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
@@ -36,9 +37,9 @@ public class ApplicantRestController {
     @Operation(summary = "모집 지원하기")
     @PostMapping("/api/applicant/{postId}")
     public ResponseDto apply(@Parameter(in = ParameterIn.PATH, description = "게시글 ID") @PathVariable Long postId,
-                             Map<String, String> map,
+                             @RequestBody ApplyRequestDto requestDto,
                              @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        String comment = map.get("comment");
+        String comment = requestDto.getComment();
         log.info("POST, [{}], /api/applicant/{}, comment={}", MDC.get("UUID"), postId, comment);
 
         if (userDetails == null) {
