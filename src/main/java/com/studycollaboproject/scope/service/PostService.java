@@ -14,10 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
@@ -62,48 +59,55 @@ public class PostService {
         List<TechStack> techStackList;
         List<String> filterList;
 
-        // String으로 받아온 filter 값을 세미콜론으로 스플릿
-        // String[] splitStr = filter.split(";");
-        // filterList = new ArrayList<>(Arrays.asList(splitStr));
-        filterList = Arrays.asList(filter.split(";"));
+        // 선택한 기술스택 있으면 filterPosts에 필터링된 값을 담아준다.
+        if (filter != null && !filter.isEmpty()) {
+            // String으로 받아온 filter 값을 세미콜론으로 스플릿
+            // String[] splitStr = filter.split(";");
+            // filterList = new ArrayList<>(Arrays.asList(splitStr));
+            filterList = Arrays.asList(filter.split(";"));
 
-        // 스플릿 한 값으로 techStack에서 검색
-        for(String techFilter:filterList)
-        {
-            //프론트에서 받아온 String을 Enumtype으로 변경
-            Tech tech = Tech.valueOf(techFilter);
-            techList.add(tech);
+            // 스플릿 한 값으로 techStack에서 검색
+            for (String techFilter : filterList) {
+                //프론트에서 받아온 String을 Enumtype으로 변경
+                Tech tech = Tech.valueOf(techFilter);
+                techList.add(tech);
+            }
+            // techList에 포함된 TehcStack을 techStackList에 저장
+            techStackList = techStackRepository.findAllByTechIn(techList);
+
+            // 저장된 techStackList에서 post를 가져옴
+            for (TechStack techStack : techStackList) {
+                Post post = techStack.getPost();
+                filterPosts.add(post);
+            }
         }
-        // techList에 포함된 TehcStack을 techStackList에 저장
-        techStackList = techStackRepository.findAllByTechIn(techList);
-
-        // 저장된 techStackList에서 post를 가져옴
-        for (TechStack techStack : techStackList){
-            Post post = techStack.getPost();
-            filterPosts.add(post);
+        // 선택된 기술스택이 없으면 전체  포스트를 담아준다.
+        else {
+            filterPosts = postRepository.findAll();
         }
-
 
         List<Post> allPosts = new ArrayList<>();
         List<Post> posts = new ArrayList<>();
 
-        switch (sort){
-               case "bookmark" :
-                   List<Bookmark> bookmarkList = bookmarkRepository.findAllByPostInAndUserNickname(filterPosts,nickname);
-                   for (Bookmark bookmark :bookmarkList){
-                       Post post = bookmark.getPost();
-                       allPosts.add(post);
-                   }
-                   break;
+        switch (sort) {
+            case "bookmark":
+                List<Bookmark> bookmarkList = bookmarkRepository.findAllByPostInAndUserNickname(filterPosts, nickname);
+                for (Bookmark bookmark : bookmarkList) {
+                    Post post = bookmark.getPost();
+                    allPosts.add(post);
+                }
+                break;
+            case "createdAt":
+                filterPosts.sort(Comparator.comparing(Post::getCreatedAt));
+                break;
 
-               case "latest":
-                   allPosts = postRepository.findAllByOrderByCreatedAtDesc();
-                   break;
-           }
-
-           for (int i=0; i< displayNumber; i++){
-               posts.add(allPosts.get(i));
-           }
+            case "deadline":
+                filterPosts.sort(Comparator.comparing(Post::getStartDate, Comparator.reverseOrder()));
+                break;
+        }
+        for (int i = 0; i < displayNumber; i++) {
+            posts.add(allPosts.get(i));
+        }
         int totalPost = allPosts.size();
 
         return new ResponseDto("200", "success", posts);
