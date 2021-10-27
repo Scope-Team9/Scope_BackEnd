@@ -3,8 +3,15 @@ package com.studycollaboproject.scope.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+<<<<<<< HEAD
 
 @Getter
+=======
+import lombok.Setter;
+
+@Getter
+@Setter
+>>>>>>> feature/post
 @AllArgsConstructor
 public class ResponseDto {
     @Schema(description = "request 결과", example = "200")

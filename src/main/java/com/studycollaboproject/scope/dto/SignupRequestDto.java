@@ -1,6 +1,5 @@
 package com.studycollaboproject.scope.dto;
 
-import com.studycollaboproject.scope.model.TechStack;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

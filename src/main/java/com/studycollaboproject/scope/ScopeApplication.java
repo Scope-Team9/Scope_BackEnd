@@ -15,9 +15,11 @@ public class ScopeApplication {
         SpringApplication.run(ScopeApplication.class, args);
     }
 
+
     @PostConstruct
     public void before() {
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
     }
 
 }
+
