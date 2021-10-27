@@ -1,8 +1,10 @@
 package com.studycollaboproject.scope.service;
 
 
+import com.studycollaboproject.scope.dto.LoginReponseDto;
 import com.studycollaboproject.scope.dto.PostListDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
+import com.studycollaboproject.scope.dto.SignupResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.*;
@@ -18,8 +20,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -82,30 +86,43 @@ public class UserService {
         );
     }
 
-    public String  signup(User user) {
+    public String signup(User user) {
         userRepository.save(user);
-        forceLogin(user);
         return jwtTokenProvider.createToken(user.getNickname());
 
     }
 
-    private void forceLogin(User user) {
-        // 4. 강제 로그인 처리
-        UserDetails userDetails = new UserDetailsImpl(user);
-        Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-    }
 
-    public ResponseDto emailCheck(String email, String username) {
-        userRepository.findByNickname(username).orElseThrow(
-                ()-> new IllegalArgumentException("사용자를 찾을 수 없습니다.")
+    public boolean emailCheckByUser(String email, String username) {
+        User user = userRepository.findByNickname(username).orElseThrow(
+                () -> new IllegalArgumentException("사용자를 찾을 수 없습니다.")
         );
-        if (userRepository.findByEmail(email).isPresent()){
-                return new ResponseDto("400","중복된 이메일이 존재합니다.","");
-        }else{
-            return new ResponseDto("200","사용가능한 메일입니다.","");
-
-
-        }
+        return user.getEmail().equals(email);
     }
+
+    public ResponseDto emailCheckByEmail(String email, String sns) {
+        Optional<User> user = userRepository.findByEmail(email);
+        if (user.isPresent()) {
+
+            LoginReponseDto loginReponseDto = new LoginReponseDto(jwtTokenProvider.createToken(user.get().getNickname()), user.get().getEmail(), user.get().getNickname());
+            return new ResponseDto("200", "로그인이 완료되었습니다", loginReponseDto);
+        } else {
+            SignupResponseDto signupResponseDto = new SignupResponseDto();
+            switch (sns) {
+                case "google":
+                    signupResponseDto.setEmail("", email, "");
+                    break;
+                case "kakao":
+                    signupResponseDto.setEmail("", "", email);
+                    break;
+                case "github":
+                    signupResponseDto.setEmail(email, "", "");
+                    break;
+            }
+            return new ResponseDto("300", "추가 정보 작성이 필요한 사용자입니다.", signupResponseDto);
+        }
+
+    }
+
+
 }
