@@ -1,17 +1,12 @@
 package com.studycollaboproject.scope.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.studycollaboproject.scope.dto.LoginReponseDto;
 import com.studycollaboproject.scope.dto.PostListDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.SignupRequestDto;
 import com.studycollaboproject.scope.model.Post;
-import com.studycollaboproject.scope.model.TechStack;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.service.PostService;
-import com.studycollaboproject.scope.service.TechStackService;
 import com.studycollaboproject.scope.service.UserService;
-import com.studycollaboproject.scope.service.KakaoUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,10 +19,10 @@ import java.util.Map;
 @RequiredArgsConstructor
 @RestController
 public class UserRestController {
-    private final TechStackService techStackService;
+
     private final PostService postService;
     private final UserService userService;
-    private final KakaoUserService kakaoUserService;
+
 
     @GetMapping("/api/user")
     public ResponseDto getMyPage(@AuthenticationPrincipal UserDetails userDetails) {
@@ -70,10 +65,7 @@ public class UserRestController {
         }
     }
 
-    @GetMapping("/user/kakao/callback")
-    public ResponseDto kakaoLogin(@RequestParam String code) throws JsonProcessingException {
-        String kakaoEmail = kakaoUserService.kakaoLogin(code);
-        return userService.emailCheckByEmail(kakaoEmail,"kakao");
-    }
+
+
 
 }

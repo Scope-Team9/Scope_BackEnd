@@ -8,7 +8,6 @@ import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.*;
 import com.studycollaboproject.scope.repository.BookmarkRepository;
-import com.studycollaboproject.scope.repository.TeamRepository;
 import com.studycollaboproject.scope.repository.UserRepository;
 import com.studycollaboproject.scope.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +23,6 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final BookmarkRepository bookmarkRepository;
-    private final TeamRepository teamRepository;
     private final JwtTokenProvider jwtTokenProvider;
 
 
