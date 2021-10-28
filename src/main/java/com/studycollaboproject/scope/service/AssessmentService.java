@@ -3,7 +3,6 @@ package com.studycollaboproject.scope.service;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.Post;
-import com.studycollaboproject.scope.model.PropensityType;
 import com.studycollaboproject.scope.model.Team;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.PostRepository;
@@ -34,7 +33,7 @@ public class AssessmentService {
 
     }
 
-    private void userAssessment(PropensityType user, PropensityType member) {
+    private void userAssessment(String user, String member) {
         //user -> member
     }
 }
