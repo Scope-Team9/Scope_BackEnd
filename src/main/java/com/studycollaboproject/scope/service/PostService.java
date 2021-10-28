@@ -28,10 +28,8 @@ public class PostService {
     private final TeamRepository teamRepository;
     private final UserRepository userRepository;
 
-    public ResponseDto writePost(PostRequestDto postRequestDto) {
-        Post post = new Post(postRequestDto);
-        postRepository.save(post);
-        return new ResponseDto("200","","");
+    public Post writePost(Post post) {
+        return postRepository.save(post);
     }
 
     @Transactional
@@ -43,11 +41,11 @@ public class PostService {
     }
 
     @Transactional
-    public ResponseDto deletePost(Long id) {
-        postRepository.findById(id).orElseThrow(
-                ()-> new IllegalArgumentException("포스트가 존재하지 않습니다."));
-        postRepository.deleteById(id);
-        return new ResponseDto("200", "","");
+    public boolean deletePost(Long id) {
+        Post post = postRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("포스트가 존재하지 않습니다."));
+        postRepository.delete(post);
+        return true;
     }
 
 

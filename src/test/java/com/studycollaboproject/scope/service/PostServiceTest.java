@@ -5,10 +5,12 @@ import com.studycollaboproject.scope.dto.PostRequestDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.repository.*;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
@@ -33,7 +35,6 @@ class PostServiceTest {
     @Test
     @DisplayName("새로운 Post 추가")
     void writePost() {
-
         //given
         String title = "제목입니다.";
         String summary = "자기소개입니다.";
@@ -58,19 +59,21 @@ class PostServiceTest {
         );
 
         PostService postService = new PostService(postRepository, bookmarkRepository, techStackRepository, teamRepository, userRepository);
-
+        Post post = new Post(postRequestDto);
+        Mockito.when(postRepository.save(post)).thenReturn(post);
         //when
-        ResponseDto result = postService.writePost(postRequestDto);
-        Object data = result.getData();
+        Post result = postService.writePost(post);
         //then
-        assertEquals(data,"");
+        Assertions.assertThat(result.getTitle()).isEqualTo(post.getTitle());
+        Assertions.assertThat(result.getContents()).isEqualTo(post.getContents());
+        Assertions.assertThat(result.getSummary()).isEqualTo(post.getSummary());
+        Assertions.assertThat(result.getProjectStatus()).isEqualTo(post.getProjectStatus());
     }
 
     @Test
     @DisplayName("Post 삭제")
     void deletePost(){
         //given
-
         String title = "제목입니다.";
         String summary = "자기소개입니다.";
         String contents = "컨텐츠입니다.";
@@ -92,8 +95,6 @@ class PostServiceTest {
                 projectStatus,
                 startDate,
                 endDate
-
-
         );
 
         Post post = new Post(postRequestDto);
@@ -101,15 +102,13 @@ class PostServiceTest {
         when(postRepository.findById(id))
                 .thenReturn(Optional.of(post));
 
-
         // when
-        ResponseDto result = postService.deletePost(id);
-        Object data = result.getData();
+        // then
+        boolean result = postService.deletePost(id);
 
-        //then
-        assertEquals(data,"");
-
+        Assertions.assertThat(result).isTrue();
     }
+
     @Test
     @DisplayName("Post 읽어오기")
     void readPost(){

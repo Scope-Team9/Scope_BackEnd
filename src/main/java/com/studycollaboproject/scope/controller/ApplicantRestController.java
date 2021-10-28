@@ -4,6 +4,7 @@ import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.MemberListResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.model.Applicant;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
@@ -47,7 +48,12 @@ public class ApplicantRestController {
 
         User user = userService.loadUserByNickname(userDetails.getNickname());    //로그인 회원 조회
         Post post = postService.loadPostByPostId(postId);
-        applicantService.applyPost(post, user, comment);
+        Applicant applicant = Applicant.builder()
+                .post(post)
+                .user(user)
+                .comment(comment)
+                .build();
+        applicantService.applyPost(applicant);
 
         return new ResponseDto("200", "", "");
     }

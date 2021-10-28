@@ -5,6 +5,7 @@ import com.studycollaboproject.scope.model.Team;
 import com.studycollaboproject.scope.model.TechStack;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@ToString
 public class PostRequestDto {
 
     private String title;

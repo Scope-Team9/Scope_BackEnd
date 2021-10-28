@@ -26,16 +26,18 @@ public class NaverUserService {
 
     private String getAccessToken(String code,String statusToken) throws JsonProcessingException {
 
+        System.out.println("code = " + code);
+        System.out.println("statusToken = " + statusToken);
         // HTTP Header 생성
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
         // HTTP Body 생성
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-        body.add("grant_type", "authorization_code");
-        body.add("client_id", "e6b3946cda0f744a73cbbb4de2be3732");
-        body.add("redirect_uri", "http://15.165.159.211/user/naver/callback");
-        body.add("code", code);
+//        body.add("grant_type", "authorization_code");
+//        body.add("client_id", "po1xo1mV04k2Wf9inz5n");
+//        body.add("redirect_uri", "http://localhost:8080/user/naver/callback");
+//        body.add("code", code);
 
         // HTTP 요청 보내기
         HttpEntity<MultiValueMap<String, String>> naverTokenRequest =
@@ -52,6 +54,7 @@ public class NaverUserService {
         String responseBody = response.getBody();
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(responseBody);
+        System.out.println("responseBody = " + responseBody);
         return jsonNode.get("access_token").asText();
 
     }

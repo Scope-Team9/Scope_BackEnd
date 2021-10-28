@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -55,16 +56,16 @@ public class User extends Timestamped {
     private String userTestResult;
 
     @OneToMany(mappedBy = "user")
-    private List<Bookmark> bookmarkList;
+    private List<Bookmark> bookmarkList = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    private List<Team> teamList;
+    private List<Team> teamList = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    private List<TechStack> techStackList;
+    private List<TechStack> techStackList = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    private List<Applicant> applicantList;
+    private List<Applicant> applicantList = new ArrayList<>();
 
     public User(SignupRequestDto signupRequestDto){
         this.email =signupRequestDto.getEmail();
