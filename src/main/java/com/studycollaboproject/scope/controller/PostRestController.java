@@ -108,5 +108,3 @@ public class PostRestController {
         return new ResponseDto("200", "", new PostDetailDto(postDetail, member));
     }
 }
-
-
