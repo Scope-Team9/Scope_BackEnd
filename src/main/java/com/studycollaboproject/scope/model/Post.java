@@ -42,12 +42,14 @@ public class Post extends Timestamped{
     private int recruitmentMember;
 
     @Column(nullable = false)
-
     @Enumerated(value = EnumType.STRING)
     private ProjectStatus projectStatus;
 
     @Column(nullable = false)
     private boolean recommendationAgree;
+
+    @Column(nullable = false)
+    private boolean isBookmarkChecked;
 
     @Column(nullable = true)
     private String frontUrl;
@@ -95,6 +97,7 @@ public class Post extends Timestamped{
         this.techStackList = postRequestDto.getTechStackList();
         this.backUrl = postRequestDto.getBackUrl();
         this.frontUrl = postRequestDto.getFrontUrl();
+        this.isBookmarkChecked = false;
     }
 
     public void update(PostRequestDto postRequestDto) {
@@ -117,6 +120,10 @@ public class Post extends Timestamped{
     public void setUrl(String frontUrl, String backUrl) {
         this.frontUrl = frontUrl;
         this.backUrl = backUrl;
+    }
+
+    public void setIsBookmarkChecked(boolean isBookmarkChecked){
+        this.isBookmarkChecked = isBookmarkChecked;
     }
 
     public void updateStatus(ProjectStatus projectStatus) {
