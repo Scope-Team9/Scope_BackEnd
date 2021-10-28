@@ -1,6 +1,5 @@
 package com.studycollaboproject.scope.service;
 
-
 import com.studycollaboproject.scope.dto.LoginReponseDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.SnsInfoDto;
@@ -8,14 +7,14 @@ import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.*;
 import com.studycollaboproject.scope.repository.BookmarkRepository;
+import com.studycollaboproject.scope.repository.PostRepository;
 import com.studycollaboproject.scope.repository.UserRepository;
 import com.studycollaboproject.scope.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import javax.transaction.Transactional;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
@@ -24,6 +23,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final BookmarkRepository bookmarkRepository;
     private final JwtTokenProvider jwtTokenProvider;
+    private final PostRepository postRepository;
 
 
     public User getUserInfo(String userNickname) {
@@ -137,5 +137,29 @@ public class UserService {
 
     }
 
+    @Transactional
+    public ResponseDto BookmarkCheck(Long postId, String nickname) {
+        Post post = postRepository.findById(postId).orElseThrow(
+                ()-> new IllegalArgumentException("해당 포스트를 찾을 수 없습니다.")
+        );
+        User user = userRepository.findByNickname(nickname).orElseThrow(
+                ()-> new IllegalArgumentException("해당 사용자를 찾을 수 없습니다.")
+        );
+        if (post.isBookmarkChecked()){
+            Bookmark bookmark = bookmarkRepository.findByUserAndPost(user,post);
+            bookmarkRepository.delete(bookmark);
+            post.setIsBookmarkChecked(false);
+            Map<String ,String> isBookmarkChecked = new HashMap<>();
+            isBookmarkChecked.put("isBookmarkChecked","false");
+            return new ResponseDto("200","북마크 삭제 성공",isBookmarkChecked);
+        }else {
+            bookmarkRepository.save(new Bookmark(user,post));
+            post.setIsBookmarkChecked(true);
+            Map<String ,String> isBookmarkChecked = new HashMap<>();
+            isBookmarkChecked.put("isBookmarkChecked","true");
+            return new ResponseDto("200","북마크 추가 성공",isBookmarkChecked);
+        }
 
+
+    }
 }

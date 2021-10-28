@@ -33,7 +33,7 @@ public class NaverUserService {
         // HTTP Body 생성
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "authorization_code");
-        body.add("client_id", "e6b3946cda0f744a73cbbb4de2be3732");
+        body.add("client_id", "po1xo1mV04k2Wf9inz5n");
         body.add("redirect_uri", "http://15.165.159.211/user/naver/callback");
         body.add("code", code);
 

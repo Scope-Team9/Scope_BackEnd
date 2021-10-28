@@ -8,10 +8,14 @@ import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.service.PostService;
 import com.studycollaboproject.scope.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,6 +54,11 @@ public class UserRestController {
         Map<String, String> token = new HashMap<>();
         token.put("token", userService.signup(user));
 
+//        String token = userService.signup(user);
+//        Cookie cookie = new Cookie("token",token);
+//        cookie.setMaxAge(60*60*24*30);
+//        response.addCookie(cookie); // 추가구현 필요
+//        return new ResponseDto("200", "", "");
         return new ResponseDto("200", "", token);
 
     }
@@ -66,6 +75,10 @@ public class UserRestController {
     }
 
 
+    @PostMapping("/api/bookmark/{postId}")
+    public ResponseDto bookmarkCheck(@PathVariable Long postId, @AuthenticationPrincipal UserDetails userDetails){
+        return userService.BookmarkCheck(postId,userDetails.getUsername());
+    }
 
 
 }
