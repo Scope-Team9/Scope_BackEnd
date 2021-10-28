@@ -4,11 +4,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
 @Getter
 @AllArgsConstructor
+@ToString
 public class SignupRequestDto {
 
     @Schema(description = "SNS ID")
