@@ -50,3 +50,4 @@ public class TestService {
         return new TestResultDto(user.getUserPropensityType(), user.getMemberPropensityType());
     }
 }
+

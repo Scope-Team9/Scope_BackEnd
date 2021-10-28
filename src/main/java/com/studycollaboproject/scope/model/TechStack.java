@@ -31,5 +31,12 @@ public class TechStack {
     public TechStack(Tech tech,User user){
         this.tech = tech;
         this.user = user;
+        user.getTechStackList().add(this);
+    }
+
+    public TechStack(Tech tech,Post post){
+        this.tech = tech;
+        this.post = post;
+        post.getTechStackList().add(this);
     }
 }

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -41,12 +42,14 @@ public class Post extends Timestamped{
     private int recruitmentMember;
 
     @Column(nullable = false)
-
     @Enumerated(value = EnumType.STRING)
     private ProjectStatus projectStatus;
 
     @Column(nullable = false)
     private boolean recommendationAgree;
+
+    @Column(nullable = false)
+    private boolean isBookmarkChecked;
 
     @Column(nullable = true)
     private String frontUrl;
@@ -66,19 +69,19 @@ public class Post extends Timestamped{
 
     @OneToMany(mappedBy = "post")
     @JsonIgnore
-    private List<TechStack> techStackList;
+    private List<TechStack> techStackList = new ArrayList<>();
 
     @OneToMany(mappedBy = "post")
     @JsonIgnore
-    private List<Bookmark> bookmarkList;
+    private List<Bookmark> bookmarkList = new ArrayList<>();
 
     @OneToMany(mappedBy = "post")
     @JsonIgnore
-    private List<Team> teamList;
+    private List<Team> teamList = new ArrayList<>();
 
     @OneToMany(mappedBy = "post")
     @JsonIgnore
-    private List<Applicant> applicantList;
+    private List<Applicant> applicantList = new ArrayList<>();
 
     public Post(PostRequestDto postRequestDto){
         this.title = postRequestDto.getTitle();
@@ -89,11 +92,12 @@ public class Post extends Timestamped{
         this.totalMember = postRequestDto.getTotalMember();
         this.recruitmentMember = postRequestDto.getRecruitmentMember();
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
-        this.bookmarkList = postRequestDto.getBookmarkList();
-        this.teamList = postRequestDto.getTeamList();
-        this.techStackList = postRequestDto.getTechStackList();
-        this.backUrl = postRequestDto.getBackUrl();
-        this.frontUrl = postRequestDto.getFrontUrl();
+//        this.bookmarkList = postRequestDto.getBookmarkList();
+//        this.teamList = postRequestDto.getTeamList();
+//        this.techStackList = postRequestDto.getTechStackList();
+//        this.backUrl = postRequestDto.getBackUrl();
+//        this.frontUrl = postRequestDto.getFrontUrl();
+        this.isBookmarkChecked = false;
     }
 
     public void update(PostRequestDto postRequestDto) {
@@ -106,16 +110,20 @@ public class Post extends Timestamped{
         this.totalMember = postRequestDto.getTotalMember();
         this.recruitmentMember = postRequestDto.getRecruitmentMember();
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
-        this.bookmarkList = postRequestDto.getBookmarkList();
-        this.teamList = postRequestDto.getTeamList();
-        this.techStackList = postRequestDto.getTechStackList();
-        this.backUrl = postRequestDto.getBackUrl();
-        this.frontUrl = postRequestDto.getFrontUrl();
+//        this.bookmarkList = postRequestDto.getBookmarkList();
+//        this.teamList = postRequestDto.getTeamList();
+//        this.techStackList = postRequestDto.getTechStackList();
+//        this.backUrl = postRequestDto.getBackUrl();
+//        this.frontUrl = postRequestDto.getFrontUrl();
     }
 
     public void setUrl(String frontUrl, String backUrl) {
         this.frontUrl = frontUrl;
         this.backUrl = backUrl;
+    }
+
+    public void setIsBookmarkChecked(boolean isBookmarkChecked){
+        this.isBookmarkChecked = isBookmarkChecked;
     }
 
     public void updateStatus(ProjectStatus projectStatus) {
@@ -124,5 +132,9 @@ public class Post extends Timestamped{
 
     public void updateMember() {
         this.recruitmentMember += 1;
+    }
+
+    public void updateTechStack(List<TechStack> techStackList) {
+        this.techStackList = techStackList;
     }
 }

@@ -3,6 +3,7 @@ package com.studycollaboproject.scope.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.studycollaboproject.scope.dto.SnsInfoDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -17,8 +18,10 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class GithubUserService {
 
-    public String githubLogin(String code) {
-        return "";
+    public SnsInfoDto githubLogin(String code) throws JsonProcessingException {
+        String accessToken = getAccessToken(code);
+
+        return getGithubUserInfo(accessToken);
     }
 
     private String getAccessToken(String code) throws JsonProcessingException {
@@ -30,9 +33,9 @@ public class GithubUserService {
 
         // HTTP Body 생성
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-        body.add("client_secret", "a99165050efc281a096bf1f83172dfcc57d46aea");
-        body.add("client_id", "3ee861828ff47de6efe8");
-        body.add("redirect_uri", "http://localhost:8080/user/github/callback");
+        body.add("client_secret", "446a69893e1359448312451f0edd6cfa7b46610b");
+        body.add("client_id", "5bb2c0fab941fb5b8f9f");
+        body.add("redirect_uri", "http://15.165.159.211/user/github/callback");
         body.add("code", code);
 
         // HTTP 요청 보내기
@@ -54,5 +57,29 @@ public class GithubUserService {
 
         return jsonNode.get("access_token").asText();
 
+    }
+
+
+    private SnsInfoDto getGithubUserInfo(String accessToken) throws JsonProcessingException {
+        // HTTP Header 생성
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer " + accessToken);
+        headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+        // HTTP 요청 보내기
+        HttpEntity<MultiValueMap<String, String>> githubUserInfoRequest = new HttpEntity<>(headers);
+        RestTemplate rt = new RestTemplate();
+        ResponseEntity<String> response = rt.exchange(
+                "https://api.github.com/user",
+                HttpMethod.GET,
+                githubUserInfoRequest,
+                String.class
+        );
+        String responseBody = response.getBody();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(responseBody);
+        Long id = jsonNode.get("id").asLong();
+        String email = jsonNode.get("html_url").asText();
+        return new SnsInfoDto(email,id);
     }
 }

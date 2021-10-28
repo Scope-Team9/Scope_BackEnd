@@ -4,6 +4,7 @@ import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.TestResultDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.model.Tech;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
 import com.studycollaboproject.scope.service.TestService;
 import io.swagger.v3.oas.annotations.Operation;

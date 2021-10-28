@@ -1,7 +1,6 @@
 package com.studycollaboproject.scope.dto;
 
 import com.studycollaboproject.scope.model.Applicant;
-import com.studycollaboproject.scope.model.PropensityType;
 import com.studycollaboproject.scope.model.Team;
 import com.studycollaboproject.scope.model.User;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -21,7 +20,7 @@ public class MemberListResponseDto {
     @Schema(description = "Email")
     private String email;
     @Schema(description = "유저 성향")
-    private PropensityType userPropensityType;
+    private String  userPropensityType;
     @Schema(description = "지원 날짜")
     private LocalDateTime applicationDate;
 

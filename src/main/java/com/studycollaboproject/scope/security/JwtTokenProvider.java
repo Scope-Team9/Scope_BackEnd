@@ -96,7 +96,8 @@ public class JwtTokenProvider {
             return !claims.getBody().getExpiration().before(new Date());
         } catch (Exception e) {
             log.info("정상적인 토큰이 아닙니다.");
-            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
+//            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
+            return false;
         }
     }
 }

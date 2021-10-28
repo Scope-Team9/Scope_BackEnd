@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -20,22 +21,16 @@ public class User extends Timestamped {
     private Long id;
 
     @Column(unique = true)
-    private String kakaoId;
-
-    @Column(unique = true)
-    private String githubId;
-
-    @Column(unique = true)
-    private String googleId;
+    private String snsId;
 
     @Column(unique = true, nullable = false)
     private String email;
 
     @Column(nullable = false)
-    private PropensityType userPropensityType;
+    private String userPropensityType;
 
     @Column(nullable = false)
-    private PropensityType memberPropensityType;
+    private String memberPropensityType;
 
     @Column(unique = true, nullable = false)
     private String nickname;
@@ -55,36 +50,34 @@ public class User extends Timestamped {
     private String userTestResult;
 
     @OneToMany(mappedBy = "user")
-    private List<Bookmark> bookmarkList;
+    private List<Bookmark> bookmarkList = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    private List<Team> teamList;
+    private List<Team> teamList = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    private List<TechStack> techStackList;
+    private List<TechStack> techStackList = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    private List<Applicant> applicantList;
+    private List<Applicant> applicantList = new ArrayList<>();
 
     public User(SignupRequestDto signupRequestDto){
         this.email =signupRequestDto.getEmail();
-        this.githubId = signupRequestDto.getGithubId();
-        this.googleId = signupRequestDto.getGoogleId();
-        this.kakaoId = signupRequestDto.getKakaoId();
+        this.snsId = signupRequestDto.getSnsId();
         this.nickname = signupRequestDto.getNickname();
     }
     public void addTechStack(TechStack techStack){
         this.techStackList.add(techStack);
     }
 
-    public PropensityType updateUserPropensityType(String propensityResult) {
-        this.userPropensityType = PropensityType.valueOf(propensityResult);
+    public String updateUserPropensityType(String propensityResult) {
+        this.userPropensityType = propensityResult;
 
         return this.userPropensityType;
     }
 
-    public PropensityType updateMemberPropensityType(String propensityResult) {
-        this.memberPropensityType = PropensityType.valueOf(propensityResult);
+    public String updateMemberPropensityType(String propensityResult) {
+        this.memberPropensityType = propensityResult;
 
         return this.memberPropensityType;
     }

@@ -1,6 +1,5 @@
 package com.studycollaboproject.scope.dto;
 
-import com.studycollaboproject.scope.model.PropensityType;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,11 +8,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TestResultDto {
     @Schema(description = "유저 성향")
-    private PropensityType userPropensityType;
+    private String userPropensityType;
     @Schema(description = "유저 선호 성향")
-    private PropensityType memberPropensityType;
+    private String memberPropensityType;
 
-    public TestResultDto(PropensityType userPropensityType, PropensityType memberPropensityType) {
+    public TestResultDto(String userPropensityType, String memberPropensityType) {
         this.userPropensityType = userPropensityType;
         this.memberPropensityType = memberPropensityType;
     }

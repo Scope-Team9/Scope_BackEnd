@@ -14,7 +14,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -25,10 +28,19 @@ public class PostService {
     private final TeamRepository teamRepository;
     private final UserRepository userRepository;
 
-    public ResponseDto writePost(PostRequestDto postRequestDto) {
+    @Transactional
+    public Post writePost(PostRequestDto postRequestDto) {
+        List<TechStack> techStackList = new ArrayList<>();
+        String[] techList = postRequestDto.getTechStack().split(";");
+
         Post post = new Post(postRequestDto);
-        postRepository.save(post);
-        return new ResponseDto("200","","");
+        for (String tech : techList) {
+            TechStack techStack = new TechStack(Tech.techOf(tech), post);
+            techStackRepository.save(techStack);
+            techStackList.add(techStack);
+        }
+        post.updateTechStack(techStackList);
+        return postRepository.save(post);
     }
 
     @Transactional
@@ -40,11 +52,11 @@ public class PostService {
     }
 
     @Transactional
-    public ResponseDto deletePost(Long id) {
-        postRepository.findById(id).orElseThrow(
-                ()-> new IllegalArgumentException("포스트가 존재하지 않습니다."));
-        postRepository.deleteById(id);
-        return new ResponseDto("200", "","");
+    public boolean deletePost(Long id) {
+        Post post = postRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("포스트가 존재하지 않습니다."));
+        postRepository.delete(post);
+        return true;
     }
 
 

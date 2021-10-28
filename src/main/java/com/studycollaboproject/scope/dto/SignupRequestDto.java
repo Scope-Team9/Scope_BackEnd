@@ -1,23 +1,20 @@
 package com.studycollaboproject.scope.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
 @Getter
-@RequiredArgsConstructor
+@AllArgsConstructor
+@ToString
 public class SignupRequestDto {
 
-    @Schema(description = "Github ID")
-    private String githubId;
-
-    @Schema(description = "Kakao ID")
-    private String kakaoId;
-
-    @Schema(description = "Google ID")
-    private String googleId;
+    @Schema(description = "SNS ID")
+    private String snsId;
 
     @Schema(description = "Email")
     private String email;
