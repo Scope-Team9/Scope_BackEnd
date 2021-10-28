@@ -10,14 +10,10 @@ import com.studycollaboproject.scope.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletResponseWrapper;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -85,7 +81,7 @@ public class UserRestController {
     @PostMapping("/api/bookmark/{postId}")
     public ResponseDto bookmarkCheck(@PathVariable Long postId, @AuthenticationPrincipal UserDetails userDetails){
         log.info("POST, [{}], /api/bookmark/{}", MDC.get("UUID"), postId);
-        return userService.BookmarkCheck(postId,userDetails.getUsername());
+        return userService.bookmarkCheck(postId,userDetails.getUsername());
     }
 
 

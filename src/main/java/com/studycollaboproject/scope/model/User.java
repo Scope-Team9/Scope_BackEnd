@@ -21,13 +21,7 @@ public class User extends Timestamped {
     private Long id;
 
     @Column(unique = true)
-    private String kakaoId;
-
-    @Column(unique = true)
-    private String githubId;
-
-    @Column(unique = true)
-    private String googleId;
+    private String snsId;
 
     @Column(unique = true, nullable = false)
     private String email;
@@ -69,9 +63,7 @@ public class User extends Timestamped {
 
     public User(SignupRequestDto signupRequestDto){
         this.email =signupRequestDto.getEmail();
-        this.githubId = signupRequestDto.getGithubId();
-        this.googleId = signupRequestDto.getGoogleId();
-        this.kakaoId = signupRequestDto.getKakaoId();
+        this.snsId = signupRequestDto.getSnsId();
         this.nickname = signupRequestDto.getNickname();
     }
     public void addTechStack(TechStack techStack){
