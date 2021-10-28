@@ -1,7 +1,7 @@
 package com.studycollaboproject.scope.service;
 
 
-import com.studycollaboproject.scope.dto.PostReqeustDto;
+import com.studycollaboproject.scope.dto.PostRequestDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
@@ -14,37 +14,40 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
 public class PostService {
-    public final PostRepository postRepository;
-    public final BookmarkRepository bookmarkRepository;
-    public final TechStackRepository techStackRepository;
-    public final TeamRepository teamRepository;
+    private final PostRepository postRepository;
+    private final BookmarkRepository bookmarkRepository;
+    private final TechStackRepository techStackRepository;
+    private final TeamRepository teamRepository;
     private final UserRepository userRepository;
 
-    public ResponseDto writePost(PostReqeustDto postReqeustDto) {
-        Post post = new Post(postReqeustDto);
+    public ResponseDto writePost(PostRequestDto postRequestDto) {
+        Post post = new Post(postRequestDto);
         postRepository.save(post);
-        return new ResponseDto("200", "", "");
+        return new ResponseDto("200","","");
     }
 
     @Transactional
-    public ResponseDto editPost(Long id, PostReqeustDto postReqeustDto) {
+    public ResponseDto editPost(Long id, PostRequestDto postRequestDto){
         Post post = postRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("포스트가 존재하지 않습니다."));
-        post.update(postReqeustDto);
+                ()-> new IllegalArgumentException("포스트가 존재하지 않습니다."));
+        post.update(postRequestDto);
         return new ResponseDto("200", "", post);
     }
 
     @Transactional
     public ResponseDto deletePost(Long id) {
         postRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("포스트가 존재하지 않습니다."));
+                ()-> new IllegalArgumentException("포스트가 존재하지 않습니다."));
         postRepository.deleteById(id);
-        return new ResponseDto("200", "", "");
+        return new ResponseDto("200", "","");
     }
 
 
@@ -55,7 +58,7 @@ public class PostService {
                                 String nickname) {
 
         List<Post> filterPosts = new ArrayList<>();
-        List<Tech> techList = new ArrayList<>();
+        List<Tech>techList = new ArrayList<>();
         List<TechStack> techStackList;
         List<String> filterList;
 
@@ -109,11 +112,9 @@ public class PostService {
             posts.add(allPosts.get(i));
         }
         int totalPost = allPosts.size();
+
         return new ResponseDto("200", "success", posts);
-
-
     }
-
     public PostListDto getPostList(User user, List<Post> bookmarkList) {
         List<Team> teamList = teamRepository.findAllByUser(user);
 
@@ -138,15 +139,15 @@ public class PostService {
     }
 
     @Transactional
-    public void updateUrl(String backUrl, String frontUrl, String nickname, Long postId) {
+    public void updateUrl(String backUrl, String frontUrl, String nickname, Long postId){
         User user = userRepository.findByNickname(nickname).orElseThrow(
-                () -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다.")
+                ()-> new IllegalArgumentException("해당 유저를 찾을 수 없습니다.")
         );
         Post post = postRepository.findById(postId).orElseThrow(
-                () -> new IllegalArgumentException("해당 게시물을 찾을 수 없습니다.")
+                ()->new IllegalArgumentException("해당 게시물을 찾을 수 없습니다.")
         );
-        Team team = teamRepository.findByUserAndPost(user, post).orElseThrow(
-                () -> new IllegalArgumentException("해당 게시물을 찾을 수 없습니다.")
+        Team team = teamRepository.findByUserAndPost(user,post).orElseThrow(
+                ()->new IllegalArgumentException("해당 게시물을 찾을 수 없습니다.")
         );
         team.setUrl(frontUrl, backUrl);
 
@@ -164,4 +165,11 @@ public class PostService {
         );
     }
 
+    @Transactional
+    public void updateStatus(Long postId, ProjectStatus projectStatus) {
+        Post post = postRepository.findById(postId).orElseThrow(
+                () -> new RestApiException(ErrorCode.NO_POST_ERROR)
+        );
+        post.updateStatus(projectStatus);
+    }
 }

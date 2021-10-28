@@ -16,37 +16,35 @@ import org.springframework.web.client.RestTemplate;
 
 @RequiredArgsConstructor
 @Service
-public class GithubUserService {
+public class NaverUserService {
+    public SnsInfoDto naverLogin(String code, String statusToken) throws JsonProcessingException {
+        String accessToken = getAccessToken(code,statusToken);
 
-    public SnsInfoDto githubLogin(String code) throws JsonProcessingException {
-        String accessToken = getAccessToken(code);
 
-        return getGithubUserInfo(accessToken);
+        return getNaverUserInfo(accessToken);
     }
 
-    private String getAccessToken(String code) throws JsonProcessingException {
+    private String getAccessToken(String code,String statusToken) throws JsonProcessingException {
+
         // HTTP Header 생성
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-        headers.add("Accept", "application/json");
-
 
         // HTTP Body 생성
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-        body.add("client_secret", "446a69893e1359448312451f0edd6cfa7b46610b");
-        body.add("client_id", "5bb2c0fab941fb5b8f9f");
-        body.add("redirect_uri", "http://15.165.159.211/user/github/callback");
+        body.add("grant_type", "authorization_code");
+        body.add("client_id", "e6b3946cda0f744a73cbbb4de2be3732");
+        body.add("redirect_uri", "http://15.165.159.211/user/naver/callback");
         body.add("code", code);
 
         // HTTP 요청 보내기
-        HttpEntity<MultiValueMap<String, String>> githubTokenRequest =
+        HttpEntity<MultiValueMap<String, String>> naverTokenRequest =
                 new HttpEntity<>(body, headers);
         RestTemplate rt = new RestTemplate();
-
         ResponseEntity<String> response = rt.exchange(
-                "https://github.com/login/oauth/access_token",
+                "https://nid.naver.com/oauth2.0/token?client_id=po1xo1mV04k2Wf9inz5n&client_secret=bQh5oMOLU8&grant_type=authorization_code&state="+statusToken+"&code="+code,
                 HttpMethod.POST,
-                githubTokenRequest,
+                naverTokenRequest,
                 String.class
         );
 
@@ -54,32 +52,30 @@ public class GithubUserService {
         String responseBody = response.getBody();
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(responseBody);
-
         return jsonNode.get("access_token").asText();
 
     }
 
-
-    private SnsInfoDto getGithubUserInfo(String accessToken) throws JsonProcessingException {
+    private SnsInfoDto getNaverUserInfo(String accessToken) throws JsonProcessingException {
         // HTTP Header 생성
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer " + accessToken);
         headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
         // HTTP 요청 보내기
-        HttpEntity<MultiValueMap<String, String>> githubUserInfoRequest = new HttpEntity<>(headers);
+        HttpEntity<MultiValueMap<String, String>> naverUserInfoRequest = new HttpEntity<>(headers);
         RestTemplate rt = new RestTemplate();
         ResponseEntity<String> response = rt.exchange(
-                "https://api.github.com/user",
-                HttpMethod.GET,
-                githubUserInfoRequest,
+                "https://openapi.naver.com/v1/nid/me",
+                HttpMethod.POST,
+                naverUserInfoRequest,
                 String.class
         );
         String responseBody = response.getBody();
-
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(responseBody);
         Long id = jsonNode.get("id").asLong();
-        String email = jsonNode.get("html_url").asText();
+        String email = jsonNode.get("email").asText();
         return new SnsInfoDto(email,id);
+
     }
 }
