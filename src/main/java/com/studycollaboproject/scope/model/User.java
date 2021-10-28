@@ -21,22 +21,16 @@ public class User extends Timestamped {
     private Long id;
 
     @Column(unique = true)
-    private String kakaoId;
-
-    @Column(unique = true)
-    private String githubId;
-
-    @Column(unique = true)
-    private String googleId;
+    private String snsId;
 
     @Column(unique = true, nullable = false)
     private String email;
 
     @Column(nullable = false)
-    private PropensityType userPropensityType;
+    private String userPropensityType;
 
     @Column(nullable = false)
-    private PropensityType memberPropensityType;
+    private String memberPropensityType;
 
     @Column(unique = true, nullable = false)
     private String nickname;
@@ -69,23 +63,21 @@ public class User extends Timestamped {
 
     public User(SignupRequestDto signupRequestDto){
         this.email =signupRequestDto.getEmail();
-        this.githubId = signupRequestDto.getGithubId();
-        this.googleId = signupRequestDto.getGoogleId();
-        this.kakaoId = signupRequestDto.getKakaoId();
+        this.snsId = signupRequestDto.getSnsId();
         this.nickname = signupRequestDto.getNickname();
     }
     public void addTechStack(TechStack techStack){
         this.techStackList.add(techStack);
     }
 
-    public PropensityType updateUserPropensityType(String propensityResult) {
-        this.userPropensityType = PropensityType.valueOf(propensityResult);
+    public String updateUserPropensityType(String propensityResult) {
+        this.userPropensityType = propensityResult;
 
         return this.userPropensityType;
     }
 
-    public PropensityType updateMemberPropensityType(String propensityResult) {
-        this.memberPropensityType = PropensityType.valueOf(propensityResult);
+    public String updateMemberPropensityType(String propensityResult) {
+        this.memberPropensityType = propensityResult;
 
         return this.memberPropensityType;
     }
