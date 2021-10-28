@@ -25,7 +25,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @Tag(name = "Post Controller", description = "게시글 조회, 삭제, 작성 및 수정")
-public class PostController {
+public class PostRestController {
 
     private final PostService postService;
     private final TeamService teamService;
