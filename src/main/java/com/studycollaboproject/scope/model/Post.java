@@ -92,11 +92,11 @@ public class Post extends Timestamped{
         this.totalMember = postRequestDto.getTotalMember();
         this.recruitmentMember = postRequestDto.getRecruitmentMember();
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
-        this.bookmarkList = postRequestDto.getBookmarkList();
-        this.teamList = postRequestDto.getTeamList();
-        this.techStackList = postRequestDto.getTechStackList();
-        this.backUrl = postRequestDto.getBackUrl();
-        this.frontUrl = postRequestDto.getFrontUrl();
+//        this.bookmarkList = postRequestDto.getBookmarkList();
+//        this.teamList = postRequestDto.getTeamList();
+//        this.techStackList = postRequestDto.getTechStackList();
+//        this.backUrl = postRequestDto.getBackUrl();
+//        this.frontUrl = postRequestDto.getFrontUrl();
         this.isBookmarkChecked = false;
     }
 
@@ -110,11 +110,11 @@ public class Post extends Timestamped{
         this.totalMember = postRequestDto.getTotalMember();
         this.recruitmentMember = postRequestDto.getRecruitmentMember();
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
-        this.bookmarkList = postRequestDto.getBookmarkList();
-        this.teamList = postRequestDto.getTeamList();
-        this.techStackList = postRequestDto.getTechStackList();
-        this.backUrl = postRequestDto.getBackUrl();
-        this.frontUrl = postRequestDto.getFrontUrl();
+//        this.bookmarkList = postRequestDto.getBookmarkList();
+//        this.teamList = postRequestDto.getTeamList();
+//        this.techStackList = postRequestDto.getTechStackList();
+//        this.backUrl = postRequestDto.getBackUrl();
+//        this.frontUrl = postRequestDto.getFrontUrl();
     }
 
     public void setUrl(String frontUrl, String backUrl) {
@@ -132,5 +132,9 @@ public class Post extends Timestamped{
 
     public void updateMember() {
         this.recruitmentMember += 1;
+    }
+
+    public void updateTechStack(List<TechStack> techStackList) {
+        this.techStackList = techStackList;
     }
 }

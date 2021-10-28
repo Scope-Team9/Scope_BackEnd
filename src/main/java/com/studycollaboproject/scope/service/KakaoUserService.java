@@ -33,7 +33,7 @@ public class KakaoUserService {
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "authorization_code");
         body.add("client_id", "2f892c61e0552c3f50223077e2fc5c6c");
-        body.add("redirect_uri", "http://15.165.159.211/user/kakao/callback");
+        body.add("redirect_uri", "http://localhost:3000/user/kakao/callback");
         body.add("code", code);
 
         // HTTP 요청 보내기
@@ -73,8 +73,9 @@ public class KakaoUserService {
         String responseBody = response.getBody();
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(responseBody);
+        System.out.println("responseBody = " + responseBody);
         Long id = jsonNode.get("id").asLong();
-        String email = jsonNode.get("kakao_account").get("email").asText();
+        String email = jsonNode.get("kakao_account").get("account_email").asText();
         return new SnsInfoDto(email,id);
 
     }

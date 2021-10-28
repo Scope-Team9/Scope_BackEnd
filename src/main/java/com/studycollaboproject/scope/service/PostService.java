@@ -28,7 +28,18 @@ public class PostService {
     private final TeamRepository teamRepository;
     private final UserRepository userRepository;
 
-    public Post writePost(Post post) {
+    @Transactional
+    public Post writePost(PostRequestDto postRequestDto) {
+        List<TechStack> techStackList = new ArrayList<>();
+        String[] techList = postRequestDto.getTechStack().split(";");
+
+        Post post = new Post(postRequestDto);
+        for (String tech : techList) {
+            TechStack techStack = new TechStack(Tech.techOf(tech), post);
+            techStackRepository.save(techStack);
+            techStackList.add(techStack);
+        }
+        post.updateTechStack(techStackList);
         return postRepository.save(post);
     }
 
@@ -113,6 +124,7 @@ public class PostService {
 
         return new ResponseDto("200", "success", posts);
     }
+
     public PostListDto getPostList(User user, List<Post> bookmarkList) {
         List<Team> teamList = teamRepository.findAllByUser(user);
 

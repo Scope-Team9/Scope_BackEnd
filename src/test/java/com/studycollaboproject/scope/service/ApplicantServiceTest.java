@@ -49,9 +49,7 @@ class ApplicantServiceTest {
             stackList.add("Spring");
             stackList.add("Java");
             SignupRequestDto signupRequestDto = new SignupRequestDto(
-                    "githubId",
-                    "kakaoId",
-                    "googleId",
+                    "snsId",
                     "email",
                     "nickname",
                     stackList
@@ -96,9 +94,7 @@ class ApplicantServiceTest {
             stackList.add("Spring");
             stackList.add("Java");
             SignupRequestDto signupRequestDto = new SignupRequestDto(
-                    "githubId",
-                    "kakaoId",
-                    "googleId",
+                    "snsId",
                     "email",
                     "nickname",
                     stackList
