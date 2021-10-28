@@ -66,10 +66,16 @@ public class PostService {
                                 String sort,
                                 String nickname) {
 
+        // 필터링 될 포스트배열
         List<Post> filterPosts = new ArrayList<>();
+        // 반환될 포스트 배열
+        List<Post> posts = new ArrayList<>();
+        // 잠시 북마크가 담길 포스트 배열
+        List<Post> filterTemp = new ArrayList<>();
         List<Tech>techList = new ArrayList<>();
         List<TechStack> techStackList;
         List<String> filterList;
+
 
         // 선택한 기술스택 있으면 filterPosts에 필터링된 값을 담아준다.
         if (filter != null && !filter.isEmpty()) {
@@ -80,8 +86,13 @@ public class PostService {
 
             // 스플릿 한 값으로 techStack에서 검색
             for (String techFilter : filterList) {
+
+                // 만약 스택이 공백이 아니라면 continue
+                if (techFilter.equals("")){
+                    continue;
+                }
                 //프론트에서 받아온 String을 Enumtype으로 변경
-                Tech tech = Tech.valueOf(techFilter);
+                Tech tech = Tech.techOf(techFilter);
                 techList.add(tech);
             }
             // techList에 포함된 TehcStack을 techStackList에 저장
@@ -98,15 +109,15 @@ public class PostService {
             filterPosts = postRepository.findAll();
         }
 
-        List<Post> allPosts = new ArrayList<>();
-        List<Post> posts = new ArrayList<>();
-
         switch (sort) {
             case "bookmark":
                 List<Bookmark> bookmarkList = bookmarkRepository.findAllByPostInAndUserNickname(filterPosts, nickname);
                 for (Bookmark bookmark : bookmarkList) {
                     Post post = bookmark.getPost();
-                    allPosts.add(post);
+                    filterTemp.add(post);
+
+                    // 필터포스트 재정의
+                    filterPosts = filterTemp;
                 }
                 break;
             case "createdAt":
@@ -116,11 +127,30 @@ public class PostService {
             case "deadline":
                 filterPosts.sort(Comparator.comparing(Post::getStartDate, Comparator.reverseOrder()));
                 break;
+
+//            case "recommend":
+//                filterPosts.sort();
         }
-        for (int i = 0; i < displayNumber; i++) {
-            posts.add(allPosts.get(i));
+
+        // 필터링된 포스트의 개수가 0개가 아니고 디스플레이 넘버만큼 있을때 반환
+        if (filterPosts.size() ==0)
+        {
+            posts =null;
         }
-        int totalPost = allPosts.size();
+        else if (filterPosts.size() >= displayNumber)
+        {
+            for (int i = 0; i < displayNumber; i++) {
+            posts.add(filterPosts.get(i));
+            }
+        }
+        else
+        {
+            posts = filterPosts;
+        }
+
+
+        // totalPost 는 필터를 거친 포스트의 개수
+        int totalPost = filterPosts.size();
 
         return new ResponseDto("200", "success", posts);
     }
