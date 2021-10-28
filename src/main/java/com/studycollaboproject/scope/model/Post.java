@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -68,19 +69,19 @@ public class Post extends Timestamped{
 
     @OneToMany(mappedBy = "post")
     @JsonIgnore
-    private List<TechStack> techStackList;
+    private List<TechStack> techStackList = new ArrayList<>();
 
     @OneToMany(mappedBy = "post")
     @JsonIgnore
-    private List<Bookmark> bookmarkList;
+    private List<Bookmark> bookmarkList = new ArrayList<>();
 
     @OneToMany(mappedBy = "post")
     @JsonIgnore
-    private List<Team> teamList;
+    private List<Team> teamList = new ArrayList<>();
 
     @OneToMany(mappedBy = "post")
     @JsonIgnore
-    private List<Applicant> applicantList;
+    private List<Applicant> applicantList = new ArrayList<>();
 
     public Post(PostRequestDto postRequestDto){
         this.title = postRequestDto.getTitle();

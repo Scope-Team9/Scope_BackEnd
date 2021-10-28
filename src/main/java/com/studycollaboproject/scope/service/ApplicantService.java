@@ -20,22 +20,19 @@ import java.util.stream.Collectors;
 public class ApplicantService {
     private final ApplicantRepository applicantRepository;
 
-    public void applyPost(Post post, User user, String comment) {
-        Applicant applicant = Applicant.builder()
-                .post(post)
-                .user(user)
-                .comment(comment)
-                .build();
-        applicantRepository.save(applicant);
+    public Applicant applyPost(Applicant applicant) {
+        return applicantRepository.save(applicant);
     }
 
     @Transactional
-    public void cancelApply(User user, Post post) {
+    public boolean cancelApply(User user, Post post) {
         Applicant applicant = applicantRepository.findByUserAndPost(user, post).orElseThrow(
                 () -> new RestApiException(ErrorCode.NO_APPLICANT_ERROR)
         );
         applicant.deleteApply();
         applicantRepository.delete(applicant);
+
+        return true;
     }
 
     public List<MemberListResponseDto> getApplicant(Post post) {

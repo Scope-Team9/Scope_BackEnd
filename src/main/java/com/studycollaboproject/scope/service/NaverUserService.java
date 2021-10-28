@@ -32,10 +32,10 @@ public class NaverUserService {
 
         // HTTP Body 생성
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-        body.add("grant_type", "authorization_code");
-        body.add("client_id", "po1xo1mV04k2Wf9inz5n");
-        body.add("redirect_uri", "http://15.165.159.211/user/naver/callback");
-        body.add("code", code);
+//        body.add("grant_type", "authorization_code");
+//        body.add("client_id", "po1xo1mV04k2Wf9inz5n");
+//        body.add("redirect_uri", "http://localhost:8080/user/naver/callback");
+//        body.add("code", code);
 
         // HTTP 요청 보내기
         HttpEntity<MultiValueMap<String, String>> naverTokenRequest =

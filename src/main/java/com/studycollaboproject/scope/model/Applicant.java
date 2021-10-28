@@ -30,10 +30,10 @@ public class Applicant extends Timestamped {
     @Builder
     public Applicant(User user, Post post, String comment){
         this.post = post;
-        post.getApplicantList().add(this);
         this.user = user;
-        user.getApplicantList().add(this);
         this.comment = comment;
+        post.getApplicantList().add(this);
+        user.getApplicantList().add(this);
     }
 
     public void deleteApply() {
