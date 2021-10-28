@@ -138,7 +138,7 @@ public class UserService {
     }
 
     @Transactional
-    public ResponseDto BookmarkCheck(Long postId, String nickname) {
+    public ResponseDto bookmarkCheck(Long postId, String nickname) {
         Post post = postRepository.findById(postId).orElseThrow(
                 ()-> new IllegalArgumentException("해당 포스트를 찾을 수 없습니다.")
         );
