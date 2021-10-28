@@ -10,5 +10,6 @@ import java.util.List;
 public interface BookmarkRepository extends JpaRepository<Bookmark, Long> {
     List<Bookmark> findAllByPostInAndUserNickname(List<Post> post, String nickname);
     List<Bookmark> findAllByUser(User user);
+    Bookmark findByUserAndPost(User user,Post post);
 
 }

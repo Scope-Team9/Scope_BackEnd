@@ -10,14 +10,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SignupRequestDto {
 
-    @Schema(description = "Github ID")
-    private String githubId;
-
-    @Schema(description = "Kakao ID")
-    private String kakaoId;
-
-    @Schema(description = "Google ID")
-    private String googleId;
+    @Schema(description = "SNS ID")
+    private String snsId;
 
     @Schema(description = "Email")
     private String email;
