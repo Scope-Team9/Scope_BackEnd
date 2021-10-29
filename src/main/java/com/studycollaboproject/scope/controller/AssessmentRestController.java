@@ -43,7 +43,7 @@ public class AssessmentRestController {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
 
-        User user = userService.loadUserByNickname(userDetails.getNickname());
+        User user = userService.loadUserBySnsId(userDetails.getSnsId());
         return assessmentService.assessmentMember(postId, user, userIds);
     }
 }

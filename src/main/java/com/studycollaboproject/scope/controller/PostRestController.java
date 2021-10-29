@@ -52,9 +52,9 @@ public class PostRestController {
                                 @RequestParam String sort,
                                 @AuthenticationPrincipal UserDetails userDetails) throws JsonProcessingException {
         log.info("GET, [{}], /api/post, filter={}, displayNumber={}, page={}, sort={}", MDC.get("UUID"), filter, displayNumber, page, sort);
-        String username = "";
+        String SnsId = "";
         if (userDetails != null) {
-            username = userDetails.getUsername();
+            SnsId = userDetails.getUsername();
         }
         page = page -1;
         return postService.readPost(filter, displayNumber, page, sort, username);

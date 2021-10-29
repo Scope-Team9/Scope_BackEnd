@@ -4,6 +4,9 @@ import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import lombok.Getter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 public enum Tech {
 
@@ -30,13 +33,5 @@ public enum Tech {
         this.tech = tech;
     }
 
-    public static Tech techOf(String techString) {
-        for (Tech tech : Tech.values()) {
-            if (techString.equals(tech.getTech()))
-            {
-                return tech;
-            }
-        }
-        throw new RestApiException(ErrorCode.NO_MATCH_ITEM_ERROR);
-    }
+
 }

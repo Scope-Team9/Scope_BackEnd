@@ -46,7 +46,7 @@ public class ApplicantRestController {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
 
-        User user = userService.loadUserByNickname(userDetails.getNickname());    //로그인 회원 조회
+        User user = userService.loadUserBySnsId(userDetails.getSnsId());    //로그인 회원 조회
         Post post = postService.loadPostByPostId(postId);
         Applicant applicant = Applicant.builder()
                 .post(post)
@@ -68,7 +68,7 @@ public class ApplicantRestController {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
 
-        User user = userService.loadUserByNickname(userDetails.getNickname());    //로그인 회원 조회
+        User user = userService.loadUserBySnsId(userDetails.getSnsId());    //로그인 회원 조회
         Post post = postService.loadPostByPostId(postId);
         applicantService.cancelApply(user, post);
 
@@ -86,7 +86,7 @@ public class ApplicantRestController {
         }
 
         Post post = postService.loadPostByPostId(postId);
-        if (!post.getUser().getNickname().equals(userDetails.getNickname())) {
+        if (!post.getUser().getSnsId().equals(userDetails.getSnsId())) {
             throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
         List<MemberListResponseDto> responseDto = applicantService.getApplicant(post);
