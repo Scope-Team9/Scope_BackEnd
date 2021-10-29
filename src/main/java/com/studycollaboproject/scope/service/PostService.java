@@ -140,7 +140,6 @@ public class PostService {
                 break;
 
             case "recommend":
-
                 List<String> PropensityTypeList = getPropensityTypeList(snsId);
 
 
