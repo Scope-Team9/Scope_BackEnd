@@ -32,14 +32,14 @@ public class UserRestController {
     public ResponseDto getMyPage(@AuthenticationPrincipal UserDetails userDetails) {
         log.info("GET, [{}], /api/user", MDC.get("UUID"));
 
-        User user = userService.getUserInfo(userDetails.getUsername());
+        User user = userService.loadUserBySnsId(userDetails.getUsername());
         List<Post> bookmarkList = userService.getBookmarkList(user);
         PostListDto postListDto = postService.getPostList(user, bookmarkList);
         return new ResponseDto("200", "", postListDto);
     }
 
     @PostMapping("/api/user")
-    public ResponseDto updateUserDesc(@AuthenticationPrincipal UserDetails userDetails, @RequestBody UserRepuestDto userRepuestDto){
+    public ResponseDto updateUserinfo(@AuthenticationPrincipal UserDetails userDetails, @RequestBody UserRepuestDto userRepuestDto){
         return userService.updateUserInfo(userDetails.getUsername(),userRepuestDto);
 
     }
@@ -76,7 +76,7 @@ public class UserRestController {
     public ResponseDto emailCheck(@RequestParam String email) {
         log.info("GET, [{}], /api/login, email={}", MDC.get("UUID"), email);
         //email이 이미 존재하면 T 존재하지 않으면 F
-        boolean isEmailPresent = userService.emailCheckByUser(email);
+        boolean isEmailPresent = userService.emailCheckByEmail(email);
         if (isEmailPresent) {
             return new ResponseDto("400", "중복된 이메일이 존재합니다.", "");
         } else {
@@ -103,5 +103,9 @@ public class UserRestController {
         return userService.bookmarkCheck(postId,userDetails.getUsername());
     }
 
+    @PostMapping("/api/user/desc")
+    public ResponseDto updateUserDesc(@AuthenticationPrincipal UserDetails userDetails, @RequestBody String userDesc){
+        return userService.updateUserDesc(userDetails.getUsername(),userDesc);
+    }
 
 }

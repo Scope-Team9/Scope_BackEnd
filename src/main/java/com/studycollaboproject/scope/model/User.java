@@ -96,4 +96,8 @@ public class User extends Timestamped {
         this.nickname = nickname;
         this.techStackList = techStackList;
     }
+
+    public void updateUserInfo(String userDesc) {
+        this.introduction = userDesc;
+    }
 }
