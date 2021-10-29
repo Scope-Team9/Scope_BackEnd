@@ -17,8 +17,8 @@ public class TestService {
     private final UserRepository userRepository;
 
     @Transactional
-    public TestResultDto updatePropensityType(String nickname, List<String> userPropensityType, List<String> memberPropensityType) {
-        User user = userRepository.findByNickname(nickname).orElseThrow(
+    public TestResultDto updatePropensityType(String snsId, List<String> userPropensityType, List<String> memberPropensityType) {
+        User user = userRepository.findBySnsId(snsId).orElseThrow(
                 () -> new RestApiException(ErrorCode.NO_USER_ERROR)
         );
 
@@ -42,8 +42,8 @@ public class TestService {
         return new String(userType);
     }
 
-    public TestResultDto getPropensityType(String nickname) {
-        User user = userRepository.findByNickname(nickname).orElseThrow(
+    public TestResultDto getPropensityType(String snsId) {
+        User user = userRepository.findBySnsId(snsId).orElseThrow(
                 () -> new RestApiException(ErrorCode.NO_USER_ERROR)
         );
 

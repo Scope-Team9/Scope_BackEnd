@@ -45,8 +45,8 @@ public class JwtTokenProvider {
     }
 
     // JWT 토큰 생성
-    public String createToken(String nickname) {
-        Claims claims = Jwts.claims().setSubject(nickname);
+    public String createToken(String snsId) {
+        Claims claims = Jwts.claims().setSubject(snsId);
         // claim : JWT payload 에 저장되는 정보단위
         Date now = new Date();
         return Jwts.builder()
@@ -63,7 +63,7 @@ public class JwtTokenProvider {
     public Authentication getAuthentication(String token) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
         log.info("============getAuthentication===========");
-        log.info("nickname={}", userDetails.getUsername());
+        log.info("snsId={}", userDetails.getUsername());
         log.info("============getAuthentication===========");
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }

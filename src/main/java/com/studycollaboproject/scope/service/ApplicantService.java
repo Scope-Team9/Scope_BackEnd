@@ -25,8 +25,8 @@ public class ApplicantService {
     private final PostRepository postRepository;
 
     @Transactional
-    public Applicant applyPost(String nickname, Long postId, String comment) {
-        User user = userRepository.findByNickname(nickname).orElseThrow(
+    public Applicant applyPost(String snsId, Long postId, String comment) {
+        User user = userRepository.findBySnsId(snsId).orElseThrow(
                 () -> new RestApiException(ErrorCode.NO_USER_ERROR)
         );
         Post post = postRepository.findById(postId).orElseThrow(
@@ -46,8 +46,8 @@ public class ApplicantService {
     }
 
     @Transactional
-    public boolean cancelApply(String nickname, Long postId) {
-        User user = userRepository.findByNickname(nickname).orElseThrow(
+    public boolean cancelApply(String snsId, Long postId) {
+        User user = userRepository.findBySnsId(snsId).orElseThrow(
                 () -> new RestApiException(ErrorCode.NO_USER_ERROR)
         );
         Post post = postRepository.findById(postId).orElseThrow(

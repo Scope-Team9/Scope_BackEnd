@@ -1,6 +1,7 @@
 package com.studycollaboproject.scope.model;
 
 import com.studycollaboproject.scope.dto.SignupRequestDto;
+import com.studycollaboproject.scope.dto.UserRepuestDto;
 import com.studycollaboproject.scope.util.Timestamped;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -70,6 +71,9 @@ public class User extends Timestamped {
         this.techStackList.add(techStack);
     }
 
+    public void addTechStackList(List<TechStack> techStackList){
+        this.techStackList = techStackList;
+    }
     public String updateUserPropensityType(String propensityResult) {
         this.userPropensityType = propensityResult;
 
@@ -80,5 +84,16 @@ public class User extends Timestamped {
         this.memberPropensityType = propensityResult;
 
         return this.memberPropensityType;
+    }
+
+    public void resetTechStack(){
+        this.techStackList = new ArrayList<>();
+
+    }
+
+    public void updateUserInfo(String email, String nickname,List<TechStack> techStackList){
+        this.email = email;
+        this.nickname = nickname;
+        this.techStackList = techStackList;
     }
 }

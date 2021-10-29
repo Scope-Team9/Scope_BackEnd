@@ -3,13 +3,16 @@ package com.studycollaboproject.scope.service;
 import com.studycollaboproject.scope.dto.LoginReponseDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.SnsInfoDto;
+import com.studycollaboproject.scope.dto.UserRepuestDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.*;
 import com.studycollaboproject.scope.repository.BookmarkRepository;
 import com.studycollaboproject.scope.repository.PostRepository;
+import com.studycollaboproject.scope.repository.TechStackRepository;
 import com.studycollaboproject.scope.repository.UserRepository;
 import com.studycollaboproject.scope.security.JwtTokenProvider;
+import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,10 +27,12 @@ public class UserService {
     private final BookmarkRepository bookmarkRepository;
     private final JwtTokenProvider jwtTokenProvider;
     private final PostRepository postRepository;
+    private final TechStackConverter techStackConverter;
+    private final TechStackRepository techStackRepository;
 
 
-    public User getUserInfo(String userNickname) {
-        return userRepository.findByNickname(userNickname).orElseThrow(
+    public User getUserInfo(String userSnsId) {
+        return userRepository.findBySnsId(userSnsId).orElseThrow(
                 () -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다."));
 
     }
@@ -42,65 +47,14 @@ public class UserService {
     }
 
 
-    public void setTechStack(List<String> techStack, User user) {
-        for (String tech : techStack) {
-            switch (tech) {
-                case "java":
-                    user.addTechStack(new TechStack(Tech.TECH_JAVA, user));
-                    break;
-                case "JavaScript":
-                    user.addTechStack(new TechStack(Tech.TECH_JS, user));
-                    break;
-                case "Python":
-                    user.addTechStack(new TechStack(Tech.TECH_PYTHON, user));
-                    break;
-                case "Node.js":
-                    user.addTechStack(new TechStack(Tech.TECH_NODEJS, user));
-                    break;
-                case "C++":
-                    user.addTechStack(new TechStack(Tech.TECH_CPP, user));
-                    break;
-                case "Flask":
-                    user.addTechStack(new TechStack(Tech.TECH_FLASK, user));
-                    break;
-                case "Django":
-                    user.addTechStack(new TechStack(Tech.TECH_DJANGO, user));
-                    break;
-                case "Vue.js":
-                    user.addTechStack(new TechStack(Tech.TECH_VUE, user));
-                    break;
-                case "React":
-                    user.addTechStack(new TechStack(Tech.TECH_REACT, user));
-                    break;
-                case "React Native":
-                    user.addTechStack(new TechStack(Tech.TECH_REACTNATIVE, user));
-                    break;
-                case "PHP":
-                    user.addTechStack(new TechStack(Tech.TECH_PHP, user));
-                    break;
-                case "Swift":
-                    user.addTechStack(new TechStack(Tech.TECH_SWIFT, user));
-                    break;
-                case "Kotlin":
-                    user.addTechStack(new TechStack(Tech.TECH_KOTLIN, user));
-                    break;
-                case "TypeScript":
-                    user.addTechStack(new TechStack(Tech.TECH_TYPESCRIPT, user));
-                    break;
-                case "Angular.js":
-                    user.addTechStack(new TechStack(Tech.TECH_ANGULAR, user));
-                    break;
-                case "Spring":
-                    user.addTechStack(new TechStack(Tech.TECH_SPRING, user));
-                    break;
-            }
-        }
+    public void saveUser(List<String> techStack, User user) {
+        user.addTechStackList(techStackConverter.convertStringToTechStack(techStack,user));
         userRepository.save(user);
     }
 
 
-    public User loadUserByNickname(String nickname) {
-        return userRepository.findByNickname(nickname).orElseThrow(
+    public User loadUserBySnsId(String snsId) {
+        return userRepository.findBySnsId(snsId).orElseThrow(
                 () -> new RestApiException(ErrorCode.NO_USER_ERROR)
         );
     }
@@ -113,13 +67,13 @@ public class UserService {
 
     public String signup(User user) {
         userRepository.save(user);
-        return jwtTokenProvider.createToken(user.getNickname());
+        return jwtTokenProvider.createToken(user.getSnsId());
 
     }
 
 
-    public boolean emailCheckByUser(String email, String username) {
-        User user = userRepository.findByNickname(username).orElseThrow(
+    public boolean emailCheckByUser(String email, String snsId) {
+        User user = userRepository.findBySnsId(snsId).orElseThrow(
                 () -> new IllegalArgumentException("사용자를 찾을 수 없습니다.")
         );
         return user.getEmail().equals(email);
@@ -138,11 +92,11 @@ public class UserService {
     }
 
     @Transactional
-    public ResponseDto bookmarkCheck(Long postId, String nickname) {
+    public ResponseDto bookmarkCheck(Long postId, String snsId) {
         Post post = postRepository.findById(postId).orElseThrow(
                 ()-> new IllegalArgumentException("해당 포스트를 찾을 수 없습니다.")
         );
-        User user = userRepository.findByNickname(nickname).orElseThrow(
+        User user = userRepository.findBySnsId(snsId).orElseThrow(
                 ()-> new IllegalArgumentException("해당 사용자를 찾을 수 없습니다.")
         );
         if (post.isBookmarkChecked()){
@@ -159,6 +113,23 @@ public class UserService {
             isBookmarkChecked.put("isBookmarkChecked","true");
             return new ResponseDto("200","북마크 추가 성공",isBookmarkChecked);
         }
+
+
+    }
+
+    @Transactional
+    public ResponseDto updateUserInfo(String snsId, UserRepuestDto userRepuestDto) {
+        User user = userRepository.findBySnsId(snsId).orElseThrow(
+                ()-> new IllegalArgumentException("해당 사용자를 찾을 수 없습니다.")
+        );
+        techStackRepository.deleteAllByUser(user);
+        user.resetTechStack();
+        user.updateUserInfo(userRepuestDto.getEmail(),userRepuestDto.getNickname(),
+                techStackConverter.convertStringToTechStack(userRepuestDto.getUserTechStack(),user));
+
+        return new ResponseDto("200","회원 정보가 수정되었습니다.","");
+
+
 
 
     }

@@ -19,8 +19,8 @@ public class UserDetailsImpl implements UserDetails {
         return user;
     }
     //인증관리자가 대조할때 쓰는 메서드
-    public String getNickname() {
-        return user.getNickname();
+    public String getSnsId() {
+        return user.getSnsId();
     }
 
     @Override
@@ -30,7 +30,7 @@ public class UserDetailsImpl implements UserDetails {
     //인증관리자가 대조할때 쓰는 메서드
     @Override
     public String getUsername() {
-        return user.getNickname();
+        return user.getSnsId();
     }
 
     @Override

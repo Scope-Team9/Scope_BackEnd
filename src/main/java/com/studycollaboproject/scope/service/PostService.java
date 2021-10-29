@@ -4,26 +4,30 @@ package com.studycollaboproject.scope.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.studycollaboproject.scope.dto.PostListDto;
 import com.studycollaboproject.scope.dto.PostRequestDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.*;
+
+import com.studycollaboproject.scope.dto.PostListDto;
+
 import com.studycollaboproject.scope.repository.*;
+import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.*;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -34,18 +38,19 @@ public class PostService {
     private final TechStackRepository techStackRepository;
     private final TeamRepository teamRepository;
     private final UserRepository userRepository;
+    private final TechStackConverter techStackConverter;
+    private final ApplicantRepository applicantRepository;
+
 
     @Transactional
     public Post writePost(PostRequestDto postRequestDto) {
-        List<TechStack> techStackList = new ArrayList<>();
         String[] techList = postRequestDto.getTechStack().split(";");
+        List<String > stringList = Arrays.asList(techList);
 
         Post post = new Post(postRequestDto);
-        for (String tech : techList) {
-            TechStack techStack = new TechStack(Tech.techOf(tech), post);
-            techStackRepository.save(techStack);
-            techStackList.add(techStack);
-        }
+
+        List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(stringList, post.getUser()));
+
         post.updateTechStack(techStackList);
         return postRepository.save(post);
     }
@@ -60,9 +65,16 @@ public class PostService {
 
     @Transactional
     public boolean deletePost(Long id) {
+
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("포스트가 존재하지 않습니다."));
+
+        techStackRepository.deleteAllByPost(post);
+        teamRepository.deleteAllByPost(post);
+        bookmarkRepository.deleteAllByPost(post);
+        applicantRepository.deleteAllByPost(post);
         postRepository.delete(post);
+
         return true;
     }
 
@@ -71,7 +83,7 @@ public class PostService {
                                 int displayNumber,
                                 int page,
                                 String sort,
-                                String nickname) throws JsonProcessingException {
+                                String snsId) throws JsonProcessingException {
 
         // 필터링 될 포스트배열
         List<Post> filterPosts = new ArrayList<>();
@@ -79,7 +91,7 @@ public class PostService {
         List<Post> posts = new ArrayList<>();
         // 잠시 북마크가 담길 포스트 배열
         List<Post> filterTemp = new ArrayList<>();
-        List<Tech> techList = new ArrayList<>();
+        List<Tech> techList;
         List<TechStack> techStackList;
         List<String> filterList;
 
@@ -90,17 +102,9 @@ public class PostService {
             // filterList = new ArrayList<>(Arrays.asList(splitStr));
             filterList = Arrays.asList(filter.split(";"));
 
-            // 스플릿 한 값으로 techStack에서 검색
-            for (String techFilter : filterList) {
+            // 받아온 techStack 값을 List<Tech>로 전환
+            techList = techStackConverter.convertStringToTech(filterList);
 
-                // 만약 스택이 공백이 아니라면 continue
-                if (techFilter.equals("")) {
-                    continue;
-                }
-                //프론트에서 받아온 String을 Enumtype으로 변경
-                Tech tech = Tech.techOf(techFilter);
-                techList.add(tech);
-            }
             // techList에 포함된 TehcStack을 techStackList에 저장
             techStackList = techStackRepository.findAllByTechIn(techList);
 
@@ -118,7 +122,7 @@ public class PostService {
 
         switch (sort) {
             case "bookmark":
-                List<Bookmark> bookmarkList = bookmarkRepository.findAllByPostInAndUserNickname(filterPosts, nickname);
+                List<Bookmark> bookmarkList = bookmarkRepository.findAllByPostInAndUserNickname(filterPosts, snsId);
                 for (Bookmark bookmark : bookmarkList) {
                     Post post = bookmark.getPost();
                     filterTemp.add(post);
@@ -136,23 +140,25 @@ public class PostService {
                 break;
 
             case "recommend":
-                List<String> PropensityTypeList = getPropensityTypeList(nickname);
+
+                List<String> PropensityTypeList = getPropensityTypeList(snsId);
+
+
         }
 
-        // display number와 Page 사용해서 객체 수 만큼 넘기기
-        int index = displayNumber * page;
-        for (int i = index; i < index + displayNumber; i++) {
-            if (filterPosts.size() < i) {
-                break;
-            }
-            posts.add(filterPosts.get(i));
-        }
+                // display number와 Page 사용해서 객체 수 만큼 넘기기
+                int index = displayNumber * page;
+                for (int i = index; i < index + displayNumber; i++) {
+                    if (filterPosts.size() < i) {
+                        break;
+                    }
+                    posts.add(filterPosts.get(i));
+                }
 
 
-        return new ResponseDto("200", "success", posts);
+                return new ResponseDto("200", "success", posts);
 
     }
-
     public PostListDto getPostList(User user, List<Post> bookmarkList) {
         List<Team> teamList = teamRepository.findAllByUser(user);
 
@@ -176,8 +182,8 @@ public class PostService {
         return new PostListDto(bookmarkList, recruitmentList, inProgressList, endList);
     }
 
-    public List<String> getPropensityTypeList(String nickname) throws JsonProcessingException {
-        User user = userRepository.findByNickname(nickname).orElseThrow(
+    public List<String> getPropensityTypeList(String snsId) throws JsonProcessingException {
+        User user = userRepository.findBySnsId(snsId).orElseThrow(
                 () -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다."));
         String userPropensityType = user.getUserPropensityType();
         String memberPropensityType = user.getMemberPropensityType();
@@ -202,16 +208,17 @@ public class PostService {
     }
 
 
+
     @Transactional
-    public void updateUrl(String backUrl, String frontUrl, String nickname, Long postId) {
-        User user = userRepository.findByNickname(nickname).orElseThrow(
-                () -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다.")
+    public void updateUrl(String backUrl, String frontUrl, String snsId, Long postId){
+        User user = userRepository.findBySnsId(snsId).orElseThrow(
+                ()-> new IllegalArgumentException("해당 유저를 찾을 수 없습니다.")
         );
         Post post = postRepository.findById(postId).orElseThrow(
-                () -> new IllegalArgumentException("해당 게시물을 찾을 수 없습니다.")
+                ()->new IllegalArgumentException("해당 게시물을 찾을 수 없습니다.")
         );
-        Team team = teamRepository.findByUserAndPost(user, post).orElseThrow(
-                () -> new IllegalArgumentException("해당 게시물을 찾을 수 없습니다.")
+        Team team = teamRepository.findByUserAndPost(user,post).orElseThrow(
+                ()->new IllegalArgumentException("해당 게시물을 찾을 수 없습니다.")
         );
         team.setUrl(frontUrl, backUrl);
 

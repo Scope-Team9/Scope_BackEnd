@@ -45,7 +45,8 @@ public class ApplicantRestController {
         if (userDetails == null) {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
-        applicantService.applyPost(userDetails.getNickname(), postId, comment);
+
+        applicantService.applyPost(userDetails.getSnsId(), postId, comment);
 
         return new ResponseDto("200", "", "");
     }
@@ -59,8 +60,8 @@ public class ApplicantRestController {
         if (userDetails == null) {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
+        applicantService.cancelApply(userDetails.getSnsId(), postId);
 
-        applicantService.cancelApply(userDetails.getNickname(), postId);
         return new ResponseDto("200", "", "");
     }
 
@@ -73,9 +74,9 @@ public class ApplicantRestController {
         if (userDetails == null) {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
-        User user = userService.loadUserByNickname(userDetails.getNickname());
+
         Post post = postService.loadPostByPostId(postId);
-        if (!post.getUser().getId().equals(user.getId())) {
+        if (!post.getUser().getSnsId().equals(userDetails.getSnsId())) {
             throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
         List<MemberListResponseDto> responseDto = applicantService.getApplicant(post);
