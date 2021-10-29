@@ -3,7 +3,7 @@ package com.studycollaboproject.scope.service;
 import com.studycollaboproject.scope.dto.LoginReponseDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.SnsInfoDto;
-import com.studycollaboproject.scope.dto.UserRepuestDto;
+import com.studycollaboproject.scope.dto.UserRequestDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.*;
@@ -109,19 +109,19 @@ public class UserService {
     }
 
     @Transactional
-    public ResponseDto updateUserInfo(String snsId, UserRepuestDto userRepuestDto) {
+    public ResponseDto updateUserInfo(String snsId, UserRequestDto userRequestDto) {
         User user = loadUserBySnsId(snsId);
         techStackRepository.deleteAllByUser(user);
         user.resetTechStack();
-        String nickname = userRepuestDto.getNickname();
-        String email = userRepuestDto.getEmail();
+        String nickname = userRequestDto.getNickname();
+        String email = userRequestDto.getEmail();
         if (nicknameCheckBynickname(nickname)){
             return new ResponseDto("400", "중복된 닉네임이 존재합니다.", "");
         }else if(emailCheckByEmail(email)){
             return new ResponseDto("400", "중복된 이메일이 존재합니다.", "");
         }
         user.updateUserInfo(email,nickname,
-                techStackConverter.convertStringToTechStack(userRepuestDto.getUserTechStack(),user));
+                techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(),user));
 
         return new ResponseDto("200","회원 정보가 수정되었습니다.","");
 

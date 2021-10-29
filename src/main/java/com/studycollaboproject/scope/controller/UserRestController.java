@@ -3,7 +3,7 @@ package com.studycollaboproject.scope.controller;
 import com.studycollaboproject.scope.dto.PostListDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.SignupRequestDto;
-import com.studycollaboproject.scope.dto.UserRepuestDto;
+import com.studycollaboproject.scope.dto.UserRequestDto;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.service.PostService;
@@ -47,8 +47,10 @@ public class UserRestController {
     @Operation(summary = "회원 소개 수정")
     @PostMapping("/api/user")
     public ResponseDto updateUserinfo(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails,
-                                      @RequestBody UserRepuestDto userRepuestDto){
-        return userService.updateUserInfo(userDetails.getUsername(), userRepuestDto);
+                                      @RequestBody UserRequestDto userRequestDto){
+        log.info("POST, [{}], /api/user, userRequestDto={}", MDC.get("UUID"), userRequestDto);
+
+        return userService.updateUserInfo(userDetails.getUsername(), userRequestDto);
     }
 
     @Operation(summary = "회원 가입 - 회원 정보 저장")
@@ -68,13 +70,11 @@ public class UserRestController {
 //        response.addCookie(cookie); // 추가구현 필요
 //        return new ResponseDto("200", "", "");
         return new ResponseDto("200", "", token);
-
     }
 
-    @Operation(summary = "이메일 중복 확인")
-    @GetMapping("/api/login")
+    @GetMapping("/api/login/email")
     public ResponseDto emailCheck(@Parameter(description = "이메일", in = ParameterIn.QUERY) @RequestParam String email) {
-        log.info("GET, [{}], /api/login, email={}", MDC.get("UUID"), email);
+        log.info("GET, [{}], /api/login/email, email={}", MDC.get("UUID"), email);
         //email이 이미 존재하면 T 존재하지 않으면 F
         boolean isEmailPresent = userService.emailCheckByEmail(email);
         if (isEmailPresent) {
@@ -84,10 +84,9 @@ public class UserRestController {
         }
     }
 
-    @Operation(summary = "닉네임 중복 확인")
-    @GetMapping("/api/login")
+    @GetMapping("/api/login/nickname")
     public ResponseDto nicknameCheck(@Parameter(description = "닉네임", in = ParameterIn.QUERY) @RequestParam String nickname) {
-        log.info("GET, [{}], /api/login/, nickname={}", MDC.get("UUID"), nickname);
+        log.info("GET, [{}], /api/login/nickname, nickname={}", MDC.get("UUID"), nickname);
         //nickname이 이미 존재하면 T 존재하지 않으면 F
         boolean isNicknamePresent = userService.nicknameCheckBynickname(nickname);
         if (isNicknamePresent) {
@@ -101,6 +100,8 @@ public class UserRestController {
     @PostMapping("/api/user/desc")
     public ResponseDto updateUserDesc(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails,
                                       @RequestBody String userDesc){
+        log.info("POST, [{}], /api/user/desc, userDesc={}", MDC.get("UUID"), userDesc);
+
         return userService.updateUserDesc(userDetails.getUsername(),userDesc);
     }
 }
