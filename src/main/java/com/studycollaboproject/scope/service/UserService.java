@@ -72,11 +72,11 @@ public class UserService {
     }
 
 
-    public boolean emailCheckByUser(String email, String snsId) {
-        User user = userRepository.findBySnsId(snsId).orElseThrow(
-                () -> new IllegalArgumentException("사용자를 찾을 수 없습니다.")
-        );
-        return user.getEmail().equals(email);
+    public boolean emailCheckByUser(String email) {
+        return userRepository.findByEmail(email).isPresent();
+    }
+    public boolean nicknameCheckBynickname(String nickname) {
+        return userRepository.findByNickname(nickname).isPresent();
     }
 
     public ResponseDto emailCheckByEmail(SnsInfoDto snsInfoDto) {

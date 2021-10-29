@@ -73,14 +73,26 @@ public class UserRestController {
     }
 
     @GetMapping("/api/login")
-    public ResponseDto emailCheck(@RequestParam String email, @AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseDto emailCheck(@RequestParam String email) {
         log.info("GET, [{}], /api/login, email={}", MDC.get("UUID"), email);
-//email이 이미 존재하면 T 존재하지 않으면 F
-        boolean isEmailPresent = userService.emailCheckByUser(email, userDetails.getUsername());
+        //email이 이미 존재하면 T 존재하지 않으면 F
+        boolean isEmailPresent = userService.emailCheckByUser(email);
         if (isEmailPresent) {
             return new ResponseDto("400", "중복된 이메일이 존재합니다.", "");
         } else {
             return new ResponseDto("200", "사용가능한 메일입니다.", "");
+        }
+    }
+
+    @GetMapping("/api/login")
+    public ResponseDto nicknameCheck(@RequestParam String nickname) {
+        log.info("GET, [{}], /api/login, nickname={}", MDC.get("UUID"), nickname);
+        //nickname이 이미 존재하면 T 존재하지 않으면 F
+        boolean isNicknamePresent = userService.nicknameCheckBynickname(nickname);
+        if (isNicknamePresent) {
+            return new ResponseDto("400", "중복된 닉네임이 존재합니다.", "");
+        } else {
+            return new ResponseDto("200", "사용가능한 닉네임입니다.", "");
         }
     }
 
