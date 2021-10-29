@@ -1,6 +1,9 @@
 package com.studycollaboproject.scope.service;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.studycollaboproject.scope.dto.PostRequestDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
@@ -11,7 +14,14 @@ import com.studycollaboproject.scope.dto.PostListDto;
 
 import com.studycollaboproject.scope.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -44,9 +54,9 @@ public class PostService {
     }
 
     @Transactional
-    public ResponseDto editPost(Long id, PostRequestDto postRequestDto){
+    public ResponseDto editPost(Long id, PostRequestDto postRequestDto) {
         Post post = postRepository.findById(id).orElseThrow(
-                ()-> new IllegalArgumentException("포스트가 존재하지 않습니다."));
+                () -> new IllegalArgumentException("포스트가 존재하지 않습니다."));
         post.update(postRequestDto);
         return new ResponseDto("200", "", post);
     }
@@ -64,7 +74,7 @@ public class PostService {
                                 int displayNumber,
                                 int page,
                                 String sort,
-                                String nickname) {
+                                String nickname) throws JsonProcessingException {
 
         // 필터링 될 포스트배열
         List<Post> filterPosts = new ArrayList<>();
@@ -72,7 +82,7 @@ public class PostService {
         List<Post> posts = new ArrayList<>();
         // 잠시 북마크가 담길 포스트 배열
         List<Post> filterTemp = new ArrayList<>();
-        List<Tech>techList = new ArrayList<>();
+        List<Tech> techList = new ArrayList<>();
         List<TechStack> techStackList;
         List<String> filterList;
 
@@ -88,7 +98,7 @@ public class PostService {
             for (String techFilter : filterList) {
 
                 // 만약 스택이 공백이 아니라면 continue
-                if (techFilter.equals("")){
+                if (techFilter.equals("")) {
                     continue;
                 }
                 //프론트에서 받아온 String을 Enumtype으로 변경
@@ -109,6 +119,7 @@ public class PostService {
             filterPosts = postRepository.findAll();
         }
 
+
         switch (sort) {
             case "bookmark":
                 List<Bookmark> bookmarkList = bookmarkRepository.findAllByPostInAndUserNickname(filterPosts, nickname);
@@ -128,25 +139,11 @@ public class PostService {
                 filterPosts.sort(Comparator.comparing(Post::getStartDate, Comparator.reverseOrder()));
                 break;
 
-//            case "recommend":
-//                filterPosts.sort();
+            case "recommend":
+                List<String> PropensityTypeList = getPropensityTypeList(nickname);
+
         }
 
-        // 필터링된 포스트의 개수가 0개가 아니고 디스플레이 넘버만큼 있을때 반환
-        if (filterPosts.size() ==0)
-        {
-            posts =null;
-        }
-        else if (filterPosts.size() >= displayNumber)
-        {
-            for (int i = 0; i < displayNumber; i++) {
-            posts.add(filterPosts.get(i));
-            }
-        }
-        else
-        {
-            posts = filterPosts;
-        }
 
 
         // totalPost 는 필터를 거친 포스트의 개수
@@ -154,6 +151,7 @@ public class PostService {
 
         return new ResponseDto("200", "success", posts);
     }
+
     public PostListDto getPostList(User user, List<Post> bookmarkList) {
         List<Team> teamList = teamRepository.findAllByUser(user);
 
@@ -176,6 +174,33 @@ public class PostService {
         }
         return new PostListDto(bookmarkList, recruitmentList, inProgressList, endList);
     }
+
+    public List<String> getPropensityTypeList(String nickname) throws JsonProcessingException {
+        User user = userRepository.findByNickname(nickname).orElseThrow(
+                () -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다."));
+        String userPropensityType = user.getUserPropensityType();
+        String memberPropensityType = user.getMemberPropensityType();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-type", "application/json");
+
+        // HTTP 요청 보내기
+        HttpEntity<MultiValueMap<String, String>> assessmentRequest = new HttpEntity<>(headers);
+        RestTemplate rt = new RestTemplate();
+        ResponseEntity<String> response = rt.exchange(
+                "https://flaskServer/api/user/propensity-type?userPropensityType=" + userPropensityType + "&memberPropensityType=" + memberPropensityType,
+                HttpMethod.GET,
+                assessmentRequest,
+                String.class
+        );
+
+        String responseBody = response.getBody();
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(responseBody);
+        return jsonNode.get("data").findValuesAsText("recommendedPropensityType");
+    }
+
+
 
     @Transactional
     public void updateUrl(String backUrl, String frontUrl, String nickname, Long postId){
