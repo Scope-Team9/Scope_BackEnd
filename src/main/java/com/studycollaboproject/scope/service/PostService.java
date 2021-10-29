@@ -43,13 +43,17 @@ public class PostService {
 
 
     @Transactional
-    public Post writePost(PostRequestDto postRequestDto) {
+    public Post writePost(PostRequestDto postRequestDto, String snsId) {
         String[] techList = postRequestDto.getTechStack().split(";");
         List<String > stringList = Arrays.asList(techList);
+        User user = userRepository.findBySnsId(snsId).orElseThrow(
+                ()-> new IllegalArgumentException("해당 유저를 찾을 수 없습니다.")
+        );
+        Post post = new Post(postRequestDto,user);
 
-        Post post = new Post(postRequestDto);
 
         List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(stringList, post.getUser()));
+
         techStackRepository.saveAll(techStackList);
         post.updateTechStack(techStackList);
         return postRepository.save(post);
