@@ -39,7 +39,7 @@ public class TestRestController {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
 
-        TestResultDto resultDto = testService.updatePropensityType(userDetails.getNickname(), userPropensityType, memberPropensityType);
+        TestResultDto resultDto = testService.updatePropensityType(userDetails.getSnsId(), userPropensityType, memberPropensityType);
         return new ResponseDto("200", "", resultDto);
     }
 
@@ -51,7 +51,7 @@ public class TestRestController {
         if (userDetails == null) {  //로그인 정보 확인
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
-        TestResultDto resultDto = testService.getPropensityType(userDetails.getNickname());
+        TestResultDto resultDto = testService.getPropensityType(userDetails.getSnsId());
 
         return new ResponseDto("200", "", resultDto);
     }

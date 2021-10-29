@@ -3,6 +3,7 @@ package com.studycollaboproject.scope.controller;
 import com.studycollaboproject.scope.dto.PostListDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.SignupRequestDto;
+import com.studycollaboproject.scope.dto.UserRepuestDto;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.service.PostService;
@@ -37,6 +38,12 @@ public class UserRestController {
         return new ResponseDto("200", "", postListDto);
     }
 
+    @PostMapping("/api/user")
+    public ResponseDto updateUserDesc(@AuthenticationPrincipal UserDetails userDetails, @RequestBody UserRepuestDto userRepuestDto){
+        return userService.updateUserInfo(userDetails.getUsername(),userRepuestDto);
+
+    }
+
     @PostMapping("/api/post/{postId}/url")
     public ResponseDto updateUrl(@AuthenticationPrincipal UserDetails userDetails,
                                  @RequestBody String frontUrl, @RequestBody String backUrl,
@@ -51,7 +58,7 @@ public class UserRestController {
         log.info("POST, [{}], /api/signup, signupRequestDto={}", MDC.get("UUID"), signupRequestDto.toString());
 
         User user = new User(signupRequestDto);
-        userService.setTechStack(signupRequestDto.getTechStack(),user);
+        userService.saveUser(signupRequestDto.getTechStack(),user);
 
         Map<String, String> token = new HashMap<>();
         token.put("token", userService.signup(user));
