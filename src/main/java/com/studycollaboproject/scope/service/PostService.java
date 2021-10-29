@@ -13,6 +13,7 @@ import com.studycollaboproject.scope.model.*;
 import com.studycollaboproject.scope.dto.PostListDto;
 
 import com.studycollaboproject.scope.repository.*;
+import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -37,18 +38,20 @@ public class PostService {
     private final TechStackRepository techStackRepository;
     private final TeamRepository teamRepository;
     private final UserRepository userRepository;
+    private final TechStackConverter techStackConverter;
+    private final ApplicantRepository applicantRepository;
+
 
     @Transactional
     public Post writePost(PostRequestDto postRequestDto) {
         List<TechStack> techStackList = new ArrayList<>();
         String[] techList = postRequestDto.getTechStack().split(";");
+        List<String > stringList = Arrays.asList(techList);
 
         Post post = new Post(postRequestDto);
-        for (String tech : techList) {
-            TechStack techStack = new TechStack(Tech.techOf(tech), post);
-            techStackRepository.save(techStack);
-            techStackList.add(techStack);
-        }
+
+        techStackList.addAll(techStackConverter.convertStringToTechStack(stringList,post.getUser()));
+
         post.updateTechStack(techStackList);
         return postRepository.save(post);
     }
@@ -63,9 +66,16 @@ public class PostService {
 
     @Transactional
     public boolean deletePost(Long id) {
+
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("포스트가 존재하지 않습니다."));
+
+        techStackRepository.deleteAllByPost(post);
+        teamRepository.deleteAllByPost(post);
+        bookmarkRepository.deleteAllByPost(post);
+        applicantRepository.deleteAllByPost(post);
         postRepository.delete(post);
+
         return true;
     }
 
@@ -74,7 +84,7 @@ public class PostService {
                                 int displayNumber,
                                 int page,
                                 String sort,
-                                String nickname) throws JsonProcessingException {
+                                String snsId) throws JsonProcessingException {
 
         // 필터링 될 포스트배열
         List<Post> filterPosts = new ArrayList<>();
@@ -94,17 +104,9 @@ public class PostService {
             // filterList = new ArrayList<>(Arrays.asList(splitStr));
             filterList = Arrays.asList(filter.split(";"));
 
-            // 스플릿 한 값으로 techStack에서 검색
-            for (String techFilter : filterList) {
+            // 받아온 techStack 값을 List<Tech>로 전환
+            techList = techStackConverter.convertStringToTech(filterList);
 
-                // 만약 스택이 공백이 아니라면 continue
-                if (techFilter.equals("")) {
-                    continue;
-                }
-                //프론트에서 받아온 String을 Enumtype으로 변경
-                Tech tech = Tech.techOf(techFilter);
-                techList.add(tech);
-            }
             // techList에 포함된 TehcStack을 techStackList에 저장
             techStackList = techStackRepository.findAllByTechIn(techList);
 
@@ -122,7 +124,7 @@ public class PostService {
 
         switch (sort) {
             case "bookmark":
-                List<Bookmark> bookmarkList = bookmarkRepository.findAllByPostInAndUserNickname(filterPosts, nickname);
+                List<Bookmark> bookmarkList = bookmarkRepository.findAllByPostInAndUserNickname(filterPosts, snsId);
                 for (Bookmark bookmark : bookmarkList) {
                     Post post = bookmark.getPost();
                     filterTemp.add(post);
@@ -140,7 +142,7 @@ public class PostService {
                 break;
 
             case "recommend":
-                List<String> PropensityTypeList = getPropensityTypeList(nickname);
+                List<String> PropensityTypeList = getPropensityTypeList(snsId);
 
         }
 
@@ -175,8 +177,8 @@ public class PostService {
         return new PostListDto(bookmarkList, recruitmentList, inProgressList, endList);
     }
 
-    public List<String> getPropensityTypeList(String nickname) throws JsonProcessingException {
-        User user = userRepository.findByNickname(nickname).orElseThrow(
+    public List<String> getPropensityTypeList(String snsId) throws JsonProcessingException {
+        User user = userRepository.findBySnsId(snsId).orElseThrow(
                 () -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다."));
         String userPropensityType = user.getUserPropensityType();
         String memberPropensityType = user.getMemberPropensityType();
@@ -203,8 +205,8 @@ public class PostService {
 
 
     @Transactional
-    public void updateUrl(String backUrl, String frontUrl, String nickname, Long postId){
-        User user = userRepository.findByNickname(nickname).orElseThrow(
+    public void updateUrl(String backUrl, String frontUrl, String snsId, Long postId){
+        User user = userRepository.findBySnsId(snsId).orElseThrow(
                 ()-> new IllegalArgumentException("해당 유저를 찾을 수 없습니다.")
         );
         Post post = postRepository.findById(postId).orElseThrow(
