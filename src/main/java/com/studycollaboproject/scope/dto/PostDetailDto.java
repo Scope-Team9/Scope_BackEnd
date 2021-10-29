@@ -9,9 +9,9 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 public class PostDetailDto {
-    @Schema(description = "게시글 상세")
+    @Schema(description = "프로젝트 상세")
     private PostResponseDto post;
-    @Schema(description = "게시글 맴버")
+    @Schema(description = "프로젝트 맴버")
     private List<MemberListResponseDto> members;
 
     public PostDetailDto(PostResponseDto postDetail, List<MemberListResponseDto> members) {

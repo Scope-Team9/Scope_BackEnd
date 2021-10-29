@@ -22,7 +22,7 @@ public class MemberListResponseDto {
     @Schema(description = "Email")
     private String email;
     @Schema(description = "유저 성향")
-    private String  userPropensityType;
+    private String userPropensityType;
     @Schema(description = "지원 날짜")
     private LocalDateTime applicationDate;
 

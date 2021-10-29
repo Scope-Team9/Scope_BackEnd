@@ -1,7 +1,6 @@
 package com.studycollaboproject.scope.model;
 
 import com.studycollaboproject.scope.dto.SignupRequestDto;
-import com.studycollaboproject.scope.dto.UserRepuestDto;
 import com.studycollaboproject.scope.util.Timestamped;
 import lombok.AccessLevel;
 import lombok.Getter;

@@ -3,11 +3,15 @@ package com.studycollaboproject.scope.controller;
 import com.studycollaboproject.scope.dto.PostListDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.SignupRequestDto;
-import com.studycollaboproject.scope.dto.UserRepuestDto;
+import com.studycollaboproject.scope.dto.UserRequestDto;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.service.PostService;
 import com.studycollaboproject.scope.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
@@ -22,14 +26,16 @@ import java.util.Map;
 @RequiredArgsConstructor
 @RestController
 @Slf4j
+@Tag(name = "User Controller", description = "회원 가입 및 회원 조회/수정")
 public class UserRestController {
 
     private final PostService postService;
     private final UserService userService;
 
 
+    @Operation(summary = "마이 페이지")
     @GetMapping("/api/user")
-    public ResponseDto getMyPage(@AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseDto getMyPage(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails) {
         log.info("GET, [{}], /api/user", MDC.get("UUID"));
 
         User user = userService.loadUserBySnsId(userDetails.getUsername());
@@ -38,27 +44,22 @@ public class UserRestController {
         return new ResponseDto("200", "", postListDto);
     }
 
+    @Operation(summary = "회원 소개 수정")
     @PostMapping("/api/user")
-    public ResponseDto updateUserinfo(@AuthenticationPrincipal UserDetails userDetails, @RequestBody UserRepuestDto userRepuestDto){
-        return userService.updateUserInfo(userDetails.getUsername(),userRepuestDto);
+    public ResponseDto updateUserinfo(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails,
+                                      @RequestBody UserRequestDto userRequestDto){
+        log.info("POST, [{}], /api/user, userRequestDto={}", MDC.get("UUID"), userRequestDto);
 
+        return userService.updateUserInfo(userDetails.getUsername(), userRequestDto);
     }
 
-    @PostMapping("/api/post/{postId}/url")
-    public ResponseDto updateUrl(@AuthenticationPrincipal UserDetails userDetails,
-                                 @RequestBody String frontUrl, @RequestBody String backUrl,
-                                 @PathVariable Long postId) {
-        log.info("POST, [{}], /api/post/{}/url, frontUrl={}, backUrl={}", MDC.get("UUID"), postId, frontUrl, backUrl);
-        postService.updateUrl(backUrl, frontUrl, userDetails.getUsername(), postId);
-        return new ResponseDto("200", "", "");
-    }
-
+    @Operation(summary = "회원 가입 - 회원 정보 저장")
     @PostMapping("/api/signup")
     public ResponseDto signup(@RequestBody SignupRequestDto signupRequestDto) {
         log.info("POST, [{}], /api/signup, signupRequestDto={}", MDC.get("UUID"), signupRequestDto.toString());
 
         User user = new User(signupRequestDto);
-        userService.saveUser(signupRequestDto.getTechStack(),user);
+        userService.saveUser(signupRequestDto.getTechStack(), user);
 
         Map<String, String> token = new HashMap<>();
         token.put("token", userService.signup(user));
@@ -69,12 +70,11 @@ public class UserRestController {
 //        response.addCookie(cookie); // 추가구현 필요
 //        return new ResponseDto("200", "", "");
         return new ResponseDto("200", "", token);
-
     }
 
     @GetMapping("/api/login/email")
-    public ResponseDto emailCheck(@RequestParam String email) {
-        log.info("GET, [{}], /api/login, email={}", MDC.get("UUID"), email);
+    public ResponseDto emailCheck(@Parameter(description = "이메일", in = ParameterIn.QUERY) @RequestParam String email) {
+        log.info("GET, [{}], /api/login/email, email={}", MDC.get("UUID"), email);
         //email이 이미 존재하면 T 존재하지 않으면 F
         boolean isEmailPresent = userService.emailCheckByEmail(email);
         if (isEmailPresent) {
@@ -85,8 +85,8 @@ public class UserRestController {
     }
 
     @GetMapping("/api/login/nickname")
-    public ResponseDto nicknameCheck(@RequestParam String nickname) {
-        log.info("GET, [{}], /api/login, nickname={}", MDC.get("UUID"), nickname);
+    public ResponseDto nicknameCheck(@Parameter(description = "닉네임", in = ParameterIn.QUERY) @RequestParam String nickname) {
+        log.info("GET, [{}], /api/login/nickname, nickname={}", MDC.get("UUID"), nickname);
         //nickname이 이미 존재하면 T 존재하지 않으면 F
         boolean isNicknamePresent = userService.nicknameCheckBynickname(nickname);
         if (isNicknamePresent) {
@@ -96,16 +96,12 @@ public class UserRestController {
         }
     }
 
-
-    @PostMapping("/api/bookmark/{postId}")
-    public ResponseDto bookmarkCheck(@PathVariable Long postId, @AuthenticationPrincipal UserDetails userDetails){
-        log.info("POST, [{}], /api/bookmark/{}", MDC.get("UUID"), postId);
-        return userService.bookmarkCheck(postId,userDetails.getUsername());
-    }
-
+    @Operation(summary = "유저 소개 업데이트")
     @PostMapping("/api/user/desc")
-    public ResponseDto updateUserDesc(@AuthenticationPrincipal UserDetails userDetails, @RequestBody String userDesc){
+    public ResponseDto updateUserDesc(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails,
+                                      @RequestBody String userDesc){
+        log.info("POST, [{}], /api/user/desc, userDesc={}", MDC.get("UUID"), userDesc);
+
         return userService.updateUserDesc(userDetails.getUsername(),userDesc);
     }
-
 }
