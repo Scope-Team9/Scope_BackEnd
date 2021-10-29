@@ -1,5 +1,6 @@
 package com.studycollaboproject.scope.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.studycollaboproject.scope.dto.*;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
@@ -49,7 +50,7 @@ public class PostRestController {
                                 @RequestParam int displayNumber,
                                 @RequestParam int page,
                                 @RequestParam String sort,
-                                @AuthenticationPrincipal UserDetails userDetails) {
+                                @AuthenticationPrincipal UserDetails userDetails) throws JsonProcessingException {
         log.info("GET, [{}], /api/post, filter={}, displayNumber={}, page={}, sort={}", MDC.get("UUID"), filter, displayNumber, page, sort);
         String username = "";
         if (userDetails != null) {
@@ -107,5 +108,3 @@ public class PostRestController {
         return new ResponseDto("200", "", new PostDetailDto(postDetail, member));
     }
 }
-
-

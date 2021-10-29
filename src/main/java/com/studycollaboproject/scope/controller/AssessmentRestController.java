@@ -1,5 +1,6 @@
 package com.studycollaboproject.scope.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
@@ -35,7 +36,7 @@ public class AssessmentRestController {
     @PostMapping("/api/assessment/{postId}")
     public ResponseDto assessmentMember(@Parameter(description = "게시글 ID", in = ParameterIn.PATH) @PathVariable Long postId,
                                        @ModelAttribute("userIds") List<Long> userIds,
-                                       @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
+                                       @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) throws JsonProcessingException {
         log.info("POST, [{}], /api/assessment/{}, userIds={}", MDC.get("UUID"), postId, userIds.toString());
 
         if (userDetails == null) {
@@ -43,8 +44,6 @@ public class AssessmentRestController {
         }
 
         User user = userService.loadUserByNickname(userDetails.getNickname());
-        assessmentService.assessmentMember(postId, user, userIds);
-
-        return new ResponseDto("200", "", "");
+        return assessmentService.assessmentMember(postId, user, userIds);
     }
 }
