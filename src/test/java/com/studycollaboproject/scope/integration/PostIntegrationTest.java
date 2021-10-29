@@ -41,7 +41,6 @@ public class PostIntegrationTest {
                 contents,
                 techStack,
                 totalMember,
-                recruitmentMember,
                 projectStatus,
                 startDate,
                 endDate
@@ -52,7 +51,6 @@ public class PostIntegrationTest {
         Assertions.assertThat(result.getTitle()).isEqualTo(title);
         Assertions.assertThat(result.getSummary()).isEqualTo(summary);
         Assertions.assertThat(result.getContents()).isEqualTo(contents);
-        Assertions.assertThat(result.getRecruitmentMember()).isEqualTo(recruitmentMember);
         Assertions.assertThat(result.getProjectStatus()).isEqualTo(ProjectStatus.projectStatusOf(projectStatus));
         Assertions.assertThat(result.getTotalMember()).isEqualTo(totalMember);
         Assertions.assertThat(result.getStartDate()).isEqualTo(startDate);

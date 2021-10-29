@@ -75,7 +75,7 @@ public class KakaoUserService {
         JsonNode jsonNode = objectMapper.readTree(responseBody);
         System.out.println("responseBody = " + responseBody);
         Long id = jsonNode.get("id").asLong();
-        String email = jsonNode.get("kakao_account").get("account_email").asText();
+        String email = jsonNode.get("kakao_account").get("email").asText();
         return new SnsInfoDto(email,id);
 
     }

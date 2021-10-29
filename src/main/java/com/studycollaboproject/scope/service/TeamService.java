@@ -40,6 +40,7 @@ public class TeamService {
         }
     }
 
+    @Transactional
     public List<MemberListResponseDto> getMember(Long postId) {
         return teamRepository.findAllByPostId(postId)
                 .stream().map(MemberListResponseDto::new).collect(Collectors.toCollection(ArrayList::new));

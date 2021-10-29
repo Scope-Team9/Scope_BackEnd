@@ -35,7 +35,7 @@ public class GithubUserService {
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("client_secret", "446a69893e1359448312451f0edd6cfa7b46610b");
         body.add("client_id", "5bb2c0fab941fb5b8f9f");
-        body.add("redirect_uri", "http://15.165.159.211/user/github/callback");
+        body.add("redirect_uri", "http://localhost:3000/user/github/callback");
         body.add("code", code);
 
         // HTTP 요청 보내기

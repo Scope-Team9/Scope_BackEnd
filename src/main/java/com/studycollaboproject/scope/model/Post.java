@@ -90,7 +90,7 @@ public class Post extends Timestamped{
         this.summary = postRequestDto.getSummary();
         this.contents = postRequestDto.getContents();
         this.totalMember = postRequestDto.getTotalMember();
-        this.recruitmentMember = postRequestDto.getRecruitmentMember();
+//        this.recruitmentMember = postRequestDto.getRecruitmentMember();
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
 //        this.bookmarkList = postRequestDto.getBookmarkList();
 //        this.teamList = postRequestDto.getTeamList();
@@ -108,7 +108,7 @@ public class Post extends Timestamped{
         this.summary = postRequestDto.getSummary();
         this.contents = postRequestDto.getContents();
         this.totalMember = postRequestDto.getTotalMember();
-        this.recruitmentMember = postRequestDto.getRecruitmentMember();
+//        this.recruitmentMember = postRequestDto.getRecruitmentMember();
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
 //        this.bookmarkList = postRequestDto.getBookmarkList();
 //        this.teamList = postRequestDto.getTeamList();
