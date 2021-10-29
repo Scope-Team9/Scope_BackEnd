@@ -72,7 +72,7 @@ public class UserRestController {
 
     }
 
-    @GetMapping("/api/login")
+    @GetMapping("/api/login/email")
     public ResponseDto emailCheck(@RequestParam String email) {
         log.info("GET, [{}], /api/login, email={}", MDC.get("UUID"), email);
         //email이 이미 존재하면 T 존재하지 않으면 F
@@ -84,7 +84,7 @@ public class UserRestController {
         }
     }
 
-    @GetMapping("/api/login")
+    @GetMapping("/api/login/nickname")
     public ResponseDto nicknameCheck(@RequestParam String nickname) {
         log.info("GET, [{}], /api/login, nickname={}", MDC.get("UUID"), nickname);
         //nickname이 이미 존재하면 T 존재하지 않으면 F
