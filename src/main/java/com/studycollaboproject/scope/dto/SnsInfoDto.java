@@ -9,8 +9,4 @@ public class SnsInfoDto {
 
     private String email;
     private Long id;
-
-    public void setEmail(String email){
-
-    }
 }

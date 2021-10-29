@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.studycollaboproject.scope.dto.SnsInfoDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -16,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class GithubUserService {
 
     public SnsInfoDto githubLogin(String code) throws JsonProcessingException {
@@ -33,9 +35,9 @@ public class GithubUserService {
 
         // HTTP Body 생성
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-        body.add("client_secret", "446a69893e1359448312451f0edd6cfa7b46610b");
+        body.add("client_secret", "032fdd79ecc55bcf87ca99506677fb93ba25e10f");
         body.add("client_id", "5bb2c0fab941fb5b8f9f");
-        body.add("redirect_uri", "http://15.165.159.211/user/github/callback");
+        body.add("redirect_uri", "http://localhost:3000/user/github/callback");
         body.add("code", code);
 
         // HTTP 요청 보내기
@@ -55,6 +57,7 @@ public class GithubUserService {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(responseBody);
 
+        log.info("getAccessToken responseBody = {}", responseBody);
         return jsonNode.get("access_token").asText();
 
     }
@@ -78,6 +81,7 @@ public class GithubUserService {
 
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(responseBody);
+        log.info("getGithubUserInfo responseBody = {}", responseBody);
         Long id = jsonNode.get("id").asLong();
         String email = jsonNode.get("html_url").asText();
         return new SnsInfoDto(email,id);

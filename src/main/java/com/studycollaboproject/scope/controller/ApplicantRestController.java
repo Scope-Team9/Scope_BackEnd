@@ -46,14 +46,7 @@ public class ApplicantRestController {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
 
-        User user = userService.loadUserBySnsId(userDetails.getSnsId());    //로그인 회원 조회
-        Post post = postService.loadPostByPostId(postId);
-        Applicant applicant = Applicant.builder()
-                .post(post)
-                .user(user)
-                .comment(comment)
-                .build();
-        applicantService.applyPost(applicant);
+        applicantService.applyPost(userDetails.getSnsId(), postId, comment);
 
         return new ResponseDto("200", "", "");
     }
@@ -67,10 +60,7 @@ public class ApplicantRestController {
         if (userDetails == null) {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
-
-        User user = userService.loadUserBySnsId(userDetails.getSnsId());    //로그인 회원 조회
-        Post post = postService.loadPostByPostId(postId);
-        applicantService.cancelApply(user, post);
+        applicantService.cancelApply(userDetails.getSnsId(), postId);
 
         return new ResponseDto("200", "", "");
     }

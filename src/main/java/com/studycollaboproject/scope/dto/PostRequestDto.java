@@ -18,7 +18,7 @@ public class PostRequestDto {
     private String contents;
     private String techStack;
     private Integer totalMember;
-    private Integer recruitmentMember;
+//    private Integer recruitmentMember;
     private String projectStatus;
     //    private String recommendationAgree;
     private LocalDate startDate;
@@ -34,7 +34,6 @@ public class PostRequestDto {
                           String contents,
                           String techStack,
                           Integer totalMember,
-                          Integer recruitmentMember,
                           String projectStatus,
                           String startDate,
                           String endDate
@@ -45,7 +44,6 @@ public class PostRequestDto {
         this.contents = contents;
         this.techStack = techStack;
         this.totalMember = totalMember;
-        this.recruitmentMember = recruitmentMember;
         this.projectStatus = projectStatus;
         this.startDate = LocalDate.parse(startDate);
         this.endDate = LocalDate.parse(endDate);

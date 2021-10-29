@@ -6,11 +6,13 @@ import com.studycollaboproject.scope.model.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
+@ToString
 public class MemberListResponseDto {
 
     @Schema(description = "유저 ID")

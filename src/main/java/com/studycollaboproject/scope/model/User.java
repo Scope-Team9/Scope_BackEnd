@@ -38,16 +38,16 @@ public class User extends Timestamped {
 
     private String introduction;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private boolean emailReceiveAgreement;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private boolean recommendationAgreement;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String memberTestResult;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String userTestResult;
 
     @OneToMany(mappedBy = "user")

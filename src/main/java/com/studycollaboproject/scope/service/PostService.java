@@ -44,13 +44,12 @@ public class PostService {
 
     @Transactional
     public Post writePost(PostRequestDto postRequestDto) {
-        List<TechStack> techStackList = new ArrayList<>();
         String[] techList = postRequestDto.getTechStack().split(";");
         List<String > stringList = Arrays.asList(techList);
 
         Post post = new Post(postRequestDto);
 
-        techStackList.addAll(techStackConverter.convertStringToTechStack(stringList,post.getUser()));
+        List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(stringList, post.getUser()));
 
         post.updateTechStack(techStackList);
         return postRepository.save(post);
@@ -92,7 +91,7 @@ public class PostService {
         List<Post> posts = new ArrayList<>();
         // 잠시 북마크가 담길 포스트 배열
         List<Post> filterTemp = new ArrayList<>();
-        List<Tech> techList = new ArrayList<>();
+        List<Tech> techList;
         List<TechStack> techStackList;
         List<String> filterList;
 

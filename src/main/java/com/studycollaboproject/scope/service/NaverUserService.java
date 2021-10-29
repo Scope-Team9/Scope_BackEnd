@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.studycollaboproject.scope.dto.SnsInfoDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -16,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class NaverUserService {
     public SnsInfoDto naverLogin(String code, String statusToken) throws JsonProcessingException {
         String accessToken = getAccessToken(code,statusToken);
@@ -52,6 +54,7 @@ public class NaverUserService {
         String responseBody = response.getBody();
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(responseBody);
+        log.info("getAccessToken responseBody = {}", responseBody);
         return jsonNode.get("access_token").asText();
 
     }
@@ -73,6 +76,7 @@ public class NaverUserService {
         String responseBody = response.getBody();
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(responseBody);
+        log.info("getNaverUserInfo responseBody = {}", responseBody);
         Long id = jsonNode.get("id").asLong();
         String email = jsonNode.get("email").asText();
         return new SnsInfoDto(email,id);

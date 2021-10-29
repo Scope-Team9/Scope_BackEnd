@@ -24,7 +24,7 @@ import java.util.Date;
 @Slf4j
 public class JwtTokenProvider {
 
-    private String secretKey = "lwekfsodif"; // 암호 키 설정
+    private String secretKey = "tmzhvmtpfvmtmxjelvmfhwprxmtmzhvmtmxjelzhffkqhvmfhwprxm"; // 암호 키 설정
     SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256; // 알고리즘 선택
 
 
