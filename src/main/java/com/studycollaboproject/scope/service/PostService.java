@@ -96,7 +96,6 @@ public class PostService {
         List<TechStack> techStackList;
         List<String> filterList;
 
-
         // 선택한 기술스택 있으면 filterPosts에 필터링된 값을 담아준다.
         if (filter != null && !filter.isEmpty()) {
             // String으로 받아온 filter 값을 세미콜론으로 스플릿
