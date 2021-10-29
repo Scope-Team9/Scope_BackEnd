@@ -83,13 +83,14 @@ public class Post extends Timestamped{
     @JsonIgnore
     private List<Applicant> applicantList = new ArrayList<>();
 
-    public Post(PostRequestDto postRequestDto){
+    public Post(PostRequestDto postRequestDto,User user){
         this.title = postRequestDto.getTitle();
         this.startDate = postRequestDto.getStartDate();
         this.endDate = postRequestDto.getEndDate();
         this.summary = postRequestDto.getSummary();
         this.contents = postRequestDto.getContents();
         this.totalMember = postRequestDto.getTotalMember();
+        this.user = user;
 //        this.recruitmentMember = postRequestDto.getRecruitmentMember();
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
 //        this.bookmarkList = postRequestDto.getBookmarkList();
@@ -99,6 +100,7 @@ public class Post extends Timestamped{
 //        this.frontUrl = postRequestDto.getFrontUrl();
         this.isBookmarkChecked = false;
     }
+
 
     public void update(PostRequestDto postRequestDto) {
 

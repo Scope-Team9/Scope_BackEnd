@@ -40,7 +40,7 @@ public class PostRestController {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
 
-        postService.writePost(postRequestDto);
+        postService.writePost(postRequestDto,userDetails.getSnsId());
         return new ResponseDto("200", "", "");
     }
 
