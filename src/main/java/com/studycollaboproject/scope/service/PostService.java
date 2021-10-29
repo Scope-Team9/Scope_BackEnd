@@ -76,7 +76,6 @@ public class PostService {
         List<TechStack> techStackList;
         List<String> filterList;
 
-
         // 선택한 기술스택 있으면 filterPosts에 필터링된 값을 담아준다.
         if (filter != null && !filter.isEmpty()) {
             // String으로 받아온 filter 값을 세미콜론으로 스플릿
@@ -132,25 +131,17 @@ public class PostService {
 //                filterPosts.sort();
         }
 
-        // 필터링된 포스트의 개수가 0개가 아니고 디스플레이 넘버만큼 있을때 반환
-        if (filterPosts.size() ==0)
+        // display number와 Page 사용해서 객체 수 만큼 넘기기
+        int index = displayNumber*page;
+        for (int i = index ;i<index+displayNumber ; i++)
         {
-            posts =null;
-        }
-        else if (filterPosts.size() >= displayNumber)
-        {
-            for (int i = 0; i < displayNumber; i++) {
-            posts.add(filterPosts.get(i));
+            if(filterPosts.size()<i)
+            {
+                break;
             }
-        }
-        else
-        {
-            posts = filterPosts;
+            posts.add(filterPosts.get(i));
         }
 
-
-        // totalPost 는 필터를 거친 포스트의 개수
-        int totalPost = filterPosts.size();
 
         return new ResponseDto("200", "success", posts);
     }
@@ -211,4 +202,5 @@ public class PostService {
         );
         post.updateStatus(projectStatus);
     }
+
 }

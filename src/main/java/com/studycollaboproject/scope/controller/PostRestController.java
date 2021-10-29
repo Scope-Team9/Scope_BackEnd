@@ -55,6 +55,7 @@ public class PostRestController {
         if (userDetails != null) {
             username = userDetails.getUsername();
         }
+        page = page -1;
         return postService.readPost(filter, displayNumber, page, sort, username);
     }
 
