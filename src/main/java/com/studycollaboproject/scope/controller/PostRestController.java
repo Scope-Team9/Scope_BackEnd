@@ -56,7 +56,11 @@ public class PostRestController {
         if (userDetails != null) {
             SnsId = userDetails.getUsername();
         }
+
+
+        page = page -1;
         return postService.readPost(filter, displayNumber, page, sort, SnsId);
+
     }
 
     @Operation(summary = "게시글 수정")

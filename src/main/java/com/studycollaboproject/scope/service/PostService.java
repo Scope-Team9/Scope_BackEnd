@@ -96,7 +96,6 @@ public class PostService {
         List<TechStack> techStackList;
         List<String> filterList;
 
-
         // 선택한 기술스택 있으면 filterPosts에 필터링된 값을 담아준다.
         if (filter != null && !filter.isEmpty()) {
             // String으로 받아온 filter 값을 세미콜론으로 스플릿
@@ -142,18 +141,25 @@ public class PostService {
                 break;
 
             case "recommend":
+
                 List<String> PropensityTypeList = getPropensityTypeList(snsId);
+
 
         }
 
+                // display number와 Page 사용해서 객체 수 만큼 넘기기
+                int index = displayNumber * page;
+                for (int i = index; i < index + displayNumber; i++) {
+                    if (filterPosts.size() < i) {
+                        break;
+                    }
+                    posts.add(filterPosts.get(i));
+                }
 
 
-        // totalPost 는 필터를 거친 포스트의 개수
-        int totalPost = filterPosts.size();
+                return new ResponseDto("200", "success", posts);
 
-        return new ResponseDto("200", "success", posts);
     }
-
     public PostListDto getPostList(User user, List<Post> bookmarkList) {
         List<Team> teamList = teamRepository.findAllByUser(user);
 
