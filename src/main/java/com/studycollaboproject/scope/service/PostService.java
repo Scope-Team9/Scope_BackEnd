@@ -144,10 +144,15 @@ public class PostService {
                 break;
 
             case "recommend":
-                List<String> PropensityTypeList = getPropensityTypeList(snsId);
+                List<String> propensityTypeList = getPropensityTypeList(snsId);
 
+                for(String propensityType : propensityTypeList){
+                    filterPosts.addAll(postRepository.findByUserMemberPropensityType(propensityType));
+                }
 
         }
+
+
 
                 // display number와 Page 사용해서 객체 수 만큼 넘기기
                 int index = displayNumber * page;

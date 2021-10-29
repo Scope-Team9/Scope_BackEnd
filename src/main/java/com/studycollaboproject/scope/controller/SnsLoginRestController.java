@@ -4,8 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.SnsInfoDto;
 import com.studycollaboproject.scope.service.GithubUserService;
-import com.studycollaboproject.scope.service.KakaoUserService;
 import com.studycollaboproject.scope.service.NaverUserService;
+import com.studycollaboproject.scope.service.KakaoUserService;
 import com.studycollaboproject.scope.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -14,10 +14,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
@@ -40,7 +37,7 @@ public class SnsLoginRestController {
     public ResponseDto kakaoLogin(@Parameter(description = "코드 값", in = ParameterIn.PATH) @RequestParam String code) throws JsonProcessingException {
         log.info("GET, [{}], /api/login/kakao, code={}", MDC.get("UUID"), code);
         SnsInfoDto snsInfoDto = kakaoUserService.kakaoLogin(code);
-        return userService.emailCheckByEmail(snsInfoDto);
+        return userService.SignupEmailCheck(snsInfoDto.getEmail(), snsInfoDto.getId());
     }
 
     @Operation(summary = "Github 로그인")
@@ -48,7 +45,7 @@ public class SnsLoginRestController {
     public ResponseDto githubLogin(@RequestParam String code) throws JsonProcessingException {
         log.info("GET, [{}], /api/login/github, code={}", MDC.get("UUID"), code);
         SnsInfoDto snsInfoDto = githubUserService.githubLogin(code);
-        return userService.emailCheckByEmail(snsInfoDto);
+        return userService.SignupEmailCheck(snsInfoDto.getEmail(),snsInfoDto.getId());
     }
 
     @Operation(summary = "상태 토큰값 가져오기")
@@ -68,6 +65,6 @@ public class SnsLoginRestController {
     public ResponseDto naverLogin(@RequestParam String code, @ModelAttribute("statusToken") String statusToken) throws JsonProcessingException {
         log.info("GET, [{}], /api/login/naver, code={}", MDC.get("UUID"), code);
         SnsInfoDto snsInfoDto = naverUserService.naverLogin(code, statusToken);
-        return userService.emailCheckByEmail(snsInfoDto);
+        return userService.SignupEmailCheck(snsInfoDto.getEmail(), snsInfoDto.getId());
     }
 }
