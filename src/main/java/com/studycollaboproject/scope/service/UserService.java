@@ -68,7 +68,7 @@ public class UserService {
     public boolean emailCheckByEmail(String email) {
         return userRepository.findByEmail(email).isPresent();
     }
-    public boolean nicknameCheckBynickname(String nickname) {
+    public boolean nicknameCheckByNickname(String nickname) {
         return userRepository.findByNickname(nickname).isPresent();
     }
 
@@ -81,7 +81,6 @@ public class UserService {
         } else {
             return new ResponseDto("300", "추가 정보 작성이 필요한 사용자입니다.",new SnsInfoDto(email,id));
         }
-
     }
 
     @Transactional
@@ -104,8 +103,6 @@ public class UserService {
             isBookmarkChecked.put("isBookmarkChecked","true");
             return new ResponseDto("200","북마크 추가 성공",isBookmarkChecked);
         }
-
-
     }
 
     @Transactional
@@ -115,7 +112,7 @@ public class UserService {
         user.resetTechStack();
         String nickname = userRequestDto.getNickname();
         String email = userRequestDto.getEmail();
-        if (nicknameCheckBynickname(nickname)){
+        if (nicknameCheckByNickname(nickname)){
             return new ResponseDto("400", "중복된 닉네임이 존재합니다.", "");
         }else if(emailCheckByEmail(email)){
             return new ResponseDto("400", "중복된 이메일이 존재합니다.", "");
@@ -124,10 +121,6 @@ public class UserService {
                 techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(),user));
 
         return new ResponseDto("200","회원 정보가 수정되었습니다.","");
-
-
-
-
     }
 
     @Transactional
@@ -137,7 +130,5 @@ public class UserService {
         );
         user.updateUserInfo(userDesc);
         return new ResponseDto("200","회원 정보가 수정되었습니다.","");
-
-
     }
 }

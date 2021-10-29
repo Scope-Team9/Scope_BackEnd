@@ -88,7 +88,7 @@ public class UserRestController {
     public ResponseDto nicknameCheck(@Parameter(description = "닉네임", in = ParameterIn.QUERY) @RequestParam String nickname) {
         log.info("GET, [{}], /api/login/nickname, nickname={}", MDC.get("UUID"), nickname);
         //nickname이 이미 존재하면 T 존재하지 않으면 F
-        boolean isNicknamePresent = userService.nicknameCheckBynickname(nickname);
+        boolean isNicknamePresent = userService.nicknameCheckByNickname(nickname);
         if (isNicknamePresent) {
             return new ResponseDto("400", "중복된 닉네임이 존재합니다.", "");
         } else {
@@ -103,5 +103,13 @@ public class UserRestController {
         log.info("POST, [{}], /api/user/desc, userDesc={}", MDC.get("UUID"), userDesc);
 
         return userService.updateUserDesc(userDetails.getUsername(),userDesc);
+    }
+
+    @Operation(summary = "북마크 추가")
+    @PostMapping("/api/bookmark/{postId}")
+    public ResponseDto bookmarkCheck(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
+                                     @Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails){
+        log.info("POST, [{}], /api/bookmark/{}", MDC.get("UUID"), postId);
+        return userService.bookmarkCheck(postId,userDetails.getUsername());
     }
 }
