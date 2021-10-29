@@ -4,7 +4,6 @@ import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.TestResultDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
-import com.studycollaboproject.scope.model.Tech;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
 import com.studycollaboproject.scope.service.TestService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -15,7 +14,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -29,9 +31,9 @@ public class TestRestController {
     @Operation(summary = "성향 테스트 업데이트")
     @PostMapping("/api/test")
     public ResponseDto updatePropensity(@Schema(description = "유저 성향 테스트 결과", example = "[\"F\",\"L\",\"F\",\"V\",\"V\",\"H\",\"P\",\"G\",\"G\"]")
-                                            @ModelAttribute("userPropensityType") List<String> userPropensityType,
+                                        @ModelAttribute("userPropensityType") List<String> userPropensityType,
                                         @Schema(description = "유저 선호 성향 테스트 결과", example = "[\"F\",\"L\",\"F\",\"V\",\"V\",\"H\",\"P\",\"G\",\"G\"]")
-                                            @ModelAttribute("memberPropensityType") List<String> memberPropensityType,
+                                        @ModelAttribute("memberPropensityType") List<String> memberPropensityType,
                                         @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("POST, [{}], /api/test, userPropensity={}, memberPropensity={}", MDC.get("UUID"), userPropensityType.toString(), memberPropensityType.toString());
 

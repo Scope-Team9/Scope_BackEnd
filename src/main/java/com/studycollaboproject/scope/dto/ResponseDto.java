@@ -15,6 +15,4 @@ public class ResponseDto {
     private String msg;
     @Schema(description = "데이터")
     private Object data;
-
-
 }

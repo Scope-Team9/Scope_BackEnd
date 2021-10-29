@@ -8,6 +8,10 @@ import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.service.PostService;
 import com.studycollaboproject.scope.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
@@ -22,14 +26,16 @@ import java.util.Map;
 @RequiredArgsConstructor
 @RestController
 @Slf4j
+@Tag(name = "User Controller", description = "회원 가입 및 회원 조회/수정")
 public class UserRestController {
 
     private final PostService postService;
     private final UserService userService;
 
 
+    @Operation(summary = "마이 페이지")
     @GetMapping("/api/user")
-    public ResponseDto getMyPage(@AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseDto getMyPage(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails) {
         log.info("GET, [{}], /api/user", MDC.get("UUID"));
 
         User user = userService.getUserInfo(userDetails.getUsername());
@@ -38,27 +44,20 @@ public class UserRestController {
         return new ResponseDto("200", "", postListDto);
     }
 
+    @Operation(summary = "회원 소개 수정")
     @PostMapping("/api/user")
-    public ResponseDto updateUserDesc(@AuthenticationPrincipal UserDetails userDetails, @RequestBody UserRepuestDto userRepuestDto){
-        return userService.updateUserInfo(userDetails.getUsername(),userRepuestDto);
+    public ResponseDto updateUserDesc(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails, @RequestBody UserRepuestDto userRepuestDto) {
+        return userService.updateUserInfo(userDetails.getUsername(), userRepuestDto);
 
     }
 
-    @PostMapping("/api/post/{postId}/url")
-    public ResponseDto updateUrl(@AuthenticationPrincipal UserDetails userDetails,
-                                 @RequestBody String frontUrl, @RequestBody String backUrl,
-                                 @PathVariable Long postId) {
-        log.info("POST, [{}], /api/post/{}/url, frontUrl={}, backUrl={}", MDC.get("UUID"), postId, frontUrl, backUrl);
-        postService.updateUrl(backUrl, frontUrl, userDetails.getUsername(), postId);
-        return new ResponseDto("200", "", "");
-    }
-
+    @Operation(summary = "회원 가입 - 회원 정보 저장")
     @PostMapping("/api/signup")
     public ResponseDto signup(@RequestBody SignupRequestDto signupRequestDto) {
         log.info("POST, [{}], /api/signup, signupRequestDto={}", MDC.get("UUID"), signupRequestDto.toString());
 
         User user = new User(signupRequestDto);
-        userService.saveUser(signupRequestDto.getTechStack(),user);
+        userService.saveUser(signupRequestDto.getTechStack(), user);
 
         Map<String, String> token = new HashMap<>();
         token.put("token", userService.signup(user));
@@ -72,8 +71,10 @@ public class UserRestController {
 
     }
 
+    @Operation(summary = "이메일 중복 확인")
     @GetMapping("/api/login")
-    public ResponseDto emailCheck(@RequestParam String email, @AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseDto emailCheck(@Parameter(description = "이메일", in = ParameterIn.QUERY) @RequestParam String email,
+                                  @Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails) {
         log.info("GET, [{}], /api/login, email={}", MDC.get("UUID"), email);
 //email이 이미 존재하면 T 존재하지 않으면 F
         boolean isEmailPresent = userService.emailCheckByUser(email, userDetails.getUsername());
@@ -83,13 +84,4 @@ public class UserRestController {
             return new ResponseDto("200", "사용가능한 메일입니다.", "");
         }
     }
-
-
-    @PostMapping("/api/bookmark/{postId}")
-    public ResponseDto bookmarkCheck(@PathVariable Long postId, @AuthenticationPrincipal UserDetails userDetails){
-        log.info("POST, [{}], /api/bookmark/{}", MDC.get("UUID"), postId);
-        return userService.bookmarkCheck(postId,userDetails.getUsername());
-    }
-
-
 }

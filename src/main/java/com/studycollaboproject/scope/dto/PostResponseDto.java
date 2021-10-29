@@ -2,7 +2,6 @@ package com.studycollaboproject.scope.dto;
 
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.ProjectStatus;
-import com.studycollaboproject.scope.model.Tech;
 import com.studycollaboproject.scope.model.TechStack;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
@@ -14,15 +13,15 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
-@Schema(description = "게시글 상세")
+@Schema(description = "프로젝트 상세")
 public class PostResponseDto {
-    @Schema(description = "게시글 ID")
+    @Schema(description = "프로젝트 ID")
     private Long postId;
-    @Schema(description = "게시글 제목")
+    @Schema(description = "프로젝트 제목")
     private String title;
-    @Schema(description = "게시글 한줄요약")
+    @Schema(description = "프로젝트 한줄요약")
     private String summary;
-    @Schema(description = "게시글 내용")
+    @Schema(description = "프로젝트 내용")
     private String contents;
     @Schema(description = "기술 스택")
     private List<String> techStack;
@@ -30,7 +29,7 @@ public class PostResponseDto {
     private int totalMember;
     @Schema(description = "현재 인원")
     private int recruitmentMember;
-    @Schema(description = "게시글 상태")
+    @Schema(description = "프로젝트 상태")
     private ProjectStatus projectStatus;
     @Schema(description = "생성일")
     private LocalDateTime startDate;
