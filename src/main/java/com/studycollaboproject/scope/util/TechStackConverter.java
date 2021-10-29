@@ -3,10 +3,12 @@ package com.studycollaboproject.scope.util;
 import com.studycollaboproject.scope.model.Tech;
 import com.studycollaboproject.scope.model.TechStack;
 import com.studycollaboproject.scope.model.User;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class TechStackConverter {
 
     public List<TechStack> convertStringToTechStack(List<String> techStack, User user) {

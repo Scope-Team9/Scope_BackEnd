@@ -32,7 +32,6 @@ import java.util.List;
 public class ApplicantRestController {
 
     private final ApplicantService applicantService;
-    private final UserService userService;
     private final PostService postService;
 
     @Operation(summary = "모집 지원하기")
