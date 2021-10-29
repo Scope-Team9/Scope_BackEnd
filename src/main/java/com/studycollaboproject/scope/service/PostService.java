@@ -50,7 +50,7 @@ public class PostService {
         Post post = new Post(postRequestDto);
 
         List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(stringList, post.getUser()));
-
+        techStackRepository.saveAll(techStackList);
         post.updateTechStack(techStackList);
         return postRepository.save(post);
     }
