@@ -17,10 +17,10 @@ public class ApiTestRestController {
     JwtTokenProvider jwtTokenProvider;
 
     @PostMapping("/api-test")
-    public String  makeApiTestUser(@RequestBody String snsId,
-                                @RequestBody String userPropensityType,@RequestBody String memberPropensityType,
-                                   @RequestBody String nickname, @RequestBody String emil){
-        User user = new User(snsId,userPropensityType,memberPropensityType,nickname,emil);
+    public String  makeApiTestUser(@ModelAttribute("snsId") String snsId,
+                                   @ModelAttribute("userPropensityType") String userPropensityType,@ModelAttribute("memberPropensityType") String memberPropensityType,
+                                   @ModelAttribute("nickname") String nickname, @ModelAttribute("email") String email){
+        User user = new User(snsId,userPropensityType,memberPropensityType,nickname,email);
         userRepository.save(user);
 
         return jwtTokenProvider.createToken(snsId);
