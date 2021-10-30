@@ -1,12 +1,10 @@
 package com.studycollaboproject.scope.controller;
 
-import com.studycollaboproject.scope.dto.PostListDto;
-import com.studycollaboproject.scope.dto.ResponseDto;
-import com.studycollaboproject.scope.dto.SignupRequestDto;
-import com.studycollaboproject.scope.dto.UserRequestDto;
+import com.studycollaboproject.scope.dto.*;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.service.PostService;
+import com.studycollaboproject.scope.service.TestService;
 import com.studycollaboproject.scope.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -31,6 +29,7 @@ public class UserRestController {
 
     private final PostService postService;
     private final UserService userService;
+    private final TestService testService;
 
 
     @Operation(summary = "마이 페이지")
@@ -53,12 +52,15 @@ public class UserRestController {
         return userService.updateUserInfo(userDetails.getUsername(), userRequestDto);
     }
 
-    @Operation(summary = "회원 가입 - 회원 정보 저장")
+    @Operation(summary = "회원 가입 - 회원 정보와 테스트 결과 저장")
     @PostMapping("/api/signup")
     public ResponseDto signup(@RequestBody SignupRequestDto signupRequestDto) {
         log.info("POST, [{}], /api/signup, signupRequestDto={}", MDC.get("UUID"), signupRequestDto.toString());
 
-        User user = new User(signupRequestDto);
+
+        String userTestResult = testService.testResult(signupRequestDto.getUserPropensityType());
+        String memberTestResult = testService.testResult(signupRequestDto.getMemberPropensityType());
+        User user = new User(signupRequestDto,userTestResult,memberTestResult);
         userService.saveUser(signupRequestDto.getTechStack(), user);
 
         Map<String, String> token = new HashMap<>();

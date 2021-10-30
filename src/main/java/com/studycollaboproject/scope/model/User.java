@@ -61,10 +61,13 @@ public class User extends Timestamped {
     @OneToMany(mappedBy = "user")
     private List<Applicant> applicantList = new ArrayList<>();
 
-    public User(SignupRequestDto signupRequestDto){
+    public User(SignupRequestDto signupRequestDto, String userTestResult, String memberTestResult){
         this.email =signupRequestDto.getEmail();
         this.snsId = signupRequestDto.getSnsId();
         this.nickname = signupRequestDto.getNickname();
+        this.userPropensityType = userTestResult;
+        this.memberPropensityType = memberTestResult;
+
     }
     public void addTechStack(TechStack techStack){
         this.techStackList.add(techStack);

@@ -29,7 +29,7 @@ public class TestService {
                 user.updateMemberPropensityType(memberType));
     }
 
-    private String testResult(List<String> userPropensityType) {
+    public String testResult(List<String> userPropensityType) {
         Map<String, Integer> userTypeMap = new HashMap<>();
         StringBuilder userType = new StringBuilder();
         for (String userSelected : userPropensityType) {
