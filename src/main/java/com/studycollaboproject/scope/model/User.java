@@ -43,10 +43,10 @@ public class User extends Timestamped {
 //    @Column(nullable = false)
     private boolean recommendationAgreement;
 
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private String memberTestResult;
 
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private String userTestResult;
 
     @OneToMany(mappedBy = "user")
@@ -67,30 +67,24 @@ public class User extends Timestamped {
         this.nickname = signupRequestDto.getNickname();
         this.userPropensityType = userTestResult;
         this.memberPropensityType = memberTestResult;
-
-    }
-    public void addTechStack(TechStack techStack){
-        this.techStackList.add(techStack);
     }
 
     public void addTechStackList(List<TechStack> techStackList){
         this.techStackList = techStackList;
     }
+
     public String updateUserPropensityType(String propensityResult) {
         this.userPropensityType = propensityResult;
-
         return this.userPropensityType;
     }
 
     public String updateMemberPropensityType(String propensityResult) {
         this.memberPropensityType = propensityResult;
-
         return this.memberPropensityType;
     }
 
     public void resetTechStack(){
         this.techStackList = new ArrayList<>();
-
     }
 
     public void updateUserInfo(String email, String nickname,List<TechStack> techStackList){
