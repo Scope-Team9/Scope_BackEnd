@@ -2,6 +2,7 @@ package com.studycollaboproject.scope.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.studycollaboproject.scope.dto.PostRequestDto;
+import com.studycollaboproject.scope.util.Timestamped;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 
-public class Post extends Timestamped{
+public class Post extends Timestamped {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
