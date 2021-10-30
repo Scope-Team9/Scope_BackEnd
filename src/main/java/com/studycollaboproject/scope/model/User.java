@@ -62,12 +62,12 @@ public class User extends Timestamped {
         this.userPropensityType = userTestResult;
         this.memberPropensityType = memberTestResult;
     }
-    public User(String snsId,String userPropensityType,String memberPropensityType){
+    public User(String snsId,String userPropensityType,String memberPropensityType, String nickname,String email){
         this.snsId = snsId;
-        this.email = "test@test.test";
+        this.email = email;
         this.userPropensityType = userPropensityType;
         this.memberPropensityType = memberPropensityType;
-        this.nickname = "testNickname";
+        this.nickname = nickname;
     }
 
     public void addTechStackList(List<TechStack> techStackList){

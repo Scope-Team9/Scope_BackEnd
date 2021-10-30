@@ -18,8 +18,9 @@ public class ApiTestRestController {
 
     @PostMapping("/api-test")
     public String  makeApiTestUser(@RequestBody String snsId,
-                                @RequestBody String userPropensityType,@RequestBody String memberPropensityType){
-        User user = new User(snsId,userPropensityType,memberPropensityType);
+                                @RequestBody String userPropensityType,@RequestBody String memberPropensityType,
+                                   @RequestBody String nickname, @RequestBody String emil){
+        User user = new User(snsId,userPropensityType,memberPropensityType,nickname,emil);
         userRepository.save(user);
 
         return jwtTokenProvider.createToken(snsId);
