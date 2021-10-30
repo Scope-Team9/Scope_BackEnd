@@ -43,12 +43,6 @@ public class User extends Timestamped {
 //    @Column(nullable = false)
     private boolean recommendationAgreement;
 
-    @Column(nullable = false)
-    private String memberTestResult;
-
-    @Column(nullable = false)
-    private String userTestResult;
-
     @OneToMany(mappedBy = "user")
     private List<Bookmark> bookmarkList = new ArrayList<>();
 
@@ -67,6 +61,13 @@ public class User extends Timestamped {
         this.nickname = signupRequestDto.getNickname();
         this.userPropensityType = userTestResult;
         this.memberPropensityType = memberTestResult;
+    }
+    public User(String snsId,String userPropensityType,String memberPropensityType){
+        this.snsId = snsId;
+        this.email = "test@test.test";
+        this.userPropensityType = userPropensityType;
+        this.memberPropensityType = memberPropensityType;
+        this.nickname = "testNickname";
     }
 
     public void addTechStackList(List<TechStack> techStackList){
