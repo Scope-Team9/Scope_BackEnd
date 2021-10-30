@@ -154,14 +154,14 @@ public class PostService {
 
 
 
-                // display number와 Page 사용해서 객체 수 만큼 넘기기
-                int index = displayNumber * page;
-                for (int i = index; i < index + displayNumber; i++) {
-                    if (filterPosts.size() < i) {
-                        break;
-                    }
-                    posts.add(filterPosts.get(i));
-                }
+        // display number와 Page 사용해서 객체 수 만큼 넘기기
+        int index = displayNumber * page;
+        for (int i = index; i < index + displayNumber; i++) {
+            if(filterPosts.size() ==0 || filterPosts.size() < index ){
+                break;
+            }
+            posts.add(filterPosts.get(i));
+        }
 
 
                 return new ResponseDto("200", "success", posts);
