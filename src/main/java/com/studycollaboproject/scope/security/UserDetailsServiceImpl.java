@@ -1,7 +1,5 @@
 package com.studycollaboproject.scope.security;
 
-import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +21,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+    public UserDetails loadUserByUsername(String snsId) throws UsernameNotFoundException {
+        User user = userRepository.findBySnsId(snsId)
+                .orElseThrow(() -> new UsernameNotFoundException("해당 유저를 찾을 수 없습니다."));
+
+        return new UserDetailsImpl(user);
     }
 }
