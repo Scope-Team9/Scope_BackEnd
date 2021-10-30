@@ -23,4 +23,12 @@ public class SignupRequestDto {
 
     @Schema(description = "기술스택 리스트")
     private List<String> techStack;
+
+    @Schema(description = "유저 성향 테스트 결과")
+    List<String> userPropensityType;
+
+    @Schema(description = "유저 선호 성향 테스트 결과")
+    List<String> memberPropensityType;
+
+
 }
