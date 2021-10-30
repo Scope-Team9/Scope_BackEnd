@@ -35,14 +35,15 @@ public class PostService {
     private final TeamRepository teamRepository;
     private final TechStackConverter techStackConverter;
     private final ApplicantRepository applicantRepository;
-    private final UserService userService;
+    private final UserRepository userRepository;
 
 
     @Transactional
     public Post writePost(PostRequestDto postRequestDto, String snsId) {
         String[] techList = postRequestDto.getTechStack().split(";");
         List<String > stringList = Arrays.asList(techList);
-        User user = userService.loadUserBySnsId(snsId);
+        User user = userRepository.findBySnsId(snsId).orElseThrow(()->
+                new RestApiException(ErrorCode.NO_USER_ERROR));
 
         Post post = new Post(postRequestDto,user);
 
@@ -184,7 +185,8 @@ public class PostService {
     }
 
     public List<String> getPropensityTypeList(String snsId) throws JsonProcessingException {
-        User user = userService.loadUserBySnsId(snsId);
+        User user = userRepository.findBySnsId(snsId).orElseThrow(()->
+                new RestApiException(ErrorCode.NO_USER_ERROR));
         String userPropensityType = user.getUserPropensityType();
         String memberPropensityType = user.getMemberPropensityType();
 
@@ -211,7 +213,8 @@ public class PostService {
 
     @Transactional
     public void updateUrl(String backUrl, String frontUrl, String snsId, Long postId){
-        User user = userService.loadUserBySnsId(snsId);
+        User user = userRepository.findBySnsId(snsId).orElseThrow(()->
+                new RestApiException(ErrorCode.NO_USER_ERROR));
         Post post = loadPostByPostId(postId);
         Team team = loadTeamByUserAndPost(user,post);
         team.setUrl(frontUrl, backUrl);

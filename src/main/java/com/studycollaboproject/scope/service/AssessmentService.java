@@ -62,7 +62,7 @@ public class AssessmentService {
         HttpEntity<MultiValueMap<String, String>> assessmentRequest = new HttpEntity<>(body,headers);
         RestTemplate rt = new RestTemplate();
         ResponseEntity<String> response = rt.exchange(
-                "https://flaskServer/api/rating",
+                "http://127.0.0.1:5000/api/rating",
                 HttpMethod.POST,
                 assessmentRequest,
                 String.class

@@ -10,6 +10,7 @@ import com.studycollaboproject.scope.model.Bookmark;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.BookmarkRepository;
+import com.studycollaboproject.scope.repository.PostRepository;
 import com.studycollaboproject.scope.repository.TechStackRepository;
 import com.studycollaboproject.scope.repository.UserRepository;
 import com.studycollaboproject.scope.security.JwtTokenProvider;
@@ -28,7 +29,8 @@ public class UserService {
     private final JwtTokenProvider jwtTokenProvider;
     private final TechStackConverter techStackConverter;
     private final TechStackRepository techStackRepository;
-    private final PostService postService;
+    private final PostRepository postRepository;
+
 
     //user가 북마크한 post 리스트 반환
     public List<Post> getBookmarkList(User user) {
@@ -88,7 +90,8 @@ public class UserService {
     //북마크 체크여부 판단
     @Transactional
     public ResponseDto bookmarkCheck(Long postId, String snsId) {
-        Post post = postService.loadPostByPostId(postId);
+        Post post = postRepository.findById(postId).orElseThrow(()->
+                new RestApiException(ErrorCode.NO_POST_ERROR));
         User user = loadUserBySnsId(snsId);
         Map<String ,String> isBookmarkChecked = new HashMap<>();
 
