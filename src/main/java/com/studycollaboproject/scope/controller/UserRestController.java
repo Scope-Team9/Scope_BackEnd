@@ -1,6 +1,8 @@
 package com.studycollaboproject.scope.controller;
 
 import com.studycollaboproject.scope.dto.*;
+import com.studycollaboproject.scope.exception.ErrorCode;
+import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.service.PostService;
@@ -64,7 +66,7 @@ public class UserRestController {
         userService.saveUser(signupRequestDto.getTechStack(), user);
 
         Map<String, String> token = new HashMap<>();
-        token.put("token", userService.signup(user));
+        token.put("token", userService.createToken(user));
 
 //        String token = userService.signup(user);
 //        Cookie cookie = new Cookie("token",token);
@@ -81,7 +83,7 @@ public class UserRestController {
         //email이 이미 존재하면 T 존재하지 않으면 F
         boolean isEmailPresent = userService.emailCheckByEmail(email);
         if (isEmailPresent) {
-            return new ResponseDto("400", "중복된 이메일이 존재합니다.", "");
+            throw new RestApiException(ErrorCode.ALREADY_EMAIL_ERROR);
         } else {
             return new ResponseDto("200", "사용가능한 메일입니다.", "");
         }
@@ -94,7 +96,7 @@ public class UserRestController {
         //nickname이 이미 존재하면 T 존재하지 않으면 F
         boolean isNicknamePresent = userService.nicknameCheckByNickname(nickname);
         if (isNicknamePresent) {
-            return new ResponseDto("400", "중복된 닉네임이 존재합니다.", "");
+            throw  new RestApiException(ErrorCode.ALREADY_NICKNAME_ERROR);
         } else {
             return new ResponseDto("200", "사용가능한 닉네임입니다.", "");
         }

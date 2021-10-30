@@ -1,17 +1,14 @@
 package com.studycollaboproject.scope.service;
 
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.studycollaboproject.scope.dto.PostListDto;
 import com.studycollaboproject.scope.dto.PostRequestDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.*;
-
-import com.studycollaboproject.scope.dto.PostListDto;
-
 import com.studycollaboproject.scope.repository.*;
 import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
@@ -20,14 +17,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
-import java.util.*;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -37,18 +33,17 @@ public class PostService {
     private final BookmarkRepository bookmarkRepository;
     private final TechStackRepository techStackRepository;
     private final TeamRepository teamRepository;
-    private final UserRepository userRepository;
     private final TechStackConverter techStackConverter;
     private final ApplicantRepository applicantRepository;
+    private final UserService userService;
 
 
     @Transactional
     public Post writePost(PostRequestDto postRequestDto, String snsId) {
         String[] techList = postRequestDto.getTechStack().split(";");
         List<String > stringList = Arrays.asList(techList);
-        User user = userRepository.findBySnsId(snsId).orElseThrow(
-                ()-> new IllegalArgumentException("해당 유저를 찾을 수 없습니다.")
-        );
+        User user = userService.loadUserBySnsId(snsId);
+
         Post post = new Post(postRequestDto,user);
 
 
@@ -56,22 +51,21 @@ public class PostService {
 
         techStackRepository.saveAll(techStackList);
         post.updateTechStack(techStackList);
-        return postRepository.save(post);
+        postRepository.save(post);
+        return post;
     }
 
     @Transactional
-    public ResponseDto editPost(Long id, PostRequestDto postRequestDto) {
-        Post post = postRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("포스트가 존재하지 않습니다."));
+    public ResponseDto editPost(Long postId, PostRequestDto postRequestDto) {
+        Post post = loadPostByPostId(postId);
         post.update(postRequestDto);
         return new ResponseDto("200", "", post);
     }
 
     @Transactional
-    public boolean deletePost(Long id) {
+    public void deletePost(Long postId) {
 
-        Post post = postRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("포스트가 존재하지 않습니다."));
+        Post post = loadPostByPostId(postId);
 
         techStackRepository.deleteAllByPost(post);
         teamRepository.deleteAllByPost(post);
@@ -79,7 +73,6 @@ public class PostService {
         applicantRepository.deleteAllByPost(post);
         postRepository.delete(post);
 
-        return true;
     }
 
 
@@ -156,14 +149,14 @@ public class PostService {
 
         // display number와 Page 사용해서 객체 수 만큼 넘기기
         int index = displayNumber * page;
+
         for (int i = index; i < index + displayNumber; i++) {
             if(filterPosts.size() ==0 || filterPosts.size() < index ){
                 break;
             }
+
             posts.add(filterPosts.get(i));
         }
-
-
                 return new ResponseDto("200", "success", posts);
 
     }
@@ -191,8 +184,7 @@ public class PostService {
     }
 
     public List<String> getPropensityTypeList(String snsId) throws JsonProcessingException {
-        User user = userRepository.findBySnsId(snsId).orElseThrow(
-                () -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다."));
+        User user = userService.loadUserBySnsId(snsId);
         String userPropensityType = user.getUserPropensityType();
         String memberPropensityType = user.getMemberPropensityType();
 
@@ -219,18 +211,18 @@ public class PostService {
 
     @Transactional
     public void updateUrl(String backUrl, String frontUrl, String snsId, Long postId){
-        User user = userRepository.findBySnsId(snsId).orElseThrow(
-                ()-> new IllegalArgumentException("해당 유저를 찾을 수 없습니다.")
-        );
-        Post post = postRepository.findById(postId).orElseThrow(
-                ()->new IllegalArgumentException("해당 게시물을 찾을 수 없습니다.")
-        );
-        Team team = teamRepository.findByUserAndPost(user,post).orElseThrow(
-                ()->new IllegalArgumentException("해당 게시물을 찾을 수 없습니다.")
-        );
+        User user = userService.loadUserBySnsId(snsId);
+        Post post = loadPostByPostId(postId);
+        Team team = loadTeamByUserAndPost(user,post);
         team.setUrl(frontUrl, backUrl);
-
     }
+
+    public Team loadTeamByUserAndPost(User user, Post post){
+        return teamRepository.findByUserAndPost(user,post).orElseThrow(
+                ()->new RestApiException(ErrorCode.NO_POST_ERROR)
+        );
+    }
+
 
     public Post loadPostByPostId(Long postId) {
         return postRepository.findById(postId).orElseThrow(
