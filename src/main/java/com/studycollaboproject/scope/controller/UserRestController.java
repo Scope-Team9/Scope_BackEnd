@@ -72,6 +72,7 @@ public class UserRestController {
         return new ResponseDto("200", "", token);
     }
 
+    @Operation(summary = "이메일 중복 확인")
     @GetMapping("/api/login/email")
     public ResponseDto emailCheck(@Parameter(description = "이메일", in = ParameterIn.QUERY) @RequestParam String email) {
         log.info("GET, [{}], /api/login/email, email={}", MDC.get("UUID"), email);
@@ -84,6 +85,7 @@ public class UserRestController {
         }
     }
 
+    @Operation(summary = "닉네임 중복 확인")
     @GetMapping("/api/login/nickname")
     public ResponseDto nicknameCheck(@Parameter(description = "닉네임", in = ParameterIn.QUERY) @RequestParam String nickname) {
         log.info("GET, [{}], /api/login/nickname, nickname={}", MDC.get("UUID"), nickname);
