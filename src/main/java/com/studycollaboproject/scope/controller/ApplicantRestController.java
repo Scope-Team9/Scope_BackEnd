@@ -1,16 +1,13 @@
 package com.studycollaboproject.scope.controller;
 
-import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.MemberListResponseDto;
+import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
-import com.studycollaboproject.scope.model.Applicant;
 import com.studycollaboproject.scope.model.Post;
-import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
 import com.studycollaboproject.scope.service.ApplicantService;
 import com.studycollaboproject.scope.service.PostService;
-import com.studycollaboproject.scope.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -36,7 +33,7 @@ public class ApplicantRestController {
 
     @Operation(summary = "모집 지원하기")
     @PostMapping("/api/applicant/{postId}")
-    public ResponseDto apply(@Parameter(in = ParameterIn.PATH, description = "게시글 ID") @PathVariable Long postId,
+    public ResponseDto apply(@Parameter(in = ParameterIn.PATH, description = "프로젝트 ID") @PathVariable Long postId,
                              @Schema(description = "한줄 소개") @ModelAttribute("comment") String comment,
                              @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("POST, [{}], /api/applicant/{}, comment={}", MDC.get("UUID"), postId, comment);
@@ -52,7 +49,7 @@ public class ApplicantRestController {
 
     @Operation(summary = "모집 지원취소")
     @DeleteMapping("/api/applicant/{postId}")
-    public ResponseDto cancelApply(@Parameter(in = ParameterIn.PATH, description = "게시글 ID") @PathVariable Long postId,
+    public ResponseDto cancelApply(@Parameter(in = ParameterIn.PATH, description = "프로젝트 ID") @PathVariable Long postId,
                                    @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("DELETE, [{}], /api/applicant/{}", MDC.get("UUID"), postId);
 
@@ -66,7 +63,7 @@ public class ApplicantRestController {
 
     @Operation(summary = "모집 현황")
     @GetMapping("/api/applicant/{postId}")
-    public ResponseDto getApplicant(@Parameter(in = ParameterIn.PATH, description = "게시글 ID") @PathVariable Long postId,
+    public ResponseDto getApplicant(@Parameter(in = ParameterIn.PATH, description = "프로젝트 ID") @PathVariable Long postId,
                                     @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("GET, [{}], /api/applicant/{}", MDC.get("UUID"), postId);
 

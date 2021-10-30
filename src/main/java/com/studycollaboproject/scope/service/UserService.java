@@ -3,7 +3,7 @@ package com.studycollaboproject.scope.service;
 import com.studycollaboproject.scope.dto.LoginReponseDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.SnsInfoDto;
-import com.studycollaboproject.scope.dto.UserRepuestDto;
+import com.studycollaboproject.scope.dto.UserRequestDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.*;
@@ -30,12 +30,6 @@ public class UserService {
     private final TechStackConverter techStackConverter;
     private final TechStackRepository techStackRepository;
 
-
-    public User getUserInfo(String userSnsId) {
-        return userRepository.findBySnsId(userSnsId).orElseThrow(
-                () -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다."));
-
-    }
 
     public List<Post> getBookmarkList(User user) {
         List<Bookmark> bookmarkList = bookmarkRepository.findAllByUser(user);
@@ -68,27 +62,25 @@ public class UserService {
     public String signup(User user) {
         userRepository.save(user);
         return jwtTokenProvider.createToken(user.getSnsId());
-
     }
 
 
-    public boolean emailCheckByUser(String email, String snsId) {
-        User user = userRepository.findBySnsId(snsId).orElseThrow(
-                () -> new IllegalArgumentException("사용자를 찾을 수 없습니다.")
-        );
-        return user.getEmail().equals(email);
+    public boolean emailCheckByEmail(String email) {
+        return userRepository.findByEmail(email).isPresent();
+    }
+    public boolean nicknameCheckByNickname(String nickname) {
+        return userRepository.findByNickname(nickname).isPresent();
     }
 
-    public ResponseDto emailCheckByEmail(SnsInfoDto snsInfoDto) {
-        Optional<User> user = userRepository.findByEmail(snsInfoDto.getEmail());
+    public ResponseDto SignupEmailCheck(String email, Long id) {
+        Optional<User> user = userRepository.findByEmail(email);
         if (user.isPresent()) {
 
-            LoginReponseDto loginReponseDto = new LoginReponseDto(jwtTokenProvider.createToken(user.get().getNickname()), user.get().getEmail(), user.get().getNickname());
+            LoginReponseDto loginReponseDto = new LoginReponseDto(jwtTokenProvider.createToken(user.get().getSnsId()), user.get().getEmail(), user.get().getNickname());
             return new ResponseDto("200", "로그인이 완료되었습니다", loginReponseDto);
         } else {
-            return new ResponseDto("300", "추가 정보 작성이 필요한 사용자입니다.", snsInfoDto);
+            return new ResponseDto("300", "추가 정보 작성이 필요한 사용자입니다.",new SnsInfoDto(email,id));
         }
-
     }
 
     @Transactional
@@ -96,9 +88,7 @@ public class UserService {
         Post post = postRepository.findById(postId).orElseThrow(
                 ()-> new IllegalArgumentException("해당 포스트를 찾을 수 없습니다.")
         );
-        User user = userRepository.findBySnsId(snsId).orElseThrow(
-                ()-> new IllegalArgumentException("해당 사용자를 찾을 수 없습니다.")
-        );
+        User user = loadUserBySnsId(snsId);
         if (post.isBookmarkChecked()){
             Bookmark bookmark = bookmarkRepository.findByUserAndPost(user,post);
             bookmarkRepository.delete(bookmark);
@@ -113,24 +103,32 @@ public class UserService {
             isBookmarkChecked.put("isBookmarkChecked","true");
             return new ResponseDto("200","북마크 추가 성공",isBookmarkChecked);
         }
-
-
     }
 
     @Transactional
-    public ResponseDto updateUserInfo(String snsId, UserRepuestDto userRepuestDto) {
+    public ResponseDto updateUserInfo(String snsId, UserRequestDto userRequestDto) {
+        User user = loadUserBySnsId(snsId);
+        techStackRepository.deleteAllByUser(user);
+        user.resetTechStack();
+        String nickname = userRequestDto.getNickname();
+        String email = userRequestDto.getEmail();
+        if (nicknameCheckByNickname(nickname)){
+            return new ResponseDto("400", "중복된 닉네임이 존재합니다.", "");
+        }else if(emailCheckByEmail(email)){
+            return new ResponseDto("400", "중복된 이메일이 존재합니다.", "");
+        }
+        user.updateUserInfo(email,nickname,
+                techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(),user));
+
+        return new ResponseDto("200","회원 정보가 수정되었습니다.","");
+    }
+
+    @Transactional
+    public ResponseDto updateUserDesc(String snsId, String userDesc) {
         User user = userRepository.findBySnsId(snsId).orElseThrow(
                 ()-> new IllegalArgumentException("해당 사용자를 찾을 수 없습니다.")
         );
-        techStackRepository.deleteAllByUser(user);
-        user.resetTechStack();
-        user.updateUserInfo(userRepuestDto.getEmail(),userRepuestDto.getNickname(),
-                techStackConverter.convertStringToTechStack(userRepuestDto.getUserTechStack(),user));
-
+        user.updateUserInfo(userDesc);
         return new ResponseDto("200","회원 정보가 수정되었습니다.","");
-
-
-
-
     }
 }
