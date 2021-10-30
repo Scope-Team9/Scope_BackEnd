@@ -108,7 +108,7 @@ public class UserService {
         }
     }
 
-    //email, nickname 수정
+    //email, nickname, 기술스택 수정
     @Transactional
     public ResponseDto updateUserInfo(String snsId, UserRequestDto userRequestDto) {
 
