@@ -14,6 +14,7 @@ public class PostDetailDto {
     @Schema(description = "프로젝트 맴버")
     private List<MemberListResponseDto> members;
     private boolean isTeamStarter;
+    @Schema(description = "북마크 체크 여부")
     private boolean isBookmarkChecked;
 
     public PostDetailDto(PostResponseDto postDetail, List<MemberListResponseDto> members,boolean isTeamStarter, boolean isBookmarkChecked) {

@@ -164,20 +164,20 @@ public class PostService {
     public MypagePostListDto getPostList(User user) {
         List<Team> teamList = teamRepository.findAllByUser(user);
 
-        List<Post> inProgressList = new ArrayList<>();
-        List<Post> endList = new ArrayList<>();
-        List<Post> recruitmentList = new ArrayList<>();
+        List<PostResponseDto> inProgressList = new ArrayList<>();
+        List<PostResponseDto> endList = new ArrayList<>();
+        List<PostResponseDto> recruitmentList = new ArrayList<>();
 
         for (Team team : teamList) {
             switch (team.getPost().getProjectStatus().getProjectStatus()) {
                 case "진행중":
-                    inProgressList.add(team.getPost());
+                    inProgressList.add(new PostResponseDto(team.getPost()));
                     break;
                 case "종료":
-                    endList.add(team.getPost());
+                    endList.add(new PostResponseDto(team.getPost()));
                     break;
                 case "모집중":
-                    recruitmentList.add(team.getPost());
+                    recruitmentList.add(new PostResponseDto(team.getPost()));
                     break;
             }
         }
