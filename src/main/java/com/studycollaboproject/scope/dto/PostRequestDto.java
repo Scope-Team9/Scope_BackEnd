@@ -1,5 +1,6 @@
 package com.studycollaboproject.scope.dto;
 
+import com.studycollaboproject.scope.model.Bookmark;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,7 +26,8 @@ public class PostRequestDto {
     private String techStack;
     @Schema(description = "총 인원")
     private Integer totalMember;
-    //    private Integer recruitmentMember;
+    @Schema(description = "현재 구한 인원")
+    private Integer recruitmentMember;
     @Schema(description = "프로젝트 상태")
     private String projectStatus;
     //    private String recommendationAgree;
@@ -32,11 +35,14 @@ public class PostRequestDto {
     private LocalDate startDate;
     @Schema(description = "종료 시간")
     private LocalDate endDate;
-    //    private List<Bookmark> bookmarkList;
+    @Schema(description = "북마크 리스트")
+    private List<Bookmark> bookmarkList;
 //    private List<Team> teamList;
 //    private List<Tech> techStackList;
-//    private String backUrl;
-//    private String frontUrl;
+    @Schema(description = "백엔드 Url")
+    private String backUrl;
+    @Schema(description = "프론트엔드 Url")
+    private String frontUrl;
 
     public PostRequestDto(String title,
                           String summary,
@@ -45,9 +51,7 @@ public class PostRequestDto {
                           Integer totalMember,
                           String projectStatus,
                           String startDate,
-                          String endDate
-    ) {
-//        List<String> techStackToList = Arrays.asList(techStack.split(";"));
+                          String endDate) {
         this.title = title;
         this.summary = summary;
         this.contents = contents;
@@ -56,5 +60,29 @@ public class PostRequestDto {
         this.projectStatus = projectStatus;
         this.startDate = LocalDate.parse(startDate);
         this.endDate = LocalDate.parse(endDate);
+    }
+
+    public PostRequestDto(String title,
+                          String summary,
+                          String contents,
+                          String techStack,
+                          Integer totalMember,
+                          Integer recruitmentMember,
+                          String projectStatus,
+                          LocalDate startDate,
+                          LocalDate endDate,
+                          String backUrl,
+                          String frontUrl) {
+        this.title = title;
+        this.summary = summary;
+        this.contents = contents;
+        this.techStack = techStack;
+        this.totalMember = totalMember;
+        this.recruitmentMember = recruitmentMember;
+        this.projectStatus = projectStatus;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.backUrl = backUrl;
+        this.frontUrl = frontUrl;
     }
 }

@@ -46,23 +46,15 @@ public class Post extends Timestamped {
     @Enumerated(value = EnumType.STRING)
     private ProjectStatus projectStatus;
 
+    //추가기능 구현
     @Column(nullable = false)
     private boolean recommendationAgree;
-
-    @Column(nullable = false)
-    private boolean isBookmarkChecked;
 
     @Column(nullable = true)
     private String frontUrl;
 
     @Column(nullable = true)
     private String backUrl;
-
-    @Column(nullable = true)
-    private String userTestResult;
-
-    @Column(nullable = true)
-    private String memberTestResult;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -92,16 +84,11 @@ public class Post extends Timestamped {
         this.contents = postRequestDto.getContents();
         this.totalMember = postRequestDto.getTotalMember();
         this.user = user;
-//        this.recruitmentMember = postRequestDto.getRecruitmentMember();
+        this.recruitmentMember = postRequestDto.getRecruitmentMember();
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
-//        this.bookmarkList = postRequestDto.getBookmarkList();
-//        this.teamList = postRequestDto.getTeamList();
-//        this.techStackList = postRequestDto.getTechStackList();
-//        this.backUrl = postRequestDto.getBackUrl();
-//        this.frontUrl = postRequestDto.getFrontUrl();
-        this.isBookmarkChecked = false;
-    }
+        this.bookmarkList = postRequestDto.getBookmarkList();
 
+    }
 
     public void update(PostRequestDto postRequestDto) {
 
@@ -111,22 +98,16 @@ public class Post extends Timestamped {
         this.summary = postRequestDto.getSummary();
         this.contents = postRequestDto.getContents();
         this.totalMember = postRequestDto.getTotalMember();
-//        this.recruitmentMember = postRequestDto.getRecruitmentMember();
+        this.recruitmentMember = postRequestDto.getRecruitmentMember();
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
-//        this.bookmarkList = postRequestDto.getBookmarkList();
-//        this.teamList = postRequestDto.getTeamList();
-//        this.techStackList = postRequestDto.getTechStackList();
-//        this.backUrl = postRequestDto.getBackUrl();
-//        this.frontUrl = postRequestDto.getFrontUrl();
+        this.bookmarkList = postRequestDto.getBookmarkList();
+        this.backUrl = postRequestDto.getBackUrl();
+        this.frontUrl = postRequestDto.getFrontUrl();
     }
 
     public void setUrl(String frontUrl, String backUrl) {
         this.frontUrl = frontUrl;
         this.backUrl = backUrl;
-    }
-
-    public void setIsBookmarkChecked(boolean isBookmarkChecked){
-        this.isBookmarkChecked = isBookmarkChecked;
     }
 
     public void updateStatus(ProjectStatus projectStatus) {

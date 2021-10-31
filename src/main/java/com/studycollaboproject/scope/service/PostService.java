@@ -10,10 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
@@ -266,4 +263,11 @@ public class PostService {
     public boolean isTeamStarter(Post post, String snsId) {
         return post.getUser().getSnsId().equals(snsId);
     }
-}
+
+    // 현재 로그인 한 사용자 북마크 체크여부 확인
+    public boolean isBookmarkChecked(Long postId, String username) {
+        Optional<Bookmark> bookmark= bookmarkRepository.findByPostIdAndUserNickname(postId,username);
+        return bookmark.isPresent();
+
+        }
+    }
