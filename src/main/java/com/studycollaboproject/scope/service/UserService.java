@@ -38,7 +38,7 @@ public class UserService {
         } else {
             isMyMypage = false;
         }
-        List<Post> bookmarkList = getBookmarkList(mypageUser);
+        List<PostResponseDto> bookmarkList = getBookmarkList(mypageUser);
         return new MypageResponseDto(mypagePostListDto,bookmarkList,isMyMypage);
 
     }
@@ -48,11 +48,11 @@ public class UserService {
     }
 
     //user가 북마크한 post 리스트 반환
-    public List<Post> getBookmarkList(User user) {
+    public List<PostResponseDto> getBookmarkList(User user) {
         List<Bookmark> bookmarkList = bookmarkRepository.findAllByUser(user);
-        List<Post> postList = new ArrayList<>();
+        List<PostResponseDto> postList = new ArrayList<>();
         for (Bookmark bookmark : bookmarkList) {
-            postList.add(bookmark.getPost());
+            postList.add(new PostResponseDto(bookmark.getPost()));
         }
         return postList;
     }

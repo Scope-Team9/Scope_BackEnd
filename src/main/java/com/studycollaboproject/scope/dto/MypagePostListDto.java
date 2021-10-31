@@ -11,19 +11,17 @@ import java.util.List;
 public class MypagePostListDto {
 
     @Schema(description = "북마크 프로젝트 리스트")
-    private List<Post> boomark;
+    private List<PostResponseDto> boomark;
     @Schema(description = "모집 프로젝트 리스트")
-    private List<Post> recruitment;
+    private List<PostResponseDto> recruitment;
     @Schema(description = "진행중 프로젝트 리스트")
-    private List<Post> inProgress;
+    private List<PostResponseDto> inProgress;
     @Schema(description = "완료된 프로젝트 리스트")
-    private List<Post> end;
-    @Schema(description = "사용자 본인의 마이페이지인지 판단")
-    private boolean isMyMypage;
+    private List<PostResponseDto> end;
     @Schema(description = "조회하고자 하는 유저")
     private UserResponseDto userResponseDto;
 
-    public MypagePostListDto(UserResponseDto user,  List<Post> recruitment, List<Post> inProgress,List<Post> end) {
+    public MypagePostListDto(UserResponseDto user,  List<PostResponseDto> recruitment, List<PostResponseDto> inProgress,List<PostResponseDto> end) {
         this.recruitment = recruitment;
         this.end = end;
         this.inProgress = inProgress;
