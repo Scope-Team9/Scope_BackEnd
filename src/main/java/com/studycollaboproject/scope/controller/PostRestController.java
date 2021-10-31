@@ -32,7 +32,6 @@ public class PostRestController {
 
     private final PostService postService;
     private final TeamService teamService;
-    private final UserService userService;
 
     @Operation(summary = "프로젝트 작성")
     @PostMapping("/api/post")
@@ -71,7 +70,10 @@ public class PostRestController {
             @Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails
     ) {
         log.info("POST, [{}], /api/post/{}, requestDto={}", MDC.get("UUID"), postId, postRequestDto.toString());
-        return postService.editPost(postId, postRequestDto);
+        if (userDetails == null) {
+            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
+        }
+        return postService.editPost(postId, postRequestDto,userDetails.getUsername());
     }
 
     @Operation(summary = "프로젝트 삭제")
@@ -81,9 +83,10 @@ public class PostRestController {
             @Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails
     ) {
         log.info("DELETE, [{}], /api/post/{}", MDC.get("UUID"), postId);
-        postService.deletePost(postId);
-
-        return new ResponseDto("200", "", "");
+        if (userDetails == null) {
+            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
+        }
+        return postService.deletePost(postId,userDetails.getUsername());
     }
 
     @Operation(summary = "프로젝트 상태 변경")
@@ -95,21 +98,22 @@ public class PostRestController {
         if (userDetails == null) {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
-        postService.updateStatus(postId, projectStatus);
+        postService.updateStatus(postId, projectStatus,userDetails.getSnsId());
 
         return new ResponseDto("200", "", "");
     }
 
     @Operation(summary = "프로젝트 상세 정보")
     @GetMapping("/api/post/{postId}")
-    public ResponseDto getPost(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId) {
+    public ResponseDto getPost(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
+                               @Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails) {
         log.info("GET, [{}], /api/post/{}", MDC.get("UUID"), postId);
 
         Post post = postService.loadPostByPostId(postId);
         PostResponseDto postDetail = new PostResponseDto(post);
         List<MemberListResponseDto> member = teamService.getMember(postId);
-
-        return new ResponseDto("200", "", new PostDetailDto(postDetail, member));
+        boolean isTeamStarter = postService.isTeamStarter(post,userDetails.getUsername());
+        return new ResponseDto("200", "", new PostDetailDto(postDetail, member,isTeamStarter));
     }
 
     @Operation(summary = "프로젝트 git Repository URL 업데이트")
@@ -119,6 +123,9 @@ public class PostRestController {
                                  @Schema(description = "백엔드 Repository Url") @ModelAttribute("backUrl") String backUrl,
                                  @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId) {
         log.info("POST, [{}], /api/post/{}/url, frontUrl={}, backUrl={}", MDC.get("UUID"), postId, frontUrl, backUrl);
+        if (userDetails == null) {
+            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
+        }
         postService.updateUrl(backUrl, frontUrl, userDetails.getUsername(), postId);
         return new ResponseDto("200", "", "");
     }
