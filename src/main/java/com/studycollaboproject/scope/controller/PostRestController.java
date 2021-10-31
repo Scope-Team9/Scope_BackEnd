@@ -4,8 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.studycollaboproject.scope.dto.*;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.model.Bookmark;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.ProjectStatus;
+import com.studycollaboproject.scope.repository.BookmarkRepository;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
 import com.studycollaboproject.scope.service.PostService;
 import com.studycollaboproject.scope.service.TeamService;
@@ -17,6 +19,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.jni.User;
 import org.slf4j.MDC;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -52,7 +55,7 @@ public class PostRestController {
                                 @Parameter(description = "디스플레이 수", in = ParameterIn.QUERY) @RequestParam int displayNumber,
                                 @Parameter(description = "페이지 수", in = ParameterIn.QUERY) @RequestParam int page,
                                 @Parameter(description = "정렬 기준", in = ParameterIn.QUERY) @RequestParam String sort,
-                                @Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails) throws JsonProcessingException {
+                                @Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails) {
         log.info("GET, [{}], /api/post, filter={}, displayNumber={}, page={}, sort={}", MDC.get("UUID"), filter, displayNumber, page, sort);
         String SnsId = "";
         if (userDetails != null) {
@@ -109,12 +112,15 @@ public class PostRestController {
                                @Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails) {
         log.info("GET, [{}], /api/post/{}", MDC.get("UUID"), postId);
 
+
         Post post = postService.loadPostByPostId(postId);
         PostResponseDto postDetail = new PostResponseDto(post);
         List<MemberListResponseDto> member = teamService.getMember(postId);
         boolean isTeamStarter = postService.isTeamStarter(post,userDetails.getUsername());
-        return new ResponseDto("200", "", new PostDetailDto(postDetail, member,isTeamStarter));
+        boolean isBookmarkChecked = postService.isBookmarkChecked(postId,userDetails.getUsername());
+        return new ResponseDto("200", "", new PostDetailDto(postDetail, member,isTeamStarter, isBookmarkChecked));
     }
+
 
     @Operation(summary = "프로젝트 git Repository URL 업데이트")
     @PostMapping("/api/post/{postId}/url")

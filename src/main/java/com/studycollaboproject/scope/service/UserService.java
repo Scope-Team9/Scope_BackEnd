@@ -30,6 +30,7 @@ public class UserService {
     private final TechStackConverter techStackConverter;
     private final TechStackRepository techStackRepository;
     private final PostRepository postRepository;
+    private final PostService postService;
 
 
     //user가 북마크한 post 리스트 반환
@@ -95,17 +96,12 @@ public class UserService {
         User user = loadUserBySnsId(snsId);
         Map<String ,String> isBookmarkChecked = new HashMap<>();
 
-        if (post.isBookmarkChecked()){
-            Bookmark bookmark = bookmarkRepository.findByUserAndPost(user,post);
-            bookmarkRepository.delete(bookmark);
-            post.setIsBookmarkChecked(false);
-
+        if (postService.isBookmarkChecked(postId, snsId)){
+            bookmarkRepository.deleteByUserAndPost(user,post);
             isBookmarkChecked.put("isBookmarkChecked","false");
             return new ResponseDto("200","북마크 삭제 성공",isBookmarkChecked);
         }else {
             bookmarkRepository.save(new Bookmark(user,post));
-            post.setIsBookmarkChecked(true);
-
             isBookmarkChecked.put("isBookmarkChecked","true");
             return new ResponseDto("200","북마크 추가 성공",isBookmarkChecked);
         }
@@ -140,4 +136,7 @@ public class UserService {
         user.updateUserInfo(userDesc);
         return new ResponseDto("200","회원 정보가 수정되었습니다.","");
     }
+
+
+
 }
