@@ -35,14 +35,17 @@ public class UserRestController {
 
 
     @Operation(summary = "마이 페이지")
-    @GetMapping("/api/user")
-    public ResponseDto getMyPage(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails) {
+    @GetMapping("/api/user/{userId}")
+    public ResponseDto getMyPage(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails,
+                                 @Parameter(description = "조회하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId) {
         log.info("GET, [{}], /api/user", MDC.get("UUID"));
 
-        User user = userService.loadUserBySnsId(userDetails.getUsername());
-        List<Post> bookmarkList = userService.getBookmarkList(user);
-        PostListDto postListDto = postService.getPostList(user, bookmarkList);
-        return new ResponseDto("200", "", postListDto);
+        User user = userService.loadUserByUserId(userId);
+        MypagePostListDto mypagePostListDto = postService.getPostList(user);
+        MypageResponseDto mypageResponseDto = userService.Mypage(user,userDetails,mypagePostListDto);
+
+
+        return new ResponseDto("200", "", mypageResponseDto);
     }
 
     @Operation(summary = "회원 소개 수정")

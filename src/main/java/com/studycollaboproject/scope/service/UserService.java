@@ -1,9 +1,6 @@
 package com.studycollaboproject.scope.service;
 
-import com.studycollaboproject.scope.dto.LoginReponseDto;
-import com.studycollaboproject.scope.dto.ResponseDto;
-import com.studycollaboproject.scope.dto.SnsInfoDto;
-import com.studycollaboproject.scope.dto.UserRequestDto;
+import com.studycollaboproject.scope.dto.*;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.Bookmark;
@@ -16,6 +13,7 @@ import com.studycollaboproject.scope.repository.UserRepository;
 import com.studycollaboproject.scope.security.JwtTokenProvider;
 import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.*;
@@ -31,6 +29,22 @@ public class UserService {
     private final TechStackRepository techStackRepository;
     private final PostRepository postRepository;
 
+    public MypageResponseDto Mypage(User mypageUser, UserDetails userDetails, MypagePostListDto mypagePostListDto){
+        boolean isMyMypage;
+        if (!(userDetails ==null)) {
+            User user = loadUserBySnsId(userDetails.getUsername());
+            isMyMypage = isMyMypage(user,mypageUser);
+        } else {
+            isMyMypage = false;
+        }
+        List<Post> bookmarkList = getBookmarkList(mypageUser);
+        return new MypageResponseDto(mypagePostListDto,bookmarkList,isMyMypage);
+
+    }
+
+    public boolean isMyMypage(User user, User mypageUser){
+        return user.equals(mypageUser);
+    }
 
     //user가 북마크한 post 리스트 반환
     public List<Post> getBookmarkList(User user) {

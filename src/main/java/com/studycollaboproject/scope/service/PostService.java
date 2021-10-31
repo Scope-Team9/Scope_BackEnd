@@ -1,24 +1,13 @@
 package com.studycollaboproject.scope.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.studycollaboproject.scope.dto.PostListDto;
-import com.studycollaboproject.scope.dto.PostRequestDto;
-import com.studycollaboproject.scope.dto.ResponseDto;
+import com.studycollaboproject.scope.dto.*;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.*;
 import com.studycollaboproject.scope.repository.*;
 import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -63,12 +52,11 @@ public class PostService {
         User user = post.getUser();
         if (user.getSnsId().equals(snsId)){
             post.update(postRequestDto);
-            return new ResponseDto("200", "", post);
+            PostResponseDto postResponseDto = new PostResponseDto(post);
+            return new ResponseDto("200", "", postResponseDto);
         }else{
             throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
-
-
     }
 
     @Transactional
@@ -173,9 +161,10 @@ public class PostService {
             posts.add(filterPosts.get(i));
         }
                 return new ResponseDto("200", "success", posts);
-
     }
-    public PostListDto getPostList(User user, List<Post> bookmarkList) {
+
+
+    public MypagePostListDto getPostList(User user) {
         List<Team> teamList = teamRepository.findAllByUser(user);
 
         List<Post> inProgressList = new ArrayList<>();
@@ -195,7 +184,8 @@ public class PostService {
                     break;
             }
         }
-        return new PostListDto(bookmarkList, recruitmentList, inProgressList, endList);
+
+        return new MypagePostListDto(new UserResponseDto(user),recruitmentList, inProgressList, endList);
     }
 
     public List<String> getPropensityTypeList(String snsId) {
