@@ -42,6 +42,7 @@ public class ApplicantService {
                 .post(post)
                 .comment(comment)
                 .build();
+
         return applicantRepository.save(applicant);
     }
 

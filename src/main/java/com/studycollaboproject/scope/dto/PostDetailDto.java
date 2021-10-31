@@ -13,9 +13,11 @@ public class PostDetailDto {
     private PostResponseDto post;
     @Schema(description = "프로젝트 맴버")
     private List<MemberListResponseDto> members;
+    private boolean isTeamStarter;
 
-    public PostDetailDto(PostResponseDto postDetail, List<MemberListResponseDto> members) {
+    public PostDetailDto(PostResponseDto postDetail, List<MemberListResponseDto> members,boolean isTeamStarter) {
         this.post = postDetail;
         this.members = members;
+        this.isTeamStarter = isTeamStarter;
     }
 }

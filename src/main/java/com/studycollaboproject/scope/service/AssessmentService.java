@@ -61,9 +61,6 @@ public class AssessmentService {
             TotalResult totalResult = totalResultRepository.findByUserTypeAndMemberType(rater,member);
             totalResult.addrecommended();
         }
-
-
-
         return new ResponseDto("200","추천 결과가 저장되었습니다.","");
     }
 
