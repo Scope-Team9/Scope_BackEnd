@@ -35,8 +35,6 @@ public class PostRequestDto {
     private LocalDate startDate;
     @Schema(description = "종료 시간")
     private LocalDate endDate;
-    @Schema(description = "북마크 리스트")
-    private List<Bookmark> bookmarkList;
 //    private List<Team> teamList;
 //    private List<Tech> techStackList;
     @Schema(description = "백엔드 Url")

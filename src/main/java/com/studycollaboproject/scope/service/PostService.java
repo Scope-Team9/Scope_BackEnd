@@ -26,7 +26,7 @@ public class PostService {
 
 
     @Transactional
-    public Post writePost(PostRequestDto postRequestDto, String snsId) {
+    public void writePost(PostRequestDto postRequestDto, String snsId) {
         String[] techList = postRequestDto.getTechStack().split(";");
         List<String > stringList = Arrays.asList(techList);
         User user = userRepository.findBySnsId(snsId).orElseThrow(()->
@@ -40,7 +40,6 @@ public class PostService {
         techStackRepository.saveAll(techStackList);
         post.updateTechStack(techStackList);
         postRepository.save(post);
-        return post;
     }
 
     @Transactional
@@ -84,13 +83,13 @@ public class PostService {
 
         // 필터링 될 포스트배열
         List<Post> filterPosts = new ArrayList<>();
-        // 반환될 포스트 배열
-        List<Post> posts = new ArrayList<>();
         // 잠시 북마크가 담길 포스트 배열
         List<Post> filterTemp = new ArrayList<>();
         List<Tech> techList;
         List<TechStack> techStackList;
         List<String> filterList;
+        // 반환될 포스트 배열
+        List<PostResponseDto> postResponseDtos = new ArrayList<>();
 
         // 선택한 기술스택 있으면 filterPosts에 필터링된 값을 담아준다.
         if (filter != null && !filter.isEmpty()) {
@@ -155,9 +154,12 @@ public class PostService {
                 break;
             }
 
-            posts.add(filterPosts.get(i));
+            boolean bookmarkChecked = isBookmarkChecked(filterPosts.get(i).getId(),snsId);
+            PostResponseDto postResponseDto = new PostResponseDto(filterPosts.get(i),bookmarkChecked);
+            postResponseDtos.add(postResponseDto);
         }
-                return new ResponseDto("200", "success", posts);
+
+                return new ResponseDto("200", "success", postResponseDtos);
     }
 
 
