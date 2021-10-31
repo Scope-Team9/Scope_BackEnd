@@ -86,7 +86,6 @@ public class Post extends Timestamped {
         this.user = user;
         this.recruitmentMember = postRequestDto.getRecruitmentMember();
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
-        this.bookmarkList = postRequestDto.getBookmarkList();
 
     }
 
@@ -100,7 +99,6 @@ public class Post extends Timestamped {
         this.totalMember = postRequestDto.getTotalMember();
         this.recruitmentMember = postRequestDto.getRecruitmentMember();
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
-        this.bookmarkList = postRequestDto.getBookmarkList();
         this.backUrl = postRequestDto.getBackUrl();
         this.frontUrl = postRequestDto.getFrontUrl();
     }

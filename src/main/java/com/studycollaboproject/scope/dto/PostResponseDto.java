@@ -35,6 +35,8 @@ public class PostResponseDto {
     private LocalDateTime startDate;
     @Schema(description = "수정일")
     private LocalDateTime endDate;
+    @Schema(description = "북마크 체크여부")
+    private boolean bookmarkChecked;
 
     public PostResponseDto(Post post) {
         this.postId = post.getId();
@@ -48,5 +50,20 @@ public class PostResponseDto {
         }
         this.totalMember = post.getTotalMember();
         this.recruitmentMember = post.getRecruitmentMember();
+    }
+
+    public PostResponseDto(Post post,boolean bookmarkChecked) {
+        this.postId = post.getId();
+        this.title = post.getTitle();
+        this.summary = post.getSummary();
+        this.contents = post.getContents();
+        this.techStack = new ArrayList<>();
+        List<TechStack> techStackList = post.getTechStackList();
+        for (TechStack stack : techStackList) {
+            techStack.add(stack.getTech().getTech());
+        }
+        this.totalMember = post.getTotalMember();
+        this.recruitmentMember = post.getRecruitmentMember();
+        this.bookmarkChecked = bookmarkChecked;
     }
 }
