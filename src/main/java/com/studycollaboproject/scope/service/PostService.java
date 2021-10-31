@@ -36,6 +36,7 @@ public class PostService {
     private final TechStackConverter techStackConverter;
     private final ApplicantRepository applicantRepository;
     private final UserRepository userRepository;
+    private final TotalResultRepository totalResultRepository;
 
 
     @Transactional
@@ -74,6 +75,7 @@ public class PostService {
         applicantRepository.deleteAllByPost(post);
         postRepository.delete(post);
 
+
     }
 
 
@@ -81,7 +83,7 @@ public class PostService {
                                 int displayNumber,
                                 int page,
                                 String sort,
-                                String snsId) throws JsonProcessingException {
+                                String snsId) {
 
         // 필터링 될 포스트배열
         List<Post> filterPosts = new ArrayList<>();
@@ -184,29 +186,28 @@ public class PostService {
         return new PostListDto(bookmarkList, recruitmentList, inProgressList, endList);
     }
 
-    public List<String> getPropensityTypeList(String snsId) throws JsonProcessingException {
+    public List<String> getPropensityTypeList(String snsId) {
         User user = userRepository.findBySnsId(snsId).orElseThrow(()->
                 new RestApiException(ErrorCode.NO_USER_ERROR));
+
         String userPropensityType = user.getUserPropensityType();
         String memberPropensityType = user.getMemberPropensityType();
+        List<TotalResult> totalResultList = totalResultRepository.findAllByUserType(userPropensityType);
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-type", "application/json");
+        for (TotalResult totalResult : totalResultList) {
+            if (totalResult.getMemberType().equals(memberPropensityType)){
+                totalResult.addrecommended();
+            }
+        }
 
-        // HTTP 요청 보내기
-        HttpEntity<MultiValueMap<String, String>> assessmentRequest = new HttpEntity<>(headers);
-        RestTemplate rt = new RestTemplate();
-        ResponseEntity<String> response = rt.exchange(
-                "https://flaskServer/api/user/propensity-type?userPropensityType=" + userPropensityType + "&memberPropensityType=" + memberPropensityType,
-                HttpMethod.GET,
-                assessmentRequest,
-                String.class
-        );
+        totalResultList.sort(Comparator.comparing(TotalResult::getResult));
 
-        String responseBody = response.getBody();
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(responseBody);
-        return jsonNode.get("data").findValuesAsText("recommendedPropensityType");
+        List<String> sortedRecommededList = new ArrayList<>();
+        for (TotalResult totalResult : totalResultList) {
+            sortedRecommededList.add(totalResult.getMemberType());
+        }
+
+        return sortedRecommededList;
     }
 
 

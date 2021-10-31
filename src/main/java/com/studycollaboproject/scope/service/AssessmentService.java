@@ -9,9 +9,11 @@ import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.Team;
+import com.studycollaboproject.scope.model.TotalResult;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.PostRepository;
 import com.studycollaboproject.scope.repository.TeamRepository;
+import com.studycollaboproject.scope.repository.TotalResultRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -22,7 +24,9 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -31,8 +35,9 @@ public class AssessmentService {
 
     private final PostRepository postRepository;
     private final TeamRepository teamRepository;
+    private final TotalResultRepository totalResultRepository;
 
-    public ResponseDto assessmentMember(Long postId, User user, List<Long> userIds) throws JsonProcessingException {
+    public ResponseDto assessmentMember(Long postId, User user, List<Long> userIds) {
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new RestApiException(ErrorCode.NO_POST_ERROR)
         );
@@ -49,31 +54,17 @@ public class AssessmentService {
 
     }
 
-    private ResponseDto getAssessmentResult(String rater, List<String> userList) throws JsonProcessingException {
+    @Transactional
+    public ResponseDto getAssessmentResult(String rater, List<String> userList) {
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-type", "application/json");
+        for (String member : userList) {
+            TotalResult totalResult = totalResultRepository.findByUserTypeAndMemberType(rater,member);
+            totalResult.addrecommended();
+        }
 
-        MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-        body.add("rater", rater);
-        body.addAll("userList", userList);
 
-        // HTTP 요청 보내기
-        HttpEntity<MultiValueMap<String, String>> assessmentRequest = new HttpEntity<>(body,headers);
-        RestTemplate rt = new RestTemplate();
-        ResponseEntity<String> response = rt.exchange(
-                "http://127.0.0.1:5000/api/rating",
-                HttpMethod.POST,
-                assessmentRequest,
-                String.class
-        );
-        String responseBody = response.getBody();
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(responseBody);
-        String status = jsonNode.get("status").asText();
-        String msg = jsonNode.get("msg").asText();
 
-        return new ResponseDto(status,msg,"");
+        return new ResponseDto("200","추천 결과가 저장되었습니다.","");
     }
 
 
