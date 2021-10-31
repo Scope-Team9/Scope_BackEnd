@@ -1,7 +1,7 @@
 ---
-name: test
+name: Test
 about: api test 관련 issue
-title: ''
+title: "[Api-test]"
 labels: test
 assignees: ''
 
