@@ -51,7 +51,7 @@ public class Post extends Timestamped {
     private boolean recommendationAgree;
 
     private String frontUrl;
-    
+
     private String backUrl;
 
     @ManyToOne(fetch = FetchType.LAZY)
