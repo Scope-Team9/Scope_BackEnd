@@ -1,5 +1,8 @@
 package com.studycollaboproject.scope.dto;
 
+
+import com.studycollaboproject.scope.model.Bookmark;
+import com.studycollaboproject.scope.model.Tech;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,9 +35,11 @@ public class PostRequestDto {
     @Schema(description = "종료 시간")
     private LocalDate endDate;
 //    private List<Team> teamList;
-//    private List<Tech> techStackList;
+    @Schema(description = "글쓰기시 프로젝트 기술 스택")
+    private List<String> techStackList;
     @Schema(description = "백엔드 Url")
     private String backUrl;
     @Schema(description = "프론트엔드 Url")
     private String frontUrl;
+
 }
