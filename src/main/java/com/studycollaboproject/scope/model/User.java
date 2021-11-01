@@ -1,6 +1,7 @@
 package com.studycollaboproject.scope.model;
 
 import com.studycollaboproject.scope.dto.SignupRequestDto;
+import com.studycollaboproject.scope.dto.SignupTestDto;
 import com.studycollaboproject.scope.util.Timestamped;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -61,6 +62,13 @@ public class User extends Timestamped {
         this.nickname = signupRequestDto.getNickname();
         this.userPropensityType = userTestResult;
         this.memberPropensityType = memberTestResult;
+    }
+    public User(SignupTestDto signupTestDto){
+        this.email =signupTestDto.getEmail();
+        this.snsId = signupTestDto.getSnsId();
+        this.nickname = signupTestDto.getNickname();
+        this.userPropensityType = signupTestDto.getUserPropensityType();
+        this.memberPropensityType = signupTestDto.getMemberPropensityType();
     }
     public User(String snsId,String userPropensityType,String memberPropensityType, String nickname,String email){
         this.snsId = snsId;

@@ -1,5 +1,6 @@
 package com.studycollaboproject.scope.controller;
 
+import com.studycollaboproject.scope.dto.SignupTestDto;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.UserRepository;
 import com.studycollaboproject.scope.security.JwtTokenProvider;
@@ -18,12 +19,10 @@ public class ApiTestRestController {
     private final JwtTokenProvider jwtTokenProvider;
 
     @PostMapping("/api-test")
-    public Map<String,String>  makeApiTestUser(@ModelAttribute("snsId") String snsId,
-                                   @ModelAttribute("userPropensityType") String userPropensityType,@ModelAttribute("memberPropensityType") String memberPropensityType,
-                                   @ModelAttribute("nickname") String nickname, @ModelAttribute("email") String email){
-        User user = new User(snsId,userPropensityType,memberPropensityType,nickname,email);
+    public Map<String,String>  makeApiTestUser(@RequestBody SignupTestDto signupTestDto){
+        User user = new User(signupTestDto);
         userRepository.save(user);
-        String jwtToken =jwtTokenProvider.createToken(snsId);
+        String jwtToken =jwtTokenProvider.createToken(signupTestDto.getSnsId());
         Map<String ,String> token = new HashMap<>();
         token.put("token",jwtToken);
         return token;
