@@ -28,11 +28,11 @@ public class PostService {
     @Transactional
     public PostResponseDto writePost(PostRequestDto postRequestDto, String snsId) {
         List<String> postTechStackList = postRequestDto.getTechStackList();
-        User user = userRepository.findBySnsId(snsId).orElseThrow(()->
+        User user = userRepository.findBySnsId(snsId).orElseThrow(() ->
                 new RestApiException(ErrorCode.NO_USER_ERROR));
 
-        Post post = new Post(postRequestDto,user);
-        List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(postTechStackList, post.getUser()));
+        Post post = new Post(postRequestDto, user);
+        List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(postTechStackList, null, post));
 
         techStackRepository.saveAll(techStackList);
         post.updateTechStack(techStackList);
@@ -44,10 +44,15 @@ public class PostService {
     public PostResponseDto editPost(Long postId, PostRequestDto postRequestDto, String snsId) {
         Post post = loadPostByPostId(postId);
         User user = post.getUser();
-        if (user.getSnsId().equals(snsId)){
+        if (user.getSnsId().equals(snsId)) {
+            techStackRepository.deleteAllByPost(post);
+            List<String> postTechStackList = postRequestDto.getTechStackList();
+            List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(postTechStackList, null, post));
+            techStackRepository.saveAll(techStackList);
+            post.updateTechStack(techStackList);
             post.update(postRequestDto);
             return new PostResponseDto(post);
-        }else{
+        } else {
             throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
     }
@@ -58,14 +63,14 @@ public class PostService {
         Post post = loadPostByPostId(postId);
         User user = post.getUser();
 
-        if (user.getSnsId().equals(snsId)){
+        if (user.getSnsId().equals(snsId)) {
             techStackRepository.deleteAllByPost(post);
             teamRepository.deleteAllByPost(post);
             bookmarkRepository.deleteAllByPost(post);
             applicantRepository.deleteAllByPost(post);
             postRepository.delete(post);
             return postId;
-        }else{
+        } else {
             throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
 
@@ -88,12 +93,13 @@ public class PostService {
         // 반환될 포스트 배열
         List<PostResponseDto> postResponseDtos = new ArrayList<>();
 
+        filterList = Arrays.asList(filter.split(";"));
         // 선택한 기술스택 있으면 filterPosts에 필터링된 값을 담아준다.
-        if (filter != null && !filter.isEmpty()) {
+        if (filter != null && !filter.isEmpty() && !filterList.isEmpty()) {
             // String으로 받아온 filter 값을 세미콜론으로 스플릿
             // String[] splitStr = filter.split(";");
             // filterList = new ArrayList<>(Arrays.asList(splitStr));
-            filterList = Arrays.asList(filter.split(";"));
+//            filterList = Arrays.asList(filter.split(";"));
 
             // 받아온 techStack 값을 List<Tech>로 전환
             techList = techStackConverter.convertStringToTech(filterList);
@@ -135,28 +141,27 @@ public class PostService {
             case "recommend":
                 List<String> propensityTypeList = getPropensityTypeList(snsId);
 
-                for(String propensityType : propensityTypeList){
+                for (String propensityType : propensityTypeList) {
                     filterPosts.addAll(postRepository.findByUserMemberPropensityType(propensityType));
                 }
 
         }
 
 
-
         // display number와 Page 사용해서 객체 수 만큼 넘기기
         int index = displayNumber * page;
 
         for (int i = index; i < index + displayNumber; i++) {
-            if(filterPosts.size() ==0 || filterPosts.size() < index ){
+            if (filterPosts.size() == 0 || filterPosts.size() <= i) {
                 break;
             }
 
-            boolean bookmarkChecked = isBookmarkChecked(filterPosts.get(i).getId(),snsId);
-            PostResponseDto postResponseDto = new PostResponseDto(filterPosts.get(i),bookmarkChecked);
+            boolean bookmarkChecked = isBookmarkChecked(filterPosts.get(i).getId(), snsId);
+            PostResponseDto postResponseDto = new PostResponseDto(filterPosts.get(i), bookmarkChecked);
             postResponseDtos.add(postResponseDto);
         }
 
-                return new ResponseDto("200", "success", postResponseDtos);
+        return new ResponseDto("200", "success", postResponseDtos);
     }
 
 
@@ -181,11 +186,11 @@ public class PostService {
             }
         }
 
-        return new MypagePostListDto(new UserResponseDto(user),recruitmentList, inProgressList, endList);
+        return new MypagePostListDto(new UserResponseDto(user), recruitmentList, inProgressList, endList);
     }
 
     public List<String> getPropensityTypeList(String snsId) {
-        User user = userRepository.findBySnsId(snsId).orElseThrow(()->
+        User user = userRepository.findBySnsId(snsId).orElseThrow(() ->
                 new RestApiException(ErrorCode.NO_USER_ERROR));
 
         String userPropensityType = user.getUserPropensityType();
@@ -193,7 +198,7 @@ public class PostService {
         List<TotalResult> totalResultList = totalResultRepository.findAllByUserType(userPropensityType);
 
         for (TotalResult totalResult : totalResultList) {
-            if (totalResult.getMemberType().equals(memberPropensityType)){
+            if (totalResult.getMemberType().equals(memberPropensityType)) {
                 totalResult.addrecommended();
             }
         }
@@ -209,24 +214,23 @@ public class PostService {
     }
 
 
-
     @Transactional
-    public PostResponseDto updateUrl(String backUrl, String frontUrl, String snsId, Long postId){
-        User user = userRepository.findBySnsId(snsId).orElseThrow(()->
+    public PostResponseDto updateUrl(String backUrl, String frontUrl, String snsId, Long postId) {
+        User user = userRepository.findBySnsId(snsId).orElseThrow(() ->
                 new RestApiException(ErrorCode.NO_USER_ERROR));
         Post post = loadPostByPostId(postId);
-        if (isTeamStarter(post,snsId)){
-            Team team = loadTeamByUserAndPost(user,post);
+        if (isTeamStarter(post, snsId)) {
+            Team team = loadTeamByUserAndPost(user, post);
             team.setUrl(frontUrl, backUrl);
-        }else {
+        } else {
             throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
         return new PostResponseDto(post);
     }
 
-    public Team loadTeamByUserAndPost(User user, Post post){
-        return teamRepository.findByUserAndPost(user,post).orElseThrow(
-                ()->new RestApiException(ErrorCode.NO_POST_ERROR)
+    public Team loadTeamByUserAndPost(User user, Post post) {
+        return teamRepository.findByUserAndPost(user, post).orElseThrow(
+                () -> new RestApiException(ErrorCode.NO_POST_ERROR)
         );
     }
 
@@ -249,11 +253,11 @@ public class PostService {
                 () -> new RestApiException(ErrorCode.NO_POST_ERROR)
         );
         userRepository.findBySnsId(snsId).orElseThrow(
-                ()-> new RestApiException(ErrorCode.NO_USER_ERROR)
+                () -> new RestApiException(ErrorCode.NO_USER_ERROR)
         );
-        if (snsId.equals(post.getUser().getSnsId())){
+        if (snsId.equals(post.getUser().getSnsId())) {
             post.updateStatus(projectStatus);
-        }else {
+        } else {
             throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
         return new PostResponseDto(post);
@@ -265,8 +269,8 @@ public class PostService {
 
     // 현재 로그인 한 사용자 북마크 체크여부 확인
     public boolean isBookmarkChecked(Long postId, String username) {
-        Optional<Bookmark> bookmark= bookmarkRepository.findByPostIdAndUserNickname(postId,username);
+        Optional<Bookmark> bookmark = bookmarkRepository.findByPostIdAndUserNickname(postId, username);
         return bookmark.isPresent();
 
-        }
     }
+}
