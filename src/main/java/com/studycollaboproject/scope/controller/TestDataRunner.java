@@ -12,17 +12,22 @@ import org.springframework.stereotype.Component;
 public class TestDataRunner implements ApplicationRunner {
 
     private final TotalResultRepository totalResultRepository;
+
     @Override
     public void run(ApplicationArguments args) {
+        if (totalResultRepository.count() == 0L) {
             String[] propersityTypeList = {"LVG", "LVP", "LHG", "LHP", "FVG", "FVP", "FHG", "FHP"};
 
-        for (String s : propersityTypeList) {
-            for (String s1 : propersityTypeList) {
-                TotalResult totalResult = new TotalResult(s,s1);
-                totalResultRepository.save(totalResult);
+            for (String s : propersityTypeList) {
+                for (String s1 : propersityTypeList) {
+                    TotalResult totalResult = new TotalResult(s, s1);
+                    totalResultRepository.save(totalResult);
 
+
+                }
 
             }
+
 
         }
     }
