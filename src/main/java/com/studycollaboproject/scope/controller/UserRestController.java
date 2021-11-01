@@ -52,7 +52,9 @@ public class UserRestController {
                                       @RequestBody UserRequestDto userRequestDto){
         log.info("POST, [{}], /api/user, userRequestDto={}", MDC.get("UUID"), userRequestDto);
 
-        return userService.updateUserInfo(userDetails.getUsername(), userRequestDto);
+        UserResponseDto userResponseDto = userService.updateUserInfo(userDetails.getUsername(), userRequestDto);
+
+        return new ResponseDto("200","회원 정보가 수정되었습니다.",userResponseDto);
     }
 
     @Operation(summary = "회원 가입 - 회원 정보와 테스트 결과 저장")
@@ -64,17 +66,18 @@ public class UserRestController {
         String userTestResult = testService.testResult(signupRequestDto.getUserPropensityType());
         String memberTestResult = testService.testResult(signupRequestDto.getMemberPropensityType());
         User user = new User(signupRequestDto,userTestResult,memberTestResult);
-        userService.saveUser(signupRequestDto.getTechStack(), user);
+        UserResponseDto userResponseDto = userService.saveUser(signupRequestDto.getTechStack(), user);
 
-        Map<String, String> token = new HashMap<>();
-        token.put("token", userService.createToken(user));
+        Map<String, Object> map = new HashMap<>();
+        map.put("token", userService.createToken(user));
+        map.put("user", userResponseDto);
 
 //        String token = userService.signup(user);
 //        Cookie cookie = new Cookie("token",token);
 //        cookie.setMaxAge(60*60*24*30);
 //        response.addCookie(cookie); // 추가구현 필요
 //        return new ResponseDto("200", "", "");
-        return new ResponseDto("200", "", token);
+        return new ResponseDto("200", "", map);
     }
 
     @Operation(summary = "이메일 중복 확인")
@@ -109,7 +112,9 @@ public class UserRestController {
                                       @RequestBody String userDesc){
         log.info("POST, [{}], /api/user/desc, userDesc={}", MDC.get("UUID"), userDesc);
 
-        return userService.updateUserDesc(userDetails.getUsername(),userDesc);
+        UserResponseDto userResponseDto = userService.updateUserDesc(userDetails.getUsername(), userDesc);
+
+        return new ResponseDto("200","회원 정보가 수정되었습니다.",userResponseDto);
     }
 
     @Operation(summary = "북마크 추가")
