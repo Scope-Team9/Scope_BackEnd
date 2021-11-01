@@ -20,8 +20,6 @@ public class PostRequestDto {
     private String summary;
     @Schema(description = "프로젝트 내용")
     private String contents;
-    @Schema(description = "프로젝트 기술 스택")
-    private String techStack;
     @Schema(description = "총 인원")
     private Integer totalMember;
     @Schema(description = "프로젝트 상태")
