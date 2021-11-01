@@ -1,5 +1,6 @@
 package com.studycollaboproject.scope.controller;
 
+import com.studycollaboproject.scope.dto.PropensityRequestDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.TestResultDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
@@ -8,18 +9,15 @@ import com.studycollaboproject.scope.security.UserDetailsImpl;
 import com.studycollaboproject.scope.service.TestService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,18 +28,15 @@ public class TestRestController {
 
     @Operation(summary = "성향 테스트 업데이트")
     @PostMapping("/api/test")
-    public ResponseDto updatePropensity(@Schema(description = "유저 성향 테스트 결과", example = "[\"F\",\"L\",\"F\",\"V\",\"V\",\"H\",\"P\",\"G\",\"G\"]")
-                                        @ModelAttribute("userPropensityType") List<String> userPropensityType,
-                                        @Schema(description = "유저 선호 성향 테스트 결과", example = "[\"F\",\"L\",\"F\",\"V\",\"V\",\"H\",\"P\",\"G\",\"G\"]")
-                                        @ModelAttribute("memberPropensityType") List<String> memberPropensityType,
+    public ResponseDto updatePropensity(@RequestBody PropensityRequestDto requestDto,
                                         @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        log.info("POST, [{}], /api/test, userPropensity={}, memberPropensity={}", MDC.get("UUID"), userPropensityType.toString(), memberPropensityType.toString());
+        log.info("POST, [{}], /api/test, userPropensity={}, memberPropensity={}", MDC.get("UUID"), requestDto.getUserPropensityType().toString(), requestDto.getMemberPropensityType().toString());
 
         if (userDetails == null) {  //로그인 정보 확인
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
 
-        TestResultDto resultDto = testService.updatePropensityType(userDetails.getSnsId(), userPropensityType, memberPropensityType);
+        TestResultDto resultDto = testService.updatePropensityType(userDetails.getSnsId(), requestDto.getUserPropensityType(), requestDto.getMemberPropensityType());
         return new ResponseDto("200", "", resultDto);
     }
 

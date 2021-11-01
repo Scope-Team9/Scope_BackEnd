@@ -3,7 +3,6 @@ package com.studycollaboproject.scope.controller;
 import com.studycollaboproject.scope.dto.*;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
-import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.service.PostService;
 import com.studycollaboproject.scope.service.TestService;
@@ -20,7 +19,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RequiredArgsConstructor

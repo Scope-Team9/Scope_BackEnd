@@ -1,5 +1,6 @@
 package com.studycollaboproject.scope.controller;
 
+import com.studycollaboproject.scope.dto.ApplicantRequestDto;
 import com.studycollaboproject.scope.dto.MemberListResponseDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
@@ -11,7 +12,6 @@ import com.studycollaboproject.scope.service.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,15 +34,15 @@ public class ApplicantRestController {
     @Operation(summary = "모집 지원하기")
     @PostMapping("/api/applicant/{postId}")
     public ResponseDto apply(@Parameter(in = ParameterIn.PATH, description = "프로젝트 ID") @PathVariable Long postId,
-                             @Schema(description = "한줄 소개") @ModelAttribute("comment") String comment,
+                             @RequestBody ApplicantRequestDto requestDto,
                              @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        log.info("POST, [{}], /api/applicant/{}, comment={}", MDC.get("UUID"), postId, comment);
+        log.info("POST, [{}], /api/applicant/{}, comment={}", MDC.get("UUID"), postId, requestDto.getComment());
 
         if (userDetails == null) {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
 
-        applicantService.applyPost(userDetails.getSnsId(), postId, comment);
+        applicantService.applyPost(userDetails.getSnsId(), postId, requestDto.getComment());
 
         return new ResponseDto("200", "", "");
     }

@@ -1,13 +1,12 @@
 package com.studycollaboproject.scope.controller;
 
+import com.studycollaboproject.scope.dto.ImageRequestDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,9 +28,9 @@ public class ImageRestController {
 
     @Operation(summary = "이미지 등록")
     @PostMapping("/api/image")
-    public ResponseDto saveImage(@Schema(description = "이미지 데이터(BASE64)") @RequestBody Map<String, String> map) {
-        log.info("POST, /api/image, data={}", map.get("image"));
-        String fileName = saveImageData(map.get("image"));
+    public ResponseDto saveImage(@RequestBody ImageRequestDto requestDto) {
+        log.info("POST, /api/image, data={}", requestDto.getImage());
+        String fileName = saveImageData(requestDto.getImage());
         log.info("fileName : {}", fileName);
         Map<String, String> responseMap = new HashMap<>();
         responseMap.put("imageUrl", fileName);

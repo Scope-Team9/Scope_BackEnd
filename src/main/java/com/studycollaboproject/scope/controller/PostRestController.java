@@ -1,25 +1,18 @@
 package com.studycollaboproject.scope.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.studycollaboproject.scope.dto.*;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
-import com.studycollaboproject.scope.model.Bookmark;
 import com.studycollaboproject.scope.model.Post;
-import com.studycollaboproject.scope.model.ProjectStatus;
-import com.studycollaboproject.scope.repository.BookmarkRepository;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
 import com.studycollaboproject.scope.service.PostService;
 import com.studycollaboproject.scope.service.TeamService;
-import com.studycollaboproject.scope.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.jni.User;
 import org.slf4j.MDC;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -95,13 +88,13 @@ public class PostRestController {
     @Operation(summary = "프로젝트 상태 변경")
     @PostMapping("/api/post/{postId}/status")
     public ResponseDto updatePostStatus(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
-                                        @Schema(description = "프로젝트 상태") @ModelAttribute("projectStatus") ProjectStatus projectStatus,
+                                        @RequestBody ProjectStatusRequestDto requestDto,
                                         @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        log.info("POST, [{}], /api/post/{}/status, projectStatus={}", MDC.get("UUID"), postId, projectStatus);
+        log.info("POST, [{}], /api/post/{}/status, projectStatus={}", MDC.get("UUID"), postId, requestDto.getProjectStatus());
         if (userDetails == null) {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
-        postService.updateStatus(postId, projectStatus,userDetails.getSnsId());
+        postService.updateStatus(postId, requestDto.getProjectStatus(), userDetails.getSnsId());
 
         return new ResponseDto("200", "", "");
     }
@@ -125,14 +118,13 @@ public class PostRestController {
     @Operation(summary = "프로젝트 git Repository URL 업데이트")
     @PostMapping("/api/post/{postId}/url")
     public ResponseDto updateUrl(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails,
-                                 @Schema(description = "프론트엔드 Repository Url") @ModelAttribute("frontUrl") String frontUrl,
-                                 @Schema(description = "백엔드 Repository Url") @ModelAttribute("backUrl") String backUrl,
+                                 @RequestBody UrlUpdateRequestDto requestDto,
                                  @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId) {
-        log.info("POST, [{}], /api/post/{}/url, frontUrl={}, backUrl={}", MDC.get("UUID"), postId, frontUrl, backUrl);
+        log.info("POST, [{}], /api/post/{}/url, frontUrl={}, backUrl={}", MDC.get("UUID"), postId, requestDto.getFrontUrl(), requestDto.getBackUrl());
         if (userDetails == null) {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
-        postService.updateUrl(backUrl, frontUrl, userDetails.getUsername(), postId);
+        postService.updateUrl(requestDto.getBackUrl(), requestDto.getFrontUrl(), userDetails.getUsername(), postId);
         return new ResponseDto("200", "", "");
     }
 }
