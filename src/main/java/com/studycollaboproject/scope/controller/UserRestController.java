@@ -132,4 +132,17 @@ public class UserRestController {
         log.info("POST, [{}], /api/bookmark/{}", MDC.get("UUID"), postId);
         return userService.bookmarkCheck(postId,userDetails.getSnsId());
     }
+
+    @Operation(summary = "회원 탈퇴")
+    @DeleteMapping("api/user/{userId}")
+    public ResponseDto deleteUser(@Parameter(description = "탈퇴하려는 회원 ID",in = ParameterIn.PATH) @PathVariable Long userId,
+                                  @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails){
+        log.info("POST, [{}], /api/user/{}", MDC.get("UUID"), userId);
+        if (userDetails.getUser().getId().equals(userId)){
+            return userService.deleteUser(userDetails.getUser());
+
+        }else {
+            throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
+        }
+    }
 }

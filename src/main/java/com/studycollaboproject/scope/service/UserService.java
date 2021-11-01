@@ -6,10 +6,7 @@ import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.Bookmark;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.User;
-import com.studycollaboproject.scope.repository.BookmarkRepository;
-import com.studycollaboproject.scope.repository.PostRepository;
-import com.studycollaboproject.scope.repository.TechStackRepository;
-import com.studycollaboproject.scope.repository.UserRepository;
+import com.studycollaboproject.scope.repository.*;
 import com.studycollaboproject.scope.security.JwtTokenProvider;
 import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +26,8 @@ public class UserService {
     private final TechStackRepository techStackRepository;
     private final PostRepository postRepository;
     private final PostService postService;
+    private final ApplicantRepository applicantRepository;
+    private final TeamRepository teamRepository;
 
     public MypageResponseDto Mypage(User mypageUser, UserDetails userDetails, MypagePostListDto mypagePostListDto){
         boolean isMyMypage;
@@ -75,6 +74,10 @@ public class UserService {
     public User loadUserByUserId(Long userId) {
         return userRepository.findById(userId).orElseThrow(
                 () -> new RestApiException(ErrorCode.NO_USER_ERROR));
+    }
+
+    public User loadUnknownUser(){
+        return userRepository.findByUserPropensityType("unknown");
     }
 
     //user sns id로 JWT토큰 생성 후 반환
@@ -159,6 +162,25 @@ public class UserService {
         user.updateUserInfo(userDesc);
 
         return new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList()));
+    }
+
+
+
+    @Transactional
+    public ResponseDto deleteUser(User user){
+        List<Post> postList = postRepository.findAllByUser(user);
+        for (Post post : postList) {
+            post.deleteUser(loadUnknownUser());
+        }
+        techStackRepository.deleteAllByUser(user);
+        applicantRepository.deleteAllByUser(user);
+        bookmarkRepository.deleteAllByUser(user);
+        teamRepository.deleteAllByUser(user);
+
+
+        userRepository.delete(user);
+
+        return new ResponseDto("OK","성공적으로 회원 정보가 삭제되었습니다.","");
     }
 
 
