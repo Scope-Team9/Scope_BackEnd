@@ -4,6 +4,7 @@ import com.studycollaboproject.scope.dto.*;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.User;
+import com.studycollaboproject.scope.security.UserDetailsImpl;
 import com.studycollaboproject.scope.service.PostService;
 import com.studycollaboproject.scope.service.TestService;
 import com.studycollaboproject.scope.service.UserService;
@@ -47,12 +48,13 @@ public class UserRestController {
     }
 
     @Operation(summary = "회원 소개 수정")
-    @PostMapping("/api/user")
-    public ResponseDto updateUserinfo(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails,
-                                      @RequestBody UserRequestDto userRequestDto){
+    @PostMapping("/api/user/{userId}")
+    public ResponseDto updateUserinfo(@Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails,
+                                      @RequestBody UserRequestDto userRequestDto,@Parameter(description = "수정하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId){
         log.info("POST, [{}], /api/user, userRequestDto={}", MDC.get("UUID"), userRequestDto);
+        if (userId.equals(userDetails.getUser().getId())){return userService.updateUserInfo(userDetails.getUsername(), userRequestDto);}
+        else throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
 
-        return userService.updateUserInfo(userDetails.getUsername(), userRequestDto);
     }
 
     @Operation(summary = "회원 가입 - 회원 정보와 테스트 결과 저장")
@@ -104,13 +106,16 @@ public class UserRestController {
     }
 
     @Operation(summary = "유저 소개 업데이트")
-    @PostMapping("/api/user/desc")
-    public ResponseDto updateUserDesc(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails,
-                                      @RequestBody String userDesc){
+    @PostMapping("/api/user/{userId}/desc")
+    public ResponseDto updateUserDesc(@Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails,
+                                      @RequestBody String userDesc, @Parameter(description = "수정하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId){
         log.info("POST, [{}], /api/user/desc, userDesc={}", MDC.get("UUID"), userDesc);
+        if (userId.equals(userDetails.getUser().getId())){return userService.updateUserDesc(userDetails.getUsername(),userDesc);}
+        else throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
 
-        return userService.updateUserDesc(userDetails.getUsername(),userDesc);
     }
+
+
 
     @Operation(summary = "북마크 추가")
     @PostMapping("/api/bookmark/{postId}")

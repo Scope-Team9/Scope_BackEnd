@@ -129,14 +129,14 @@ public class UserService {
         String email = userRequestDto.getEmail();
         User user = loadUserBySnsId(snsId);
 
-        techStackRepository.deleteAllByUser(user);
-        user.resetTechStack();
-
-        if (nicknameCheckByNickname(nickname)){
+        if (nicknameCheckByNickname(nickname)&&!nickname.equals(user.getNickname())){
             return new ResponseDto("400", "중복된 닉네임이 존재합니다.", "");
-        }else if(emailCheckByEmail(email)){
+        }else if(emailCheckByEmail(email)&&!email.equals(user.getEmail())){
             return new ResponseDto("400", "중복된 이메일이 존재합니다.", "");
         }
+
+        techStackRepository.deleteAllByUser(user);
+        user.resetTechStack();
         user.updateUserInfo(email,nickname,
                 techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(),user));
 
