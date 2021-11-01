@@ -46,10 +46,10 @@ public class PostRestController {
 
     @Operation(summary = "프로젝트 조회")
     @GetMapping("/api/post")
-    public ResponseDto readPost(@Parameter(description = "필터", in = ParameterIn.QUERY) @RequestParam String filter,
-                                @Parameter(description = "디스플레이 수", in = ParameterIn.QUERY) @RequestParam int displayNumber,
-                                @Parameter(description = "페이지 수", in = ParameterIn.QUERY) @RequestParam int page,
-                                @Parameter(description = "정렬 기준", in = ParameterIn.QUERY) @RequestParam String sort,
+    public ResponseDto readPost(@Parameter(description = "필터", in = ParameterIn.QUERY, example = ";;;;;;;;;;;;;;") @RequestParam String filter,
+                                @Parameter(description = "디스플레이 수", in = ParameterIn.QUERY, example = "15") @RequestParam int displayNumber,
+                                @Parameter(description = "페이지 수", in = ParameterIn.QUERY, example = "1") @RequestParam int page,
+                                @Parameter(description = "정렬 기준", in = ParameterIn.QUERY, example = "createdAt") @RequestParam String sort,
                                 @Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails) {
         log.info("GET, [{}], /api/post, filter={}, displayNumber={}, page={}, sort={}", MDC.get("UUID"), filter, displayNumber, page, sort);
         String SnsId = "";

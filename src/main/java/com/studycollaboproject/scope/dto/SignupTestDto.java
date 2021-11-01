@@ -1,13 +1,11 @@
 package com.studycollaboproject.scope.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-
-import java.util.List;
+import lombok.NoArgsConstructor;
 
 @Getter
-@AllArgsConstructor
+@NoArgsConstructor
 public class SignupTestDto {
     @Schema(description = "SNS ID")
     private String snsId;
