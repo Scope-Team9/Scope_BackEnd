@@ -19,13 +19,13 @@ public class MypagePostListDto {
     @Schema(description = "완료된 프로젝트 리스트")
     private List<PostResponseDto> end;
     @Schema(description = "조회하고자 하는 유저")
-    private UserResponseDto userResponseDto;
+    private UserResponseDto user;
 
-    public MypagePostListDto(UserResponseDto user,  List<PostResponseDto> recruitment, List<PostResponseDto> inProgress,List<PostResponseDto> end) {
+    public MypagePostListDto(UserResponseDto userResponseDto,  List<PostResponseDto> recruitment, List<PostResponseDto> inProgress,List<PostResponseDto> end) {
         this.recruitment = recruitment;
         this.end = end;
         this.inProgress = inProgress;
-        this.userResponseDto = user;
+        this.user = userResponseDto;
 
 
     }

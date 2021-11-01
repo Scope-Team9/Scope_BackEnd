@@ -181,7 +181,7 @@ public class PostService {
             }
         }
 
-        return new MypagePostListDto(new UserResponseDto(user),recruitmentList, inProgressList, endList);
+        return new MypagePostListDto(new UserResponseDto(user,techStackConverter.convertTechStackToString(user.getTechStackList())),recruitmentList, inProgressList, endList);
     }
 
     public List<String> getPropensityTypeList(String snsId) {

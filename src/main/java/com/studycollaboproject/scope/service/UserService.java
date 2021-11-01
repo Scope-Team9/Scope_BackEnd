@@ -62,7 +62,7 @@ public class UserService {
         user.addTechStackList(techStackConverter.convertStringToTechStack(techStack,user));
         User savedUser = userRepository.save(user);
 
-        return new UserResponseDto(savedUser);
+        return new UserResponseDto(savedUser, techStackConverter.convertTechStackToString(user.getTechStackList()));
     }
 
     // sns id로 user 정보 반환
@@ -149,7 +149,7 @@ public class UserService {
         user.updateUserInfo(email,nickname,
                 techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(),user));
 
-        return new UserResponseDto(user);
+        return new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList()));
     }
 
     // 회원 소개 수정
@@ -158,7 +158,7 @@ public class UserService {
         User user = loadUserBySnsId(snsId);
         user.updateUserInfo(userDesc);
 
-        return new UserResponseDto(user);
+        return new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList()));
     }
 
 
