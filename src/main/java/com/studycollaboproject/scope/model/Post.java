@@ -84,7 +84,6 @@ public class Post extends Timestamped {
         this.contents = postRequestDto.getContents();
         this.totalMember = postRequestDto.getTotalMember();
         this.user = user;
-        this.recruitmentMember = postRequestDto.getRecruitmentMember();
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
 
     }
@@ -97,10 +96,8 @@ public class Post extends Timestamped {
         this.summary = postRequestDto.getSummary();
         this.contents = postRequestDto.getContents();
         this.totalMember = postRequestDto.getTotalMember();
-        this.recruitmentMember = postRequestDto.getRecruitmentMember();
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
-        this.backUrl = postRequestDto.getBackUrl();
-        this.frontUrl = postRequestDto.getFrontUrl();
+
     }
 
     public void setUrl(String frontUrl, String backUrl) {

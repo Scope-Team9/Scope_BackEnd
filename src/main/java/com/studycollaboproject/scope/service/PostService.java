@@ -27,15 +27,12 @@ public class PostService {
 
     @Transactional
     public PostResponseDto writePost(PostRequestDto postRequestDto, String snsId) {
-        String[] techList = postRequestDto.getTechStack().split(";");
-        List<String > stringList = Arrays.asList(techList);
+        List<String> postTechStackList = postRequestDto.getTechStackList();
         User user = userRepository.findBySnsId(snsId).orElseThrow(()->
                 new RestApiException(ErrorCode.NO_USER_ERROR));
 
         Post post = new Post(postRequestDto,user);
-
-
-        List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(stringList, post.getUser()));
+        List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(postTechStackList, post.getUser()));
 
         techStackRepository.saveAll(techStackList);
         post.updateTechStack(techStackList);
