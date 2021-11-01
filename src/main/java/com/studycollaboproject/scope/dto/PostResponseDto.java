@@ -7,7 +7,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,9 +32,9 @@ public class PostResponseDto {
     @Schema(description = "프로젝트 상태")
     private ProjectStatus projectStatus;
     @Schema(description = "생성일")
-    private LocalDateTime startDate;
+    private LocalDate startDate;
     @Schema(description = "수정일")
-    private LocalDateTime endDate;
+    private LocalDate endDate;
     @Schema(description = "북마크 체크여부")
     private boolean bookmarkChecked;
 
@@ -50,6 +50,9 @@ public class PostResponseDto {
         }
         this.totalMember = post.getTotalMember();
         this.recruitmentMember = post.getRecruitmentMember();
+        this.endDate = post.getEndDate();
+        this.startDate = post.getStartDate();
+        this.projectStatus = post.getProjectStatus();
     }
 
     public PostResponseDto(Post post,boolean bookmarkChecked) {
@@ -65,5 +68,8 @@ public class PostResponseDto {
         this.totalMember = post.getTotalMember();
         this.recruitmentMember = post.getRecruitmentMember();
         this.bookmarkChecked = bookmarkChecked;
+        this.endDate = post.getEndDate();
+        this.startDate = post.getStartDate();
+        this.projectStatus = post.getProjectStatus();
     }
 }

@@ -18,7 +18,7 @@ public class RestApiExceptionHandler {
     @ExceptionHandler(value = {RestApiException.class})
     public ResponseEntity<Object> handleRuntimeErrorException(RestApiException ex) {
         log.info("400 Bad Request Error, [{}], message={}", MDC.get("UUID"), ex.getMessage());
-        ResponseDto restApiException = new ResponseDto("400", ex.getMessage(),"");
+        ResponseDto restApiException = new ResponseDto("400", ex.getMessage(), "");
         return new ResponseEntity<>(
                 restApiException,
                 HttpStatus.BAD_REQUEST
@@ -29,7 +29,18 @@ public class RestApiExceptionHandler {
     public ResponseEntity<Object> handleApiRequestErrorException(MethodArgumentNotValidException ex) {
         String msg = Objects.requireNonNull(ex.getFieldError()).getDefaultMessage();
         log.info("400 Bad Request Parameter Error, [{}], message={}", MDC.get("UUID"), msg);
-        ResponseDto restApiException = new ResponseDto("400", msg,"");
+        ResponseDto restApiException = new ResponseDto("400", msg, "");
+        return new ResponseEntity<>(
+                restApiException,
+                HttpStatus.BAD_REQUEST
+        );
+    }
+
+    @ExceptionHandler(value = {RuntimeException.class})
+    public ResponseEntity<Object> handleBadRequestErrorException(RuntimeException ex) {
+        String msg = ErrorCode.INVALID_INPUT_ERROR.getMessage();
+        log.info("400 Bad Request Parameter Error, [{}], message={}", MDC.get("UUID"), msg);
+        ResponseDto restApiException = new ResponseDto("400", msg, "");
         return new ResponseEntity<>(
                 restApiException,
                 HttpStatus.BAD_REQUEST

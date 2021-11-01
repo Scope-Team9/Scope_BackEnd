@@ -16,7 +16,8 @@ public enum ErrorCode {
     ALREADY_APPLY_POST_ERROR("이미 지원한 프로젝트 입니다."),
     ALREADY_EMAIL_ERROR("중복된 이메일이 존재합니다."),
     ALREADY_NICKNAME_ERROR("중복된 닉네임이 존재합니다."),
-    IMAGE_SAVE_ERROR("이미지 저장에 실패하였습니다.");
+    IMAGE_SAVE_ERROR("이미지 저장에 실패하였습니다."),
+    INVALID_INPUT_ERROR("입력 값이 잘못되었습니다.");
 
     private String message;
 }
