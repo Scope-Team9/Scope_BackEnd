@@ -1,6 +1,5 @@
 package com.studycollaboproject.scope.controller;
 
-import com.studycollaboproject.scope.dto.ImageRequestDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
@@ -28,9 +27,9 @@ public class ImageRestController {
 
     @Operation(summary = "이미지 등록")
     @PostMapping("/api/image")
-    public ResponseDto saveImage(@RequestBody ImageRequestDto requestDto) {
-        log.info("POST, /api/image, data={}", requestDto.getImage());
-        String fileName = saveImageData(requestDto.getImage());
+    public ResponseDto saveImage(@RequestBody String image) {
+        log.info("POST, /api/image");
+        String fileName = saveImageData(image);
         log.info("fileName : {}", fileName);
         Map<String, String> responseMap = new HashMap<>();
         responseMap.put("imageUrl", fileName);
@@ -53,8 +52,8 @@ public class ImageRestController {
                 log.info("이미지 파일 저장 경로 에러");
                 throw new RestApiException(ErrorCode.IMAGE_SAVE_ERROR);
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
             log.info("이미지 파일 데이터 형식 에러");
+        } catch (ArrayIndexOutOfBoundsException e) {
             throw new RestApiException(ErrorCode.IMAGE_SAVE_ERROR);
         }
         return fileName;

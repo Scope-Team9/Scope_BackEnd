@@ -37,6 +37,10 @@ public class PostResponseDto {
     private LocalDate endDate;
     @Schema(description = "북마크 체크여부")
     private boolean bookmarkChecked;
+    @Schema(description = "프로젝트 프론트앤드 Repository URL")
+    private String frontUrl;
+    @Schema(description = "프로젝트 백앤드 Repository URL")
+    private String backUrl;
 
     public PostResponseDto(Post post) {
         this.postId = post.getId();
@@ -53,6 +57,8 @@ public class PostResponseDto {
         this.endDate = post.getEndDate();
         this.startDate = post.getStartDate();
         this.projectStatus = post.getProjectStatus().getProjectStatus();
+        this.frontUrl = post.getFrontUrl();
+        this.backUrl = post.getBackUrl();
     }
 
     public PostResponseDto(Post post,boolean bookmarkChecked) {
@@ -71,5 +77,7 @@ public class PostResponseDto {
         this.endDate = post.getEndDate();
         this.startDate = post.getStartDate();
         this.projectStatus = post.getProjectStatus().getProjectStatus();
+        this.frontUrl = post.getFrontUrl();
+        this.backUrl = post.getBackUrl();
     }
 }
