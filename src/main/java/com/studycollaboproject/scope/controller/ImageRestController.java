@@ -44,7 +44,7 @@ public class ImageRestController {
         try {
             String data = image.split(",")[1];
             byte[] imageBytes = DatatypeConverter.parseBase64Binary(data);
-            fileName = "/image/" + UUID.randomUUID() + ".png";
+            fileName = "/images/" + UUID.randomUUID() + ".png";
             String filePath = "." + fileName;
             try {
                 BufferedImage bufImg = ImageIO.read(new ByteArrayInputStream(imageBytes));
