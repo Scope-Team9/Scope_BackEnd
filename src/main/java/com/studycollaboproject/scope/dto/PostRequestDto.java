@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @ToString
@@ -25,8 +26,6 @@ public class PostRequestDto {
     private String techStack;
     @Schema(description = "총 인원")
     private Integer totalMember;
-    @Schema(description = "현재 구한 인원")
-    private Integer recruitmentMember;
     @Schema(description = "프로젝트 상태")
     private String projectStatus;
     //    private String recommendationAgree;
@@ -37,9 +36,26 @@ public class PostRequestDto {
 //    private List<Team> teamList;
     @Schema(description = "글쓰기시 프로젝트 기술 스택")
     private List<String> techStackList;
-    @Schema(description = "백엔드 Url")
-    private String backUrl;
-    @Schema(description = "프론트엔드 Url")
-    private String frontUrl;
+
+
+    public PostRequestDto(String title,
+                          String summary,
+                          String contents,
+                          List<String> techStackList,
+                          String techStack,
+                          Integer totalMember,
+                          String projectStatus,
+                          String startDate,
+                          String endDate) {
+        this.title = title;
+        this.summary = summary;
+        this.contents = contents;
+        this.techStack = techStack;
+        this.techStackList = techStackList;
+        this.totalMember = totalMember;
+        this.projectStatus = projectStatus;
+        this.startDate = LocalDate.parse(startDate);
+        this.endDate = LocalDate.parse(endDate);
+    }
 
 }
