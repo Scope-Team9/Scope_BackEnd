@@ -22,7 +22,7 @@ public class MypageResponseDto {
     private boolean isMyMypage;
 
     public MypageResponseDto(MypagePostListDto mypagePostListDto, List<PostResponseDto> bookmark, boolean isMyMypage){
-        this.user = mypagePostListDto.getUserResponseDto();
+        this.user = mypagePostListDto.getUser();
         this.bookmark = bookmark;
         this.recruitment = mypagePostListDto.getRecruitment();
         this.inProgress = mypagePostListDto.getInProgress();

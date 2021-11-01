@@ -62,7 +62,7 @@ public class UserService {
         user.addTechStackList(techStackConverter.convertStringToTechStack(techStack,user, null));
         User savedUser = userRepository.save(user);
 
-        return new UserResponseDto(savedUser);
+        return new UserResponseDto(savedUser, techStackConverter.convertTechStackToString(user.getTechStackList()));
     }
 
     // sns id로 user 정보 반환
@@ -110,6 +110,9 @@ public class UserService {
         Post post = postRepository.findById(postId).orElseThrow(()->
                 new RestApiException(ErrorCode.NO_POST_ERROR));
         User user = loadUserBySnsId(snsId);
+        if (post.getUser().equals(user)){
+            throw new RestApiException(ErrorCode.NO_BOOKMARK_MY_POST);
+        }
         Map<String ,String> isBookmarkChecked = new HashMap<>();
 
         if (postService.isBookmarkChecked(postId, snsId)){
@@ -146,7 +149,7 @@ public class UserService {
         user.updateUserInfo(email,nickname,
                 techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(),user, null));
 
-        return new UserResponseDto(user);
+        return new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList()));
     }
 
     // 회원 소개 수정
@@ -155,7 +158,7 @@ public class UserService {
         User user = loadUserBySnsId(snsId);
         user.updateUserInfo(userDesc);
 
-        return new UserResponseDto(user);
+        return new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList()));
     }
 
 

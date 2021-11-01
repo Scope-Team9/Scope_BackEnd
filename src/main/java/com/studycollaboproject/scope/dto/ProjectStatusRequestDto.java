@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @Getter
 public class ProjectStatusRequestDto {
     @Schema(description = "프로젝트 상태")
-    private ProjectStatus projectStatus;
+    private String  projectStatus;
 }
