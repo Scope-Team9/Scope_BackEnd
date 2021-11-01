@@ -26,37 +26,34 @@ public class PostService {
 
 
     @Transactional
-    public void writePost(PostRequestDto postRequestDto, String snsId) {
-        String[] techList = postRequestDto.getTechStack().split(";");
-        List<String > stringList = Arrays.asList(techList);
+    public PostResponseDto writePost(PostRequestDto postRequestDto, String snsId) {
+        List<String> postTechStackList = postRequestDto.getTechStackList();
         User user = userRepository.findBySnsId(snsId).orElseThrow(()->
                 new RestApiException(ErrorCode.NO_USER_ERROR));
 
         Post post = new Post(postRequestDto,user);
-
-
-        List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(stringList, post.getUser()));
+        List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(postTechStackList, post.getUser()));
 
         techStackRepository.saveAll(techStackList);
         post.updateTechStack(techStackList);
-        postRepository.save(post);
+        Post savedPost = postRepository.save(post);
+        return new PostResponseDto(savedPost);
     }
 
     @Transactional
-    public ResponseDto editPost(Long postId, PostRequestDto postRequestDto, String snsId) {
+    public PostResponseDto editPost(Long postId, PostRequestDto postRequestDto, String snsId) {
         Post post = loadPostByPostId(postId);
         User user = post.getUser();
         if (user.getSnsId().equals(snsId)){
             post.update(postRequestDto);
-            PostResponseDto postResponseDto = new PostResponseDto(post);
-            return new ResponseDto("200", "", postResponseDto);
+            return new PostResponseDto(post);
         }else{
             throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
     }
 
     @Transactional
-    public ResponseDto deletePost(Long postId, String snsId) {
+    public Long deletePost(Long postId, String snsId) {
 
         Post post = loadPostByPostId(postId);
         User user = post.getUser();
@@ -67,7 +64,7 @@ public class PostService {
             bookmarkRepository.deleteAllByPost(post);
             applicantRepository.deleteAllByPost(post);
             postRepository.delete(post);
-            return new ResponseDto("200", "", "");
+            return postId;
         }else{
             throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
@@ -214,7 +211,7 @@ public class PostService {
 
 
     @Transactional
-    public void updateUrl(String backUrl, String frontUrl, String snsId, Long postId){
+    public PostResponseDto updateUrl(String backUrl, String frontUrl, String snsId, Long postId){
         User user = userRepository.findBySnsId(snsId).orElseThrow(()->
                 new RestApiException(ErrorCode.NO_USER_ERROR));
         Post post = loadPostByPostId(postId);
@@ -224,7 +221,7 @@ public class PostService {
         }else {
             throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
-
+        return new PostResponseDto(post);
     }
 
     public Team loadTeamByUserAndPost(User user, Post post){
@@ -247,7 +244,7 @@ public class PostService {
     }
 
     @Transactional
-    public void updateStatus(Long postId, ProjectStatus projectStatus, String snsId) {
+    public PostResponseDto updateStatus(Long postId, ProjectStatus projectStatus, String snsId) {
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new RestApiException(ErrorCode.NO_POST_ERROR)
         );
@@ -259,7 +256,7 @@ public class PostService {
         }else {
             throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
-
+        return new PostResponseDto(post);
     }
 
     public boolean isTeamStarter(Post post, String snsId) {

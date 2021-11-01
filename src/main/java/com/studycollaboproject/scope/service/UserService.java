@@ -58,9 +58,11 @@ public class UserService {
     }
 
     //기술스택 리스트와 유저 정보를 같이 DB에 저장
-    public void saveUser(List<String> techStack, User user) {
+    public UserResponseDto saveUser(List<String> techStack, User user) {
         user.addTechStackList(techStackConverter.convertStringToTechStack(techStack,user));
-        userRepository.save(user);
+        User savedUser = userRepository.save(user);
+
+        return new UserResponseDto(savedUser);
     }
 
     // sns id로 user 정보 반환
@@ -123,16 +125,20 @@ public class UserService {
 
     //email, nickname, 기술스택 수정
     @Transactional
-    public ResponseDto updateUserInfo(String snsId, UserRequestDto userRequestDto) {
+    public UserResponseDto updateUserInfo(String snsId, UserRequestDto userRequestDto) {
 
         String nickname = userRequestDto.getNickname();
         String email = userRequestDto.getEmail();
         User user = loadUserBySnsId(snsId);
 
-        if (nicknameCheckByNickname(nickname)&&!nickname.equals(user.getNickname())){
-            return new ResponseDto("400", "중복된 닉네임이 존재합니다.", "");
-        }else if(emailCheckByEmail(email)&&!email.equals(user.getEmail())){
-            return new ResponseDto("400", "중복된 이메일이 존재합니다.", "");
+
+        techStackRepository.deleteAllByUser(user);
+        user.resetTechStack();
+
+        if (nicknameCheckByNickname(nickname)){
+            throw new RestApiException(ErrorCode.ALREADY_NICKNAME_ERROR);
+        }else if(emailCheckByEmail(email)){
+            throw new RestApiException(ErrorCode.ALREADY_EMAIL_ERROR);
         }
 
         techStackRepository.deleteAllByUser(user);
@@ -140,15 +146,16 @@ public class UserService {
         user.updateUserInfo(email,nickname,
                 techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(),user));
 
-        return new ResponseDto("200","회원 정보가 수정되었습니다.","");
+        return new UserResponseDto(user);
     }
 
     // 회원 소개 수정
     @Transactional
-    public ResponseDto updateUserDesc(String snsId, String userDesc) {
+    public UserResponseDto updateUserDesc(String snsId, String userDesc) {
         User user = loadUserBySnsId(snsId);
         user.updateUserInfo(userDesc);
-        return new ResponseDto("200","회원 정보가 수정되었습니다.","");
+
+        return new UserResponseDto(user);
     }
 
 

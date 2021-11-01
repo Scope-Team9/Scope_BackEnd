@@ -1,17 +1,16 @@
 package com.studycollaboproject.scope.dto;
 
+
 import com.studycollaboproject.scope.model.Bookmark;
+import com.studycollaboproject.scope.model.Tech;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
-@Setter
 @ToString
 @NoArgsConstructor
 public class PostRequestDto {
@@ -36,51 +35,11 @@ public class PostRequestDto {
     @Schema(description = "종료 시간")
     private LocalDate endDate;
 //    private List<Team> teamList;
-//    private List<Tech> techStackList;
+    @Schema(description = "글쓰기시 프로젝트 기술 스택")
+    private List<String> techStackList;
     @Schema(description = "백엔드 Url")
     private String backUrl;
     @Schema(description = "프론트엔드 Url")
     private String frontUrl;
 
-    public PostRequestDto(String title,
-                          String summary,
-                          String contents,
-                          String techStack,
-                          Integer totalMember,
-                          String projectStatus,
-                          String startDate,
-                          String endDate) {
-        this.title = title;
-        this.summary = summary;
-        this.contents = contents;
-        this.techStack = techStack;
-        this.totalMember = totalMember;
-        this.projectStatus = projectStatus;
-        this.startDate = LocalDate.parse(startDate);
-        this.endDate = LocalDate.parse(endDate);
-    }
-
-    public PostRequestDto(String title,
-                          String summary,
-                          String contents,
-                          String techStack,
-                          Integer totalMember,
-                          Integer recruitmentMember,
-                          String projectStatus,
-                          LocalDate startDate,
-                          LocalDate endDate,
-                          String backUrl,
-                          String frontUrl) {
-        this.title = title;
-        this.summary = summary;
-        this.contents = contents;
-        this.techStack = techStack;
-        this.totalMember = totalMember;
-        this.recruitmentMember = recruitmentMember;
-        this.projectStatus = projectStatus;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.backUrl = backUrl;
-        this.frontUrl = frontUrl;
-    }
 }

@@ -52,7 +52,9 @@ public class UserRestController {
     public ResponseDto updateUserinfo(@Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails,
                                       @RequestBody UserRequestDto userRequestDto,@Parameter(description = "수정하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId){
         log.info("POST, [{}], /api/user, userRequestDto={}", MDC.get("UUID"), userRequestDto);
-        if (userId.equals(userDetails.getUser().getId())){return userService.updateUserInfo(userDetails.getUsername(), userRequestDto);}
+        if (userId.equals(userDetails.getUser().getId())){
+          UserResponseDto userResponseDto = userService.updateUserInfo(userDetails.getUsername(), userRequestDto);
+          return new ResponseDto("200","회원 정보가 수정되었습니다.",userResponseDto);}
         else throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
 
     }
@@ -66,17 +68,18 @@ public class UserRestController {
         String userTestResult = testService.testResult(signupRequestDto.getUserPropensityType());
         String memberTestResult = testService.testResult(signupRequestDto.getMemberPropensityType());
         User user = new User(signupRequestDto,userTestResult,memberTestResult);
-        userService.saveUser(signupRequestDto.getTechStack(), user);
+        UserResponseDto userResponseDto = userService.saveUser(signupRequestDto.getTechStack(), user);
 
-        Map<String, String> token = new HashMap<>();
-        token.put("token", userService.createToken(user));
+        Map<String, Object> map = new HashMap<>();
+        map.put("token", userService.createToken(user));
+        map.put("user", userResponseDto);
 
 //        String token = userService.signup(user);
 //        Cookie cookie = new Cookie("token",token);
 //        cookie.setMaxAge(60*60*24*30);
 //        response.addCookie(cookie); // 추가구현 필요
 //        return new ResponseDto("200", "", "");
-        return new ResponseDto("200", "", token);
+        return new ResponseDto("200", "", map);
     }
 
     @Operation(summary = "이메일 중복 확인")
@@ -110,8 +113,13 @@ public class UserRestController {
     public ResponseDto updateUserDesc(@Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails,
                                       @RequestBody String userDesc, @Parameter(description = "수정하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId){
         log.info("POST, [{}], /api/user/desc, userDesc={}", MDC.get("UUID"), userDesc);
-        if (userId.equals(userDetails.getUser().getId())){return userService.updateUserDesc(userDetails.getUsername(),userDesc);}
+        if (userId.equals(userDetails.getUser().getId())){
+            UserResponseDto userResponseDto = userService.updateUserDesc(userDetails.getUsername(), userDesc);
+
+            return new ResponseDto("200","회원 정보가 수정되었습니다.",userResponseDto);
+        }
         else throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
+
 
     }
 

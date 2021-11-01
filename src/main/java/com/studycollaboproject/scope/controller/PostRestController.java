@@ -18,7 +18,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @Slf4j
@@ -38,16 +40,16 @@ public class PostRestController {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
 
-        postService.writePost(postRequestDto, userDetails.getSnsId());
-        return new ResponseDto("200", "", "");
+        PostResponseDto responseDto = postService.writePost(postRequestDto, userDetails.getSnsId());
+        return new ResponseDto("200", "", responseDto);
     }
 
     @Operation(summary = "프로젝트 조회")
     @GetMapping("/api/post")
-    public ResponseDto readPost(@Parameter(description = "필터", in = ParameterIn.QUERY) @RequestParam String filter,
-                                @Parameter(description = "디스플레이 수", in = ParameterIn.QUERY) @RequestParam int displayNumber,
-                                @Parameter(description = "페이지 수", in = ParameterIn.QUERY) @RequestParam int page,
-                                @Parameter(description = "정렬 기준", in = ParameterIn.QUERY) @RequestParam String sort,
+    public ResponseDto readPost(@Parameter(description = "필터", in = ParameterIn.QUERY, example = ";;;;;;;;;;;;;;") @RequestParam String filter,
+                                @Parameter(description = "디스플레이 수", in = ParameterIn.QUERY, example = "15") @RequestParam int displayNumber,
+                                @Parameter(description = "페이지 수", in = ParameterIn.QUERY, example = "1") @RequestParam int page,
+                                @Parameter(description = "정렬 기준", in = ParameterIn.QUERY, example = "createdAt") @RequestParam String sort,
                                 @Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails) {
         log.info("GET, [{}], /api/post, filter={}, displayNumber={}, page={}, sort={}", MDC.get("UUID"), filter, displayNumber, page, sort);
         String SnsId = "";
@@ -69,7 +71,9 @@ public class PostRestController {
         if (userDetails == null) {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
-        return postService.editPost(postId, postRequestDto,userDetails.getUsername());
+        PostResponseDto responseDto = postService.editPost(postId, postRequestDto, userDetails.getUsername());
+
+        return new ResponseDto("200", "", responseDto);
     }
 
     @Operation(summary = "프로젝트 삭제")
@@ -82,7 +86,10 @@ public class PostRestController {
         if (userDetails == null) {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
-        return postService.deletePost(postId,userDetails.getUsername());
+        Long deletedId = postService.deletePost(postId,userDetails.getUsername());
+        Map<String, Long> map = new HashMap<>();
+        map.put("postId",deletedId);
+        return new ResponseDto("200", "", map);
     }
 
     @Operation(summary = "프로젝트 상태 변경")
@@ -94,9 +101,9 @@ public class PostRestController {
         if (userDetails == null) {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
-        postService.updateStatus(postId, requestDto.getProjectStatus(), userDetails.getSnsId());
+        PostResponseDto responseDto = postService.updateStatus(postId, requestDto.getProjectStatus(), userDetails.getSnsId());
 
-        return new ResponseDto("200", "", "");
+        return new ResponseDto("200", "", responseDto);
     }
 
     @Operation(summary = "프로젝트 상세 정보")
@@ -124,7 +131,7 @@ public class PostRestController {
         if (userDetails == null) {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
-        postService.updateUrl(requestDto.getBackUrl(), requestDto.getFrontUrl(), userDetails.getUsername(), postId);
-        return new ResponseDto("200", "", "");
+        PostResponseDto responseDto = postService.updateUrl(requestDto.getBackUrl(), requestDto.getFrontUrl(), userDetails.getUsername(), postId);
+        return new ResponseDto("200", "", responseDto);
     }
 }
