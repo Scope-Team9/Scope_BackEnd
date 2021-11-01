@@ -50,10 +50,8 @@ public class Post extends Timestamped {
     @Column(nullable = false)
     private boolean recommendationAgree;
 
-    @Column(nullable = true)
     private String frontUrl;
-
-    @Column(nullable = true)
+    
     private String backUrl;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -105,8 +103,8 @@ public class Post extends Timestamped {
         this.backUrl = backUrl;
     }
 
-    public void updateStatus(ProjectStatus projectStatus) {
-        this.projectStatus = projectStatus;
+    public void updateStatus(String projectStatus) {
+        this.projectStatus = ProjectStatus.projectStatusOf(projectStatus);
     }
 
     public void updateMember() {

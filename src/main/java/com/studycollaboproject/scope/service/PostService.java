@@ -244,7 +244,7 @@ public class PostService {
     }
 
     @Transactional
-    public PostResponseDto updateStatus(Long postId, ProjectStatus projectStatus, String snsId) {
+    public PostResponseDto updateStatus(Long postId, String projectStatus, String snsId) {
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new RestApiException(ErrorCode.NO_POST_ERROR)
         );
