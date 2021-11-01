@@ -5,9 +5,11 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.servlet.Filter;
+import java.io.File;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
@@ -30,5 +32,14 @@ public class WebConfig implements WebMvcConfigurer {
         filterRegistrationBean.setOrder(1);
         filterRegistrationBean.addUrlPatterns("/*");
         return filterRegistrationBean;
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        File file = new File("");
+        String rootPath = "file://" + file.getAbsoluteFile().getPath() + "/image/";
+        System.out.println("rootPath = " + rootPath);
+        registry.addResourceHandler("/image/**")
+                .addResourceLocations(rootPath);
     }
 }
