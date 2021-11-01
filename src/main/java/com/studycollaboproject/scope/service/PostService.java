@@ -135,7 +135,7 @@ public class PostService {
                 break;
 
             case "deadline":
-                filterPosts.sort(Comparator.comparing(Post::getStartDate, Comparator.reverseOrder()));
+                filterPosts.sort(Comparator.comparing(Post::getStartDate));
                 break;
 
             case "recommend":
