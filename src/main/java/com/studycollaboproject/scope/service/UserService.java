@@ -135,9 +135,9 @@ public class UserService {
         user.resetTechStack();
 
         if (nicknameCheckByNickname(nickname)){
-            return new ResponseDto("400", "중복된 닉네임이 존재합니다.", "");
+            throw new RestApiException(ErrorCode.ALREADY_NICKNAME_ERROR);
         }else if(emailCheckByEmail(email)){
-            return new ResponseDto("400", "중복된 이메일이 존재합니다.", "");
+            throw new RestApiException(ErrorCode.ALREADY_EMAIL_ERROR);
         }
         user.updateUserInfo(email,nickname,
                 techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(),user));
