@@ -59,7 +59,7 @@ public class UserService {
 
     //기술스택 리스트와 유저 정보를 같이 DB에 저장
     public UserResponseDto saveUser(List<String> techStack, User user) {
-        user.addTechStackList(techStackConverter.convertStringToTechStack(techStack,user));
+        user.addTechStackList(techStackConverter.convertStringToTechStack(techStack,user, null));
         User savedUser = userRepository.save(user);
 
         return new UserResponseDto(savedUser);
@@ -144,7 +144,7 @@ public class UserService {
         techStackRepository.deleteAllByUser(user);
         user.resetTechStack();
         user.updateUserInfo(email,nickname,
-                techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(),user));
+                techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(),user, null));
 
         return new UserResponseDto(user);
     }

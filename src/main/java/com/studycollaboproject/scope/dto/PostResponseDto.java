@@ -30,7 +30,7 @@ public class PostResponseDto {
     @Schema(description = "현재 인원")
     private int recruitmentMember;
     @Schema(description = "프로젝트 상태")
-    private ProjectStatus projectStatus;
+    private String projectStatus;
     @Schema(description = "생성일")
     private LocalDate startDate;
     @Schema(description = "수정일")
@@ -52,7 +52,7 @@ public class PostResponseDto {
         this.recruitmentMember = post.getRecruitmentMember();
         this.endDate = post.getEndDate();
         this.startDate = post.getStartDate();
-        this.projectStatus = post.getProjectStatus();
+        this.projectStatus = post.getProjectStatus().getProjectStatus();
     }
 
     public PostResponseDto(Post post,boolean bookmarkChecked) {
@@ -70,6 +70,6 @@ public class PostResponseDto {
         this.bookmarkChecked = bookmarkChecked;
         this.endDate = post.getEndDate();
         this.startDate = post.getStartDate();
-        this.projectStatus = post.getProjectStatus();
+        this.projectStatus = post.getProjectStatus().getProjectStatus();
     }
 }
