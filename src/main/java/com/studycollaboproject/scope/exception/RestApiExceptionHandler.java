@@ -39,7 +39,7 @@ public class RestApiExceptionHandler {
     @ExceptionHandler(value = {RuntimeException.class})
     public ResponseEntity<Object> handleBadRequestErrorException(RuntimeException ex) {
         String msg = ErrorCode.INVALID_INPUT_ERROR.getMessage();
-        log.info("400 Bad Request Parameter Error, [{}], message={}", MDC.get("UUID"), msg);
+        log.info("400 Bad Request Parameter Error, [{}], message={}", MDC.get("UUID"), ex.getMessage());
         ResponseDto restApiException = new ResponseDto("400", msg, "");
         return new ResponseEntity<>(
                 restApiException,

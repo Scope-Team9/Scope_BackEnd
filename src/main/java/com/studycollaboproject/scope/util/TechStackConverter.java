@@ -1,5 +1,6 @@
 package com.studycollaboproject.scope.util;
 
+import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.Tech;
 import com.studycollaboproject.scope.model.TechStack;
 import com.studycollaboproject.scope.model.User;
@@ -11,57 +12,121 @@ import java.util.List;
 @Component
 public class TechStackConverter {
 
-    public List<TechStack> convertStringToTechStack(List<String> techStack, User user) {
+    public List<TechStack> convertStringToTechStack(List<String> techStack, User user, Post post) {
         List<TechStack> TechStackList = new ArrayList<>();
         for (String tech : techStack) {
             switch (tech) {
                 case "java":
-                    TechStackList.add(new TechStack(Tech.TECH_JAVA, user));
+                    if(user == null){
+                        TechStackList.add(new TechStack(Tech.TECH_JAVA, post));
+                    } else {
+                        TechStackList.add(new TechStack(Tech.TECH_JAVA, user));
+                    }
                     break;
                 case "JavaScript":
-                    TechStackList.add(new TechStack(Tech.TECH_JS, user));
+                    if(user == null){
+                        TechStackList.add(new TechStack(Tech.TECH_JS, post));
+                    } else {
+                        TechStackList.add(new TechStack(Tech.TECH_JS, user));
+                    }
                     break;
                 case "Python":
-                    TechStackList.add(new TechStack(Tech.TECH_PYTHON, user));
+                    if(user == null){
+                        TechStackList.add(new TechStack(Tech.TECH_PYTHON, post));
+                    } else {
+                        TechStackList.add(new TechStack(Tech.TECH_PYTHON, user));
+                    }
                     break;
                 case "Node.js":
-                    TechStackList.add(new TechStack(Tech.TECH_NODEJS, user));
+                    if(user == null){
+                        TechStackList.add(new TechStack(Tech.TECH_NODEJS, post));
+                    } else {
+                        TechStackList.add(new TechStack(Tech.TECH_NODEJS, user));
+                    }
                     break;
                 case "C++":
-                    TechStackList.add(new TechStack(Tech.TECH_CPP, user));
+                    if(user == null){
+                        TechStackList.add(new TechStack(Tech.TECH_CPP, post));
+                    } else {
+                        TechStackList.add(new TechStack(Tech.TECH_CPP, user));
+                    }
                     break;
                 case "Flask":
-                    TechStackList.add(new TechStack(Tech.TECH_FLASK, user));
+                    if(user == null){
+                        TechStackList.add(new TechStack(Tech.TECH_FLASK, post));
+                    } else {
+                        TechStackList.add(new TechStack(Tech.TECH_FLASK, user));
+                    }
                     break;
                 case "Django":
-                    TechStackList.add(new TechStack(Tech.TECH_DJANGO, user));
+                    if(user == null){
+                        TechStackList.add(new TechStack(Tech.TECH_DJANGO, post));
+                    } else {
+                        TechStackList.add(new TechStack(Tech.TECH_DJANGO, user));
+                    }
                     break;
                 case "Vue.js":
-                    TechStackList.add(new TechStack(Tech.TECH_VUE, user));
+                    if(user == null){
+                        TechStackList.add(new TechStack(Tech.TECH_VUE, post));
+                    } else {
+                        TechStackList.add(new TechStack(Tech.TECH_VUE, user));
+                    }
                     break;
                 case "React":
-                    TechStackList.add(new TechStack(Tech.TECH_REACT, user));
+                    if(user == null){
+                        TechStackList.add(new TechStack(Tech.TECH_REACT, post));
+                    } else {
+                        TechStackList.add(new TechStack(Tech.TECH_REACT, user));
+                    }
                     break;
                 case "React Native":
-                    TechStackList.add(new TechStack(Tech.TECH_REACTNATIVE, user));
+                    if(user == null){
+                        TechStackList.add(new TechStack(Tech.TECH_REACTNATIVE, post));
+                    } else {
+                        TechStackList.add(new TechStack(Tech.TECH_REACTNATIVE, user));
+                    }
                     break;
                 case "PHP":
-                    TechStackList.add(new TechStack(Tech.TECH_PHP, user));
+                    if(user == null){
+                        TechStackList.add(new TechStack(Tech.TECH_PHP, post));
+                    } else {
+                        TechStackList.add(new TechStack(Tech.TECH_PHP, user));
+                    }
                     break;
                 case "Swift":
-                    TechStackList.add(new TechStack(Tech.TECH_SWIFT, user));
+                    if(user == null){
+                        TechStackList.add(new TechStack(Tech.TECH_SWIFT, post));
+                    } else {
+                        TechStackList.add(new TechStack(Tech.TECH_SWIFT, user));
+                    }
                     break;
                 case "Kotlin":
-                    TechStackList.add(new TechStack(Tech.TECH_KOTLIN, user));
+                    if(user == null){
+                        TechStackList.add(new TechStack(Tech.TECH_KOTLIN, post));
+                    } else {
+                        TechStackList.add(new TechStack(Tech.TECH_KOTLIN, user));
+                    }
                     break;
                 case "TypeScript":
-                    TechStackList.add(new TechStack(Tech.TECH_TYPESCRIPT, user));
+                    if(user == null){
+                        TechStackList.add(new TechStack(Tech.TECH_TYPESCRIPT, post));
+                    } else {
+                        TechStackList.add(new TechStack(Tech.TECH_TYPESCRIPT, user));
+                    }
                     break;
                 case "Angular.js":
-                    TechStackList.add(new TechStack(Tech.TECH_ANGULAR, user));
+                    if(user == null){
+                        TechStackList.add(new TechStack(Tech.TECH_ANGULAR, post));
+                    } else {
+                        TechStackList.add(new TechStack(Tech.TECH_ANGULAR, user));
+                    }
                     break;
                 case "Spring":
-                    TechStackList.add(new TechStack(Tech.TECH_SPRING, user));
+                    if(user == null){
+                        TechStackList.add(new TechStack(Tech.TECH_SPRING, post));
+                    } else {
+                        TechStackList.add(new TechStack(Tech.TECH_SPRING, user));
+                    }
                     break;
             }
         }
