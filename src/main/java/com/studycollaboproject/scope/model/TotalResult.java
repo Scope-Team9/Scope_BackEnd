@@ -1,9 +1,6 @@
 package com.studycollaboproject.scope.model;
 
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Getter
@@ -24,9 +21,16 @@ public class TotalResult {
     @Column(nullable = false)
     private Long result;
 
-    protected TotalResult(){
+    public TotalResult(){
         this.result = 0L;
     }
+
+    public TotalResult(String s, String s1) {
+        this.result = 0L;
+        this.userType = s;
+        this.memberType = s1;
+    }
+
     public void addrecommended(){
         result += 1L;
     }
