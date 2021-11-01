@@ -83,7 +83,6 @@ public class Post extends Timestamped {
         this.totalMember = postRequestDto.getTotalMember();
         this.user = user;
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
-        this.recruitmentMember = 1;
     }
 
     public void update(PostRequestDto postRequestDto) {
