@@ -31,7 +31,8 @@ public class TotalResult {
         this.memberType = s1;
     }
 
-    public void addrecommended(){
-        result += 1L;
+    public void setResult(Long result){
+        this.result = result;
     }
+
 }

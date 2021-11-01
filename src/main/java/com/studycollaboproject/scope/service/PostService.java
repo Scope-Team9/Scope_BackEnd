@@ -33,7 +33,7 @@ public class PostService {
 
         Post post = new Post(postRequestDto, user);
         List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(postTechStackList, null, post));
-
+        teamRepository.save(new Team(user,post));
         techStackRepository.saveAll(techStackList);
         post.updateTechStack(techStackList);
         Post savedPost = postRepository.save(post);
@@ -199,7 +199,8 @@ public class PostService {
 
         for (TotalResult totalResult : totalResultList) {
             if (totalResult.getMemberType().equals(memberPropensityType)) {
-                totalResult.addrecommended();
+                Long result = totalResult.getResult()+1L;
+                totalResult.setResult(result);
             }
         }
 
