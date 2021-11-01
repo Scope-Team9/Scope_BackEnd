@@ -128,8 +128,8 @@ public class UserRestController {
     @Operation(summary = "북마크 추가")
     @PostMapping("/api/bookmark/{postId}")
     public ResponseDto bookmarkCheck(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
-                                     @Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails){
+                                     @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails){
         log.info("POST, [{}], /api/bookmark/{}", MDC.get("UUID"), postId);
-        return userService.bookmarkCheck(postId,userDetails.getUsername());
+        return userService.bookmarkCheck(postId,userDetails.getSnsId());
     }
 }

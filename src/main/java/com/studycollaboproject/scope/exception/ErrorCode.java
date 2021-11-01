@@ -17,7 +17,8 @@ public enum ErrorCode {
     ALREADY_EMAIL_ERROR("중복된 이메일이 존재합니다."),
     ALREADY_NICKNAME_ERROR("중복된 닉네임이 존재합니다."),
     IMAGE_SAVE_ERROR("이미지 저장에 실패하였습니다."),
-    INVALID_INPUT_ERROR("입력 값이 잘못되었습니다.");
+    INVALID_INPUT_ERROR("입력 값이 잘못되었습니다."),
+    NO_BOOKMARK_MY_POST("자신의 게시물은 북마크할 수 없습니다.");
 
     private String message;
 }

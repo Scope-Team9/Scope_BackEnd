@@ -110,6 +110,9 @@ public class UserService {
         Post post = postRepository.findById(postId).orElseThrow(()->
                 new RestApiException(ErrorCode.NO_POST_ERROR));
         User user = loadUserBySnsId(snsId);
+        if (post.getUser().equals(user)){
+            throw new RestApiException(ErrorCode.NO_BOOKMARK_MY_POST);
+        }
         Map<String ,String> isBookmarkChecked = new HashMap<>();
 
         if (postService.isBookmarkChecked(postId, snsId)){
