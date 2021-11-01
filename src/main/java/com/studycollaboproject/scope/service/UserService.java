@@ -131,6 +131,7 @@ public class UserService {
         String email = userRequestDto.getEmail();
         User user = loadUserBySnsId(snsId);
 
+
         techStackRepository.deleteAllByUser(user);
         user.resetTechStack();
 
@@ -139,6 +140,9 @@ public class UserService {
         }else if(emailCheckByEmail(email)){
             throw new RestApiException(ErrorCode.ALREADY_EMAIL_ERROR);
         }
+
+        techStackRepository.deleteAllByUser(user);
+        user.resetTechStack();
         user.updateUserInfo(email,nickname,
                 techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(),user));
 
