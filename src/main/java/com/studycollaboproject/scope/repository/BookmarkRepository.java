@@ -16,4 +16,5 @@ public interface BookmarkRepository extends JpaRepository<Bookmark, Long> {
     void deleteByUserAndPost(User user, Post post);
 
 
+    void deleteAllByUser(User user);
 }

@@ -97,6 +97,10 @@ public class Post extends Timestamped {
 
     }
 
+    public void deleteUser(User user){
+        this.user = user;
+    }
+
     public void setUrl(String frontUrl, String backUrl) {
         this.frontUrl = frontUrl;
         this.backUrl = backUrl;

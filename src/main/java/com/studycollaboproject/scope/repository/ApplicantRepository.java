@@ -12,4 +12,6 @@ public interface ApplicantRepository extends JpaRepository<Applicant, Long> {
     Optional<Applicant> findByUserAndPost(User user, Post post);
     void deleteAllByPost(Post post);
     List<Applicant> findAllByPost(Post post);
+
+    void deleteAllByUser(User user);
 }
