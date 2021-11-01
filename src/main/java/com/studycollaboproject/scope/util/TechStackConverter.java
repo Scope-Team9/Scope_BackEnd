@@ -127,4 +127,12 @@ public class TechStackConverter {
         }
         return TechList;
     }
+
+    public List<String> convertTechStackToString(List<TechStack> techStack) {
+        List<String> techList = new ArrayList<>();
+        for (TechStack stack : techStack) {
+            techList.add(stack.getTech().getTech());
+        }
+        return techList;
+    }
 }
