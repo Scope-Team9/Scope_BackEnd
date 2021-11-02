@@ -112,12 +112,15 @@ public class PostRestController {
                                @Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails) {
         log.info("GET, [{}], /api/post/{}", MDC.get("UUID"), postId);
 
-
         Post post = postService.loadPostByPostId(postId);
         PostResponseDto postDetail = new PostResponseDto(post);
         List<MemberListResponseDto> member = teamService.getMember(postId);
-        boolean isTeamStarter = postService.isTeamStarter(post,userDetails.getUsername());
-        boolean isBookmarkChecked = postService.isBookmarkChecked(postId,userDetails.getUsername());
+        boolean isTeamStarter = false;
+        boolean isBookmarkChecked = false;
+        if (userDetails != null) {
+            isTeamStarter = postService.isTeamStarter(post,userDetails.getUsername());
+            isBookmarkChecked = postService.isBookmarkChecked(postId,userDetails.getUsername());
+        }
         return new ResponseDto("200", "", new PostDetailDto(postDetail, member,isTeamStarter, isBookmarkChecked));
     }
 
