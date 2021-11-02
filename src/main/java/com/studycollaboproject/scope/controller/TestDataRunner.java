@@ -31,7 +31,9 @@ public class TestDataRunner implements ApplicationRunner {
         }
 
 
-        User user = new User(new TestUserSetupDto());
-        userRepository.save(user);
+        if(userRepository.findBySnsId("unknown").isEmpty()){
+            User user = new User(new TestUserSetupDto());
+            userRepository.save(user);
+        }
     }
 }

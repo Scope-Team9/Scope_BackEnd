@@ -26,7 +26,7 @@ public class MemberListResponseDto {
     @Schema(description = "지원 날짜")
     private LocalDateTime applicationDate;
     @Schema(description = "코멘트")
-    private String commnet;
+    private String comment;
 
     public MemberListResponseDto(Team team) {
         User user = team.getUser();
@@ -44,6 +44,6 @@ public class MemberListResponseDto {
         this.email = user.getEmail();
         this.userPropensityType = user.getUserPropensityType();
         this.applicationDate = applicant.getCreatedAt();
-        this.commnet = applicant.getComment();
+        this.comment = applicant.getComment();
     }
 }
