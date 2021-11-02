@@ -11,6 +11,6 @@ import java.util.Optional;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
     Optional<Post> findByIdAndUser(Long postId, User user);
-    List<Post> findByUserMemberPropensityType(String memberPropensityType);
+    List<Post> findAllByUserMemberPropensityType(String memberPropensityType);
     List<Post> findAllByUser(User user);
 }
