@@ -11,5 +11,5 @@ public class SnsInfoDto {
     @Schema(description = "이메일")
     private String email;
     @Schema(description = "SNS ID")
-    private Long id;
+    private String id;
 }
