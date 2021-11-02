@@ -140,7 +140,7 @@ public class TechStackConverter {
                 continue;
             }
             switch (tech) {
-                case "java":
+                case "Java":
                     TechList.add(Tech.TECH_JAVA);
                     break;
                 case "JavaScript":
