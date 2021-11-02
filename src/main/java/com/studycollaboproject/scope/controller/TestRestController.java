@@ -29,19 +29,18 @@ public class TestRestController {
     public ResponseDto updatePropensity(@RequestBody PropensityRequestDto requestDto,
                                         @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails,
                                         @Parameter(description = "수정하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId) {
-        log.info("POST, [{}], /api/test, userPropensity={}, memberPropensity={}", MDC.get("UUID"), requestDto.getUserPropensityType().toString(), requestDto.getMemberPropensityType().toString());
+        log.info("POST, [{}], /api/test, userPropensity={}, memberPropensity={}", MDC.get("UUID"),
+                requestDto.getUserPropensityType().toString(), requestDto.getMemberPropensityType().toString());
 
         if (userDetails == null) {  //로그인 정보 확인
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
         if (userId.equals(userDetails.getUser().getId())){
-            TestResultDto resultDto = testService.updatePropensityType(userDetails.getSnsId(), requestDto.getUserPropensityType(), requestDto.getMemberPropensityType());
+            TestResultDto resultDto = testService.updatePropensityType(userDetails.getSnsId(),
+                    requestDto.getUserPropensityType(), requestDto.getMemberPropensityType());
             return new ResponseDto("200", "", resultDto);}
         else throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
 
-
-
     }
-
 
 }

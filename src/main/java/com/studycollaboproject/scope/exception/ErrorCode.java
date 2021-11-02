@@ -18,8 +18,9 @@ public enum ErrorCode {
     ALREADY_NICKNAME_ERROR("중복된 닉네임이 존재합니다."),
     IMAGE_SAVE_ERROR("이미지 저장에 실패하였습니다."),
     INVALID_INPUT_ERROR("입력 값이 잘못되었습니다."),
-    NO_BOOKMARK_MY_POST("자신의 게시물은 북마크할 수 없습니다."),
-    NO_TEAM_ERROR("프로젝트의 팀 구성원이 아닙니다.");
+    NO_BOOKMARK_MY_POST_ERROR("자신의 게시물은 북마크할 수 없습니다."),
+    NO_TEAM_ERROR("프로젝트의 팀 구성원이 아닙니다."),
+    ALREADY_ASSESSMENT_ERROR("이미 평가를 완료했습니다.");
 
     private String message;
 }
