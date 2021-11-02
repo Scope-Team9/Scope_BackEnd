@@ -41,6 +41,10 @@ public class PostResponseDto {
     private String frontUrl;
     @Schema(description = "프로젝트 백앤드 Repository URL")
     private String backUrl;
+    @Schema(description = "작성자 성향 정보")
+    private String propensityType;
+    @Schema(description = "작성자 닉네임")
+    private String nickname;
 
     public PostResponseDto(Post post) {
         this.postId = post.getId();
@@ -59,6 +63,8 @@ public class PostResponseDto {
         this.projectStatus = post.getProjectStatus().getProjectStatus();
         this.frontUrl = post.getFrontUrl();
         this.backUrl = post.getBackUrl();
+        this.propensityType = post.getUser().getUserPropensityType();
+        this.nickname = post.getUser().getNickname();
     }
 
     public PostResponseDto(Post post,boolean bookmarkChecked) {
@@ -79,5 +85,7 @@ public class PostResponseDto {
         this.projectStatus = post.getProjectStatus().getProjectStatus();
         this.frontUrl = post.getFrontUrl();
         this.backUrl = post.getBackUrl();
+        this.propensityType = post.getUser().getUserPropensityType();
+        this.nickname = post.getUser().getNickname();
     }
 }
