@@ -30,10 +30,10 @@ public class TestDataRunner implements ApplicationRunner {
             }
         }
 
-        if(!userRepository.findByUserPropensityType("unknown").getSnsId().equals("unknown")){
+
+        if(userRepository.findBySnsId("unknown").isEmpty()){
             User user = new User(new TestUserSetupDto());
             userRepository.save(user);
         }
-
     }
 }
