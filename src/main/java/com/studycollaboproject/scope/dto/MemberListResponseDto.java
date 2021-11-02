@@ -27,6 +27,8 @@ public class MemberListResponseDto {
     private LocalDateTime applicationDate;
     @Schema(description = "코멘트")
     private String comment;
+    @Schema(description = "코멘트")
+    private boolean isAssment;
 
     public MemberListResponseDto(Team team) {
         User user = team.getUser();
@@ -35,6 +37,7 @@ public class MemberListResponseDto {
         this.email = user.getEmail();
         this.userPropensityType = user.getUserPropensityType();
         this.applicationDate = team.getCreatedAt();
+        this.isAssment = team.isAssement();
     }
 
     public MemberListResponseDto(Applicant applicant) {
