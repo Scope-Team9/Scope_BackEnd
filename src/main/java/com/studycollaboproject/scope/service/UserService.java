@@ -12,6 +12,7 @@ import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
 import java.util.*;
 
@@ -29,20 +30,20 @@ public class UserService {
     private final ApplicantRepository applicantRepository;
     private final TeamRepository teamRepository;
 
-    public MypageResponseDto Mypage(User mypageUser, UserDetails userDetails, MypagePostListDto mypagePostListDto){
+    public MypageResponseDto Mypage(User mypageUser, UserDetails userDetails, MypagePostListDto mypagePostListDto) {
         boolean isMyMypage;
-        if (!(userDetails ==null)) {
+        if (!(userDetails == null)) {
             User user = loadUserBySnsId(userDetails.getUsername());
-            isMyMypage = isMyMypage(user,mypageUser);
+            isMyMypage = isMyMypage(user, mypageUser);
         } else {
             isMyMypage = false;
         }
         List<PostResponseDto> bookmarkList = getBookmarkList(mypageUser);
-        return new MypageResponseDto(mypagePostListDto,bookmarkList,isMyMypage);
+        return new MypageResponseDto(mypagePostListDto, bookmarkList, isMyMypage);
 
     }
 
-    public boolean isMyMypage(User user, User mypageUser){
+    public boolean isMyMypage(User user, User mypageUser) {
         return user.equals(mypageUser);
     }
 
@@ -58,7 +59,7 @@ public class UserService {
 
     //기술스택 리스트와 유저 정보를 같이 DB에 저장
     public UserResponseDto saveUser(List<String> techStack, User user) {
-        user.addTechStackList(techStackConverter.convertStringToTechStack(techStack,user, null));
+        user.addTechStackList(techStackConverter.convertStringToTechStack(techStack, user, null));
         User savedUser = userRepository.save(user);
 
         return new UserResponseDto(savedUser, techStackConverter.convertTechStackToString(user.getTechStackList()));
@@ -76,7 +77,7 @@ public class UserService {
                 () -> new RestApiException(ErrorCode.NO_USER_ERROR));
     }
 
-    public User loadUnknownUser(){
+    public User loadUnknownUser() {
         return userRepository.findByUserPropensityType("unknown");
     }
 
@@ -96,36 +97,36 @@ public class UserService {
     }
 
     //sns 로그인 시 기존 회원 여부 판단
-    public ResponseDto SignupEmailCheck(String snsId, Long id) {
-        Optional<User> user = userRepository.findBySnsId(snsId);
-        if (user.isPresent()) {
-
-            LoginReponseDto loginReponseDto = new LoginReponseDto(jwtTokenProvider.createToken(user.get().getSnsId()), user.get().getEmail(), user.get().getNickname());
-            return new ResponseDto("200", "로그인이 완료되었습니다", loginReponseDto);
+    public ResponseDto SignupEmailCheck(String email, String snsId, String sns) {
+        String id = sns + snsId;
+        User user = userRepository.findBySnsId(id).orElse(null);
+        if (user == null) {
+            return new ResponseDto("300", "추가 정보 작성이 필요한 사용자입니다.", new SnsInfoDto(email, id));
         } else {
-            return new ResponseDto("300", "추가 정보 작성이 필요한 사용자입니다.",new SnsInfoDto(snsId,id));
+            LoginReponseDto loginReponseDto = new LoginReponseDto(jwtTokenProvider.createToken(id), user.getEmail(), user.getNickname());
+            return new ResponseDto("200", "로그인이 완료되었습니다", loginReponseDto);
         }
     }
 
     //북마크 체크여부 판단
     @Transactional
     public ResponseDto bookmarkCheck(Long postId, String snsId) {
-        Post post = postRepository.findById(postId).orElseThrow(()->
+        Post post = postRepository.findById(postId).orElseThrow(() ->
                 new RestApiException(ErrorCode.NO_POST_ERROR));
         User user = loadUserBySnsId(snsId);
-        if (post.getUser().equals(user)){
+        if (post.getUser().equals(user)) {
             throw new RestApiException(ErrorCode.NO_BOOKMARK_MY_POST_ERROR);
         }
-        Map<String ,String> isBookmarkChecked = new HashMap<>();
+        Map<String, String> isBookmarkChecked = new HashMap<>();
 
-        if (postService.isBookmarkChecked(postId, snsId)){
-            bookmarkRepository.deleteByUserAndPost(user,post);
-            isBookmarkChecked.put("isBookmarkChecked","false");
-            return new ResponseDto("200","북마크 삭제 성공",isBookmarkChecked);
-        }else {
-            bookmarkRepository.save(new Bookmark(user,post));
-            isBookmarkChecked.put("isBookmarkChecked","true");
-            return new ResponseDto("200","북마크 추가 성공",isBookmarkChecked);
+        if (postService.isBookmarkChecked(postId, snsId)) {
+            bookmarkRepository.deleteByUserAndPost(user, post);
+            isBookmarkChecked.put("isBookmarkChecked", "false");
+            return new ResponseDto("200", "북마크 삭제 성공", isBookmarkChecked);
+        } else {
+            bookmarkRepository.save(new Bookmark(user, post));
+            isBookmarkChecked.put("isBookmarkChecked", "true");
+            return new ResponseDto("200", "북마크 추가 성공", isBookmarkChecked);
         }
     }
 
@@ -141,16 +142,16 @@ public class UserService {
         techStackRepository.deleteAllByUser(user);
         user.resetTechStack();
 
-        if (nicknameCheckByNickname(nickname)){
+        if (nicknameCheckByNickname(nickname)) {
             throw new RestApiException(ErrorCode.ALREADY_NICKNAME_ERROR);
-        }else if(emailCheckByEmail(email)){
+        } else if (emailCheckByEmail(email)) {
             throw new RestApiException(ErrorCode.ALREADY_EMAIL_ERROR);
         }
 
         techStackRepository.deleteAllByUser(user);
         user.resetTechStack();
-        user.updateUserInfo(email,nickname,
-                techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(),user, null));
+        user.updateUserInfo(email, nickname,
+                techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(), user, null));
 
         return new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList()));
     }
@@ -165,9 +166,8 @@ public class UserService {
     }
 
 
-
     @Transactional
-    public ResponseDto deleteUser(User user){
+    public ResponseDto deleteUser(User user) {
         List<Post> postList = postRepository.findAllByUser(user);
         for (Post post : postList) {
             post.deleteUser(loadUnknownUser());
@@ -180,9 +180,8 @@ public class UserService {
 
         userRepository.delete(user);
 
-        return new ResponseDto("OK","성공적으로 회원 정보가 삭제되었습니다.","");
+        return new ResponseDto("OK", "성공적으로 회원 정보가 삭제되었습니다.", "");
     }
-
 
 
 }
