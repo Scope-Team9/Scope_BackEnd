@@ -35,7 +35,7 @@ public class AssessmentRestController {
     @PostMapping("/api/assessment/{postId}")
     public ResponseDto assessmentMember(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
                                         @RequestBody AssessmentRequestDto requestDto,
-                                        @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) throws JsonProcessingException {
+                                        @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("POST, [{}], /api/assessment/{}, userIds={}", MDC.get("UUID"), postId, requestDto.getUserIds().toString());
 
         if (userDetails == null) {

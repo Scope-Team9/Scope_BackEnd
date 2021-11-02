@@ -19,7 +19,8 @@ public enum ErrorCode {
     IMAGE_SAVE_ERROR("이미지 저장에 실패하였습니다."),
     INVALID_INPUT_ERROR("입력 값이 잘못되었습니다."),
     NO_BOOKMARK_MY_POST("자신의 게시물은 북마크할 수 없습니다."),
-    NO_TEAM_ERROR("프로젝트의 팀 구성원이 아닙니다.");
+    NO_TEAM_ERROR("프로젝트의 팀 구성원이 아닙니다."),
+    NO_ASSESSMENT_MYSELF("자신은 평가할 수 없습니다");
 
     private String message;
 }

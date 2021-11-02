@@ -30,30 +30,34 @@ public class AssessmentService {
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new RestApiException(ErrorCode.NO_POST_ERROR)
         );
-        List<Team> member = teamRepository.findAllByPost(post);
+        List<Team> team = teamRepository.findAllByPost(post);
         List<String> userList = new ArrayList<>();
 
         for (Long userId : userIds) {
-            for (int i = 0; i < member.size(); i++) {
-                if (member.get(i).getUser().getId().equals(userId)) {
-                    userList.add(member.get(i).getUser().getUserPropensityType());    //user -> member.get(i) 추천
-                    break;
-                }
+            for (Team team1 : team) {
+                Long teamUserId =team1.getUser().getId();
+                    if (teamUserId.equals(userId)&&!teamUserId.equals(user.getId())) {
+                        userList.add(team1.getUser().getUserPropensityType());
+                        break;
+                    }
+
             }
         }
+
         String rater = user.getUserPropensityType();
-        return getAssessmentResult(rater,userList);
+        return getAssessmentResult(rater, userList);
 
     }
 
 
     public ResponseDto getAssessmentResult(String rater, List<String> userList) {
+
         for (String member : userList) {
-            TotalResult totalResult = totalResultRepository.findByUserTypeAndMemberType(rater,member);
-            Long result = totalResult.getResult()+1L;
+            TotalResult totalResult = totalResultRepository.findByUserTypeAndMemberType(rater, member);
+            Long result = totalResult.getResult() + 1L;
             totalResult.setResult(result);
         }
-        return new ResponseDto("200","추천 결과가 저장되었습니다.","");
+        return new ResponseDto("200", "추천 결과가 저장되었습니다.", "");
     }
 
 
