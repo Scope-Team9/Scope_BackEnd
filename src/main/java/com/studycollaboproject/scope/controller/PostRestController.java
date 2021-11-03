@@ -50,7 +50,7 @@ public class PostRestController {
                                 @Parameter(description = "디스플레이 수", in = ParameterIn.QUERY, example = "15") @RequestParam int displayNumber,
                                 @Parameter(description = "페이지 수", in = ParameterIn.QUERY, example = "1") @RequestParam int page,
                                 @Parameter(description = "정렬 기준", in = ParameterIn.QUERY, example = "createdAt") @RequestParam String sort,
-                                @Parameter(description = "북마크 / 추천", in = ParameterIn.QUERY, example = "bookmark") @RequestParam String bookmarkRecommend,
+                                @Parameter(description = "북마크 / 추천", in = ParameterIn.QUERY, example = "bookmark", allowEmptyValue = true) @RequestParam String bookmarkRecommend,
                                 @Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails) {
         log.info("GET, [{}], /api/post, filter={}, displayNumber={}, page={}, sort={}, bookmarkRecommend={}", MDC.get("UUID"), filter, displayNumber, page, sort, bookmarkRecommend);
         String SnsId = "";
