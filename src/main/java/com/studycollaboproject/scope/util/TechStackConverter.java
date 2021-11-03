@@ -37,14 +37,14 @@ public class TechStackConverter {
                         TechStackList.add(new TechStack(Tech.TECH_PYTHON, user));
                     }
                     break;
-                case "Node.js":
+                case "Node":
                     if(user == null){
                         TechStackList.add(new TechStack(Tech.TECH_NODEJS, post));
                     } else {
                         TechStackList.add(new TechStack(Tech.TECH_NODEJS, user));
                     }
                     break;
-                case "C++":
+                case "cpp":
                     if(user == null){
                         TechStackList.add(new TechStack(Tech.TECH_CPP, post));
                     } else {
@@ -65,7 +65,7 @@ public class TechStackConverter {
                         TechStackList.add(new TechStack(Tech.TECH_DJANGO, user));
                     }
                     break;
-                case "Vue.js":
+                case "Vue":
                     if(user == null){
                         TechStackList.add(new TechStack(Tech.TECH_VUE, post));
                     } else {
@@ -79,14 +79,7 @@ public class TechStackConverter {
                         TechStackList.add(new TechStack(Tech.TECH_REACT, user));
                     }
                     break;
-                case "React Native":
-                    if(user == null){
-                        TechStackList.add(new TechStack(Tech.TECH_REACTNATIVE, post));
-                    } else {
-                        TechStackList.add(new TechStack(Tech.TECH_REACTNATIVE, user));
-                    }
-                    break;
-                case "PHP":
+                case "php":
                     if(user == null){
                         TechStackList.add(new TechStack(Tech.TECH_PHP, post));
                     } else {
@@ -112,13 +105,6 @@ public class TechStackConverter {
                         TechStackList.add(new TechStack(Tech.TECH_TYPESCRIPT, post));
                     } else {
                         TechStackList.add(new TechStack(Tech.TECH_TYPESCRIPT, user));
-                    }
-                    break;
-                case "Angular.js":
-                    if(user == null){
-                        TechStackList.add(new TechStack(Tech.TECH_ANGULAR, post));
-                    } else {
-                        TechStackList.add(new TechStack(Tech.TECH_ANGULAR, user));
                     }
                     break;
                 case "Spring":
@@ -149,10 +135,10 @@ public class TechStackConverter {
                 case "Python":
                     TechList.add(Tech.TECH_PYTHON);
                     break;
-                case "Node.js":
+                case "Node":
                     TechList.add(Tech.TECH_NODEJS);
                     break;
-                case "C++":
+                case "cpp":
                     TechList.add(Tech.TECH_CPP);
                     break;
                 case "Flask":
@@ -161,16 +147,13 @@ public class TechStackConverter {
                 case "Django":
                     TechList.add(Tech.TECH_DJANGO);
                     break;
-                case "Vue.js":
+                case "Vue":
                     TechList.add(Tech.TECH_VUE);
                     break;
                 case "React":
                     TechList.add(Tech.TECH_REACT);
                     break;
-                case "React Native":
-                    TechList.add(Tech.TECH_REACTNATIVE);
-                    break;
-                case "PHP":
+                case "php":
                     TechList.add(Tech.TECH_PHP);
                     break;
                 case "Swift":
@@ -181,9 +164,6 @@ public class TechStackConverter {
                     break;
                 case "TypeScript":
                     TechList.add(Tech.TECH_TYPESCRIPT);
-                    break;
-                case "Angular.js":
-                    TechList.add(Tech.TECH_ANGULAR);
                     break;
                 case "Spring":
                     TechList.add(Tech.TECH_SPRING);

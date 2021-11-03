@@ -63,6 +63,7 @@ public class User extends Timestamped {
         this.nickname = signupRequestDto.getNickname();
         this.userPropensityType = userTestResult;
         this.memberPropensityType = memberTestResult;
+        this.introduction = "";
     }
     public User(SignupTestDto signupTestDto){
         this.email =signupTestDto.getEmail();
@@ -70,6 +71,7 @@ public class User extends Timestamped {
         this.nickname = signupTestDto.getNickname();
         this.userPropensityType = signupTestDto.getUserPropensityType();
         this.memberPropensityType = signupTestDto.getMemberPropensityType();
+        this.introduction = "";
     }
     public User(String snsId,String userPropensityType,String memberPropensityType, String nickname,String email){
         this.snsId = snsId;
@@ -77,6 +79,7 @@ public class User extends Timestamped {
         this.userPropensityType = userPropensityType;
         this.memberPropensityType = memberPropensityType;
         this.nickname = nickname;
+        this.introduction = "";
     }
 
     public User(TestUserSetupDto testUserSetupDto) {
@@ -85,7 +88,7 @@ public class User extends Timestamped {
         this.email = testUserSetupDto.getEmail();
         this.snsId = testUserSetupDto.getSnsId();
         this.memberPropensityType = testUserSetupDto.getMemberPropensityType();
-
+        this.introduction = "";
     }
 
     public void addTechStackList(List<TechStack> techStackList){
