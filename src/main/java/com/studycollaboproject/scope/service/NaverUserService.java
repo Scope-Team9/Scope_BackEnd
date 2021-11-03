@@ -20,13 +20,13 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 public class NaverUserService {
     public SnsInfoDto naverLogin(String code, String statusToken) throws JsonProcessingException {
-        String accessToken = getAccessToken(code,statusToken);
+        String accessToken = getAccessToken(code, statusToken);
 
 
         return getNaverUserInfo(accessToken);
     }
 
-    private String getAccessToken(String code,String statusToken) throws JsonProcessingException {
+    private String getAccessToken(String code, String statusToken) throws JsonProcessingException {
 
         // HTTP Header 생성
         HttpHeaders headers = new HttpHeaders();
@@ -44,7 +44,7 @@ public class NaverUserService {
                 new HttpEntity<>(body, headers);
         RestTemplate rt = new RestTemplate();
         ResponseEntity<String> response = rt.exchange(
-                "https://nid.naver.com/oauth2.0/token?client_id=po1xo1mV04k2Wf9inz5n&client_secret=bQh5oMOLU8&grant_type=authorization_code&state="+statusToken+"&code="+code,
+                "https://nid.naver.com/oauth2.0/token?client_id=po1xo1mV04k2Wf9inz5n&client_secret=bQh5oMOLU8&grant_type=authorization_code&state=" + statusToken + "&code=" + code,
                 HttpMethod.POST,
                 naverTokenRequest,
                 String.class
@@ -77,9 +77,9 @@ public class NaverUserService {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(responseBody);
         log.info("getNaverUserInfo responseBody = {}", responseBody);
-        Long id = jsonNode.get("id").asLong();
+        String id = jsonNode.get("id").asText();
         String email = jsonNode.get("email").asText();
-        return new SnsInfoDto(email,id);
+        return new SnsInfoDto(email, id);
 
     }
 }

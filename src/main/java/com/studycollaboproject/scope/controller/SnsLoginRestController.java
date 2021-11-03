@@ -39,7 +39,7 @@ public class SnsLoginRestController {
     public ResponseDto kakaoLogin(@Parameter(description = "코드 값", in = ParameterIn.QUERY) @RequestParam String code) throws JsonProcessingException {
         log.info("GET, [{}], /api/login/kakao, code={}", MDC.get("UUID"), code);
         SnsInfoDto snsInfoDto = kakaoUserService.kakaoLogin(code);
-        return userService.SignupEmailCheck(snsInfoDto.getEmail(), snsInfoDto.getId());
+        return userService.SignupEmailCheck(snsInfoDto.getEmail(), snsInfoDto.getId(),"K-");
     }
 
     @Operation(summary = "Github 로그인")
@@ -47,7 +47,7 @@ public class SnsLoginRestController {
     public ResponseDto githubLogin(@Parameter(description = "코드 값", in = ParameterIn.QUERY) @RequestParam String code) throws JsonProcessingException {
         log.info("GET, [{}], /api/login/github, code={}", MDC.get("UUID"), code);
         SnsInfoDto snsInfoDto = githubUserService.githubLogin(code);
-        return userService.SignupEmailCheck(snsInfoDto.getEmail(),snsInfoDto.getId());
+        return userService.SignupEmailCheck(snsInfoDto.getEmail(),snsInfoDto.getId(), "G-");
     }
 
     @Operation(summary = "상태 토큰값 가져오기")
@@ -68,6 +68,6 @@ public class SnsLoginRestController {
                                   @Parameter(description = "상태 토큰 값", in = ParameterIn.QUERY) @RequestParam String statusToken) throws JsonProcessingException {
         log.info("GET, [{}], /api/login/naver, code={}", MDC.get("UUID"), code);
         SnsInfoDto snsInfoDto = naverUserService.naverLogin(code, statusToken);
-        return userService.SignupEmailCheck(snsInfoDto.getEmail(), snsInfoDto.getId());
+        return userService.SignupEmailCheck(snsInfoDto.getEmail(), snsInfoDto.getId(), "N-");
     }
 }

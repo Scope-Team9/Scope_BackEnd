@@ -35,9 +35,9 @@ public class TestService {
         for (String userSelected : userPropensityType) {
             userTypeMap.put(userSelected, userTypeMap.getOrDefault(userSelected, 0) + 1);
         }
-        userType.append(userTypeMap.get("L") > userTypeMap.get("F") ? 'L' : 'F');
-        userType.append(userTypeMap.get("V") > userTypeMap.get("H") ? 'V' : 'H');
-        userType.append(userTypeMap.get("P") > userTypeMap.get("G") ? 'P' : 'G');
+        userType.append(userTypeMap.getOrDefault("L", 0) > userTypeMap.getOrDefault("F", 0) ? 'L' : 'F');
+        userType.append(userTypeMap.getOrDefault("V", 0) > userTypeMap.getOrDefault("H", 0) ? 'V' : 'H');
+        userType.append(userTypeMap.getOrDefault("P", 0) > userTypeMap.getOrDefault("G", 0) ? 'P' : 'G');
 
         return new String(userType);
     }

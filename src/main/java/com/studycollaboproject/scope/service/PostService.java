@@ -81,28 +81,44 @@ public class PostService {
                                 int displayNumber,
                                 int page,
                                 String sort,
-                                String snsId) {
+                                String snsId,
+                                String bookmarkRecommend) {
+
 
         // 필터링 될 포스트배열
         List<Post> filterPosts = new ArrayList<>();
-        // 잠시 북마크가 담길 포스트 배열
-        List<Post> filterTemp = new ArrayList<>();
-        List<Tech> techList;
         List<TechStack> techStackList;
-        List<String> filterList;
+        // String으로 받아온 filter 값을 세미콜론으로 스플릿
+        List<String> filterList = Arrays.asList(filter.split(";"));
+        // 받아온 techStack 값을 List<Tech>로 전환
+        List<Tech> techList = techStackConverter.convertStringToTech(filterList);
         // 반환될 포스트 배열
         List<PostResponseDto> postResponseDtos = new ArrayList<>();
 
-        filterList = Arrays.asList(filter.split(";"));
-        // 선택한 기술스택 있으면 filterPosts에 필터링된 값을 담아준다.
-        if (filter != null && !filter.isEmpty() && !filterList.isEmpty()) {
-            // String으로 받아온 filter 값을 세미콜론으로 스플릿
-            // String[] splitStr = filter.split(";");
-            // filterList = new ArrayList<>(Arrays.asList(splitStr));
-//            filterList = Arrays.asList(filter.split(";"));
+        // bookmarkRecommend가 recommend라면 추천 포스트만 리턴한다.
+        if ("recommend".equals(bookmarkRecommend)) {
+            List<String> propensityTypeList = getPropensityTypeList(snsId);
+            for (String propensityType : propensityTypeList) {
+                filterPosts.addAll(postRepository.findAllByUserMemberPropensityType(propensityType));
+            }
+            sendByDisplayNumber(displayNumber, page, filterPosts, snsId);
+            return new ResponseDto("200", "success", postResponseDtos);
+        }
 
-            // 받아온 techStack 값을 List<Tech>로 전환
-            techList = techStackConverter.convertStringToTech(filterList);
+        // bookmarkRecommend가 Bookmark라면 북마크 포스트만 리턴한다.
+        else if ("bookmark".equals(bookmarkRecommend)) {
+            List<Bookmark> bookmarkList = bookmarkRepository.findAllByUserNickname(snsId);
+            for (Bookmark bookmark : bookmarkList) {
+                Post post = bookmark.getPost();
+                filterPosts.add(post);
+            }
+            sendByDisplayNumber(displayNumber, page, filterPosts, snsId);
+            return new ResponseDto("200", "success", postResponseDtos);
+        }
+
+
+        // 선택한 기술스택 있으면 filterPosts에 필터링된 값을 담아준다.
+        if (!filterList.isEmpty()) {
 
             // techList에 포함된 TehcStack을 techStackList에 저장
             techStackList = techStackRepository.findAllByTechIn(techList);
@@ -120,16 +136,7 @@ public class PostService {
 
 
         switch (sort) {
-            case "bookmark":
-                List<Bookmark> bookmarkList = bookmarkRepository.findAllByPostInAndUserNickname(filterPosts, snsId);
-                for (Bookmark bookmark : bookmarkList) {
-                    Post post = bookmark.getPost();
-                    filterTemp.add(post);
 
-                    // 필터포스트 재정의
-                    filterPosts = filterTemp;
-                }
-                break;
             case "createdAt":
                 filterPosts.sort(Comparator.comparing(Post::getCreatedAt));
                 break;
@@ -137,30 +144,11 @@ public class PostService {
             case "deadline":
                 filterPosts.sort(Comparator.comparing(Post::getStartDate));
                 break;
-
-            case "recommend":
-                List<String> propensityTypeList = getPropensityTypeList(snsId);
-
-                for (String propensityType : propensityTypeList) {
-                    filterPosts.addAll(postRepository.findByUserMemberPropensityType(propensityType));
-                }
-
         }
 
 
         // display number와 Page 사용해서 객체 수 만큼 넘기기
-        int index = displayNumber * page;
-
-        for (int i = index; i < index + displayNumber; i++) {
-            if (filterPosts.size() == 0 || filterPosts.size() <= i) {
-                break;
-            }
-
-            boolean bookmarkChecked = isBookmarkChecked(filterPosts.get(i).getId(), snsId);
-            PostResponseDto postResponseDto = new PostResponseDto(filterPosts.get(i), bookmarkChecked);
-            postResponseDtos.add(postResponseDto);
-        }
-
+        postResponseDtos = sendByDisplayNumber(displayNumber, page, filterPosts, snsId);
         return new ResponseDto("200", "success", postResponseDtos);
     }
 
@@ -246,6 +234,21 @@ public class PostService {
         return postRepository.findByIdAndUser(postId, user).orElseThrow(
                 () -> new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR)
         );
+    }
+
+    public List<PostResponseDto> sendByDisplayNumber(int displayNumber, int page, List<Post> filterPosts, String snsId) {
+        List<PostResponseDto> postResponseDtos = new ArrayList<>();
+        int index = displayNumber * page;
+        for (int i = index; i < index + displayNumber; i++) {
+            if (filterPosts.size() == 0 || filterPosts.size() < index) {
+                break;
+            }
+            boolean bookmarkChecked = isBookmarkChecked(filterPosts.get(i).getId(), snsId);
+            PostResponseDto postResponseDto = new PostResponseDto(filterPosts.get(i), bookmarkChecked);
+            postResponseDtos.add(postResponseDto);
+
+        }
+        return postResponseDtos;
     }
 
     @Transactional
