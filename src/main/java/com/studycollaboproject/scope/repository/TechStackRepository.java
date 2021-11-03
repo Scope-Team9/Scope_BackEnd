@@ -9,10 +9,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface TechStackRepository extends JpaRepository<TechStack, Long> {
-
-
     List<TechStack> findAllByTechIn(List<Tech> Tech);
+
     void deleteAllByUser(User user);
 
     void deleteAllByPost(Post post);
+
+    List<TechStack> findAllByUserIsNullAndTechIn(List<Tech> tech);
 }

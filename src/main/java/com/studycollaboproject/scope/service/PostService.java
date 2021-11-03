@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -98,10 +99,14 @@ public class PostService {
         // bookmarkRecommend가 recommend라면 추천 포스트만 리턴한다.
         if ("recommend".equals(bookmarkRecommend)) {
             List<String> propensityTypeList = getPropensityTypeList(snsId);
+            List<Tech> tech = userRepository.findBySnsId(snsId).orElseThrow(
+                    () -> new RestApiException(ErrorCode.NO_USER_ERROR)
+            ).getTechStackList().stream().map(TechStack::getTech).collect(Collectors.toList());
             for (String propensityType : propensityTypeList) {
-                filterPosts.addAll(postRepository.findAllByUserMemberPropensityType(propensityType));
+                filterPosts.addAll(postRepository.findAllByUserMemberPropensityTypeAndProjectStatusAndUserSnsIdIsNotAndTechStackList_TechInOrderByStartDate(propensityType, ProjectStatus.PROJECT_STATUS_RECRUITMENT, "unknown", techList));
             }
-            sendByDisplayNumber(displayNumber, page, filterPosts, snsId);
+            postResponseDtos = sendByDisplayNumber(displayNumber, page, filterPosts, snsId);
+
             return new ResponseDto("200", "success", postResponseDtos);
         }
 
@@ -112,7 +117,7 @@ public class PostService {
                 Post post = bookmark.getPost();
                 filterPosts.add(post);
             }
-            sendByDisplayNumber(displayNumber, page, filterPosts, snsId);
+            postResponseDtos = sendByDisplayNumber(displayNumber, page, filterPosts, snsId);
             return new ResponseDto("200", "success", postResponseDtos);
         }
 
@@ -121,13 +126,15 @@ public class PostService {
         if (!filterList.isEmpty()) {
 
             // techList에 포함된 TehcStack을 techStackList에 저장
-            techStackList = techStackRepository.findAllByTechIn(techList);
-
-            // 저장된 techStackList에서 post를 가져옴
-            for (TechStack techStack : techStackList) {
-                Post post = techStack.getPost();
-                filterPosts.add(post);
-            }
+//            techStackList = techStackRepository.findAllByUserisNullTechIn(techList);
+//
+//            // 저장된 techStackList에서 post를 가져옴
+//            for (TechStack techStack : techStackList) {
+//                Post post = techStack.getPost();
+//                filterPosts.add(post);
+//            }
+            List<Post> findPostAll = postRepository.findAllByTechStackList_TechIn(techList);
+            filterPosts.addAll(findPostAll);
         }
         // 선택된 기술스택이 없으면 전체  포스트를 담아준다.
         else {
@@ -194,12 +201,12 @@ public class PostService {
 
         totalResultList.sort(Comparator.comparing(TotalResult::getResult));
 
-        List<String> sortedRecommededList = new ArrayList<>();
+        List<String> sortedRecommendedList = new ArrayList<>();
         for (TotalResult totalResult : totalResultList) {
-            sortedRecommededList.add(totalResult.getMemberType());
+            sortedRecommendedList.add(totalResult.getMemberType());
         }
 
-        return sortedRecommededList;
+        return sortedRecommendedList;
     }
 
 
