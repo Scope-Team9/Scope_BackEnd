@@ -27,7 +27,7 @@ public class RestApiExceptionHandler {
 
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     public ResponseEntity<Object> handleApiRequestErrorException(MethodArgumentNotValidException ex) {
-        String msg = Objects.requireNonNull(ex.getFieldError()).getDefaultMessage();
+        String msg = Objects.requireNonNull(ex.getMessage());
         log.info("400 Bad Request Parameter Error, [{}], message={}", MDC.get("UUID"), msg);
         ResponseDto restApiException = new ResponseDto("400", msg, "");
         return new ResponseEntity<>(

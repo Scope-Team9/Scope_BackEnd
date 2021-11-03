@@ -138,7 +138,7 @@ public class PostService {
         switch (sort) {
 
             case "createdAt":
-                filterPosts.sort(Comparator.comparing(Post::getCreatedAt));
+                filterPosts.sort(Comparator.comparing(Post::getCreatedAt, Comparator.reverseOrder()));
                 break;
 
             case "deadline":
