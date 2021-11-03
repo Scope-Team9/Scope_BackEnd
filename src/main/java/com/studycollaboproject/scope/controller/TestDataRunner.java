@@ -18,7 +18,7 @@ public class TestDataRunner implements ApplicationRunner {
     private final UserRepository userRepository;
 
     @Override
-    public void run(ApplicationArguments args) {
+    public void run(ApplicationArguments args){
         if (totalResultRepository.count() == 0L) {
             String[] propersityTypeList = {"LVG", "LVP", "LHG", "LHP", "FVG", "FVP", "FHG", "FHP"};
 
@@ -29,7 +29,6 @@ public class TestDataRunner implements ApplicationRunner {
                 }
             }
         }
-
 
         if(userRepository.findBySnsId("unknown").isEmpty()){
             User user = new User(new TestUserSetupDto());

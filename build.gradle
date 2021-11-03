@@ -33,6 +33,8 @@ dependencies {
     runtimeOnly(group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2')
     runtimeOnly(group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2')
 
+    //email
+    compileOnly 'org.springframework.boot:spring-boot-starter-mail'
 
     //log
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2:1.16'

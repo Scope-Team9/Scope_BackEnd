@@ -1,6 +1,6 @@
 package com.studycollaboproject.scope.service;
 
-import com.studycollaboproject.scope.dto.ResponseDto;
+import com.studycollaboproject.scope.dto.MailDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.*;
@@ -23,7 +23,7 @@ public class AssessmentService {
     private final TotalResultRepository totalResultRepository;
 
     @Transactional
-    public ResponseDto assessmentMember(Long postId, User rater, List<Long> userIds) {
+    public MailDto assessmentMember(Long postId, User rater, List<Long> userIds) {
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new RestApiException(ErrorCode.NO_POST_ERROR)
         );
@@ -31,7 +31,8 @@ public class AssessmentService {
             throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
         List<Team> teamList = teamRepository.findAllByPost(post);
-        List<String> userList = new ArrayList<>();
+        List<String> userTypeList = new ArrayList<>();
+        List<User> userList=new ArrayList<>();
         Long teamUserId;
         for (Long userId : userIds) {
             for (Team team : teamList) {
@@ -47,26 +48,27 @@ public class AssessmentService {
                 team.getPost().updateStatus("종료");
                 teamUserId = team.getUser().getId();
                 if (teamUserId.equals(userId) && !teamUserId.equals(rater.getId())) {
-                    userList.add(team.getUser().getUserPropensityType());
+                    userList.add(team.getUser());
+                    userTypeList.add(team.getUser().getUserPropensityType());
                     break;
                 }
             }
         }
-
         String raterType = rater.getUserPropensityType();
-        return getAssessmentResult(raterType, userList);
+        getAssessmentResult(raterType, userTypeList);
+        return new MailDto(userList,post);
 
     }
 
 
-    public ResponseDto getAssessmentResult(String rater, List<String> userList) {
+    public void getAssessmentResult(String rater, List<String> userList) {
 
         for (String member : userList) {
             TotalResult totalResult = totalResultRepository.findByUserTypeAndMemberType(rater, member);
             Long result = totalResult.getResult() + 1L;
             totalResult.setResult(result);
         }
-        return new ResponseDto("200", "추천 결과가 저장되었습니다.", "");
+
     }
 
 
