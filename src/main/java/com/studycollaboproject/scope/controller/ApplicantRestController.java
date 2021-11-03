@@ -1,13 +1,16 @@
 package com.studycollaboproject.scope.controller;
 
 import com.studycollaboproject.scope.dto.ApplicantRequestDto;
+import com.studycollaboproject.scope.dto.MailDto;
 import com.studycollaboproject.scope.dto.MemberListResponseDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.model.Applicant;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
 import com.studycollaboproject.scope.service.ApplicantService;
+import com.studycollaboproject.scope.service.MailService;
 import com.studycollaboproject.scope.service.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -19,6 +22,8 @@ import org.slf4j.MDC;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 
@@ -30,19 +35,21 @@ public class ApplicantRestController {
 
     private final ApplicantService applicantService;
     private final PostService postService;
+    private final MailService mailService;
 
     @Operation(summary = "모집 지원하기")
     @PostMapping("/api/applicant/{postId}")
     public ResponseDto apply(@Parameter(in = ParameterIn.PATH, description = "프로젝트 ID") @PathVariable Long postId,
                              @RequestBody ApplicantRequestDto requestDto,
-                             @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
+                             @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) throws MessagingException {
         log.info("POST, [{}], /api/applicant/{}, comment={}", MDC.get("UUID"), postId, requestDto.getComment());
 
         if (userDetails == null) {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
 
-        applicantService.applyPost(userDetails.getSnsId(), postId, requestDto.getComment());
+        Applicant applicant = applicantService.applyPost(userDetails.getSnsId(), postId, requestDto.getComment());
+        mailService.applicantMAilBilder(new MailDto(applicant));
 
         return new ResponseDto("200", "", "");
     }

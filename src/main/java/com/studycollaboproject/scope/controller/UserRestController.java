@@ -74,11 +74,6 @@ public class UserRestController {
         map.put("token", userService.createToken(user));
         map.put("user", userResponseDto);
 
-//        String token = userService.signup(user);
-//        Cookie cookie = new Cookie("token",token);
-//        cookie.setMaxAge(60*60*24*30);
-//        response.addCookie(cookie); // 추가구현 필요
-//        return new ResponseDto("200", "", "");
         return new ResponseDto("200", "", map);
     }
 

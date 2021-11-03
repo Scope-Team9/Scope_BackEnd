@@ -25,7 +25,7 @@ public class TeamService {
     private final ApplicantRepository applicantRepository;
 
     @Transactional
-    public void acceptMember(Post post, User user, Boolean accept) {
+    public Team acceptMember(Post post, User user, Boolean accept) {
         Applicant applicant = applicantRepository.findByUserAndPost(user, post).orElseThrow(
                 () -> new RestApiException(ErrorCode.NO_APPLICANT_ERROR)
         );
@@ -36,8 +36,9 @@ public class TeamService {
                     .user(user)
                     .post(post)
                     .build();
-            teamRepository.save(team);
+            return teamRepository.save(team);
         }
+        return null;
     }
 
     @Transactional
