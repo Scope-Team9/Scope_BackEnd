@@ -20,7 +20,8 @@ public enum ErrorCode {
     INVALID_INPUT_ERROR("입력 값이 잘못되었습니다."),
     NO_BOOKMARK_MY_POST_ERROR("자신의 게시물은 북마크할 수 없습니다."),
     NO_TEAM_ERROR("프로젝트의 팀 구성원이 아닙니다."),
-    ALREADY_ASSESSMENT_ERROR("이미 평가를 완료했습니다.");
+    ALREADY_ASSESSMENT_ERROR("이미 평가를 완료했습니다."),
+    TOKEN_EXPRIRATOION("로그인 정보가 만료되었습니다.");
 
     private String message;
 }

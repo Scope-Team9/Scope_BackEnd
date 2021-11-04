@@ -112,6 +112,9 @@ public class UserService {
     public ResponseDto SignupEmailCheck(String email, String snsId, String sns) {
         String id = sns + snsId;
         User user = userRepository.findBySnsId(id).orElse(null);
+
+
+
         if (user == null) {
             return new ResponseDto("300", "추가 정보 작성이 필요한 사용자입니다.", new SnsInfoDto(email, id));
         } else {
