@@ -122,7 +122,7 @@ public class TestDataRunner implements ApplicationRunner {
                 techStacks.add(techStack1);
                 techStackRepository.save(techStack1);
             }
-            user.addTechStackList(techStacks);
+//            user.addTechStackList(techStacks);
             userRepository.save(user);
             userList.add(user);
         }
