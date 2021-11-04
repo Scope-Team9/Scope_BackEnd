@@ -15,7 +15,6 @@ import java.util.List;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-
 public class Post extends Timestamped {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -74,7 +73,7 @@ public class Post extends Timestamped {
     @JsonIgnore
     private List<Applicant> applicantList = new ArrayList<>();
 
-    public Post(PostRequestDto postRequestDto,User user){
+    public Post(PostRequestDto postRequestDto, User user) {
         this.title = postRequestDto.getTitle();
         this.startDate = postRequestDto.getStartDate();
         this.endDate = postRequestDto.getEndDate();
@@ -97,7 +96,7 @@ public class Post extends Timestamped {
 
     }
 
-    public void deleteUser(User user){
+    public void deleteUser(User user) {
         this.user = user;
     }
 
