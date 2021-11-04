@@ -9,7 +9,6 @@ import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.TechStackRepository;
 import com.studycollaboproject.scope.repository.TotalResultRepository;
 import com.studycollaboproject.scope.repository.UserRepository;
-import com.studycollaboproject.scope.security.JwtTokenProvider;
 import com.studycollaboproject.scope.service.PostService;
 import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
