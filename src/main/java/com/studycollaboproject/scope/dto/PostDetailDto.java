@@ -13,6 +13,7 @@ public class PostDetailDto {
     private PostResponseDto post;
     @Schema(description = "프로젝트 맴버")
     private List<MemberListResponseDto> members;
+    @Schema(description = "게시글 작성자인지 여부")
     private boolean isTeamStarter;
     @Schema(description = "북마크 체크 여부")
     private boolean isBookmarkChecked;
