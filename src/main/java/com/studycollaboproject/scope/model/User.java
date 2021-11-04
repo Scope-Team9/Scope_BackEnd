@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Entity
@@ -102,7 +103,7 @@ public class User extends Timestamped {
         this.introduction = "";
         this.isVerifiedEmail = false;
         this.emailReceiveAgreement = false;
-
+        this.mailAuthenticationCode = UUID.randomUUID().toString();
     }
 
     public void addTechStackListAndToken(List<TechStack> techStackList, String token){
