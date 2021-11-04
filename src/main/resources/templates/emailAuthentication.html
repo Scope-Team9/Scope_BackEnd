@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns: lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div style="height:100%;text-align: center;">
+    <table id="m_-704073352182606375bodyTable"
+           style="border-collapse:collapse;border-spacing:0;table-layout:fixed;vertical-align:top;width:100%;">
+        <tbody>
+        <tr>
+            <td style="background-color:#fff;color:#5065df;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:17px;font-weight:400;line-height:28px;padding:0;padding-left:5%;padding-right:5%;vertical-align:top">
+                <table style="border-collapse:collapse;width:50%;max-width:600px;min-width:350px;border-spacing:0;table-layout:fixed;vertical-align:top;margin: auto">
+                    <tbody>
+                    <tr>
+                        <td height="40"
+                            style="color:#5065df;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:0;font-weight:400;height:40px;line-height:0;padding:0;vertical-align:top">
+                        </td>
+                    </tr>
+                    <tr>
+                        <!--                                                                <td valign="top" style="color:#2b2b2b;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:17px;font-weight:400;line-height:1;padding:0;vertical-align:top">-->
+                        <!--                                                                    <a href="https://upbit.com/home" style="font-size:0;line-height:0" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://upbit.com/home&amp;source=gmail&amp;ust=1636043669732000&amp;usg=AFQjCNE9wuLb9shFSWT0Wqe1j9coJXKMwQ"><img src="https://ci3.googleusercontent.com/proxy/doqWF8X8MsVDEIDJ3tUkR1kCMZGgHv9cRd6PvHtZnqDF_yLdO2yLFIZGfEd-f7O0loFRSjwsNr8ESqpjNb7oNE2m2fuLTr0=s0-d-e1-ft#https://static.upbit.com/email/images/upbit_logo.png" alt="upbit" width="79" height="18" style="border:0;height:18px;outline:none;text-decoration:none;width:79px;vertical-align:top" class="CToWUd"></a>-->
+                        <!--                                                                </td>-->
+                    </tr>
+                    <tr>
+                        <td height="60"
+                            style="color:#5065df;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:0;font-weight:400;height:60px;line-height:0;padding:0;vertical-align:top">
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr height="100">
+                        <td style="color:#2b2b2b;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:32px;font-weight:300;line-height:42px;padding:0;vertical-align:top">
+                            이메일 주소 <span class="il">인증</span></td>
+                    </tr>
+                    <tr>
+                        <td style="color:#2b2b2b;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:17px;font-weight:800;line-height:28px;padding:0;vertical-align:top">
+                            <span th:text="${nickname}">님 안녕하세요!<br>아래 버튼을 눌러서 이메일 <span
+                                    class="il">인증</span>을 완료하세요!</span>
+                        </td>
+                    </tr>
+                    <td style="text-align: center">
+                        <table
+                                style="border-collapse:collapse;width:100%">
+                            <tr>
+                                <td height="30" style="line-height:15px">&nbsp;</td>
+                            </tr>
+                            <!--                                                                이메일 인증하기 버튼-->
+                            <tbody>
+                            <td style="font-size:11px;font-family:LucidaGrande,tahoma,verdana,arial,sans-serif;background:#ffffff;display:block">
+                                <table
+                                        style="border-collapse:collapse;width:100%;text-align: center">
+                                    <tbody>
+                                    <td style="font-size:11px;background:#ffffff;border:solid 1px #e5e5e5;border-radius:4px;padding:15px 15px 15px 15px;display:block;width: auto">
+                                        <!--                                                               페이스북 카드박스-->
+                                        <table
+                                                style="border-collapse:collapse;width:100%">
+                                            <!--                                                                프로필사진-->
+                                            <tr>
+                                                <a href="https://www.instagram.com/9_ml_er/?hl=ko"
+                                                   style="color:#3b5998;text-decoration:none"
+                                                   target="_blank"
+                                                >
+                                                    <img
+                                                            alt=""
+                                                            src="https://cdn.pixabay.com/photo/2017/08/07/00/07/fox-2597803_1280.jpg"
+                                                            width="84"
+                                                            height="84"
+                                                            style="border:solid 1px rgba(0,0,0,0.15);border-radius:50%"
+                                                            jslog="138226; u014N:xr6bB; 53:W2ZhbHNlXQ.."></a>
+                                            </tr>
+                                            <!--                                                                닉네임-->
+                                            <tr>
+                                                <div
+                                                        style="font-weight:bold;font-size:16px;color:#1c1e21;margin-bottom: 30px; ">
+                                                    <p th:text="${nickname}"></p>
+                                                </div>
+                                            </tr>
+                                            <!--                                                                한줄코멘트-->
+                                            <td height="60"
+                                                align="center">
+                                                <p th:text="${userEmail}"></p>
+                                            </td><!--        이메일 인증하기 버튼-->
+                                            <tr>
+                                                <td
+                                                        height="60" align="center "
+                                                        style="color:#1b8b2b;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:17px;font-weight:400;line-height:28px;padding:0;vertical-align:top">
+                                                    <a th:href="@{http://localhost:8080/api/user/email/{userId}(userId = ${userId},code = ${code})}"
+                                                       style="background-color:#5065df;border-radius:2px;color:#fff;display:inline-block;padding-bottom:11px;padding-left:30px;padding-right:30px;padding-top:11px;text-align:center;text-decoration:none"
+                                                       target="_blank" data-saferedirecturl="">
+                                        <span style="color:#fff;font-family:sans-serif;font-size:17px;font-weight:600;line-height:28px;text-align:center">&#128231 이메일 <span
+                                                class="il">인증</span>하기</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </tbody>
+                                </table>
+                            </tbody>
+                        </table>
+                    </tbody>
+                </table>
+            </td>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

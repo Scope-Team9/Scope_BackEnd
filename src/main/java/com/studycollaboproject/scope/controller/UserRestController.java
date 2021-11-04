@@ -5,6 +5,7 @@ import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
+import com.studycollaboproject.scope.service.MailService;
 import com.studycollaboproject.scope.service.PostService;
 import com.studycollaboproject.scope.service.TestService;
 import com.studycollaboproject.scope.service.UserService;
@@ -19,6 +20,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +33,7 @@ public class UserRestController {
     private final PostService postService;
     private final UserService userService;
     private final TestService testService;
+    private final MailService mailService;
 
 
     @Operation(summary = "마이 페이지")
@@ -68,10 +71,11 @@ public class UserRestController {
         String userTestResult = testService.testResult(signupRequestDto.getUserPropensityType());
         String memberTestResult = testService.testResult(signupRequestDto.getMemberPropensityType());
         User user = new User(signupRequestDto,userTestResult,memberTestResult);
-        UserResponseDto userResponseDto = userService.saveUser(signupRequestDto.getTechStack(), user);
+        String token = userService.createToken(user);
+        UserResponseDto userResponseDto = userService.saveUser(signupRequestDto.getTechStack(), user,token);
 
         Map<String, Object> map = new HashMap<>();
-        map.put("token", userService.createToken(user));
+        map.put("token", token);
         map.put("user", userResponseDto);
 
         return new ResponseDto("200", "", map);
@@ -81,26 +85,18 @@ public class UserRestController {
     @GetMapping("/api/login/email")
     public ResponseDto emailCheck(@Parameter(description = "이메일", in = ParameterIn.QUERY) @RequestParam String email) {
         log.info("GET, [{}], /api/login/email, email={}", MDC.get("UUID"), email);
-        //email이 이미 존재하면 T 존재하지 않으면 F
-        boolean isEmailPresent = userService.emailCheckByEmail(email);
-        if (isEmailPresent) {
-            throw new RestApiException(ErrorCode.ALREADY_EMAIL_ERROR);
-        } else {
-            return new ResponseDto("200", "사용가능한 메일입니다.", "");
-        }
+
+        return userService.emailCheckByEmail(email);
+
     }
 
     @Operation(summary = "닉네임 중복 확인")
     @GetMapping("/api/login/nickname")
     public ResponseDto nicknameCheck(@Parameter(description = "닉네임", in = ParameterIn.QUERY) @RequestParam String nickname) {
         log.info("GET, [{}], /api/login/nickname, nickname={}", MDC.get("UUID"), nickname);
-        //nickname이 이미 존재하면 T 존재하지 않으면 F
-        boolean isNicknamePresent = userService.nicknameCheckByNickname(nickname);
-        if (isNicknamePresent) {
-            throw  new RestApiException(ErrorCode.ALREADY_NICKNAME_ERROR);
-        } else {
-            return new ResponseDto("200", "사용가능한 닉네임입니다.", "");
-        }
+
+        return userService.nicknameCheckByNickname(nickname);
+
     }
 
     @Operation(summary = "유저 소개 업데이트")
@@ -114,7 +110,6 @@ public class UserRestController {
             return new ResponseDto("200","회원 정보가 수정되었습니다.",userResponseDto);
         }
         else throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
-
 
     }
 
@@ -140,4 +135,21 @@ public class UserRestController {
             throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
     }
+
+    @Operation(summary = "이메일 인증 전송")
+    @GetMapping("api/user/email")
+    public ResponseDto emailAuthentication(@Parameter(description = "이메일", in = ParameterIn.QUERY) @RequestParam String email,
+                                           @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) throws MessagingException {
+        mailService.authMailSender(email,userDetails.getUser());
+        return new ResponseDto("200","이메일이 전송되었습니다.","");
+    }
+
+    @Operation(summary = "이메일 인증 코드 확인")
+    @GetMapping("api/user/email/{userId}")
+    public ResponseDto recemailCode(@Parameter(description = "인증 코드", in = ParameterIn.QUERY) @RequestParam String code,
+                                    @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long userId){
+        mailService.emailAuthCodeCheck(code,userId);
+        return new ResponseDto("200","인증이 성공적으로 이루어졌습니다.","");
+    }
+
 }

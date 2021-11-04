@@ -49,7 +49,7 @@ public class ApplicantRestController {
         }
 
         Applicant applicant = applicantService.applyPost(userDetails.getSnsId(), postId, requestDto.getComment());
-        mailService.applicantMAilBilder(new MailDto(applicant));
+        mailService.applicantMailBilder(new MailDto(applicant));
 
         return new ResponseDto("200", "", "");
     }
