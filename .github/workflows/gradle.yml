@@ -54,7 +54,7 @@ jobs:
         
       # S3로 업로드
     - name: Upload to AWS S3
-      run: aws s3 cp --region ap-northeast-2 --acl private ./scope-build.zip s3://scopedeploymentbucket/scope-build.zip
+      run: aws s3 cp --region ap-northeast-2 --acl private ./scope-build.zip s3://scopedeploymentbucket/scope/scope-build.zip
 
       # Deploy
     - name: Deploy
@@ -66,5 +66,5 @@ jobs:
         --application-name scope-codedeploy \
         --deployment-group-name scope \
         --file-exists-behavior OVERWRITE \
-        --s3-location bucket=scopedeploymentbucket,bundleType=zip,key=scope-build.zip \
+        --s3-location bucket=scopedeploymentbucket,bundleType=zip,key=scope/scope-build.zip \
         --region ap-northeast-2
