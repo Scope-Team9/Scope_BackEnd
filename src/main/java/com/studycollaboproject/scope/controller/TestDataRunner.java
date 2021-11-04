@@ -9,6 +9,7 @@ import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.TechStackRepository;
 import com.studycollaboproject.scope.repository.TotalResultRepository;
 import com.studycollaboproject.scope.repository.UserRepository;
+import com.studycollaboproject.scope.security.JwtTokenProvider;
 import com.studycollaboproject.scope.service.PostService;
 import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,7 @@ public class TestDataRunner implements ApplicationRunner {
     private final PostService postService;
     private final TechStackConverter techStackConverter;
     private final TechStackRepository techStackRepository;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Override
     public void run(ApplicationArguments args){
@@ -122,7 +124,8 @@ public class TestDataRunner implements ApplicationRunner {
                 techStacks.add(techStack1);
                 techStackRepository.save(techStack1);
             }
-//            user.addTechStackList(techStacks);
+            String token = jwtTokenProvider.createToken(user.getSnsId()).split("\\.")[0];
+            user.addTechStackListAndToken(techStacks,token);
             userRepository.save(user);
             userList.add(user);
         }

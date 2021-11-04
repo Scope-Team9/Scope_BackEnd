@@ -29,7 +29,7 @@ public class JwtTokenProvider {
 
 
     // 토큰 유효시간 설정               24시간
-    private long tokenUseTime = 24*60*60*1000L;
+    private long tokenUseTime = 24 * 60 * 60 * 1000L;
 
     private final UserDetailsServiceImpl userDetailsService;
 
@@ -91,13 +91,18 @@ public class JwtTokenProvider {
         }
         try {
             JwtParser parser = Jwts.parserBuilder().setSigningKey(getSigninKey()).build();
-            Jws<Claims> claims = parser.parseClaimsJws(jwtToken);
+            parser.parseClaimsJws(jwtToken);
 
-            return !claims.getBody().getExpiration().before(new Date());
+            return true;
+
+        } catch (ExpiredJwtException e) {
+            log.info("만료된 토큰");
+            throw new RestApiException(ErrorCode.TOKEN_EXPRIRATOION);
+
         } catch (Exception e) {
             log.info("정상적인 토큰이 아닙니다.");
-//            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
-            return false;
+            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
+
     }
 }
