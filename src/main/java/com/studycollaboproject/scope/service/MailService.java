@@ -66,7 +66,6 @@ public class MailService {
         Context context = new Context();
 
         context.setVariable("title", mailDto.getPostTitle());
-        context.setVariable("summary", mailDto.getPostSummary());
         context.setVariable("toNickname", mailDto.getToNickname());
         context.setVariable("fromNicckname", mailDto.getFromNickname());
         context.setVariable("postId", mailDto.getPostId());
@@ -90,10 +89,8 @@ public class MailService {
 
 
         context.setVariable("title", mailDto.getPostTitle());
-        context.setVariable("summary", mailDto.getPostSummary());
         context.setVariable("toNickname", mailDto.getToNickname());
         context.setVariable("fromNicckname", mailDto.getFromNickname());
-        context.setVariable("postId", mailDto.getPostId());
         context.setVariable("userId", mailDto.getToUserId());
         String subject = "[scope]" + mailDto.getToNickname() + "님의 프로젝트 신청이 수락되었습니다!";
 
@@ -107,7 +104,6 @@ public class MailService {
         for (User user : mailDto.getToUserList()) {
             Context context = new Context();
             context.setVariable("title", mailDto.getPostTitle());
-            context.setVariable("summary", mailDto.getPostSummary());
             context.setVariable("nickname", user.getNickname());
             context.setVariable("postId", mailDto.getPostId());
             String subject = "[scope]" + user.getNickname() + "님의 프로젝트가 종료되었습니다!";
@@ -122,7 +118,6 @@ public class MailService {
         context.setVariable("userId", user.getId());
         context.setVariable("code", user.getMailAuthenticationCode());
         context.setVariable("nickname", user.getNickname());
-        context.setVariable("userEmail", user.getEmail());
         String subject = "[scope]" + user.getNickname() + "님! 이메일 인증을 완료해주세요.";
         String body = templateEngine.process("emailAuthentication", context);
         setMail(subject, body, email);
