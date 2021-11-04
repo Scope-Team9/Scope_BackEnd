@@ -39,7 +39,12 @@ public class User extends Timestamped {
 
     private String introduction;
 
-//    @Column(nullable = false)
+    @Column(unique = true,nullable = false)
+    private String mailAuthenticationCode;
+
+    private boolean isVerifiedEmail;
+
+
     private boolean emailReceiveAgreement;
 
 //    @Column(nullable = false)
@@ -63,6 +68,8 @@ public class User extends Timestamped {
         this.nickname = signupRequestDto.getNickname();
         this.userPropensityType = userTestResult;
         this.memberPropensityType = memberTestResult;
+        this.isVerifiedEmail = false;
+        this.emailReceiveAgreement = false;
         this.introduction = "";
     }
     public User(SignupTestDto signupTestDto){
@@ -72,6 +79,8 @@ public class User extends Timestamped {
         this.userPropensityType = signupTestDto.getUserPropensityType();
         this.memberPropensityType = signupTestDto.getMemberPropensityType();
         this.introduction = "";
+        this.isVerifiedEmail = false;
+        this.emailReceiveAgreement = false;
     }
     public User(String snsId,String userPropensityType,String memberPropensityType, String nickname,String email){
         this.snsId = snsId;
@@ -80,6 +89,7 @@ public class User extends Timestamped {
         this.memberPropensityType = memberPropensityType;
         this.nickname = nickname;
         this.introduction = "";
+
     }
 
     public User(TestUserSetupDto testUserSetupDto) {
@@ -89,9 +99,13 @@ public class User extends Timestamped {
         this.snsId = testUserSetupDto.getSnsId();
         this.memberPropensityType = testUserSetupDto.getMemberPropensityType();
         this.introduction = "";
+        this.isVerifiedEmail = false;
+        this.emailReceiveAgreement = false;
+
     }
 
-    public void addTechStackList(List<TechStack> techStackList){
+    public void addTechStackListAndToken(List<TechStack> techStackList, String token){
+        this.mailAuthenticationCode = token.split("\\.")[1];
         this.techStackList = techStackList;
     }
 
@@ -117,5 +131,10 @@ public class User extends Timestamped {
 
     public void updateUserInfo(String userDesc) {
         this.introduction = userDesc;
+    }
+
+    public void verifiedEmail(){
+        this.isVerifiedEmail=true;
+        this.emailReceiveAgreement = true;
     }
 }

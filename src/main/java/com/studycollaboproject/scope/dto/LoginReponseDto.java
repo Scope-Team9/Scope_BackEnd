@@ -13,4 +13,6 @@ public class LoginReponseDto {
     private String email;
     @Schema(description = "닉네임")
     private String nickname;
+    @Schema(description = "아이디")
+    private Long userId;
 }

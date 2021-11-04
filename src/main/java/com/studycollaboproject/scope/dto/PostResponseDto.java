@@ -45,6 +45,8 @@ public class PostResponseDto {
     private String propensityType;
     @Schema(description = "작성자 닉네임")
     private String nickname;
+    @Schema(description = "작성자 아이디")
+    private Long userId;
 
     public PostResponseDto(Post post) {
         this.postId = post.getId();
@@ -65,6 +67,7 @@ public class PostResponseDto {
         this.backUrl = post.getBackUrl();
         this.propensityType = post.getUser().getUserPropensityType();
         this.nickname = post.getUser().getNickname();
+        this.userId = post.getUser().getId();
     }
 
     public PostResponseDto(Post post,boolean bookmarkChecked) {
@@ -87,5 +90,6 @@ public class PostResponseDto {
         this.backUrl = post.getBackUrl();
         this.propensityType = post.getUser().getUserPropensityType();
         this.nickname = post.getUser().getNickname();
+        this.userId = post.getUser().getId();
     }
 }
