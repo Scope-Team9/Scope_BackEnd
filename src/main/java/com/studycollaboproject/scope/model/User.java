@@ -72,7 +72,7 @@ public class User extends Timestamped {
         this.emailReceiveAgreement = false;
         this.introduction = "";
     }
-    public User(SignupTestDto signupTestDto){
+    public User(SignupTestDto signupTestDto, String token){
         this.email =signupTestDto.getEmail();
         this.snsId = signupTestDto.getSnsId();
         this.nickname = signupTestDto.getNickname();
@@ -81,6 +81,7 @@ public class User extends Timestamped {
         this.introduction = "";
         this.isVerifiedEmail = false;
         this.emailReceiveAgreement = false;
+        this.mailAuthenticationCode = token;
     }
     public User(String snsId,String userPropensityType,String memberPropensityType, String nickname,String email){
         this.snsId = snsId;

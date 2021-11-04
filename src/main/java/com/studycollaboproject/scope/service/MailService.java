@@ -16,6 +16,7 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.Properties;
 
@@ -72,7 +73,7 @@ public class MailService {
         context.setVariable("userId", mailDto.getToUserId());
         String subject = "[scope]" + mailDto.getToNickname() + "님의 프로젝트에" + mailDto.getFromNickname() + "님이 팀원 신청을 했습니다.";
 
-        String body = templateEngine.process("acceptTeamEmail", context);
+        String body = templateEngine.process("applicantEmail", context);
 
         setMail(subject, body, email);
     }
@@ -127,6 +128,7 @@ public class MailService {
         setMail(subject, body, email);
     }
 
+    @Transactional
     public void emailAuthCodeCheck(String code, Long userId) {
         Optional<User> user = userRepository.findById(userId);
         if (user.isPresent()) {
