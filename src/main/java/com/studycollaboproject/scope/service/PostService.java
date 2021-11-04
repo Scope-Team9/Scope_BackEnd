@@ -7,6 +7,9 @@ import com.studycollaboproject.scope.model.*;
 import com.studycollaboproject.scope.repository.*;
 import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -34,7 +37,7 @@ public class PostService {
 
         Post post = new Post(postRequestDto, user);
         List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(postTechStackList, null, post));
-        teamRepository.save(new Team(user,post));
+        teamRepository.save(new Team(user, post));
         techStackRepository.saveAll(techStackList);
         post.updateTechStack(techStackList);
         Post savedPost = postRepository.save(post);
@@ -78,87 +81,87 @@ public class PostService {
     }
 
 
-    public ResponseDto readPost(String filter,
-                                int displayNumber,
-                                int page,
-                                String sort,
-                                String snsId,
-                                String bookmarkRecommend) {
+    public Map<String,Object> readPost(String filter,
+                                          int displayNumber,
+                                          int page,
+                                          String sort,
+                                          String snsId,
+                                          String bookmarkRecommend) {
 
 
         // 필터링 될 포스트배열
         List<Post> filterPosts = new ArrayList<>();
-        List<TechStack> techStackList;
         // String으로 받아온 filter 값을 세미콜론으로 스플릿
-        List<String> filterList = Arrays.asList(filter.split(";"));
+        List<String> filterList = Arrays.stream(filter.split(";")).filter(o -> !o.equals("")).collect(Collectors.toList());
         // 받아온 techStack 값을 List<Tech>로 전환
         List<Tech> techList = techStackConverter.convertStringToTech(filterList);
-        // 반환될 포스트 배열
-        List<PostResponseDto> postResponseDtos = new ArrayList<>();
+        Pageable pageable = PageRequest.of(page, displayNumber);
+        Map<String, Object> postsAndTotalPage = new HashMap<>();
 
         // bookmarkRecommend가 recommend라면 추천 포스트만 리턴한다.
         if ("recommend".equals(bookmarkRecommend)) {
             List<String> propensityTypeList = getPropensityTypeList(snsId);
-            List<Tech> tech = userRepository.findBySnsId(snsId).orElseThrow(
-                    () -> new RestApiException(ErrorCode.NO_USER_ERROR)
-            ).getTechStackList().stream().map(TechStack::getTech).collect(Collectors.toList());
-            for (String propensityType : propensityTypeList) {
-                filterPosts.addAll(postRepository.findAllByUserMemberPropensityTypeAndProjectStatusAndUserSnsIdIsNotAndTechStackList_TechInOrderByStartDate(propensityType, ProjectStatus.PROJECT_STATUS_RECRUITMENT, "unknown", techList));
+            if ("deadline".equals(sort)) {
+                for (String propensity : propensityTypeList) {
+                    filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByStartDate(propensity));
+                }
+            } else {
+                for (String propensity : propensityTypeList) {
+                    filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByCreatedAt(propensity));
+                }
             }
-            postResponseDtos = sendByDisplayNumber(displayNumber, page, filterPosts, snsId);
-
-            return new ResponseDto("200", "success", postResponseDtos);
+            return sendByDisplayNumber(displayNumber, page, filterPosts, snsId);
         }
-
         // bookmarkRecommend가 Bookmark라면 북마크 포스트만 리턴한다.
         else if ("bookmark".equals(bookmarkRecommend)) {
-            List<Bookmark> bookmarkList = bookmarkRepository.findAllByUserNickname(snsId);
-            for (Bookmark bookmark : bookmarkList) {
-                Post post = bookmark.getPost();
-                filterPosts.add(post);
+            int totalPostSize = bookmarkRepository.findAllByUserNickname(snsId).size();
+            int totalPage = (int) Math.ceil( (double) totalPostSize/displayNumber);
+            postsAndTotalPage.put("totalPage", totalPage);
+            if ("deadline".equals(sort)) {
+                filterPosts = postRepository.findAllByBookmarkOrderByStartDate(snsId, pageable);
+            } else {
+                filterPosts = postRepository.findAllByBookmarkOrderByCreatedAt(snsId, pageable);
             }
-            postResponseDtos = sendByDisplayNumber(displayNumber, page, filterPosts, snsId);
-            return new ResponseDto("200", "success", postResponseDtos);
+
+            List<PostResponseDto> postResponseDtos = filterPosts.stream().map(o -> new PostResponseDto(o, true)).collect(Collectors.toList());
+            postsAndTotalPage.put("postResponseDtos", postResponseDtos);
+            return postsAndTotalPage;
         }
-
-
-        // 선택한 기술스택 있으면 filterPosts에 필터링된 값을 담아준다.
-        if (!filterList.isEmpty()) {
-
-            // techList에 포함된 TehcStack을 techStackList에 저장
-//            techStackList = techStackRepository.findAllByUserisNullTechIn(techList);
-//
-//            // 저장된 techStackList에서 post를 가져옴
-//            for (TechStack techStack : techStackList) {
-//                Post post = techStack.getPost();
-//                filterPosts.add(post);
-//            }
-            List<Post> findPostAll = postRepository.findAllByTechStackList_TechIn(techList);
-            filterPosts.addAll(findPostAll);
-        }
-        // 선택된 기술스택이 없으면 전체  포스트를 담아준다.
+        // 전체 조회의 경우.
         else {
-            filterPosts = postRepository.findAll();
+            int totalPostSize = postRepository.findAllByTechStackList_TechIn(techList).size();
+            int totalPage = (int) Math.ceil( (double) totalPostSize/displayNumber);
+            postsAndTotalPage.put("totalPage", totalPage);
+            if ("deadline".equals(sort)) {
+                filterPosts = postRepository.findAllByTechInOrderByStartDate(techList, pageable);
+            } else {
+                filterPosts = postRepository.findAllByTechInOrderByCreatedAt(techList, pageable);
+            }
+            if (snsId.equals("")) {
+                List<PostResponseDto> postResponseDtos = filterPosts.stream().map(o-> new PostResponseDto(o, false)).collect(Collectors.toList());
+                postsAndTotalPage.put("postResponseDtos", postResponseDtos);
+                return  postsAndTotalPage;
+            }
+
+            totalPostSize = bookmarkRepository.findAllByUserSnsIdAndPostIn(snsId,filterPosts).size();
+            totalPage = (int) Math.ceil( (double) totalPostSize/displayNumber);
+            postsAndTotalPage.put("totalPage", totalPage);
+
+            List<Bookmark> bookmarkList = bookmarkRepository.findAllByUserSnsIdAndPostIn(snsId, filterPosts);
+            List<PostResponseDto> postResponseDtos = filterPosts.stream().map(o -> new PostResponseDto(o , checkBookmark(o, bookmarkList))).collect(Collectors.toList());
+            postsAndTotalPage.put("postResponseDtos", postResponseDtos);
+            return postsAndTotalPage;
         }
-
-
-        switch (sort) {
-
-            case "createdAt":
-                filterPosts.sort(Comparator.comparing(Post::getCreatedAt, Comparator.reverseOrder()));
-                break;
-
-            case "deadline":
-                filterPosts.sort(Comparator.comparing(Post::getStartDate));
-                break;
-        }
-
-
-        // display number와 Page 사용해서 객체 수 만큼 넘기기
-        postResponseDtos = sendByDisplayNumber(displayNumber, page, filterPosts, snsId);
-        return new ResponseDto("200", "success", postResponseDtos);
     }
 
+    private boolean checkBookmark(Post post, List<Bookmark> bookmarkList) {
+        for (Bookmark bookmark : bookmarkList) {
+            if (bookmark.getPost().getId().equals(post.getId())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public MypagePostListDto getPostList(User user) {
         List<Team> teamList = teamRepository.findAllByUser(user);
@@ -181,7 +184,7 @@ public class PostService {
             }
         }
 
-        return new MypagePostListDto(new UserResponseDto(user,techStackConverter.convertTechStackToString(user.getTechStackList())),recruitmentList, inProgressList, endList);
+        return new MypagePostListDto(new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList())), recruitmentList, inProgressList, endList);
     }
 
     public List<String> getPropensityTypeList(String snsId) {
@@ -194,12 +197,12 @@ public class PostService {
 
         for (TotalResult totalResult : totalResultList) {
             if (totalResult.getMemberType().equals(memberPropensityType)) {
-                Long result = totalResult.getResult()+1L;
+                Long result = totalResult.getResult() + 1L;
                 totalResult.setResult(result);
             }
         }
 
-        totalResultList.sort(Comparator.comparing(TotalResult::getResult));
+        totalResultList.sort((o1, o2) -> o2.getResult().compareTo(o1.getResult()));
 
         List<String> sortedRecommendedList = new ArrayList<>();
         for (TotalResult totalResult : totalResultList) {
@@ -243,19 +246,21 @@ public class PostService {
         );
     }
 
-    public List<PostResponseDto> sendByDisplayNumber(int displayNumber, int page, List<Post> filterPosts, String snsId) {
-        List<PostResponseDto> postResponseDtos = new ArrayList<>();
+    public Map<String, Object> sendByDisplayNumber(int displayNumber, int page, List<Post> filterPosts, String snsId) {
+        List<Bookmark> bookmarkList = bookmarkRepository.findAllByUserSnsIdAndPostIn(snsId, filterPosts);
         int index = displayNumber * page;
-        for (int i = index; i < index + displayNumber; i++) {
-            if (filterPosts.size() == 0 || filterPosts.size() < index) {
-                break;
-            }
-            boolean bookmarkChecked = isBookmarkChecked(filterPosts.get(i).getId(), snsId);
-            PostResponseDto postResponseDto = new PostResponseDto(filterPosts.get(i), bookmarkChecked);
-            postResponseDtos.add(postResponseDto);
+        int toIndex = Math.min(filterPosts.size(), index + displayNumber);
 
-        }
-        return postResponseDtos;
+        List<PostResponseDto> postResponseDtos = filterPosts.subList(index, toIndex)
+                .stream().map(o -> new PostResponseDto(o, checkBookmark(o, bookmarkList))).collect(Collectors.toList());
+
+        int totalPostSize = filterPosts.size();
+        int totalPage = (int) Math.ceil( (double) totalPostSize/displayNumber);
+
+        Map<String, Object> postsAndTotalPage = new HashMap<>();
+        postsAndTotalPage.put("postResponseDtos", postResponseDtos);
+        postsAndTotalPage.put("totalPage", totalPage);
+        return postsAndTotalPage;
     }
 
     @Transactional

@@ -23,7 +23,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 
@@ -49,7 +48,7 @@ public class ApplicantRestController {
         }
 
         Applicant applicant = applicantService.applyPost(userDetails.getSnsId(), postId, requestDto.getComment());
-        mailService.applicantMailBilder(new MailDto(applicant));
+        mailService.applicantMailBuilder(new MailDto(applicant));
 
         return new ResponseDto("200", "", "");
     }

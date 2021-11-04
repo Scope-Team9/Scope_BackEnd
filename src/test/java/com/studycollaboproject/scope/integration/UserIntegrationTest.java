@@ -19,7 +19,6 @@
 //@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 //@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 //@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-//@TestPropertySource(locations = "classpath:application-dev.properties")
 //public class UserIntegrationTest {
 //
 //    @Autowired

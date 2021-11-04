@@ -36,7 +36,7 @@
                     <tr>
                         <td style="color:#2b2b2b;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:17px;font-weight:800;line-height:28px;padding:0;vertical-align:top">
                             <span th:text="${nickname}"></span>님 안녕하세요!<br>아래 버튼을 눌러서 이메일 <span
-                                    class="il">인증</span>을 완료하세요!
+                                class="il">인증</span>을 완료하세요!
                         </td>
                     </tr>
                     <td style="text-align: center">
@@ -51,14 +51,17 @@
                                 <table
                                         style="border-collapse:collapse;width:100%;text-align: center">
                                     <tbody>
-                                    <td style="font-size:11px;background:#ffffff;border:solid 1px #e5e5e5;border-radius:4px;padding:15px 15px 15px 15px;display:block;width: auto">
+                                    <td style="font-size:11px;background:#ffffff;border:solid 1px #e5e5e5;border-radius:4px;padding:15px 15px 30px 15px;display:block;width: auto">
                                         <!--                                                               페이스북 카드박스-->
                                         <table
                                                 style="border-collapse:collapse;width:100%">
                                             <!--                                                                프로필사진-->
                                             <tr>
                                                 <a href="https://www.instagram.com/9_ml_er/?hl=ko"
-                                                   style="color:#3b5998;text-decoration:none"
+                                                   style="    color: #3b5998;
+    text-decoration: none;
+    display: block;
+    padding: 30px 0 0 0;"
                                                    target="_blank"
                                                 >
                                                     <img
@@ -73,14 +76,11 @@
                                             <tr>
                                                 <div
                                                         style="font-weight:bold;font-size:16px;color:#1c1e21;margin-bottom: 30px; ">
-                                                    <p th:text="${nickname}"></p>
+                                                    <p th:text="${nickname}"></p>님이 맞나요?
                                                 </div>
                                             </tr>
                                             <!--                                                                한줄코멘트-->
-                                            <td height="60"
-                                                align="center">
-                                                <p th:text="${userEmail}"></p>
-                                            </td><!--        이메일 인증하기 버튼-->
+
                                             <tr>
                                                 <td
                                                         height="60" align="center "
@@ -88,7 +88,7 @@
                                                     <a th:href="@{http://localhost:8080/api/user/email/{userId}(userId = ${userId},code = ${code})}"
                                                        style="background-color:#5065df;border-radius:2px;color:#fff;display:inline-block;padding-bottom:11px;padding-left:30px;padding-right:30px;padding-top:11px;text-align:center;text-decoration:none"
                                                        target="_blank" data-saferedirecturl="">
-                                        <span style="color:#fff;font-family:sans-serif;font-size:17px;font-weight:600;line-height:28px;text-align:center">&#128231 이메일 <span
+                                        <span style="color:#fff;font-family:sans-serif;font-size:17px;font-weight:600;line-height:28px;text-align:center">이메일 <span
                                                 class="il">인증</span>하기</span>
                                                     </a>
                                                 </td>

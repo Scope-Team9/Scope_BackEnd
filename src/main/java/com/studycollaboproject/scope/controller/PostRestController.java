@@ -54,11 +54,16 @@ public class PostRestController {
                                 @Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails) {
         log.info("GET, [{}], /api/post, filter={}, displayNumber={}, page={}, sort={}, bookmarkRecommend={}", MDC.get("UUID"), filter, displayNumber, page, sort, bookmarkRecommend);
         String SnsId = "";
-        if (userDetails != null) {
+        if(bookmarkRecommend.equals("recommend") || bookmarkRecommend.equals("bookmark")){
+            if (userDetails == null) {
+                throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
+            }
             SnsId = userDetails.getUsername();
         }
+
         page = page - 1;
-        return postService.readPost(filter, displayNumber, page, sort, SnsId,bookmarkRecommend);
+        Map<String, Object> postResponseDtos = postService.readPost(filter, displayNumber, page, sort, SnsId, bookmarkRecommend);
+        return new ResponseDto("200", "success", postResponseDtos);
     }
 
     @Operation(summary = "프로젝트 수정")
