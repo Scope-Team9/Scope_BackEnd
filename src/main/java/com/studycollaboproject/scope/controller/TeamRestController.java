@@ -55,7 +55,7 @@ public class TeamRestController {
         Team team = teamService.acceptMember(post, applyUser, requestDto.isAccept());        //지원자 승인/거절
         mailService.acceptTeamMailBilder(new MailDto(team));
         List<MemberListResponseDto> responseDto = teamService.getMember(postId);  //지원지 목록 출력
-        return new ResponseDto("200", "추천 결과가 저장되었습니다.",responseDto) ;
+        return new ResponseDto("200", "신청 상태가 변경되었습니다.",responseDto) ;
     }
 
     @Operation(summary = "팀원 조회")

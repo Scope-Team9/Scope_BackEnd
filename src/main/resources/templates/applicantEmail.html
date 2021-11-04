@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns: lang="en">
 <head>
+    <title>Scope</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
@@ -36,8 +37,8 @@
                     </tr>
                     <tr>
                         <td style="color:#2b2b2b;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:17px;font-weight:800;line-height:28px;padding:0;vertical-align:top">
-                            <span th:text="${toNickname}">님 안녕하세요!<br><br><span th:text="${fromNicckname}">님이 프로젝트 참여신청을 하셨습니다!<br></span>
-                            </span>
+                            <span th:text="${toNickname}"></span>님 안녕하세요!<br><br><span th:text="${fromNicckname}"></span>님이 프로젝트 참여신청을 하셨습니다!<br>
+
                         </td>
                     </tr>
                     <td style="text-align: center">
@@ -66,8 +67,8 @@
 
                                                     <div class="card text-center" style="width: 18rem;display: inline-block">
                                                         <div class="card-body" >
-                                                            <h6 th:text="${title}" class="card-title" style="color: #2b2b2b">프로젝트 타이틀</h6>
-                                                            <p th:text="${summary}" class="card-text" style="color: #2b2b2b;font-size: 15px">한 줄 설명</p>
+                                                            <span th:text="${title}" class="card-title" style="color: #2b2b2b">프로젝트 타이틀</span>
+                                                            <span th:text="${summary}" class="card-text" style="color: #2b2b2b;font-size: 15px">한 줄 설명</span>
                                                             <a th:href="@{http://localhost:8080/api/post/{postId}(postId = ${postId})}">프로젝트 보러 가기</a>
                                                         </div>
                                                     </div>

@@ -22,9 +22,11 @@ public class ApiTestRestController {
 
     @PostMapping("/api-test")
     public Map<String,String>  makeApiTestUser(@RequestBody SignupTestDto signupTestDto){
-        User user = new User(signupTestDto);
-        userRepository.save(user);
         String jwtToken =jwtTokenProvider.createToken(signupTestDto.getSnsId());
+        System.out.println("jwtToken = " + jwtToken);
+        System.out.println("jwtToken.split(\".\")[1] = " + jwtToken.split("\\.")[1]);
+        User user = new User(signupTestDto,jwtToken.split("\\.")[1]);
+        userRepository.save(user);
         Map<String ,String> token = new HashMap<>();
         token.put("token",jwtToken);
         return token;

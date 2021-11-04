@@ -115,7 +115,8 @@ public class TestDataRunner implements ApplicationRunner {
                     propensityType.get(index1),
                     propensityType.get(index2)
                     );
-            User user = new User(signupTestDto);
+            String token = jwtTokenProvider.createToken(signupTestDto.getSnsId());
+            User user = new User(signupTestDto,token.split("\\.")[1]);
             userRepository.save(user);
 
             List<TechStack> techStacks = new ArrayList<>();
@@ -124,8 +125,8 @@ public class TestDataRunner implements ApplicationRunner {
                 techStacks.add(techStack1);
                 techStackRepository.save(techStack1);
             }
-            String token = jwtTokenProvider.createToken(user.getSnsId()).split("\\.")[0];
-            user.addTechStackListAndToken(techStacks,token);
+            String token1 = jwtTokenProvider.createToken(user.getSnsId()).split("\\.")[1];
+            user.addTechStackListAndToken(techStacks,token1);
             userRepository.save(user);
             userList.add(user);
         }
