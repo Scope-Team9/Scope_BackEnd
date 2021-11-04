@@ -1,12 +1,9 @@
+#/appspec.yml
 version: 0.0
+
 os: linux
 files:
+# source는 프로젝트 기준, destination은 instance 기준
+# source가 destination으로 저장
   - source: /
-  - destination: /home/ubuntu/scope/
-    overwrite: yes
-
-permissions:
-  - object: /
-    pattern: "**" # 모든 파일의 권한 설정
-    owner: ubuntu
-    group: ubuntu
+    destination: /home/ubuntu/scope
