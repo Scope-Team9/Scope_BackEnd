@@ -54,6 +54,6 @@ jobs:
         
       # S3로 업로드
     - name: Upload to AWS S3
-      run: aws s3 cp --region ap-northeast-2 --acl private ./scope-build.zip s3://scope-build/
+      run: aws s3 cp --region ap-northeast-2 --acl private ./scope-build.zip s3://scopedeploymentbucket/scope-build.zip
 
 
