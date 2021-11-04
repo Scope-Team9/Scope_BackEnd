@@ -17,8 +17,6 @@ public class MailDto {
     private String comment;
     private Long postId;
     private Long toUserId;
-
-    private String postSummary;
     private String postTitle;
 
     List<User> toUserList;
@@ -30,12 +28,12 @@ public class MailDto {
         this.toUserId = applicant.getPost().getUser().getId();
         this.fromNickname = applicant.getUser().getNickname();
         this.postId = applicant.getPost().getId();
+        this.postTitle =applicant.getPost().getTitle();
     }
 
     public MailDto(Team team){
         User user = team.getUser();
         Post post = team.getPost();
-        this.postSummary = post.getSummary();
         this.postTitle = post.getTitle();
         this.postId = post.getId();
         this.toNickname = user.getNickname();
@@ -46,6 +44,5 @@ public class MailDto {
     public MailDto(List<User> userList, Post post){
         this.postTitle = post.getTitle();
         this.toUserList = userList;
-        this.postSummary = post.getSummary();
     }
 }

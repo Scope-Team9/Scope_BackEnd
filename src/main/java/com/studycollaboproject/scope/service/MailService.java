@@ -60,15 +60,15 @@ public class MailService {
         sendMail(mimeMessageHelper.getMimeMessage());
     }
 
-    public void applicantMailBilder(MailDto mailDto) throws MessagingException {
+    public void applicantMailBuilder(MailDto mailDto) throws MessagingException {
 
         String email = mailDto.getToEmail();
         Context context = new Context();
 
-        context.setVariable("title", mailDto.getPostTitle());
-        context.setVariable("summary", mailDto.getPostSummary());
+        context.setVariable("postTitle", mailDto.getPostTitle());
+        System.out.println("mailDto = " + mailDto.getPostTitle());
         context.setVariable("toNickname", mailDto.getToNickname());
-        context.setVariable("fromNicckname", mailDto.getFromNickname());
+        context.setVariable("fromNickname", mailDto.getFromNickname());
         context.setVariable("postId", mailDto.getPostId());
         context.setVariable("userId", mailDto.getToUserId());
         String subject = "[scope]" + mailDto.getToNickname() + "님의 프로젝트에" + mailDto.getFromNickname() + "님이 팀원 신청을 했습니다.";
@@ -83,17 +83,15 @@ public class MailService {
 
     }
 
-    public void acceptTeamMailBilder(MailDto mailDto) throws MessagingException {
+    public void acceptTeamMailBuilder(MailDto mailDto) throws MessagingException {
 
         String email = mailDto.getToEmail();
         Context context = new Context();
 
 
         context.setVariable("title", mailDto.getPostTitle());
-        context.setVariable("summary", mailDto.getPostSummary());
         context.setVariable("toNickname", mailDto.getToNickname());
         context.setVariable("fromNicckname", mailDto.getFromNickname());
-        context.setVariable("postId", mailDto.getPostId());
         context.setVariable("userId", mailDto.getToUserId());
         String subject = "[scope]" + mailDto.getToNickname() + "님의 프로젝트 신청이 수락되었습니다!";
 
@@ -103,11 +101,10 @@ public class MailService {
 
     }
 
-    public void assessmantMailBilder(MailDto mailDto) throws MessagingException {
+    public void assessmantMailBuilder(MailDto mailDto) throws MessagingException {
         for (User user : mailDto.getToUserList()) {
             Context context = new Context();
             context.setVariable("title", mailDto.getPostTitle());
-            context.setVariable("summary", mailDto.getPostSummary());
             context.setVariable("nickname", user.getNickname());
             context.setVariable("postId", mailDto.getPostId());
             String subject = "[scope]" + user.getNickname() + "님의 프로젝트가 종료되었습니다!";
@@ -122,7 +119,6 @@ public class MailService {
         context.setVariable("userId", user.getId());
         context.setVariable("code", user.getMailAuthenticationCode());
         context.setVariable("nickname", user.getNickname());
-        context.setVariable("userEmail", user.getEmail());
         String subject = "[scope]" + user.getNickname() + "님! 이메일 인증을 완료해주세요.";
         String body = templateEngine.process("emailAuthentication", context);
         setMail(subject, body, email);

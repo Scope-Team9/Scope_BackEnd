@@ -1,58 +1,58 @@
-package com.studycollaboproject.scope.controller;
-
-import com.studycollaboproject.scope.dto.PostRequestDto;
-import com.studycollaboproject.scope.dto.SignupTestDto;
-import com.studycollaboproject.scope.dto.TestUserSetupDto;
-import com.studycollaboproject.scope.model.TechStack;
-import com.studycollaboproject.scope.model.TotalResult;
-import com.studycollaboproject.scope.model.User;
-import com.studycollaboproject.scope.repository.TechStackRepository;
-import com.studycollaboproject.scope.repository.TotalResultRepository;
-import com.studycollaboproject.scope.repository.UserRepository;
-import com.studycollaboproject.scope.security.JwtTokenProvider;
-import com.studycollaboproject.scope.service.PostService;
-import com.studycollaboproject.scope.util.TechStackConverter;
-import lombok.RequiredArgsConstructor;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-@RequiredArgsConstructor
-@Component
-public class TestDataRunner implements ApplicationRunner {
-
-    private final TotalResultRepository totalResultRepository;
-    private final UserRepository userRepository;
-    private final PostService postService;
-    private final TechStackConverter techStackConverter;
-    private final TechStackRepository techStackRepository;
-    private final JwtTokenProvider jwtTokenProvider;
-
-    @Override
-    public void run(ApplicationArguments args){
-        if (totalResultRepository.count() == 0L) {
-            String[] propensityTypeList = {"LVG", "LVP", "LHG", "LHP", "FVG", "FVP", "FHG", "FHP"};
-
-            for (String s : propensityTypeList) {
-                for (String s1 : propensityTypeList) {
-                    TotalResult totalResult = new TotalResult(s, s1);
-                    totalResultRepository.save(totalResult);
-                }
-            }
-        }
-
-        if (userRepository.findBySnsId("unknown").isEmpty()) {
-            User user = new User(new TestUserSetupDto());
-            userRepository.save(user);
-        }
-
-//        for (PostRequestDto requestDto : requestDtoList) {
-//            System.out.println("requestDto = " + requestDto);
+//package com.studycollaboproject.scope.controller;
+//
+//import com.studycollaboproject.scope.dto.PostRequestDto;
+//import com.studycollaboproject.scope.dto.SignupTestDto;
+//import com.studycollaboproject.scope.dto.TestUserSetupDto;
+//import com.studycollaboproject.scope.model.TechStack;
+//import com.studycollaboproject.scope.model.TotalResult;
+//import com.studycollaboproject.scope.model.User;
+//import com.studycollaboproject.scope.repository.TechStackRepository;
+//import com.studycollaboproject.scope.repository.TotalResultRepository;
+//import com.studycollaboproject.scope.repository.UserRepository;
+//import com.studycollaboproject.scope.security.JwtTokenProvider;
+//import com.studycollaboproject.scope.service.PostService;
+//import com.studycollaboproject.scope.util.TechStackConverter;
+//import lombok.RequiredArgsConstructor;
+//import org.springframework.boot.ApplicationArguments;
+//import org.springframework.boot.ApplicationRunner;
+//import org.springframework.stereotype.Component;
+//
+//import java.time.LocalDate;
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//@RequiredArgsConstructor
+//@Component
+//public class TestDataRunner implements ApplicationRunner {
+//
+//    private final TotalResultRepository totalResultRepository;
+//    private final UserRepository userRepository;
+//    private final PostService postService;
+//    private final TechStackConverter techStackConverter;
+//    private final TechStackRepository techStackRepository;
+//    private final JwtTokenProvider jwtTokenProvider;
+//
+//    @Override
+//    public void run(ApplicationArguments args){
+//        if (totalResultRepository.count() == 0L) {
+//            String[] propensityTypeList = {"LVG", "LVP", "LHG", "LHP", "FVG", "FVP", "FHG", "FHP"};
+//
+//            for (String s : propensityTypeList) {
+//                for (String s1 : propensityTypeList) {
+//                    TotalResult totalResult = new TotalResult(s, s1);
+//                    totalResultRepository.save(totalResult);
+//                }
+//            }
 //        }
+//
+//        if (userRepository.findBySnsId("unknown").isEmpty()) {
+//            User user = new User(new TestUserSetupDto());
+//            userRepository.save(user);
+//        }
+//
+////        for (PostRequestDto requestDto : requestDtoList) {
+////            System.out.println("requestDto = " + requestDto);
+////        }
 //        if(userRepository.count() > 50){
 //            return;
 //        }
@@ -208,5 +208,5 @@ public class TestDataRunner implements ApplicationRunner {
 //                }
 //            }
 //        }
-    }
-}
+//    }
+//}
