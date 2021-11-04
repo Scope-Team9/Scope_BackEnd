@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.mail.MessagingException;
-import java.io.UnsupportedEncodingException;
 
 @RestController
 @RequiredArgsConstructor
@@ -49,7 +48,7 @@ public class AssessmentRestController {
 
         User user = userService.loadUserBySnsId(userDetails.getSnsId());
         MailDto mailDto = assessmentService.assessmentMember(postId, user, requestDto.getUserIds());
-        mailService.assessmantMailBilder(mailDto);
+        mailService.assessmantMailBuilder(mailDto);
 
 
         return new ResponseDto("","","");

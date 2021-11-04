@@ -28,6 +28,7 @@ public class MailDto {
         this.toUserId = applicant.getPost().getUser().getId();
         this.fromNickname = applicant.getUser().getNickname();
         this.postId = applicant.getPost().getId();
+        this.postTitle =applicant.getPost().getTitle();
     }
 
     public MailDto(Team team){
