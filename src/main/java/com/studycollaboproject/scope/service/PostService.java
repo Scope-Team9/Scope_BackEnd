@@ -81,7 +81,7 @@ public class PostService {
     }
 
 
-    public List<PostResponseDto> readPost(String filter,
+    public Map<String,Object> readPost(String filter,
                                           int displayNumber,
                                           int page,
                                           String sort,
@@ -96,6 +96,7 @@ public class PostService {
         // 받아온 techStack 값을 List<Tech>로 전환
         List<Tech> techList = techStackConverter.convertStringToTech(filterList);
         Pageable pageable = PageRequest.of(page, displayNumber);
+        Map<String, Object> postsAndTotalPage = new HashMap<>();
 
         // bookmarkRecommend가 recommend라면 추천 포스트만 리턴한다.
         if ("recommend".equals(bookmarkRecommend)) {
@@ -113,25 +114,43 @@ public class PostService {
         }
         // bookmarkRecommend가 Bookmark라면 북마크 포스트만 리턴한다.
         else if ("bookmark".equals(bookmarkRecommend)) {
+            int totalPostSize = bookmarkRepository.findAllByUserNickname(snsId).size();
+            int totalPage = (int) Math.ceil( (double) totalPostSize/displayNumber);
+            postsAndTotalPage.put("totalPage", totalPage);
             if ("deadline".equals(sort)) {
                 filterPosts = postRepository.findAllByBookmarkOrderByStartDate(snsId, pageable);
             } else {
                 filterPosts = postRepository.findAllByBookmarkOrderByCreatedAt(snsId, pageable);
             }
-            return filterPosts.stream().map(o -> new PostResponseDto(o, true)).collect(Collectors.toList());
+
+            List<PostResponseDto> postResponseDtos = filterPosts.stream().map(o -> new PostResponseDto(o, true)).collect(Collectors.toList());
+            postsAndTotalPage.put("postResponseDtos", postResponseDtos);
+            return postsAndTotalPage;
         }
         // 전체 조회의 경우.
         else {
+            int totalPostSize = postRepository.findAllByTechStackList_TechIn(techList).size();
+            int totalPage = (int) Math.ceil( (double) totalPostSize/displayNumber);
+            postsAndTotalPage.put("totalPage", totalPage);
             if ("deadline".equals(sort)) {
                 filterPosts = postRepository.findAllByTechInOrderByStartDate(techList, pageable);
             } else {
                 filterPosts = postRepository.findAllByTechInOrderByCreatedAt(techList, pageable);
             }
             if (snsId.equals("")) {
-                return filterPosts.stream().map(o-> new PostResponseDto(o, false)).collect(Collectors.toList());
+                List<PostResponseDto> postResponseDtos = filterPosts.stream().map(o-> new PostResponseDto(o, false)).collect(Collectors.toList());
+                postsAndTotalPage.put("postResponseDtos", postResponseDtos);
+                return  postsAndTotalPage;
             }
+
+            totalPostSize = bookmarkRepository.findAllByUserSnsIdAndPostIn(snsId,filterPosts).size();
+            totalPage = (int) Math.ceil( (double) totalPostSize/displayNumber);
+            postsAndTotalPage.put("totalPage", totalPage);
+
             List<Bookmark> bookmarkList = bookmarkRepository.findAllByUserSnsIdAndPostIn(snsId, filterPosts);
-            return filterPosts.stream().map(o -> new PostResponseDto(o , checkBookmark(o, bookmarkList))).collect(Collectors.toList());
+            List<PostResponseDto> postResponseDtos = filterPosts.stream().map(o -> new PostResponseDto(o , checkBookmark(o, bookmarkList))).collect(Collectors.toList());
+            postsAndTotalPage.put("postResponseDtos", postResponseDtos);
+            return postsAndTotalPage;
         }
     }
 
@@ -227,13 +246,21 @@ public class PostService {
         );
     }
 
-    public List<PostResponseDto> sendByDisplayNumber(int displayNumber, int page, List<Post> filterPosts, String snsId) {
+    public Map<String, Object> sendByDisplayNumber(int displayNumber, int page, List<Post> filterPosts, String snsId) {
         List<Bookmark> bookmarkList = bookmarkRepository.findAllByUserSnsIdAndPostIn(snsId, filterPosts);
         int index = displayNumber * page;
         int toIndex = Math.min(filterPosts.size(), index + displayNumber);
 
-        return filterPosts.subList(index, toIndex)
+        List<PostResponseDto> postResponseDtos = filterPosts.subList(index, toIndex)
                 .stream().map(o -> new PostResponseDto(o, checkBookmark(o, bookmarkList))).collect(Collectors.toList());
+
+        int totalPostSize = filterPosts.size();
+        int totalPage = (int) Math.ceil( (double) totalPostSize/displayNumber);
+
+        Map<String, Object> postsAndTotalPage = new HashMap<>();
+        postsAndTotalPage.put("postResponseDtos", postResponseDtos);
+        postsAndTotalPage.put("totalPage", totalPage);
+        return postsAndTotalPage;
     }
 
     @Transactional

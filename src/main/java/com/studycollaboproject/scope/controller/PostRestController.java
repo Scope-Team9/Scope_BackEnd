@@ -63,7 +63,7 @@ public class PostRestController {
         }
 
         page = page - 1;
-        List<PostResponseDto> postResponseDtos = postService.readPost(filter, displayNumber, page, sort, SnsId, bookmarkRecommend);
+        Map<String, Object> postResponseDtos = postService.readPost(filter, displayNumber, page, sort, SnsId, bookmarkRecommend);
         return new ResponseDto("200", "success", postResponseDtos);
     }
 
