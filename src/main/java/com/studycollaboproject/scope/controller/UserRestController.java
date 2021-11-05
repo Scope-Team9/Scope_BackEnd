@@ -101,10 +101,10 @@ public class UserRestController {
     @Operation(summary = "유저 소개 업데이트")
     @PostMapping("/api/user/{userId}/desc")
     public ResponseDto updateUserDesc(@Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails,
-                                      @RequestBody String userDesc, @Parameter(description = "수정하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId){
-        log.info("POST, [{}], /api/user/desc, userDesc={}", MDC.get("UUID"), userDesc);
+                                      @RequestBody String introduction, @Parameter(description = "수정하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId){
+        log.info("POST, [{}], /api/user/desc, userDesc={}", MDC.get("UUID"), introduction);
         if (userId.equals(userDetails.getUser().getId())){
-            UserResponseDto userResponseDto = userService.updateUserDesc(userDetails.getUsername(), userDesc);
+            UserResponseDto userResponseDto = userService.updateUserDesc(userDetails.getUsername(), introduction);
 
             return new ResponseDto("200","회원 정보가 수정되었습니다.",userResponseDto);
         }
