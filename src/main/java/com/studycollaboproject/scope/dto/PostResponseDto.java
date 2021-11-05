@@ -68,6 +68,7 @@ public class PostResponseDto {
         this.propensityType = post.getUser().getUserPropensityType();
         this.nickname = post.getUser().getNickname();
         this.userId = post.getUser().getId();
+        this.bookmarkChecked = false;
     }
 
     public PostResponseDto(Post post,boolean bookmarkChecked) {
