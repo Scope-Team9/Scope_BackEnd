@@ -73,4 +73,36 @@ public class TeamRestController {
         List<MemberListResponseDto> responseDto = teamService.getMember(postId);
         return new ResponseDto("200", "", responseDto);
     }
+
+    @Operation(summary = "팀원 강퇴")
+    @DeleteMapping("/api/team/resignation")
+    public ResponseDto memberResignation(@RequestBody Long memberId,@RequestBody Long postId,
+                                         @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        log.info("DELETE, [{}], /api/team/resignation", MDC.get("UUID"));
+        Post post = postService.loadPostByPostId(postId);
+        User user = userDetails.getUser();
+
+        if (post.getUser().equals(user)){
+            User member = userService.loadUserByUserId(memberId);
+            teamService.memberResignation(member,post);
+            return new ResponseDto("200", "팀에서 팀원을 삭제했습니다.", "");
+            // [예외처리] 팀원 강퇴를 요청한 사용자가 게시물 작성자가 아닐 때
+        }else throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
+    }
+
+    @Operation(summary = "팀 탈퇴")
+    @DeleteMapping("/api/team/secession")
+    public ResponseDto memberSecession(@RequestBody Long postId,
+                                         @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails){
+        log.info("DELETE, [{}], /api/team/secession", MDC.get("UUID"));
+        Post post = postService.loadPostByPostId(postId);
+        User user = userDetails.getUser();
+
+        if (post.getUser().equals(user)){
+            teamService.memberSecession(user,post);
+            return new ResponseDto("200", "팀에서 나왔습니다.", "");
+            // [예외처리] 팀 탈퇴를 요청한 사용자가 아닐 때
+        }else throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
+    }
+
 }
