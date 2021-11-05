@@ -46,7 +46,6 @@ public class UserRestController {
         MypagePostListDto mypagePostListDto = postService.getPostList(user);
         MypageResponseDto mypageResponseDto = userService.Mypage(user,userDetails,mypagePostListDto);
 
-
         return new ResponseDto("200", "", mypageResponseDto);
     }
 

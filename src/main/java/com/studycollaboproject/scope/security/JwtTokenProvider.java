@@ -7,6 +7,7 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -62,9 +63,9 @@ public class JwtTokenProvider {
     // SecurityContextHolder.getContext에 최종적으로 담겨서 로그아웃 하기 전까지 계속 사용되어진다.
     public Authentication getAuthentication(String token) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
-        log.info("============getAuthentication===========");
-        log.info("snsId={}", userDetails.getUsername());
-        log.info("============getAuthentication===========");
+        log.info("=============getAuthentication============");
+        log.info("[{}] snsId={}", MDC.get("UUID"), userDetails.getUsername());
+        log.info("=============getAuthentication============");
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 

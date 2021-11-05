@@ -1,21 +1,17 @@
 package com.studycollaboproject.scope.repository;
 
-import com.querydsl.core.types.Order;
-import com.querydsl.core.types.OrderSpecifier;
-import com.querydsl.core.types.dsl.StringPath;
 import com.querydsl.jpa.JPQLQuery;
-import com.studycollaboproject.scope.model.*;
+import com.studycollaboproject.scope.model.Post;
+import com.studycollaboproject.scope.model.ProjectStatus;
+import com.studycollaboproject.scope.model.QTechStack;
+import com.studycollaboproject.scope.model.Tech;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
-import org.springframework.data.querydsl.QuerydslUtils;
 
-import java.nio.file.Path;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.studycollaboproject.scope.model.QPost.*;
-import static com.studycollaboproject.scope.model.QUser.*;
+import static com.studycollaboproject.scope.model.QPost.post;
+import static com.studycollaboproject.scope.model.QUser.user;
 
 public class PostRepositoryExtensionImpl extends QuerydslRepositorySupport implements PostRepositoryExtension {
     public PostRepositoryExtensionImpl() {

@@ -29,7 +29,7 @@ public class UserService {
     private final ApplicantRepository applicantRepository;
     private final TeamRepository teamRepository;
 
-    public MypageResponseDto Mypage(User mypageUser, UserDetails userDetails, MypagePostListDto mypagePostListDto) {
+    public MypageResponseDto  Mypage(User mypageUser, UserDetails userDetails, MypagePostListDto mypagePostListDto) {
         boolean isMyMypage;
         if (!(userDetails == null)) {
             User user = loadUserBySnsId(userDetails.getUsername());

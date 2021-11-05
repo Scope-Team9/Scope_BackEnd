@@ -1,14 +1,11 @@
 package com.studycollaboproject.scope.repository;
 
-import com.studycollaboproject.scope.model.Bookmark;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.Tech;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Transactional(readOnly = true)
 public interface PostRepositoryExtension {
 
     List<Post> findAllOrderByCreatedAt(Pageable pageable);

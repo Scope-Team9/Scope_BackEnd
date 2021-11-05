@@ -110,7 +110,9 @@ public class PostService {
                     filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByCreatedAt(propensity));
                 }
             }
-            return sendByDisplayNumber(displayNumber, page, filterPosts, snsId);
+            List<PostResponseDto> postResponseDtos = filterPosts.stream().map(o -> new PostResponseDto(o, true)).collect(Collectors.toList());
+            postsAndTotalPage.put("postResponseDtos", postResponseDtos);
+            return postsAndTotalPage;
         }
         // bookmarkRecommend가 Bookmark라면 북마크 포스트만 리턴한다.
         else if ("bookmark".equals(bookmarkRecommend)) {
@@ -253,7 +255,6 @@ public class PostService {
 
         List<PostResponseDto> postResponseDtos = filterPosts.subList(index, toIndex)
                 .stream().map(o -> new PostResponseDto(o, checkBookmark(o, bookmarkList))).collect(Collectors.toList());
-
         int totalPostSize = filterPosts.size();
         int totalPage = (int) Math.ceil( (double) totalPostSize/displayNumber);
 
