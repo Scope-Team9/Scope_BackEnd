@@ -40,6 +40,10 @@ jobs:
     - name: Copy Jar
       run: cp ./build/libs/*.jar ./deploy/
 
+      # appspec.yml 파일 Copy
+    - name: Copy appspec
+      run: cp ./appspec.yml ./deploy/
+
       # 압축파일 형태로 전달(codedeploy는 zip형식만 읽을 수 있음)
     - name: Make zip file
       run: zip -r -qq -j ./scope-build.zip ./deploy
