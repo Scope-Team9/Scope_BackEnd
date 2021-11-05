@@ -37,17 +37,13 @@ public class MailService {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
-
-
         mailSender.setUsername(username);
         mailSender.setPassword(pass);
-
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.debug", "true");
-
         return mailSender;
     }
 
@@ -64,7 +60,6 @@ public class MailService {
 
         String email = mailDto.getToEmail();
         Context context = new Context();
-
         context.setVariable("postTitle", mailDto.getPostTitle());
         System.out.println("mailDto = " + mailDto.getPostTitle());
         context.setVariable("toNickname", mailDto.getToNickname());
@@ -72,33 +67,26 @@ public class MailService {
         context.setVariable("postId", mailDto.getPostId());
         context.setVariable("userId", mailDto.getToUserId());
         String subject = "[scope]" + mailDto.getToNickname() + "님의 프로젝트에" + mailDto.getFromNickname() + "님이 팀원 신청을 했습니다.";
-
         String body = templateEngine.process("applicantEmail", context);
-
         setMail(subject, body, email);
     }
 
     public void sendMail(MimeMessage message) {
         getJavaMailSender().send(message);
-
     }
 
     public void acceptTeamMailBuilder(MailDto mailDto) throws MessagingException {
 
         String email = mailDto.getToEmail();
         Context context = new Context();
-
-
         context.setVariable("title", mailDto.getPostTitle());
         context.setVariable("toNickname", mailDto.getToNickname());
         context.setVariable("fromNicckname", mailDto.getFromNickname());
         context.setVariable("userId", mailDto.getToUserId());
         String subject = "[scope]" + mailDto.getToNickname() + "님의 프로젝트 신청이 수락되었습니다!";
-
         String body = templateEngine.process("acceptTeamEmail", context);
 
         setMail(subject, body, email);
-
     }
 
     public void assessmantMailBuilder(MailDto mailDto) throws MessagingException {

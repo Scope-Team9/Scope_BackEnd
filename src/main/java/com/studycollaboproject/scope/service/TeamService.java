@@ -26,11 +26,14 @@ public class TeamService {
 
     @Transactional
     public Team acceptMember(Post post, User user, Boolean accept) {
+        // [예외처리] 대기열에서 신청자의 정보를 찾을 수 없을 때
         Applicant applicant = applicantRepository.findByUserAndPost(user, post).orElseThrow(
                 () -> new RestApiException(ErrorCode.NO_APPLICANT_ERROR)
         );
+        //대기열에서 삭제
         applicant.deleteApply();
         applicantRepository.delete(applicant);
+
         if(accept){
             Team team = Team.builder()
                     .user(user)
