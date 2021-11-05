@@ -49,4 +49,12 @@ public class TeamService {
         return teamRepository.findAllByPostId(postId)
                 .stream().map(MemberListResponseDto::new).collect(Collectors.toCollection(ArrayList::new));
     }
+
+    public void memberResignation(User member,Post post) {
+        teamRepository.deleteByUserAndPost(member,post);
+    }
+
+    public void memberSecession(User user, Post post) {
+        teamRepository.deleteByUserAndPost(user,post);
+    }
 }

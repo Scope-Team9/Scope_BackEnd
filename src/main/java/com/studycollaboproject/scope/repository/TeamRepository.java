@@ -20,4 +20,6 @@ public interface TeamRepository extends JpaRepository<Team, Long> {
     void deleteAllByPost(Post post);
 
     void deleteAllByUser(User user);
+
+    void deleteByUserAndPost(User member, Post post);
 }
