@@ -97,12 +97,9 @@ public class TeamRestController {
         log.info("DELETE, [{}], /api/team/secession", MDC.get("UUID"));
         Post post = postService.loadPostByPostId(postId);
         User user = userDetails.getUser();
+        teamService.memberSecession(user,post);
+        return new ResponseDto("200", "팀에서 나왔습니다.", "");
 
-        if (post.getUser().equals(user)){
-            teamService.memberSecession(user,post);
-            return new ResponseDto("200", "팀에서 나왔습니다.", "");
-            // [예외처리] 팀 탈퇴를 요청한 사용자가 아닐 때
-        }else throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
     }
 
 }
