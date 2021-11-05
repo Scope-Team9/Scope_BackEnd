@@ -2,9 +2,9 @@ package com.studycollaboproject.scope.security;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;
@@ -16,7 +16,6 @@ import java.io.IOException;
 
 @RequiredArgsConstructor
 @Slf4j
-@Component
 public class JwtAuthenticationFilter extends GenericFilterBean {
 
     private final JwtTokenProvider jwtTokenProvider;
@@ -26,7 +25,7 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
         // 헤더에서 JWT 받아옴
         String token = jwtTokenProvider.resolveToken((HttpServletRequest) request);
         log.info("====================token=================");
-        log.info(token);
+        log.info("[{}] token={}", MDC.get("UUID"), token);
         log.info("====================token=================");
         // 유효한 토큰인지 확인
         if (token != null && jwtTokenProvider.validateToken(token)) {
