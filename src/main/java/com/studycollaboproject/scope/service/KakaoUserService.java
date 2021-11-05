@@ -23,21 +23,17 @@ public class KakaoUserService {
     public SnsInfoDto kakaoLogin(String code) throws JsonProcessingException {
         String accessToken = getAccessToken(code);
         return getKakaoUserInfo(accessToken);
-
     }
     private String getAccessToken(String code) throws JsonProcessingException {
-
         // HTTP Header 생성
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-
         // HTTP Body 생성
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "authorization_code");
         body.add("client_id", "2f892c61e0552c3f50223077e2fc5c6c");
         body.add("redirect_uri", "http://localhost:3000/user/kakao/callback");
         body.add("code", code);
-
         // HTTP 요청 보내기
         HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest =
                 new HttpEntity<>(body, headers);
@@ -55,7 +51,6 @@ public class KakaoUserService {
         JsonNode jsonNode = objectMapper.readTree(responseBody);
         log.info("getAccessToken responseBody = {}", responseBody);
         return jsonNode.get("access_token").asText();
-
     }
 
 
@@ -80,6 +75,5 @@ public class KakaoUserService {
         String id = jsonNode.get("id").asText();
         String email = jsonNode.get("kakao_account").get("email").asText();
         return new SnsInfoDto(email, id);
-
     }
 }

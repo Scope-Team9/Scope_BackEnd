@@ -44,17 +44,25 @@ public class TeamRestController {
                                     @RequestBody TeamRequestDto requestDto,
                                     @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) throws MessagingException {
         log.info("POST, [{}], /api/team/{}, userId={}, accept={}", MDC.get("UUID"), postId, requestDto.getUserId(), requestDto.isAccept());
-
-        if (userDetails == null) {        //로그인 사용자 불러오기
+        // [예외처리] 로그인 정보가 없을 때
+        if (userDetails == null) {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
+        //로그인 사용자 정보 불러오기
+        User user = userService.loadUserBySnsId(userDetails.getSnsId());
+        //로그인 사용자가 해당 프로젝트의 생성자 인지 확인
+        Post post = postService.loadPostIfOwner(postId, user);
+        //지원자 정보 확인
+        User applyUser = userService.loadUserByUserId(requestDto.getUserId());
+        //지원자 승인/거절
+        Team team = teamService.acceptMember(post, applyUser, requestDto.isAccept());
+        //지원자 승인시 승인된 지원자에게 알림 메일 발송
+        if (team != null) {
+            mailService.acceptTeamMailBuilder(new MailDto(team));
+        }
+        //지원지 목록 출력
+        List<MemberListResponseDto> responseDto = teamService.getMember(postId);
 
-        User user = userService.loadUserBySnsId(userDetails.getSnsId());    //로그인 사용자 정보 불러오기
-        Post post = postService.loadPostIfOwner(postId, user);                    //로그인 사용자가 해당 프로젝트의 생성자 인지 확인
-        User applyUser = userService.loadUserByUserId(requestDto.getUserId());    //지원자 정보 확인
-        Team team = teamService.acceptMember(post, applyUser, requestDto.isAccept());        //지원자 승인/거절
-        mailService.acceptTeamMailBuilder(new MailDto(team));
-        List<MemberListResponseDto> responseDto = teamService.getMember(postId);  //지원지 목록 출력
         return new ResponseDto("200", "신청 상태가 변경되었습니다.",responseDto) ;
     }
 
