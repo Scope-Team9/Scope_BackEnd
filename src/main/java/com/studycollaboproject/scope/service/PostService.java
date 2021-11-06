@@ -288,8 +288,8 @@ public class PostService {
     }
 
     // 현재 로그인 한 사용자 북마크 체크여부 확인
-    public boolean isBookmarkChecked(Long postId, String username) {
-        Optional<Bookmark> bookmark = bookmarkRepository.findByPostIdAndUserNickname(postId, username);
+    public boolean isBookmarkChecked(Post post, User user) {
+        Optional<Bookmark> bookmark = bookmarkRepository.findByPostAndUser(post, user);
         return bookmark.isPresent();
 
     }
