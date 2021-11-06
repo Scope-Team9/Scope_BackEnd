@@ -36,13 +36,18 @@ jobs:
     - name: Make Directory for deliver
       run: mkdir deploy
 
-      # Jar 파일 Copy
+      # Jar file Copy
     - name: Copy Jar
       run: cp ./build/libs/*.jar ./deploy/
 
-      # appspec.yml 파일 Copy
+      # appspec.yml file Copy
     - name: Copy appspec
       run: cp ./appspec.yml ./deploy/
+
+      # script file Copy
+    - name: Copy shell
+      run: cp ./scripts/* ./deploy/
+
 
       # 압축파일 형태로 전달(codedeploy는 zip형식만 읽을 수 있음)
     - name: Make zip file

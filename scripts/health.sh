@@ -3,11 +3,13 @@
 # health.sh
 # nginx 연결 설정 변경 전 health-check 용도
 
+# prfile.sh , switch.sh import
 ABSPATH=$(readlink -f $0)
 ABSDIR=$(dirname $ABSPATH)
 source ${ABSDIR}/profile.sh
 source ${ABSDIR}/switch.sh
 
+# 유휴포트를 IDLE_PORT에 저장
 IDLE_PORT=$(find_idle_port)
 
 echo "> Health Check Start!"
@@ -15,7 +17,8 @@ echo "> IDLE_PORT: $IDLE_PORT"
 echo "> curl -s http://localhost:$IDLE_PORT/profile "
 sleep 10
 
-for RETRY_COUNT in {1..10}
+# 순차적으로 올라가며 for 문 수행
+for RETRY_COUNT in {1..20}
 do
   RESPONSE=$(curl -s http://localhost:${IDLE_PORT}/profile)
   UP_COUNT=$(echo ${RESPONSE} | grep 'real' | wc -l)
@@ -37,6 +40,6 @@ do
     exit 1
   fi
 
-  echo "> Health check 연결 실패. 재시도..."
+  echo "> Health check에 실패하였습니다."
   sleep 10
 done

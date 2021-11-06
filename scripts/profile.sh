@@ -10,8 +10,9 @@ function find_idle_profile()
 
 
     if [ ${RESPONSE_CODE} -ge 400 ] # 400 보다 크면 (즉, 40x/50x 에러 모두 포함)
+    # 만약 오류가 있다면 강제로 1번에 배포하기 위해 real2로 둠
     then
-        CURRENT_PROFILE=real1
+        CURRENT_PROFILE=real2
     else
         CURRENT_PROFILE=$(curl -s http://localhost/profile)
     fi
