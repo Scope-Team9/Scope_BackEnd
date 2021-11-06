@@ -9,7 +9,6 @@ import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -114,7 +113,7 @@ public class PostService {
         }
         // bookmarkRecommend가 Bookmark라면 북마크 포스트만 리턴한다.
         else if ("bookmark".equals(bookmarkRecommend)) {
-            int totalPostSize = bookmarkRepository.findAllByUserNickname(snsId).size();
+            int totalPostSize = postRepository.findAllBookmarkByUserSnsId(snsId).size();
             int totalPage = (int) Math.ceil( (double) totalPostSize/displayNumber);
             postsAndTotalPage.put("totalPage", totalPage);
             if ("deadline".equals(sort)) {
@@ -132,6 +131,7 @@ public class PostService {
             int totalPostSize = postRepository.findAllByTechStackList_TechIn(techList).size();
             int totalPage = (int) Math.ceil( (double) totalPostSize/displayNumber);
             postsAndTotalPage.put("totalPage", totalPage);
+
             if ("deadline".equals(sort)) {
                 filterPosts = postRepository.findAllByTechInOrderByStartDate(techList, pageable);
             } else {
@@ -143,24 +143,29 @@ public class PostService {
                 return  postsAndTotalPage;
             }
 
-            totalPostSize = bookmarkRepository.findAllByUserSnsIdAndPostIn(snsId,filterPosts).size();
-            totalPage = (int) Math.ceil( (double) totalPostSize/displayNumber);
-            postsAndTotalPage.put("totalPage", totalPage);
-
-            List<Bookmark> bookmarkList = bookmarkRepository.findAllByUserSnsIdAndPostIn(snsId, filterPosts);
+            List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
             List<PostResponseDto> postResponseDtos = filterPosts.stream().map(o -> new PostResponseDto(o , checkBookmark(o, bookmarkList))).collect(Collectors.toList());
             postsAndTotalPage.put("postResponseDtos", postResponseDtos);
             return postsAndTotalPage;
         }
     }
 
-    private boolean checkBookmark(Post post, List<Bookmark> bookmarkList) {
-        for (Bookmark bookmark : bookmarkList) {
-            if (bookmark.getPost().getId().equals(post.getId())) {
+    private boolean checkBookmark(Post post, List<Post> bookmarkList) {
+        for (Post bookmarkPost : bookmarkList) {
+            if (bookmarkPost.getId().equals(post.getId())) {
                 return true;
             }
         }
         return false;
+    }
+
+    public MypagePostListDto getMyPostList(User user) {
+        List<Post> includePostList = postRepository.findAllByUserSnsId(user.getSnsId());
+        List<Post> bookmarkPostList = postRepository.findAllBookmarkByUserSnsId(user.getSnsId());
+        List<PostResponseDto> myBookmarkList = bookmarkPostList.stream().map(o -> new PostResponseDto(o, true)).collect(Collectors.toList());
+        List<PostResponseDto> includedList = includePostList.stream().map(o -> new PostResponseDto(o, checkBookmark(o, bookmarkPostList))).collect(Collectors.toList());
+
+        return new MypagePostListDto(includedList, myBookmarkList, new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList())));
     }
 
     public MypagePostListDto getPostList(User user) {
@@ -247,13 +252,12 @@ public class PostService {
     }
 
     public Map<String, Object> sendByDisplayNumber(int displayNumber, int page, List<Post> filterPosts, String snsId) {
-        List<Bookmark> bookmarkList = bookmarkRepository.findAllByUserSnsIdAndPostIn(snsId, filterPosts);
+        List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
         int index = displayNumber * page;
         int toIndex = Math.min(filterPosts.size(), index + displayNumber);
 
         List<PostResponseDto> postResponseDtos = filterPosts.subList(index, toIndex)
                 .stream().map(o -> new PostResponseDto(o, checkBookmark(o, bookmarkList))).collect(Collectors.toList());
-
         int totalPostSize = filterPosts.size();
         int totalPage = (int) Math.ceil( (double) totalPostSize/displayNumber);
 
