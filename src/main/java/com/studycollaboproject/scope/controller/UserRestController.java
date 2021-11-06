@@ -43,11 +43,9 @@ public class UserRestController {
         log.info("GET, [{}], /api/user", MDC.get("UUID"));
 
         User user = userService.loadUserByUserId(userId);
-        MypagePostListDto mypagePostListDto = postService.getPostList(user);
-        MypageResponseDto mypageResponseDto = userService.Mypage(user,userDetails,mypagePostListDto);
+        MypagePostListDto mypagePostListDto = postService.getMyPostList(user);
 
-
-        return new ResponseDto("200", "", mypageResponseDto);
+        return new ResponseDto("200", "", mypagePostListDto);
     }
 
     @Operation(summary = "회원 소개 수정")
@@ -58,15 +56,16 @@ public class UserRestController {
         if (userId.equals(userDetails.getUser().getId())){
           UserResponseDto userResponseDto = userService.updateUserInfo(userDetails.getUsername(), userRequestDto);
           return new ResponseDto("200","회원 정보가 수정되었습니다.",userResponseDto);}
-        else throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
-
+        // [예외처리] 로그인 정보가 없을 때
+        else {
+            throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
+        }
     }
 
     @Operation(summary = "회원 가입 - 회원 정보와 테스트 결과 저장")
     @PostMapping("/api/signup")
     public ResponseDto signup(@RequestBody SignupRequestDto signupRequestDto) {
         log.info("POST, [{}], /api/signup, signupRequestDto={}", MDC.get("UUID"), signupRequestDto.toString());
-
 
         String userTestResult = testService.testResult(signupRequestDto.getUserPropensityType());
         String memberTestResult = testService.testResult(signupRequestDto.getMemberPropensityType());
@@ -85,7 +84,6 @@ public class UserRestController {
     @GetMapping("/api/login/email")
     public ResponseDto emailCheck(@Parameter(description = "이메일", in = ParameterIn.QUERY) @RequestParam String email) {
         log.info("GET, [{}], /api/login/email, email={}", MDC.get("UUID"), email);
-
         return userService.emailCheckByEmail(email);
 
     }
@@ -94,7 +92,6 @@ public class UserRestController {
     @GetMapping("/api/login/nickname")
     public ResponseDto nicknameCheck(@Parameter(description = "닉네임", in = ParameterIn.QUERY) @RequestParam String nickname) {
         log.info("GET, [{}], /api/login/nickname, nickname={}", MDC.get("UUID"), nickname);
-
         return userService.nicknameCheckByNickname(nickname);
 
     }
@@ -102,13 +99,14 @@ public class UserRestController {
     @Operation(summary = "유저 소개 업데이트")
     @PostMapping("/api/user/{userId}/desc")
     public ResponseDto updateUserDesc(@Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails,
-                                      @RequestBody String userDesc, @Parameter(description = "수정하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId){
-        log.info("POST, [{}], /api/user/desc, userDesc={}", MDC.get("UUID"), userDesc);
+                                      @RequestBody String introduction, @Parameter(description = "수정하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId){
+        log.info("POST, [{}], /api/user/desc, userDesc={}", MDC.get("UUID"), introduction);
         if (userId.equals(userDetails.getUser().getId())){
-            UserResponseDto userResponseDto = userService.updateUserDesc(userDetails.getUsername(), userDesc);
+            UserResponseDto userResponseDto = userService.updateUserDesc(userDetails.getUsername(), introduction);
 
             return new ResponseDto("200","회원 정보가 수정되었습니다.",userResponseDto);
         }
+        // [예외처리] 로그인 정보가 없을 때
         else throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
 
     }
@@ -130,8 +128,9 @@ public class UserRestController {
         log.info("POST, [{}], /api/user/{}", MDC.get("UUID"), userId);
         if (userDetails.getUser().getId().equals(userId)){
             return userService.deleteUser(userDetails.getUser());
-
-        }else {
+        }
+        // [예외처리] 로그인 정보가 없을 때
+        else {
             throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
     }
@@ -145,11 +144,10 @@ public class UserRestController {
     }
 
     @Operation(summary = "이메일 인증 코드 확인")
-    @GetMapping("api/user/email/{userId}")
+    @GetMapping("api/user/email/auth/{userId}")
     public ResponseDto recemailCode(@Parameter(description = "인증 코드", in = ParameterIn.QUERY) @RequestParam String code,
                                     @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long userId){
         mailService.emailAuthCodeCheck(code,userId);
         return new ResponseDto("200","인증이 성공적으로 이루어졌습니다.","");
     }
-
 }

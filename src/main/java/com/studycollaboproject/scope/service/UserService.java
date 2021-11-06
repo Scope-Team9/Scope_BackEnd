@@ -29,7 +29,7 @@ public class UserService {
     private final ApplicantRepository applicantRepository;
     private final TeamRepository teamRepository;
 
-    public MypageResponseDto Mypage(User mypageUser, UserDetails userDetails, MypagePostListDto mypagePostListDto) {
+    public MypageResponseDto  Mypage(User mypageUser, UserDetails userDetails, MypagePostListDto mypagePostListDto) {
         boolean isMyMypage;
         if (!(userDetails == null)) {
             User user = loadUserBySnsId(userDetails.getUsername());
@@ -39,7 +39,6 @@ public class UserService {
         }
         List<PostResponseDto> bookmarkList = getBookmarkList(mypageUser);
         return new MypageResponseDto(mypagePostListDto, bookmarkList, isMyMypage);
-
     }
 
     public boolean isMyMypage(User user, User mypageUser) {
@@ -59,9 +58,7 @@ public class UserService {
     //기술스택 리스트와 유저 정보를 같이 DB에 저장
     public UserResponseDto saveUser(List<String> techStack, User user, String token) {
         user.addTechStackListAndToken(techStackConverter.convertStringToTechStack(techStack,user, null),token);
-
         User savedUser = userRepository.save(user);
-
         return new UserResponseDto(savedUser, techStackConverter.convertTechStackToString(user.getTechStackList()));
     }
 
@@ -94,7 +91,6 @@ public class UserService {
         } else {
             return new ResponseDto("200", "사용가능한 메일입니다.", "");
         }
-
     }
 
     //닉네임 중복 체크
@@ -105,15 +101,12 @@ public class UserService {
         } else {
             return new ResponseDto("200", "사용가능한 닉네임입니다.", "");
         }
-
     }
 
     //sns 로그인 시 기존 회원 여부 판단
     public ResponseDto SignupEmailCheck(String email, String snsId, String sns) {
         String id = sns + snsId;
         User user = userRepository.findBySnsId(id).orElse(null);
-
-
 
         if (user == null) {
             return new ResponseDto("300", "추가 정보 작성이 필요한 사용자입니다.", new SnsInfoDto(email, id));
@@ -126,9 +119,12 @@ public class UserService {
     //북마크 체크여부 판단
     @Transactional
     public ResponseDto bookmarkCheck(Long postId, String snsId) {
-        Post post = postRepository.findById(postId).orElseThrow(() ->
-                new RestApiException(ErrorCode.NO_POST_ERROR));
+        // [예외처리] 북마크하고자 하는 post를 삭제 등과 같은 이유로 찾을 수 없을 때
+        Post post = postRepository.findById(postId).orElseThrow(
+                () -> new RestApiException(ErrorCode.NO_POST_ERROR)
+        );
         User user = loadUserBySnsId(snsId);
+        // [예외처리] 사용자가 자신의 게시물을 북마크하려고 할 때
         if (post.getUser().equals(user)) {
             throw new RestApiException(ErrorCode.NO_BOOKMARK_MY_POST_ERROR);
         }
@@ -153,20 +149,16 @@ public class UserService {
         String email = userRequestDto.getEmail();
         User user = loadUserBySnsId(snsId);
 
-
         techStackRepository.deleteAllByUser(user);
         user.resetTechStack();
 
         nicknameCheckByNickname(nickname);
         emailCheckByEmail(email);
 
-
-
         techStackRepository.deleteAllByUser(user);
         user.resetTechStack();
         user.updateUserInfo(email,nickname,
                 techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(),user, null));
-
         return new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList()));
     }
 
@@ -179,8 +171,6 @@ public class UserService {
         return new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList()));
     }
 
-
-
     @Transactional
     public ResponseDto deleteUser(User user){
         List<Post> postList = postRepository.findAllByUser(user);
@@ -192,12 +182,8 @@ public class UserService {
         bookmarkRepository.deleteAllByUser(user);
         teamRepository.deleteAllByUser(user);
 
-
         userRepository.delete(user);
 
         return new ResponseDto("OK","성공적으로 회원 정보가 삭제되었습니다.","");
     }
-
-
-
 }

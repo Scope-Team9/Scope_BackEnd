@@ -1,6 +1,10 @@
 package com.studycollaboproject.scope.config;
 
 import com.studycollaboproject.scope.filter.LogFilter;
+import com.studycollaboproject.scope.security.ExceptionHandlerFilter;
+import com.studycollaboproject.scope.security.JwtAuthenticationFilter;
+import com.studycollaboproject.scope.security.JwtTokenProvider;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +16,10 @@ import javax.servlet.Filter;
 import java.io.File;
 
 @Configuration
+@RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
+
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
@@ -29,7 +36,25 @@ public class WebConfig implements WebMvcConfigurer {
         FilterRegistrationBean<Filter> filterRegistrationBean = new
                 FilterRegistrationBean<>();
         filterRegistrationBean.setFilter(new LogFilter());
+        filterRegistrationBean.setOrder(2);
+        filterRegistrationBean.addUrlPatterns("/*");
+        return filterRegistrationBean;
+    }
+    @Bean
+    public FilterRegistrationBean<Filter> exceptionFilter() {
+        FilterRegistrationBean<Filter> filterRegistrationBean = new
+                FilterRegistrationBean<>();
+        filterRegistrationBean.setFilter(new ExceptionHandlerFilter());
         filterRegistrationBean.setOrder(1);
+        filterRegistrationBean.addUrlPatterns("/*");
+        return filterRegistrationBean;
+    }
+    @Bean
+    public FilterRegistrationBean<Filter> jwtAuthFilter() {
+        FilterRegistrationBean<Filter> filterRegistrationBean = new
+                FilterRegistrationBean<>();
+        filterRegistrationBean.setFilter(new JwtAuthenticationFilter(jwtTokenProvider));
+        filterRegistrationBean.setOrder(3);
         filterRegistrationBean.addUrlPatterns("/*");
         return filterRegistrationBean;
     }

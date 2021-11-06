@@ -36,6 +36,7 @@ public class PostRestController {
     public ResponseDto writePost(@RequestBody PostRequestDto postRequestDto,
                                  @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("POST, [{}], /api/post, requestDto={}", MDC.get("UUID"), postRequestDto.toString());
+        // [예외처리] 로그인 정보가 없을 때
         if (userDetails == null) {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
@@ -74,6 +75,7 @@ public class PostRestController {
             @Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails
     ) {
         log.info("POST, [{}], /api/post/{}, requestDto={}", MDC.get("UUID"), postId, postRequestDto.toString());
+        // [예외처리] 로그인 정보가 없을 때
         if (userDetails == null) {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }

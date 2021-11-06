@@ -31,10 +31,11 @@ public class TestRestController {
                                         @Parameter(description = "수정하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId) {
         log.info("POST, [{}], /api/test, userPropensity={}, memberPropensity={}", MDC.get("UUID"),
                 requestDto.getUserPropensityType().toString(), requestDto.getMemberPropensityType().toString());
-
-        if (userDetails == null) {  //로그인 정보 확인
+        // [예외처리] 로그인 정보가 없을 때
+        if (userDetails == null) {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
+        // [예외처리] 성향 테스트 수정을 요청한 유저와 DB에 저장된 유저의 정보가 다를 때
         if (userId.equals(userDetails.getUser().getId())){
             TestResultDto resultDto = testService.updatePropensityType(userDetails.getSnsId(),
                     requestDto.getUserPropensityType(), requestDto.getMemberPropensityType());

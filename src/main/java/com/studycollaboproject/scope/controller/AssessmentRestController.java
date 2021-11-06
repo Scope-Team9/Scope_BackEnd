@@ -41,13 +41,14 @@ public class AssessmentRestController {
                                         @RequestBody AssessmentRequestDto requestDto,
                                         @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) throws MessagingException{
         log.info("POST, [{}], /api/assessment/{}, userIds={}", MDC.get("UUID"), postId, requestDto.getUserIds().toString());
-
+        // [예외처리] 로그인 정보가 없을 때
         if (userDetails == null) {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
-
         User user = userService.loadUserBySnsId(userDetails.getSnsId());
         MailDto mailDto = assessmentService.assessmentMember(postId, user, requestDto.getUserIds());
+
+        //팀장을 제외한 팀원들에게 프로젝트 종료와 평가를 알리는 메일 보내기
         mailService.assessmantMailBuilder(mailDto);
 
 

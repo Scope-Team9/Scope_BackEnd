@@ -22,7 +22,6 @@ public class GithubUserService {
 
     public SnsInfoDto githubLogin(String code) throws JsonProcessingException {
         String accessToken = getAccessToken(code);
-
         return getGithubUserInfo(accessToken);
     }
 
@@ -31,20 +30,16 @@ public class GithubUserService {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
         headers.add("Accept", "application/json");
-
-
         // HTTP Body 생성
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("client_secret", "032fdd79ecc55bcf87ca99506677fb93ba25e10f");
         body.add("client_id", "5bb2c0fab941fb5b8f9f");
         body.add("redirect_uri", "http://localhost:3000/user/github/callback");
         body.add("code", code);
-
         // HTTP 요청 보내기
         HttpEntity<MultiValueMap<String, String>> githubTokenRequest =
                 new HttpEntity<>(body, headers);
         RestTemplate rt = new RestTemplate();
-
         ResponseEntity<String> response = rt.exchange(
                 "https://github.com/login/oauth/access_token",
                 HttpMethod.POST,
@@ -56,10 +51,8 @@ public class GithubUserService {
         String responseBody = response.getBody();
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(responseBody);
-
         log.info("getAccessToken responseBody = {}", responseBody);
         return jsonNode.get("access_token").asText();
-
     }
 
 
