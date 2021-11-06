@@ -36,6 +36,7 @@ public class GithubUserService {
         body.add("client_id", "5bb2c0fab941fb5b8f9f");
         body.add("redirect_uri", "http://localhost:3000/user/github/callback");
         body.add("code", code);
+
         // HTTP 요청 보내기
         HttpEntity<MultiValueMap<String, String>> githubTokenRequest =
                 new HttpEntity<>(body, headers);
@@ -55,7 +56,6 @@ public class GithubUserService {
         return jsonNode.get("access_token").asText();
     }
 
-
     private SnsInfoDto getGithubUserInfo(String accessToken) throws JsonProcessingException {
         // HTTP Header 생성
         HttpHeaders headers = new HttpHeaders();
@@ -70,6 +70,7 @@ public class GithubUserService {
                 githubUserInfoRequest,
                 String.class
         );
+
         String responseBody = response.getBody();
 
         ObjectMapper objectMapper = new ObjectMapper();

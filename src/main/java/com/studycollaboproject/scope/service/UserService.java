@@ -130,7 +130,7 @@ public class UserService {
         }
         Map<String, String> isBookmarkChecked = new HashMap<>();
 
-        if (postService.isBookmarkChecked(postId, snsId)) {
+        if (postService.isBookmarkChecked(post, user)) {
             bookmarkRepository.deleteByUserAndPost(user, post);
             isBookmarkChecked.put("isBookmarkChecked", "false");
             return new ResponseDto("200", "북마크 삭제 성공", isBookmarkChecked);
