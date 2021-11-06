@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.studycollaboproject.scope.dto.SnsInfoDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -19,6 +20,12 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 @Slf4j
 public class KakaoUserService {
+    @Value("${kakao.client.id}")
+    String clientId;
+
+    @Value("${kakao.redirect.url}")
+    String redirectUrl;
+
 
     public SnsInfoDto kakaoLogin(String code) throws JsonProcessingException {
         String accessToken = getAccessToken(code);

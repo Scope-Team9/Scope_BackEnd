@@ -168,30 +168,6 @@ public class PostService {
         return new MypagePostListDto(includedList, myBookmarkList, new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList())));
     }
 
-    public MypagePostListDto getPostList(User user) {
-        List<Team> teamList = teamRepository.findAllByUser(user);
-
-        List<PostResponseDto> inProgressList = new ArrayList<>();
-        List<PostResponseDto> endList = new ArrayList<>();
-        List<PostResponseDto> recruitmentList = new ArrayList<>();
-
-        for (Team team : teamList) {
-            switch (team.getPost().getProjectStatus().getProjectStatus()) {
-                case "진행중":
-                    inProgressList.add(new PostResponseDto(team.getPost()));
-                    break;
-                case "종료":
-                    endList.add(new PostResponseDto(team.getPost()));
-                    break;
-                case "모집중":
-                    recruitmentList.add(new PostResponseDto(team.getPost()));
-                    break;
-            }
-        }
-
-        return new MypagePostListDto(new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList())), recruitmentList, inProgressList, endList);
-    }
-
     public List<String> getPropensityTypeList(String snsId) {
         User user = userRepository.findBySnsId(snsId).orElseThrow(() ->
                 new RestApiException(ErrorCode.NO_USER_ERROR));
