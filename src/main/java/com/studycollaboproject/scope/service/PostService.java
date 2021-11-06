@@ -143,37 +143,13 @@ public class PostService {
         return false;
     }
 
-    public MypagePostListDto getMyPostList(User user) {
+    public MypageResponseDto getMyPostList(User user, String loginUserSnsId) {
         List<Post> includePostList = postRepository.findAllByUserSnsId(user.getSnsId());
         List<Post> bookmarkPostList = postRepository.findAllBookmarkByUserSnsId(user.getSnsId());
         List<PostResponseDto> myBookmarkList = bookmarkPostList.stream().map(o -> new PostResponseDto(o, true)).collect(Collectors.toList());
         List<PostResponseDto> includedList = includePostList.stream().map(o -> new PostResponseDto(o, checkBookmark(o, bookmarkPostList))).collect(Collectors.toList());
 
-        return new MypagePostListDto(includedList, myBookmarkList, new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList())));
-    }
-
-    public MypagePostListDto getPostList(User user) {
-        List<Team> teamList = teamRepository.findAllByUser(user);
-
-        List<PostResponseDto> inProgressList = new ArrayList<>();
-        List<PostResponseDto> endList = new ArrayList<>();
-        List<PostResponseDto> recruitmentList = new ArrayList<>();
-
-        for (Team team : teamList) {
-            switch (team.getPost().getProjectStatus().getProjectStatus()) {
-                case "진행중":
-                    inProgressList.add(new PostResponseDto(team.getPost()));
-                    break;
-                case "종료":
-                    endList.add(new PostResponseDto(team.getPost()));
-                    break;
-                case "모집중":
-                    recruitmentList.add(new PostResponseDto(team.getPost()));
-                    break;
-            }
-        }
-
-        return new MypagePostListDto(new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList())), recruitmentList, inProgressList, endList);
+        return new MypageResponseDto(includedList, myBookmarkList, new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList())), loginUserSnsId.equals(user.getSnsId()));
     }
 
     public List<String> getPropensityTypeList(String snsId) {
