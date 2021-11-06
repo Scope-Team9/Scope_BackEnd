@@ -9,15 +9,13 @@ import java.util.List;
 
 public interface PostRepositoryExtension {
 
-    List<Post> findAllOrderByCreatedAt(Pageable pageable);
+    List<Post> findAllByTechInOrderByCreatedAt(List<Tech> techList);
 
-    List<Post> findAllByTechInOrderByCreatedAt(List<Tech> techList, Pageable pageable);
+    List<Post> findAllByTechInOrderByStartDate(List<Tech> techList);
 
-    List<Post> findAllByTechInOrderByStartDate(List<Tech> techList, Pageable pageable);
+    List<Post> findAllByBookmarkOrderByStartDate(String snsId );
 
-    List<Post> findAllByBookmarkOrderByStartDate(String snsId, Pageable pageable);
-
-    List<Post> findAllByBookmarkOrderByCreatedAt(String snsId, Pageable pageable);
+    List<Post> findAllByBookmarkOrderByCreatedAt(String snsId);
 
     List<Post> findAllByPropensityTypeOrderByStartDate(String propensity);
 
