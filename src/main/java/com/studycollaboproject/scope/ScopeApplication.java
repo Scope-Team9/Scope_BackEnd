@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import javax.annotation.PostConstruct;
 import java.util.TimeZone;
 
-@PropertySource("config.properties")
+@PropertySource("/config.properties")
 @Profile(value = "prod")
 @EnableJpaAuditing
 @SpringBootApplication
