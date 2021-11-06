@@ -21,7 +21,8 @@ public class PostRepositoryExtensionImpl extends QuerydslRepositorySupport imple
                 .where(post.techStackList.any().tech.in(techList))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.createdAt.desc());
+                .orderBy(post.createdAt.desc())
+                .distinct();
         return query.fetch();
     }
 
@@ -31,7 +32,8 @@ public class PostRepositoryExtensionImpl extends QuerydslRepositorySupport imple
                 .where(post.techStackList.any().tech.in(techList))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.startDate.asc());
+                .orderBy(post.startDate.asc())
+                .distinct();
         return query.fetch();
     }
 
@@ -41,7 +43,8 @@ public class PostRepositoryExtensionImpl extends QuerydslRepositorySupport imple
                 .where(post.bookmarkList.any().user.snsId.equalsIgnoreCase(snsId))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.startDate.asc());
+                .orderBy(post.startDate.asc())
+                .distinct();
         return query.fetch();
     }
 
@@ -51,7 +54,8 @@ public class PostRepositoryExtensionImpl extends QuerydslRepositorySupport imple
                 .where(post.bookmarkList.any().user.snsId.equalsIgnoreCase(snsId))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.createdAt.desc());
+                .orderBy(post.createdAt.desc())
+                .distinct();
         return query.fetch();
     }
 
@@ -63,7 +67,8 @@ public class PostRepositoryExtensionImpl extends QuerydslRepositorySupport imple
                         .and(post.user.userPropensityType.eq(propensity)))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.startDate.asc());
+                .orderBy(post.startDate.asc())
+                .distinct();
         return query.fetch();
     }
 
@@ -75,7 +80,8 @@ public class PostRepositoryExtensionImpl extends QuerydslRepositorySupport imple
                         .and(post.user.userPropensityType.eq(propensity)))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.createdAt.desc());
+                .orderBy(post.createdAt.desc())
+                .distinct();
         return query.fetch();
     }
 
@@ -86,7 +92,8 @@ public class PostRepositoryExtensionImpl extends QuerydslRepositorySupport imple
                         .or(post.applicantList.any().user.snsId.eq(snsId)))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.createdAt.desc());
+                .orderBy(post.createdAt.desc())
+                .distinct();
         return query.fetch();
     }
 
@@ -96,7 +103,8 @@ public class PostRepositoryExtensionImpl extends QuerydslRepositorySupport imple
                 .where(post.bookmarkList.any().user.snsId.eq(snsId))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.createdAt.desc());
+                .orderBy(post.createdAt.desc())
+                .distinct();
         return query.fetch();
     }
 }

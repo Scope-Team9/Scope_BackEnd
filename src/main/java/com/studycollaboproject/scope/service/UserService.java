@@ -29,32 +29,6 @@ public class UserService {
     private final ApplicantRepository applicantRepository;
     private final TeamRepository teamRepository;
 
-    public MypageResponseDto  Mypage(User mypageUser, UserDetails userDetails, MypagePostListDto mypagePostListDto) {
-        boolean isMyMypage;
-        if (!(userDetails == null)) {
-            User user = loadUserBySnsId(userDetails.getUsername());
-            isMyMypage = isMyMypage(user, mypageUser);
-        } else {
-            isMyMypage = false;
-        }
-        List<PostResponseDto> bookmarkList = getBookmarkList(mypageUser);
-        return new MypageResponseDto(mypagePostListDto, bookmarkList, isMyMypage);
-    }
-
-    public boolean isMyMypage(User user, User mypageUser) {
-        return user.equals(mypageUser);
-    }
-
-    //user가 북마크한 post 리스트 반환
-    public List<PostResponseDto> getBookmarkList(User user) {
-        List<Bookmark> bookmarkList = bookmarkRepository.findAllByUser(user);
-        List<PostResponseDto> postList = new ArrayList<>();
-        for (Bookmark bookmark : bookmarkList) {
-            postList.add(new PostResponseDto(bookmark.getPost()));
-        }
-        return postList;
-    }
-
     //기술스택 리스트와 유저 정보를 같이 DB에 저장
     public UserResponseDto saveUser(List<String> techStack, User user, String token) {
         user.addTechStackListAndToken(techStackConverter.convertStringToTechStack(techStack,user, null),token);
