@@ -10,6 +10,7 @@ ABSDIR=$(dirname $ABSPATH)
 # import profile.sh
 source ${ABSDIR}/profile.sh
 IDLE_PORT=$(find_idle_port)
+echo "> IDLE_PORT : ${IDLE_PORT}"
 
 CONTAINER_ID=$(docker container ps -f "name=${IDLE_PROFILE}" -q)
 
@@ -27,3 +28,4 @@ else
   echo "> docker rm ${IDLE_PROFILE}"
   sudo docker rm ${IDLE_PROFILE}
   sleep 5
+fi
