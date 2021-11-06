@@ -2,7 +2,6 @@ package com.studycollaboproject.scope.repository;
 
 import com.querydsl.jpa.JPQLQuery;
 import com.studycollaboproject.scope.model.*;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import java.util.List;
@@ -15,61 +14,43 @@ public class PostRepositoryExtensionImpl extends QuerydslRepositorySupport imple
         super(Post.class);
     }
 
+
     @Override
-    public List<Post> findAllOrderByCreatedAt(Pageable pageable) {
+    public List<Post> findAllByTechInOrderByCreatedAt(List<Tech> techList) {
         JPQLQuery<Post> query = from(post)
+                .where(post.techStackList.any().tech.in(techList))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
                 .orderBy(post.createdAt.desc());
         return query.fetch();
     }
 
     @Override
-    public List<Post> findAllByTechInOrderByCreatedAt(List<Tech> techList, Pageable pageable) {
+    public List<Post> findAllByTechInOrderByStartDate(List<Tech> techList) {
         JPQLQuery<Post> query = from(post)
                 .where(post.techStackList.any().tech.in(techList))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .orderBy(post.createdAt.desc());
-        return query.fetch();
-    }
-
-    @Override
-    public List<Post> findAllByTechInOrderByStartDate(List<Tech> techList, Pageable pageable) {
-        JPQLQuery<Post> query = from(post)
-                .where(post.techStackList.any().tech.in(techList))
-                .leftJoin(post.user, user).fetchJoin()
-                .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
                 .orderBy(post.startDate.asc());
         return query.fetch();
     }
 
     @Override
-    public List<Post> findAllByBookmarkOrderByStartDate(String snsId, Pageable pageable) {
+    public List<Post> findAllByBookmarkOrderByStartDate(String snsId) {
         JPQLQuery<Post> query = from(post)
                 .where(post.bookmarkList.any().user.snsId.equalsIgnoreCase(snsId))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
                 .orderBy(post.startDate.asc());
         return query.fetch();
     }
 
     @Override
-    public List<Post> findAllByBookmarkOrderByCreatedAt(String snsId, Pageable pageable) {
+    public List<Post> findAllByBookmarkOrderByCreatedAt(String snsId) {
         JPQLQuery<Post> query = from(post)
                 .where(post.bookmarkList.any().user.snsId.equalsIgnoreCase(snsId))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
                 .orderBy(post.createdAt.desc());
         return query.fetch();
     }

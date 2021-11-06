@@ -1,9 +1,30 @@
-#/appspec.yml
 version: 0.0
-
 os: linux
 files:
   # source는 프로젝트 기준, destination은 instance 기준
   # source가 destination으로 저장
   - source: /
-    destination: /home/ubuntu/scope
+    destination: /home/ubuntu/scope/zip
+
+permissions:
+  - object: /
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
+
+hooks:
+  # 애플리케이션 구성 파일 변경작업에 사용
+  AfterInstall:
+    - location: stop.sh
+      timeout: 60
+      runas: root
+  # 서비스 재시작
+  ApplicationStart:
+    - location: start.sh
+      timeout: 60
+      runas: root
+  # 배포 완료 확인
+  ValidateService:
+    - location: health.sh
+      timeout: 60
+      runas: root
