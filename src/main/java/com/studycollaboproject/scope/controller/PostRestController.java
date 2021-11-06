@@ -114,7 +114,7 @@ public class PostRestController {
     @Operation(summary = "프로젝트 상세 정보")
     @GetMapping("/api/post/{postId}")
     public ResponseDto getPost(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
-                               @Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails) {
+                               @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("GET, [{}], /api/post/{}", MDC.get("UUID"), postId);
 
         Post post = postService.loadPostByPostId(postId);
@@ -122,9 +122,10 @@ public class PostRestController {
         List<MemberListResponseDto> member = teamService.getMember(postId);
         boolean isTeamStarter = false;
         boolean isBookmarkChecked = false;
+
         if (userDetails != null) {
             isTeamStarter = postService.isTeamStarter(post,userDetails.getUsername());
-            isBookmarkChecked = postService.isBookmarkChecked(postId,userDetails.getUsername());
+            isBookmarkChecked = postService.isBookmarkChecked(post,userDetails.getUser());
         }
         return new ResponseDto("200", "", new PostDetailDto(postDetail, member,isTeamStarter, isBookmarkChecked));
     }
