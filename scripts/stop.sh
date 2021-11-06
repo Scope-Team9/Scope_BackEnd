@@ -27,5 +27,5 @@ else
   sudo docker stop ${IDLE_PROFILE}
   echo "> docker rm ${IDLE_PROFILE}"
   sudo docker rm ${IDLE_PROFILE}
-fi
   sleep 5
+fi
