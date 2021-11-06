@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import javax.annotation.PostConstruct;
 import java.util.TimeZone;
 
-@Profile(value = "prod")
 @EnableJpaAuditing
 @SpringBootApplication
 public class ScopeApplication {
