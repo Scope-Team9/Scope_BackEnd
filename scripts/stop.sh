@@ -9,13 +9,17 @@ ABSPATH=$(readlink -f $0)
 ABSDIR=$(dirname $ABSPATH)
 # import profile.sh
 source ${ABSDIR}/profile.sh
+
 IDLE_PORT=$(find_idle_port)
+IDLE_PROFILE=$(find_idle_profile)
+
 echo "> IDLE_PORT : ${IDLE_PORT}"
+echo "> IDLE_PROFILE : ${IDLE_PROFILE}"
 
 CONTAINER_ID=$(docker container ps -f "name=${IDLE_PROFILE}" -q)
 
 echo "> 컨테이너 ID : ${CONTAINER_ID}"
-echo ">  프로필 (real1 or real2) : ${IDLE_PROFILE}"
+echo "> 프로필 (real1 or real2) : ${IDLE_PROFILE}"
 
 # 만약 문자열이 Null 이라면 참 (현재 실행되는 서버가 없음)
 if [ -z ${CONTAINER_ID} ]
@@ -23,9 +27,9 @@ then
   echo "> 현재 구동중인 애플리케이션이 없으므로 종료하지 않습니다."
 else
   # 컨테이너 종료 후 삭제
-  echo "> docker stop ${CONTAINER_ID}"
-  sudo docker stop ${CONTAINER_ID}
-  echo "> docker rm ${CONTAINER_ID}"
-  sudo docker rm ${CONTAINER_ID}
+  echo "> docker stop ${IDLE_PROFILE}"
+  sudo docker stop ${IDLE_PROFILE}
+  echo "> docker rm ${IDLE_PROFILE}"
+  sudo docker rm ${IDLE_PROFILE}
   sleep 5
 fi
