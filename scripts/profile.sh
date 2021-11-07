@@ -14,7 +14,7 @@ function find_idle_profile()
     then
         CURRENT_PROFILE='real2'
     else
-        CURRENT_PROFILE="$(curl -s localhost/profile)"
+        CURRENT_PROFILE=$(curl -s http://localhost/profile)
     fi
 
     # IDLE_PROFILE : nginx와 연결되지 않은 profile
@@ -26,7 +26,7 @@ function find_idle_profile()
     fi
 
     # bash script는 값의 반환이 안되기 때문에 echo로 결과 출력 후, 그 값을 사용한다.
-    echo "$IDLE_PROFILE"
+    echo "${IDLE_PROFILE}"
 }
 
 # 유휴 port 찾기

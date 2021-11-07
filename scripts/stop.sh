@@ -27,9 +27,9 @@ then
   echo "> 현재 구동중인 애플리케이션이 없으므로 종료하지 않습니다."
 else
   # 컨테이너 종료 후 삭제
-  echo "> docker stop ${IDLE_PROFILE}"
-  sudo docker stop ${IDLE_PROFILE}
-  echo "> docker rm ${IDLE_PROFILE}"
-  sudo docker rm ${IDLE_PROFILE}
+  echo "> docker stop ${CONTAINER_ID}"
+  sudo docker stop ${CONTAINER_ID}
+  echo "> docker rm ${CONTAINER_ID}"
+  sudo docker rm ${CONTAINER_ID}
   sleep 5
 fi
