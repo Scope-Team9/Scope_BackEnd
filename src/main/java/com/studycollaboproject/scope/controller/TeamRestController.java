@@ -21,6 +21,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,9 +42,9 @@ public class TeamRestController {
 
     @Operation(summary = "팀원 승인/거절")
     @PostMapping("/api/team/{postId}")
-    public ResponseDto acceptMember(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
-                                    @RequestBody TeamRequestDto requestDto,
-                                    @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) throws MessagingException {
+    public ResponseEntity<Object> acceptMember(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
+                                               @RequestBody TeamRequestDto requestDto,
+                                               @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) throws MessagingException {
         log.info("POST, [{}], /api/team/{}, userId={}, accept={}", MDC.get("UUID"), postId, requestDto.getUserId(), requestDto.isAccept());
         // [예외처리] 로그인 정보가 없을 때
         if (userDetails == null) {
@@ -62,44 +64,54 @@ public class TeamRestController {
         }
         //지원지 목록 출력
         List<MemberListResponseDto> responseDto = teamService.getMember(postId);
-
-        return new ResponseDto("200", "신청 상태가 변경되었습니다.",responseDto) ;
+        return new ResponseEntity<>(
+                new ResponseDto("신청 상태가 변경되었습니다.", responseDto),
+                HttpStatus.OK
+        );
     }
 
     @Operation(summary = "팀원 조회")
     @GetMapping("/api/team/{postId}")
-    public ResponseDto getMember(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId) {
+    public ResponseEntity<Object> getMember(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId) {
         log.info("GET, [{}], /api/team/{}", MDC.get("UUID"), postId);
         List<MemberListResponseDto> responseDto = teamService.getMember(postId);
-        return new ResponseDto("200", "", responseDto);
+        return new ResponseEntity<>(
+                new ResponseDto("", responseDto),
+                HttpStatus.OK
+        );
     }
 
     @Operation(summary = "팀원 강퇴")
     @DeleteMapping("/api/team/resignation")
-    public ResponseDto memberResignation(@RequestBody Long memberId,@RequestBody Long postId,
-                                         @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public ResponseEntity<Object> memberResignation(@RequestBody Long memberId, @RequestBody Long postId,
+                                                    @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("DELETE, [{}], /api/team/resignation", MDC.get("UUID"));
         Post post = postService.loadPostByPostId(postId);
         User user = userDetails.getUser();
 
-        if (post.getUser().equals(user)){
+        if (post.getUser().equals(user)) {
             User member = userService.loadUserByUserId(memberId);
-            teamService.memberResignation(member,post);
-            return new ResponseDto("200", "팀에서 팀원을 삭제했습니다.", "");
+            teamService.memberResignation(member, post);
+            return new ResponseEntity<>(
+                    new ResponseDto("팀에서 팀원을 삭제했습니다.", ""),
+                    HttpStatus.OK
+            );
             // [예외처리] 팀원 강퇴를 요청한 사용자가 게시물 작성자가 아닐 때
-        }else throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
+        } else throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
     }
 
     @Operation(summary = "팀 탈퇴")
     @DeleteMapping("/api/team/secession")
-    public ResponseDto memberSecession(@RequestBody Long postId,
-                                         @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails){
+    public ResponseEntity<Object> memberSecession(@RequestBody Long postId,
+                                                  @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("DELETE, [{}], /api/team/secession", MDC.get("UUID"));
         Post post = postService.loadPostByPostId(postId);
         User user = userDetails.getUser();
-        teamService.memberSecession(user,post);
-        return new ResponseDto("200", "팀에서 나왔습니다.", "");
-
+        teamService.memberSecession(user, post);
+        return new ResponseEntity<>(
+                new ResponseDto("팀에서 나왔습니다.", ""),
+                HttpStatus.OK
+        );
     }
 
 }
