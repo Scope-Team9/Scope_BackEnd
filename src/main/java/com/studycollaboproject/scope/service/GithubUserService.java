@@ -35,6 +35,7 @@ public class GithubUserService {
         body.add("client_secret", "032fdd79ecc55bcf87ca99506677fb93ba25e10f");
         body.add("client_id", "5bb2c0fab941fb5b8f9f");
         body.add("redirect_uri", "http://localhost:3000/user/github/callback");
+//        body.add("redirect_uri", "http://kbumsoo.s3-website.ap-northeast-2.amazonaws.com/user/github/callback");
         body.add("code", code);
 
         // HTTP 요청 보내기

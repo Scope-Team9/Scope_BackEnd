@@ -24,6 +24,7 @@ public class KakaoUserService {
         String accessToken = getAccessToken(code);
         return getKakaoUserInfo(accessToken);
     }
+
     private String getAccessToken(String code) throws JsonProcessingException {
         // HTTP Header 생성
         HttpHeaders headers = new HttpHeaders();
@@ -33,6 +34,8 @@ public class KakaoUserService {
         body.add("grant_type", "authorization_code");
         body.add("client_id", "2f892c61e0552c3f50223077e2fc5c6c");
         body.add("redirect_uri", "http://localhost:3000/user/kakao/callback");
+//        body.add("redirect_uri", "http://kbumsoo.s3-website.ap-northeast-2.amazonaws.com/user/kakao/callback");
+
         body.add("code", code);
         // HTTP 요청 보내기
         HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest =

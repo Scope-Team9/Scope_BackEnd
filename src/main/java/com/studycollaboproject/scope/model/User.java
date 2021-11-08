@@ -38,6 +38,7 @@ public class User extends Timestamped {
     @Column(unique = true, nullable = false)
     private String nickname;
 
+    @Column(length = 5000)
     private String introduction;
 
     @Column(unique = true,nullable = false)
