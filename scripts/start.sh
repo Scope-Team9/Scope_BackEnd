@@ -6,13 +6,14 @@
 ABSPATH=$(readlink -f $0)
 ABSDIR=$(dirname $ABSPATH)
 source ${ABSDIR}/profile.sh
-
+source /etc/profile.d/scopekey.sh
 
 # 현재 프로젝트 경로 지정
 REPOSITORY=/home/ubuntu/scope
 IDLE_PORT=$(find_idle_port)
 IDLE_PROFILE=$(find_idle_profile)
 
+echo "> JASYPT_ENCRYPTOR_PASSWORD: ${JASYPT_ENCRYPTOR_PASSWORD}"
 echo "> IDLE_PORT : $IDLE_PORT"
 echo "> IDLE_PROFILE : $IDLE_PROFILE"
 
@@ -37,4 +38,4 @@ echo "> $JAR_NAME 를 profile=$IDLE_PROFILE 로 실행합니다."
 
 cd $REPOSITORY
 
-sudo docker run -it --name "$IDLE_PROFILE" -d -e active=$IDLE_PROFILE -e password="$JASYPT_ENCRYPTOR_PASSWORD" -p $IDLE_PORT:$IDLE_PORT -v $(pwd):/scope scope
+sudo docker run -it --name "$IDLE_PROFILE" -d -e active=$IDLE_PROFILE -e password=$JASYPT_ENCRYPTOR_PASSWORD -p $IDLE_PORT:$IDLE_PORT -v $(pwd):/scope scope

@@ -8,10 +8,12 @@ import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +27,10 @@ import java.util.Date;
 @Slf4j
 public class JwtTokenProvider {
 
-    private String secretKey = "tmzhvmtpfvmtmxjelvmfhwprxmtmzhvmtmxjelzhffkqhvmfhwprxm"; // 암호 키 설정
+
+    @Value("${jwtToken}")
+    private String secretKey; // 암호 키 설정
+
     SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256; // 알고리즘 선택
 
 
