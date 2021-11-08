@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -71,7 +72,7 @@ public class TeamRestController {
     public ResponseDto getMember(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId) {
         log.info("GET, [{}], /api/team/{}", MDC.get("UUID"), postId);
         List<MemberListResponseDto> responseDto = teamService.getMember(postId);
-        return new ResponseDto("200", "", responseDto);
+        return new ResponseDto(HttpStatus.ALREADY_REPORTED.toString(), "", responseDto);
     }
 
     @Operation(summary = "팀원 강퇴")

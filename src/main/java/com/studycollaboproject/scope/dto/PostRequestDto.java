@@ -26,12 +26,10 @@ public class PostRequestDto {
     private Integer totalMember;
     @Schema(description = "프로젝트 상태")
     private String projectStatus;
-    //    private String recommendationAgree;
     @Schema(description = "시작 시간")
     private LocalDate startDate;
     @Schema(description = "종료 시간")
     private LocalDate endDate;
-//    private List<Team> teamList;
     @Schema(description = "글쓰기시 프로젝트 기술 스택")
     private List<String> techStackList;
 }
