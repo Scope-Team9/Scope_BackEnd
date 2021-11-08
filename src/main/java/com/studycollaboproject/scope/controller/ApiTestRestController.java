@@ -21,22 +21,22 @@ public class ApiTestRestController {
     private final JwtTokenProvider jwtTokenProvider;
 
     @PostMapping("/api-test")
-    public Map<String,String>  makeApiTestUser(@RequestBody SignupTestDto signupTestDto){
-        String jwtToken =jwtTokenProvider.createToken(signupTestDto.getSnsId());
+    public Map<String, String> makeApiTestUser(@RequestBody SignupTestDto signupTestDto) {
+        String jwtToken = jwtTokenProvider.createToken(signupTestDto.getSnsId());
         System.out.println("jwtToken = " + jwtToken);
         System.out.println("jwtToken.split(\".\")[1] = " + jwtToken.split("\\.")[1]);
-        User user = new User(signupTestDto,jwtToken.split("\\.")[1]);
+        User user = new User(signupTestDto, jwtToken.split("\\.")[1]);
         userRepository.save(user);
-        Map<String ,String> token = new HashMap<>();
-        token.put("token",jwtToken);
+        Map<String, String> token = new HashMap<>();
+        token.put("token", jwtToken);
         return token;
     }
 
     @GetMapping("/api-test")
-    public Map<String ,String > loginApiTestUser(@Parameter(description = "닉네임", in = ParameterIn.QUERY)@RequestParam String snsId){
-        String jwtToken =jwtTokenProvider.createToken(snsId);
-        Map<String ,String> token = new HashMap<>();
-        token.put("token",jwtToken);
+    public Map<String, String> loginApiTestUser(@Parameter(description = "닉네임", in = ParameterIn.QUERY) @RequestParam String snsId) {
+        String jwtToken = jwtTokenProvider.createToken(snsId);
+        Map<String, String> token = new HashMap<>();
+        token.put("token", jwtToken);
         return token;
     }
 }

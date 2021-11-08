@@ -19,6 +19,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,9 +40,9 @@ public class ApplicantRestController {
 
     @Operation(summary = "모집 지원하기")
     @PostMapping("/api/applicant/{postId}")
-    public ResponseDto apply(@Parameter(in = ParameterIn.PATH, description = "프로젝트 ID") @PathVariable Long postId,
-                             @RequestBody ApplicantRequestDto requestDto,
-                             @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) throws MessagingException {
+    public ResponseEntity<Object> apply(@Parameter(in = ParameterIn.PATH, description = "프로젝트 ID") @PathVariable Long postId,
+                                        @RequestBody ApplicantRequestDto requestDto,
+                                        @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) throws MessagingException {
         log.info("POST, [{}], /api/applicant/{}, comment={}", MDC.get("UUID"), postId, requestDto.getComment());
 
         if (userDetails == null) {
@@ -50,7 +52,10 @@ public class ApplicantRestController {
         Applicant applicant = applicantService.applyPost(userDetails.getSnsId(), postId, requestDto.getComment());
         mailService.applicantMailBuilder(new MailDto(applicant));
 
-        return new ResponseDto("200", "", "");
+        return new ResponseEntity<>(
+                new ResponseDto("", ""),
+                HttpStatus.CREATED
+        );
     }
 
     @Operation(summary = "모집 지원취소")
