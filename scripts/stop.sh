@@ -9,13 +9,17 @@ ABSPATH=$(readlink -f $0)
 ABSDIR=$(dirname $ABSPATH)
 # import profile.sh
 source ${ABSDIR}/profile.sh
+
 IDLE_PORT=$(find_idle_port)
+IDLE_PROFILE=$(find_idle_profile)
+
 echo "> IDLE_PORT : ${IDLE_PORT}"
+echo "> IDLE_PROFILE : ${IDLE_PROFILE}"
 
 CONTAINER_ID=$(docker container ps -f "name=${IDLE_PROFILE}" -q)
 
 echo "> 컨테이너 ID : ${CONTAINER_ID}"
-echo ">  프로필 (real1 or real2) : ${IDLE_PROFILE}"
+echo "> 프로필 (real1 or real2) : ${IDLE_PROFILE}"
 
 # 만약 문자열이 Null 이라면 참 (현재 실행되는 서버가 없음)
 if [ -z ${CONTAINER_ID} ]
