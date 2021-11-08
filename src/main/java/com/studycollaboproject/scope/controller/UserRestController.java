@@ -53,7 +53,7 @@ public class UserRestController {
         );
     }
 
-    @Operation(summary = "회원 소개 수정")
+    @Operation(summary = "회원 정보 수정")
     @PostMapping("/api/user/{userId}")
     public ResponseEntity<Object> updateUserinfo(@Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails,
                                                  @RequestBody UserRequestDto userRequestDto, @Parameter(description = "수정하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId) {
@@ -121,7 +121,7 @@ public class UserRestController {
         if (userId.equals(userDetails.getUser().getId())) {
             UserResponseDto userResponseDto = userService.updateUserDesc(userDetails.getUsername(), introduction);
             return new ResponseEntity<>(
-                    new ResponseDto("회원 정보가 수정되었습니다.", userResponseDto),
+                    new ResponseDto("회원 소개가 수정되었습니다.", userResponseDto),
                     HttpStatus.OK
             );
         }
@@ -172,7 +172,7 @@ public class UserRestController {
 
     @Operation(summary = "이메일 인증 코드 확인")
     @GetMapping("api/user/email/auth/{userId}")
-    public ResponseEntity<Object> recemailCode(@Parameter(description = "인증 코드", in = ParameterIn.QUERY) @RequestParam String code,
+    public ResponseEntity<Object> recEmailCode(@Parameter(description = "인증 코드", in = ParameterIn.QUERY) @RequestParam String code,
                                                @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long userId) {
         mailService.emailAuthCodeCheck(code, userId);
         return new ResponseEntity<>(

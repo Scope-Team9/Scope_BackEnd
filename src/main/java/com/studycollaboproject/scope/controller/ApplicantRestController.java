@@ -92,7 +92,7 @@ public class ApplicantRestController {
         }
         List<MemberListResponseDto> responseDto = applicantService.getApplicant(post);
         return new ResponseEntity<>(
-                new ResponseDto("모집 지원 현황 조회 성공", ""),
+                new ResponseDto("모집 지원 현황 조회 성공", responseDto),
                 HttpStatus.OK
         );
 
