@@ -11,7 +11,6 @@ import com.studycollaboproject.scope.model.Team;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
 import com.studycollaboproject.scope.service.MailService;
-import com.studycollaboproject.scope.service.PostService;
 import com.studycollaboproject.scope.service.TeamService;
 import com.studycollaboproject.scope.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -76,7 +75,7 @@ public class TeamRestController {
         log.info("GET, [{}], /api/team/{}", MDC.get("UUID"), postId);
         List<MemberListResponseDto> responseDto = teamService.getMember(postId);
         return new ResponseEntity<>(
-                new ResponseDto("", responseDto),
+                new ResponseDto("팀원을 조회하였습니다.", responseDto),
                 HttpStatus.OK
         );
     }

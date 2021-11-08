@@ -42,7 +42,7 @@ public class TestRestController {
             TestResultDto resultDto = testService.updatePropensityType(userDetails.getSnsId(),
                     requestDto.getUserPropensityType(), requestDto.getMemberPropensityType());
             return new ResponseEntity<>(
-                    new ResponseDto("", resultDto),
+                    new ResponseDto("성향 테스트가 업데이트 되었습니다.", resultDto),
                     HttpStatus.OK
             );
         } else throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);

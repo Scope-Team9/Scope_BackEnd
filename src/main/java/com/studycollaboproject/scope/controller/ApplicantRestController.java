@@ -11,7 +11,6 @@ import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
 import com.studycollaboproject.scope.service.ApplicantService;
 import com.studycollaboproject.scope.service.MailService;
-import com.studycollaboproject.scope.service.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -53,14 +52,14 @@ public class ApplicantRestController {
         mailService.applicantMailBuilder(new MailDto(applicant));
 
         return new ResponseEntity<>(
-                new ResponseDto("", ""),
+                new ResponseDto("프로젝트에 지원되었습니다.", ""),
                 HttpStatus.CREATED
         );
     }
 
     @Operation(summary = "모집 지원취소")
     @DeleteMapping("/api/applicant/{postId}")
-    public ResponseDto cancelApply(@Parameter(in = ParameterIn.PATH, description = "프로젝트 ID") @PathVariable Long postId,
+    public ResponseEntity<Object> cancelApply(@Parameter(in = ParameterIn.PATH, description = "프로젝트 ID") @PathVariable Long postId,
                                    @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("DELETE, [{}], /api/applicant/{}", MDC.get("UUID"), postId);
 
@@ -69,12 +68,16 @@ public class ApplicantRestController {
         }
         applicantService.cancelApply(userDetails.getSnsId(), postId);
 
-        return new ResponseDto("200", "", "");
+        return new ResponseEntity<>(
+                new ResponseDto("프로젝트 지원이 취소되었습니다.", ""),
+                HttpStatus.OK
+        );
+
     }
 
     @Operation(summary = "모집 현황")
     @GetMapping("/api/applicant/{postId}")
-    public ResponseDto getApplicant(@Parameter(in = ParameterIn.PATH, description = "프로젝트 ID") @PathVariable Long postId,
+    public ResponseEntity<Object> getApplicant(@Parameter(in = ParameterIn.PATH, description = "프로젝트 ID") @PathVariable Long postId,
                                     @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("GET, [{}], /api/applicant/{}", MDC.get("UUID"), postId);
 
@@ -87,6 +90,10 @@ public class ApplicantRestController {
             throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
         List<MemberListResponseDto> responseDto = applicantService.getApplicant(post);
-        return new ResponseDto("200", "", responseDto);
+        return new ResponseEntity<>(
+                new ResponseDto("모집 지원 현황 조회 성공", ""),
+                HttpStatus.OK
+        );
+
     }
 }

@@ -22,7 +22,9 @@ public enum ErrorCode {
     NO_TEAM_ERROR("프로젝트의 팀 구성원이 아닙니다."),
     ALREADY_ASSESSMENT_ERROR("이미 평가를 완료했습니다."),
     TOKEN_EXPRIRATOION_ERROR("로그인 정보가 만료되었습니다."),
-    ALREADY_STARTED_ERROR("모집중인 프로젝트가 아닙니다.");
+    ALREADY_STARTED_ERROR("모집중인 프로젝트가 아닙니다."),
+    NO_RECRUITMENT_ERROR("이미 진행중인 프로젝트 프로젝트입니다.")
+    ;
 
     private String message;
 }

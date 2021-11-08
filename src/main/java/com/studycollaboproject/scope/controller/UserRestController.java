@@ -6,7 +6,6 @@ import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
 import com.studycollaboproject.scope.service.MailService;
-import com.studycollaboproject.scope.service.PostService;
 import com.studycollaboproject.scope.service.TestService;
 import com.studycollaboproject.scope.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -87,7 +86,7 @@ public class UserRestController {
         map.put("user", userResponseDto);
 
         return new ResponseEntity<>(
-                new ResponseDto("", map),
+                new ResponseDto("회원가입이 되었습니다.", map),
                 HttpStatus.CREATED
         );
     }
