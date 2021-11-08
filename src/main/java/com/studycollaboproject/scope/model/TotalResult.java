@@ -25,12 +25,6 @@ public class TotalResult {
         this.result = 0L;
     }
 
-    public TotalResult(String s, String s1) {
-        this.result = 0L;
-        this.userType = s;
-        this.memberType = s1;
-    }
-
     public void setResult(Long result){
         this.result = result;
     }
