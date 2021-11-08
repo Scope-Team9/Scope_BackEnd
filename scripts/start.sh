@@ -37,4 +37,4 @@ echo "> $JAR_NAME 를 profile=$IDLE_PROFILE 로 실행합니다."
 
 cd $REPOSITORY
 
-sudo docker run -it --name "$IDLE_PROFILE" -d -e password="$JASYPT_ENCRYPTOR_PASSWORD" -e active=$IDLE_PROFILE -p $IDLE_PORT:$IDLE_PORT -v $(pwd):/scope scope
+sudo docker run -it --name "$IDLE_PROFILE" -d -e active=$IDLE_PROFILE -e password="$JASYPT_ENCRYPTOR_PASSWORD" -p $IDLE_PORT:$IDLE_PORT -v $(pwd):/scope scope
