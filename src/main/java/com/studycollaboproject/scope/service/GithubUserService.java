@@ -92,5 +92,6 @@ public class GithubUserService {
         String id = jsonNode.get("id").asText();
         String email = jsonNode.get("html_url").asText();
         return new SnsInfoDto(email, id);
+
     }
 }
