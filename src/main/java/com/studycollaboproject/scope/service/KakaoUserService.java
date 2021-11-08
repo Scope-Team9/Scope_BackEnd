@@ -6,9 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.studycollaboproject.scope.dto.SnsInfoDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -35,6 +32,7 @@ public class KakaoUserService {
         String accessToken = getAccessToken(code);
         return getKakaoUserInfo(accessToken);
     }
+
     private String getAccessToken(String code) throws JsonProcessingException {
         // HTTP Header 생성
         HttpHeaders headers = new HttpHeaders();
@@ -42,6 +40,10 @@ public class KakaoUserService {
         // HTTP Body 생성
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "authorization_code");
+        body.add("client_id", "2f892c61e0552c3f50223077e2fc5c6c");
+        body.add("redirect_uri", "http://localhost:3000/user/kakao/callback");
+//        body.add("redirect_uri", "http://kbumsoo.s3-website.ap-northeast-2.amazonaws.com/user/kakao/callback");
+
         body.add("client_id", clientId);
         body.add("redirect_uri", redirectUrl);
         body.add("code", code);

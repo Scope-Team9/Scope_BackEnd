@@ -9,8 +9,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class ResponseDto {
-    @Schema(description = "request 결과", example = "200")
-    private String status;
     @Schema(description = "메시지", example = "message")
     private String msg;
     @Schema(description = "데이터")

@@ -20,7 +20,7 @@ public class OpenApiConfig {
                 .description("성향에 맞는 팀원을 추천받아 함께 사이드 프로젝트를 진행할 수 있는 서비스")
                 .contact(new Contact()
                         .name("Web Site")
-                        .url(""))
+                        .url("http://kbumsoo.s3-website.ap-northeast-2.amazonaws.com/"))
                 .license(new License()
                         .name("Apache License Version 2.0")
                         .url("http://www.apache.org/licenses/LICENSE-2.0"));

@@ -1,5 +1,6 @@
     package com.studycollaboproject.scope.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import java.util.List;
 public class ServerRestController {
     private final Environment env;
 
+    @Operation(summary = "서버 Blue/Green 상태 확인")
     @GetMapping("/profile")
     public String getProfile() {
         // jar파일 실행 시 설정한 실행 값을 배열로 저장(0번째 리스트에 저장됨)

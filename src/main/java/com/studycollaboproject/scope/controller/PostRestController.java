@@ -48,12 +48,10 @@ public class PostRestController {
     @Operation(summary = "프로젝트 조회")
     @GetMapping("/api/post")
     public ResponseDto readPost(@Parameter(description = "필터", in = ParameterIn.QUERY, example = ";;;;;;;;;;;;;;") @RequestParam String filter,
-                                @Parameter(description = "디스플레이 수", in = ParameterIn.QUERY, example = "15") @RequestParam int displayNumber,
-                                @Parameter(description = "페이지 수", in = ParameterIn.QUERY, example = "1") @RequestParam int page,
                                 @Parameter(description = "정렬 기준", in = ParameterIn.QUERY, example = "createdAt") @RequestParam String sort,
                                 @Parameter(description = "북마크 / 추천", in = ParameterIn.QUERY, example = "bookmark", allowEmptyValue = true) @RequestParam String bookmarkRecommend,
                                 @Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails) {
-        log.info("GET, [{}], /api/post, filter={}, displayNumber={}, page={}, sort={}, bookmarkRecommend={}", MDC.get("UUID"), filter, displayNumber, page, sort, bookmarkRecommend);
+        log.info("GET, [{}], /api/post, filter={}, sort={}, bookmarkRecommend={}", MDC.get("UUID"), filter, sort, bookmarkRecommend);
         String SnsId = "";
         if(bookmarkRecommend.equals("recommend") || bookmarkRecommend.equals("bookmark")){
             if (userDetails == null) {
@@ -62,8 +60,7 @@ public class PostRestController {
             SnsId = userDetails.getUsername();
         }
 
-        page = page - 1;
-        Map<String, Object> postResponseDtos = postService.readPost(filter, displayNumber, page, sort, SnsId, bookmarkRecommend);
+        List<PostResponseDto> postResponseDtos = postService.readPost(filter, sort, SnsId, bookmarkRecommend);
         return new ResponseDto("200", "success", postResponseDtos);
     }
 
@@ -120,16 +117,16 @@ public class PostRestController {
                                @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("GET, [{}], /api/post/{}", MDC.get("UUID"), postId);
 
-        Post post = postService.loadPostByPostId(postId);
-        PostResponseDto postDetail = new PostResponseDto(post);
         List<MemberListResponseDto> member = teamService.getMember(postId);
         boolean isTeamStarter = false;
         boolean isBookmarkChecked = false;
 
+        Post post = postService.loadPostByPostId(postId);
         if (userDetails != null) {
             isTeamStarter = postService.isTeamStarter(post,userDetails.getUsername());
             isBookmarkChecked = postService.isBookmarkChecked(post,userDetails.getUser());
         }
+        PostResponseDto postDetail = new PostResponseDto(post, isBookmarkChecked);
         return new ResponseDto("200", "", new PostDetailDto(postDetail, member,isTeamStarter, isBookmarkChecked));
     }
 

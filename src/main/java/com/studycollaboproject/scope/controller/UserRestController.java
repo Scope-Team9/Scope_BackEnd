@@ -43,9 +43,9 @@ public class UserRestController {
         log.info("GET, [{}], /api/user", MDC.get("UUID"));
 
         User user = userService.loadUserByUserId(userId);
-        MypagePostListDto mypagePostListDto = postService.getMyPostList(user);
+        MypageResponseDto responseDto = postService.getMyPostList(user, userDetails.getUsername());
 
-        return new ResponseDto("200", "", mypagePostListDto);
+        return new ResponseDto("200", "", responseDto);
     }
 
     @Operation(summary = "회원 소개 수정")
