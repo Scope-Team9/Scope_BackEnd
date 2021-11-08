@@ -39,10 +39,10 @@ public class AssessmentService {
         for (Long userId : userIds) {
             for (Team team : teamList) {
                 if (team.getUser().equals(rater)) {
-                    if (team.isAssement()) {
+                    if (team.isAssessment()) {
                         throw new RestApiException(ErrorCode.ALREADY_ASSESSMENT_ERROR);
                     }
-                    team.setAssement();
+                    team.setAssessment();
                 }
                 team.getPost().updateStatus("종료");
                 teamUserId = team.getUser().getId();

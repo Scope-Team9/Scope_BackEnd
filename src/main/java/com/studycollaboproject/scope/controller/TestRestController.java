@@ -14,6 +14,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,9 +28,9 @@ public class TestRestController {
 
     @Operation(summary = "성향 테스트 업데이트")
     @PostMapping("/api/test/{userId}")
-    public ResponseDto updatePropensity(@RequestBody PropensityRequestDto requestDto,
-                                        @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails,
-                                        @Parameter(description = "수정하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId) {
+    public ResponseEntity<Object> updatePropensity(@RequestBody PropensityRequestDto requestDto,
+                                                   @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails,
+                                                   @Parameter(description = "수정하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId) {
         log.info("POST, [{}], /api/test, userPropensity={}, memberPropensity={}", MDC.get("UUID"),
                 requestDto.getUserPropensityType().toString(), requestDto.getMemberPropensityType().toString());
         // [예외처리] 로그인 정보가 없을 때
@@ -36,11 +38,14 @@ public class TestRestController {
             throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
         // [예외처리] 성향 테스트 수정을 요청한 유저와 DB에 저장된 유저의 정보가 다를 때
-        if (userId.equals(userDetails.getUser().getId())){
+        if (userId.equals(userDetails.getUser().getId())) {
             TestResultDto resultDto = testService.updatePropensityType(userDetails.getSnsId(),
                     requestDto.getUserPropensityType(), requestDto.getMemberPropensityType());
-            return new ResponseDto("200", "", resultDto);}
-        else throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
+            return new ResponseEntity<>(
+                    new ResponseDto("성향 테스트가 업데이트 되었습니다.", resultDto),
+                    HttpStatus.OK
+            );
+        } else throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
 
     }
 
