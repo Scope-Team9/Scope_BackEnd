@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import javax.annotation.PostConstruct;
 import java.util.TimeZone;
 
-@PropertySource("/config.properties")
 @EnableJpaAuditing
 @SpringBootApplication
 public class ScopeApplication {

@@ -44,6 +44,11 @@ dependencies {
 
     // swagger
     implementation 'org.springdoc:spring-boot-springdoc:3.1.2'
+
+    // jasypt
+    implementation group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '3.0.3'
+
+
 }
 //querydsl 추가 시작
 def querydslDir = "$buildDir/generated/querydsl"
