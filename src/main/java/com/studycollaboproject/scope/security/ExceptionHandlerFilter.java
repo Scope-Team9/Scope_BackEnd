@@ -25,7 +25,7 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
         ObjectMapper om = new ObjectMapper();
 
         //에러 메시지
-        ResponseDto responseDto = new ResponseDto("failed", localizedMessage, "");
+        ResponseDto responseDto = new ResponseDto(localizedMessage, "");
 
         //JSON 형식으로 변환
         String jsonString = om.writeValueAsString(responseDto);

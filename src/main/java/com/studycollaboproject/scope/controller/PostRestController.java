@@ -5,6 +5,7 @@ import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
+import com.studycollaboproject.scope.service.PostService;
 import com.studycollaboproject.scope.service.TeamService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

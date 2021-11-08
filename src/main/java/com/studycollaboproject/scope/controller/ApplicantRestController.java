@@ -11,6 +11,7 @@ import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
 import com.studycollaboproject.scope.service.ApplicantService;
 import com.studycollaboproject.scope.service.MailService;
+import com.studycollaboproject.scope.service.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
