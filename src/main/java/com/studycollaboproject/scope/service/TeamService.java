@@ -3,10 +3,7 @@ package com.studycollaboproject.scope.service;
 import com.studycollaboproject.scope.dto.MemberListResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
-import com.studycollaboproject.scope.model.Applicant;
-import com.studycollaboproject.scope.model.Post;
-import com.studycollaboproject.scope.model.Team;
-import com.studycollaboproject.scope.model.User;
+import com.studycollaboproject.scope.model.*;
 import com.studycollaboproject.scope.repository.ApplicantRepository;
 import com.studycollaboproject.scope.repository.TeamRepository;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +31,7 @@ public class TeamService {
         applicant.deleteApply();
         applicantRepository.delete(applicant);
 
-        if(accept){
+        if (accept) {
             Team team = Team.builder()
                     .user(user)
                     .post(post)
@@ -50,11 +47,17 @@ public class TeamService {
                 .stream().map(MemberListResponseDto::new).collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public void memberResignation(User member,Post post) {
-        teamRepository.deleteByUserAndPost(member,post);
+    public void memberResignation(User member, Post post) {
+        if (post.getProjectStatus().equals(ProjectStatus.PROJECT_STATUS_RECRUITMENT)) {
+            teamRepository.deleteByUserAndPost(member, post);
+        } else throw new RestApiException(ErrorCode.NO_RECRUITMENT_ERROR);
     }
 
     public void memberSecession(User user, Post post) {
-        teamRepository.deleteByUserAndPost(user,post);
+
+        if (post.getProjectStatus().equals(ProjectStatus.PROJECT_STATUS_RECRUITMENT)) {
+            teamRepository.deleteByUserAndPost(user, post);
+        } else throw new RestApiException(ErrorCode.NO_RECRUITMENT_ERROR);
+
     }
 }
