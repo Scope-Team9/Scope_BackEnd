@@ -46,7 +46,7 @@ dependencies {
     implementation 'org.springdoc:spring-boot-springdoc:3.1.2'
 
     // jasypt
-    implementation group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '3.0.3'
+    implementation group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '3.0.4'
 
 
 }
