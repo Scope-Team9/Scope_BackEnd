@@ -34,7 +34,7 @@ public class Team extends Timestamped {
         this.post = post;
         this.user = user;
         post.updateMember();
-        isAssessment=false;
+        this.isAssessment = false;
     }
 
     public void setAssessment(){

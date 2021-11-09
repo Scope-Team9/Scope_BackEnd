@@ -75,8 +75,8 @@ public class Post extends Timestamped {
 
     public Post(PostRequestDto postRequestDto, User user) {
         this.title = postRequestDto.getTitle();
-        this.startDate = postRequestDto.getStartDate();
-        this.endDate = postRequestDto.getEndDate();
+        this.startDate = LocalDate.parse(postRequestDto.getStartDate().substring(0, 10));
+        this.endDate = LocalDate.parse(postRequestDto.getEndDate().substring(0, 10));
         this.summary = postRequestDto.getSummary();
         this.contents = postRequestDto.getContents();
         this.totalMember = postRequestDto.getTotalMember();
@@ -87,13 +87,12 @@ public class Post extends Timestamped {
     public void update(PostRequestDto postRequestDto) {
 
         this.title = postRequestDto.getTitle();
-        this.startDate = postRequestDto.getStartDate();
-        this.endDate = postRequestDto.getEndDate();
+        this.startDate = LocalDate.parse(postRequestDto.getStartDate().substring(0, 10));
+        this.endDate = LocalDate.parse(postRequestDto.getEndDate().substring(0, 10));
         this.summary = postRequestDto.getSummary();
         this.contents = postRequestDto.getContents();
         this.totalMember = postRequestDto.getTotalMember();
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
-
     }
 
     public void deleteUser(User user) {

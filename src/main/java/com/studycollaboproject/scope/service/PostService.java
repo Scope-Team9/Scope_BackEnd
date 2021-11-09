@@ -49,9 +49,9 @@ public class PostService {
             techStackRepository.deleteAllByPost(post);
             List<String> postTechStackList = postRequestDto.getTechStackList();
             List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(postTechStackList, null, post));
-            techStackRepository.saveAll(techStackList);
             post.updateTechStack(techStackList);
             post.update(postRequestDto);
+            techStackRepository.saveAll(techStackList);
             return new PostResponseDto(post);
         } else {
             throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
@@ -97,10 +97,12 @@ public class PostService {
             if ("deadline".equals(sort)) {
                 for (String propensity : propensityTypeList) {
                     filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByStartDate(propensity));
+//                    filterPosts.addAll(postRepository.findAllByUserMemberPropensityTypeAndProjectStatusAndUserSnsIdIsNotAndTechStackList_TechInOrderByStartDate(propensity, ProjectStatus.PROJECT_STATUS_INPROGRESS, "unknown", techList));
                 }
             } else {
                 for (String propensity : propensityTypeList) {
                     filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByCreatedAt(propensity));
+//                    filterPosts.addAll(postRepository.findAllByUserMemberPropensityTypeAndProjectStatusAndUserSnsIdIsNotAndTechStackList_TechInOrderByCreatedAt(propensity, ProjectStatus.PROJECT_STATUS_INPROGRESS, "unknown", techList));
                 }
             }
             List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
