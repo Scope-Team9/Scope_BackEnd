@@ -133,7 +133,7 @@ public class PostRestController {
 
     }
 
-    @Operation(summary = "프로젝트 상세 정보")
+    @Operation(summary = "프로젝트 상세 조회")
     @GetMapping("/api/post/{postId}")
     public ResponseEntity<Object> getPost(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
                                @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
