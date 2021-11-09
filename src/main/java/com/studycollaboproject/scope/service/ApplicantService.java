@@ -81,4 +81,8 @@ public class ApplicantService {
         return applicantRepository.findAllByPost(post)
                 .stream().map(MemberListResponseDto::new).collect(Collectors.toCollection(ArrayList::new));
     }
+
+    public boolean isApplicant(Post post, User user) {
+        return applicantRepository.findByUserAndPost(user,post).isPresent();
+    }
 }
