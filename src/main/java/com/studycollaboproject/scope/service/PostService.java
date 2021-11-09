@@ -49,9 +49,9 @@ public class PostService {
             techStackRepository.deleteAllByPost(post);
             List<String> postTechStackList = postRequestDto.getTechStackList();
             List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(postTechStackList, null, post));
-            techStackRepository.saveAll(techStackList);
             post.updateTechStack(techStackList);
             post.update(postRequestDto);
+            techStackRepository.saveAll(techStackList);
             return new PostResponseDto(post);
         } else {
             throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
@@ -96,14 +96,18 @@ public class PostService {
             List<String> propensityTypeList = getPropensityTypeList(snsId);
             if ("deadline".equals(sort)) {
                 for (String propensity : propensityTypeList) {
-                    filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByStartDate(propensity));
+//                    filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByStartDate(propensity));
+                    filterPosts.addAll(postRepository.findAllByUserMemberPropensityTypeAndProjectStatusAndUserSnsIdIsNotAndTechStackList_TechInOrderByStartDate(propensity, ProjectStatus.PROJECT_STATUS_INPROGRESS, "unknown", techList));
                 }
             } else {
                 for (String propensity : propensityTypeList) {
-                    filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByCreatedAt(propensity));
+//                    filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByCreatedAt(propensity));
+                    filterPosts.addAll(postRepository.findAllByUserMemberPropensityTypeAndProjectStatusAndUserSnsIdIsNotAndTechStackList_TechInOrderByCreatedAtDesc(propensity, ProjectStatus.PROJECT_STATUS_INPROGRESS, "unknown", techList));
                 }
             }
-            List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
+
+            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
+//            List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
             return filterPosts.stream().map(o -> new PostResponseDto(o, checkBookmark(o, bookmarkList))).collect(Collectors.toList());
         }
 
@@ -111,9 +115,11 @@ public class PostService {
         else if ("bookmark".equals(bookmarkRecommend)) {
 
             if ("deadline".equals(sort)) {
-                filterPosts = postRepository.findAllByBookmarkOrderByStartDate(snsId);
+//                filterPosts = postRepository.findAllByBookmarkOrderByStartDate(snsId);
+                filterPosts = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
             } else {
-                filterPosts = postRepository.findAllByBookmarkOrderByCreatedAt(snsId);
+//                filterPosts = postRepository.findAllByBookmarkOrderByCreatedAt(snsId);
+                filterPosts = postRepository.findAllByBookmarkList_User_SnsIdOrderByCreatedAtDesc(snsId);
             }
 
             return filterPosts.stream().map(o -> new PostResponseDto(o, true)).collect(Collectors.toList());
@@ -121,15 +127,18 @@ public class PostService {
         // 전체 조회의 경우.
         else {
             if ("deadline".equals(sort)) {
-                filterPosts = postRepository.findAllByTechInOrderByStartDate(techList);
+//                filterPosts = postRepository.findAllByTechInOrderByStartDate(techList);
+                filterPosts = postRepository.findAllByTechStackList_TechInOrderByStartDate(techList);
             } else {
-                filterPosts = postRepository.findAllByTechInOrderByCreatedAt(techList);
+//                filterPosts = postRepository.findAllByTechInOrderByCreatedAt(techList);
+                filterPosts = postRepository.findAllByTechStackList_TechInOrderByCreatedAtDesc(techList);
             }
             if (snsId.equals("")) {
                 return filterPosts.stream().map(o-> new PostResponseDto(o, false)).collect(Collectors.toList());
             }
 
-            List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
+            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
+//            List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
             return filterPosts.stream().map(o -> new PostResponseDto(o , checkBookmark(o, bookmarkList))).collect(Collectors.toList());
         }
     }
@@ -144,8 +153,10 @@ public class PostService {
     }
 
     public MypageResponseDto getMyPostList(User user, String loginUserSnsId) {
-        List<Post> includePostList = postRepository.findAllByUserSnsId(user.getSnsId());
-        List<Post> bookmarkPostList = postRepository.findAllBookmarkByUserSnsId(user.getSnsId());
+//        List<Post> includePostList = postRepository.findAllByUserSnsId(user.getSnsId());
+//        List<Post> bookmarkPostList = postRepository.findAllBookmarkByUserSnsId(user.getSnsId());
+        List<Post> includePostList = postRepository.findAllByUser(user);
+        List<Post> bookmarkPostList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(user.getSnsId());
         List<PostResponseDto> myBookmarkList = bookmarkPostList.stream().map(o -> new PostResponseDto(o, true)).collect(Collectors.toList());
         List<PostResponseDto> includedList = includePostList.stream().map(o -> new PostResponseDto(o, checkBookmark(o, bookmarkPostList))).collect(Collectors.toList());
 
@@ -162,25 +173,15 @@ public class PostService {
         // 유저의 성향이 다른 성향을 평가한 모든 정보
         List<TotalResult> totalResultList = totalResultRepository.findAllByUserType(userPropensityType);
 
-//        for (TotalResult totalResult : totalResultList) {
-//            if (totalResult.getMemberType().equals(memberPropensityType)) {
-//                Long result = totalResult.getResult() + 1L;
-//                totalResult.setResult(result);
-//            }
-//        }
-
         totalResultList.sort((o1, o2) -> o2.getResult().compareTo(o1.getResult()));
         List<String> sortedRecommendedList = new ArrayList<>();
 
-        for (TotalResult totalResult : totalResultList) {
-            if (totalResult.getMemberType().equals(memberPropensityType)){
-                sortedRecommendedList.add(totalResult.getMemberType());
-                break;
-            }
-        }
+        sortedRecommendedList.add(memberPropensityType);
 
         for (TotalResult totalResult : totalResultList) {
-            sortedRecommendedList.add(totalResult.getMemberType());
+            if(!totalResult.getMemberType().equals(memberPropensityType)) {
+                sortedRecommendedList.add(totalResult.getMemberType());
+            }
         }
 
         return sortedRecommendedList;
