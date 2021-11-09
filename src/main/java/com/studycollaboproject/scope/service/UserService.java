@@ -5,16 +5,18 @@ import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.Bookmark;
 import com.studycollaboproject.scope.model.Post;
+import com.studycollaboproject.scope.model.TechStack;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.*;
 import com.studycollaboproject.scope.security.JwtTokenProvider;
 import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Service
@@ -32,8 +34,10 @@ public class UserService {
 
     //기술스택 리스트와 유저 정보를 같이 DB에 저장
     public UserResponseDto saveUser(List<String> techStack, User user, String token) {
-        user.addTechStackListAndToken(techStackConverter.convertStringToTechStack(techStack, user, null), token);
+        List<TechStack> techStackList = techStackConverter.convertStringToTechStack(techStack, user, null);
+        user.addTechStackListAndToken(techStackList, token);
         User savedUser = userRepository.save(user);
+        techStackRepository.saveAll(techStackList);
         return new UserResponseDto(savedUser, techStackConverter.convertTechStackToString(user.getTechStackList()));
     }
 
@@ -131,9 +135,10 @@ public class UserService {
         emailCheckByEmail(email);
 
         techStackRepository.deleteAllByUser(user);
+        List<TechStack> techStackList = techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(), user, null);
         user.resetTechStack();
-        user.updateUserInfo(email, nickname,
-                techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(), user, null));
+        user.updateUserInfo(email, nickname, techStackList);
+        techStackRepository.saveAll(techStackList);
         return new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList()));
     }
 
