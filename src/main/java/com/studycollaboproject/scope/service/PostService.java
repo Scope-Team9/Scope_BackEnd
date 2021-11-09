@@ -160,18 +160,27 @@ public class PostService {
 
         String userPropensityType = user.getUserPropensityType();
         String memberPropensityType = user.getMemberPropensityType();
+
+        // 유저의 성향이 다른 성향을 평가한 모든 정보
         List<TotalResult> totalResultList = totalResultRepository.findAllByUserType(userPropensityType);
 
+//        for (TotalResult totalResult : totalResultList) {
+//            if (totalResult.getMemberType().equals(memberPropensityType)) {
+//                Long result = totalResult.getResult() + 1L;
+//                totalResult.setResult(result);
+//            }
+//        }
+
+        totalResultList.sort((o1, o2) -> o2.getResult().compareTo(o1.getResult()));
+        List<String> sortedRecommendedList = new ArrayList<>();
+
         for (TotalResult totalResult : totalResultList) {
-            if (totalResult.getMemberType().equals(memberPropensityType)) {
-                Long result = totalResult.getResult() + 1L;
-                totalResult.setResult(result);
+            if (totalResult.getMemberType().equals(memberPropensityType)){
+                sortedRecommendedList.add(totalResult.getMemberType());
+                break;
             }
         }
 
-        totalResultList.sort((o1, o2) -> o2.getResult().compareTo(o1.getResult()));
-
-        List<String> sortedRecommendedList = new ArrayList<>();
         for (TotalResult totalResult : totalResultList) {
             sortedRecommendedList.add(totalResult.getMemberType());
         }
