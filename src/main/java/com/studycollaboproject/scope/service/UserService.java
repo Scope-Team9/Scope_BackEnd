@@ -131,8 +131,12 @@ public class UserService {
         techStackRepository.deleteAllByUser(user);
         user.resetTechStack();
 
-        nicknameCheckByNickname(nickname);
-        emailCheckByEmail(email);
+        if(!user.getNickname().equals(nickname)){
+            nicknameCheckByNickname(nickname);
+        }
+        if (!user.getEmail().equals(email)) {
+            emailCheckByEmail(email);
+        }
 
         techStackRepository.deleteAllByUser(user);
         List<TechStack> techStackList = techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(), user, null);
