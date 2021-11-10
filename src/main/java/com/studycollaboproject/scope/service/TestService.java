@@ -35,19 +35,19 @@ public class TestService {
         for (String userSelected : userPropensityType) {
             userTypeMap.put(userSelected, userTypeMap.getOrDefault(userSelected, 0) + 1);
         }
-        userType.append(userTypeMap.getOrDefault("L", 0) > userTypeMap.getOrDefault("F", 0) ? 'L' : 'F');
+        int typeLValue = userTypeMap.getOrDefault("L", 0);
+        int typeFValue = userTypeMap.getOrDefault("F", 0);
+        if (typeLValue > typeFValue) {
+            userType.append('L');
+        } else if(typeLValue != 0){
+            userType.append('R');
+        } else {
+            userType.append('F');
+        }
         userType.append(userTypeMap.getOrDefault("V", 0) > userTypeMap.getOrDefault("H", 0) ? 'V' : 'H');
         userType.append(userTypeMap.getOrDefault("P", 0) > userTypeMap.getOrDefault("G", 0) ? 'P' : 'G');
 
         return new String(userType);
-    }
-
-    public TestResultDto getPropensityType(String snsId) {
-        User user = userRepository.findBySnsId(snsId).orElseThrow(
-                () -> new RestApiException(ErrorCode.NO_USER_ERROR)
-        );
-
-        return new TestResultDto(user.getUserPropensityType(), user.getMemberPropensityType());
     }
 }
 

@@ -32,7 +32,7 @@ public class Post extends Timestamped {
     @Column(nullable = false)
     private String summary;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 10000)
     private String contents;
 
     @Column(nullable = false)

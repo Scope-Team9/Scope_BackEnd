@@ -94,15 +94,18 @@ public class PostService {
         // bookmarkRecommend가 recommend라면 추천 포스트만 리턴한다.
         if ("recommend".equals(bookmarkRecommend)) {
             List<String> propensityTypeList = getPropensityTypeList(snsId);
+            List<TechStack> userTechStackList = techStackRepository.findAllByUser_SnsId(snsId);
+            List<String> userTechStackStringList = techStackConverter.convertTechStackToString(userTechStackList);
+            techList = techStackConverter.convertStringToTech(userTechStackStringList);
             if ("deadline".equals(sort)) {
                 for (String propensity : propensityTypeList) {
 //                    filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByStartDate(propensity));
-                    filterPosts.addAll(postRepository.findAllByUserMemberPropensityTypeAndProjectStatusAndUserSnsIdIsNotAndTechStackList_TechInOrderByStartDate(propensity, ProjectStatus.PROJECT_STATUS_INPROGRESS, "unknown", techList));
+                    filterPosts.addAll(postRepository.findDistinctByUser_UserPropensityTypeAndProjectStatusAndUserSnsIdIsNotAndTechStackList_TechInOrderByStartDate(propensity, ProjectStatus.PROJECT_STATUS_RECRUITMENT, "unknown", techList));
                 }
             } else {
                 for (String propensity : propensityTypeList) {
 //                    filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByCreatedAt(propensity));
-                    filterPosts.addAll(postRepository.findAllByUserMemberPropensityTypeAndProjectStatusAndUserSnsIdIsNotAndTechStackList_TechInOrderByCreatedAtDesc(propensity, ProjectStatus.PROJECT_STATUS_INPROGRESS, "unknown", techList));
+                    filterPosts.addAll(postRepository.findDistinctByUser_UserPropensityTypeAndProjectStatusAndUserSnsIdIsNotAndTechStackList_TechInOrderByCreatedAtDesc(propensity, ProjectStatus.PROJECT_STATUS_RECRUITMENT, "unknown", techList));
                 }
             }
 
@@ -128,18 +131,18 @@ public class PostService {
         else {
             if ("deadline".equals(sort)) {
 //                filterPosts = postRepository.findAllByTechInOrderByStartDate(techList);
-                filterPosts = postRepository.findAllByTechStackList_TechInOrderByStartDate(techList);
+                filterPosts = postRepository.findDistinctByTechStackList_TechInOrderByStartDate(techList);
             } else {
 //                filterPosts = postRepository.findAllByTechInOrderByCreatedAt(techList);
-                filterPosts = postRepository.findAllByTechStackList_TechInOrderByCreatedAtDesc(techList);
+                filterPosts = postRepository.findDistinctByTechStackList_TechInOrderByCreatedAtDesc(techList);
             }
             if (snsId.equals("")) {
-                return filterPosts.stream().map(o-> new PostResponseDto(o, false)).collect(Collectors.toList());
+                return filterPosts.stream().map(o -> new PostResponseDto(o, false)).collect(Collectors.toList());
             }
 
             List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
 //            List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
-            return filterPosts.stream().map(o -> new PostResponseDto(o , checkBookmark(o, bookmarkList))).collect(Collectors.toList());
+            return filterPosts.stream().map(o -> new PostResponseDto(o, checkBookmark(o, bookmarkList))).collect(Collectors.toList());
         }
     }
 
@@ -179,7 +182,7 @@ public class PostService {
         sortedRecommendedList.add(memberPropensityType);
 
         for (TotalResult totalResult : totalResultList) {
-            if(!totalResult.getMemberType().equals(memberPropensityType)) {
+            if (!totalResult.getMemberType().equals(memberPropensityType)) {
                 sortedRecommendedList.add(totalResult.getMemberType());
             }
         }
