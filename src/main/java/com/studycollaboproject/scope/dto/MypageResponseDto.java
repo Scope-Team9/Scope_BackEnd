@@ -20,9 +20,9 @@ public class MypageResponseDto {
     @Schema(description = "종료된 포스트 리스트")
     private List<PostResponseDto> end = new ArrayList<>();
     @Schema(description = "사용자의 마이페이지인지 판단")
-    private boolean isMyMypage;
+    private Boolean isMyMypage;
 
-    public MypageResponseDto(List<PostResponseDto> includedList, List<PostResponseDto> myBookmarkList, UserResponseDto userResponseDto, boolean equals) {
+    public MypageResponseDto(List<PostResponseDto> includedList, List<PostResponseDto> myBookmarkList, UserResponseDto userResponseDto, Boolean equals) {
         this.bookmark = myBookmarkList;
         for (PostResponseDto responseDto : includedList) {
             switch (responseDto.getProjectStatus()) {

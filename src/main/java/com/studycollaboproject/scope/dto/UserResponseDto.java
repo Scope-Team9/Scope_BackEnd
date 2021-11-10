@@ -23,7 +23,7 @@ public class UserResponseDto {
     @Schema(description = "이메일")
     private String email;
     @Schema(description = "이메일")
-    private boolean isVerifiedEmail;
+    private Boolean isVerifiedEmail;
 
 
 
@@ -35,6 +35,7 @@ public class UserResponseDto {
         this.techStackList = techStackList;
         this.userId = getUserId();
         this.email = user.getEmail();
-        this.isVerifiedEmail = isVerifiedEmail();
+//        this.isVerifiedEmail = user.getIsVerifiedEmail();
+        this.isVerifiedEmail = getIsVerifiedEmail();
     }
 }

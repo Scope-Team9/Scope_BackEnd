@@ -44,13 +44,13 @@ public class User extends Timestamped {
     @Column(unique = true,nullable = false)
     private String mailAuthenticationCode;
 
-    private boolean isVerifiedEmail;
+    private Boolean isVerifiedEmail;
 
 
-    private boolean emailReceiveAgreement;
+    private Boolean emailReceiveAgreement;
 
 //    @Column(nullable = false)
-    private boolean recommendationAgreement;
+    private Boolean recommendationAgreement;
 
     @OneToMany(mappedBy = "user")
     private List<Bookmark> bookmarkList = new ArrayList<>();
