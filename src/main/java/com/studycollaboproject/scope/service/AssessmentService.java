@@ -27,13 +27,13 @@ public class AssessmentService {
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new RestApiException(ErrorCode.NO_POST_ERROR)
         );// [예외처리] 팀장이 아니면서 프로젝트 상태가 "동료"가 아닌 경우
-        if (!post.getUser().equals(rater)&&!post.getProjectStatus().equals(ProjectStatus.PROJECT_STATUS_END)){
+        if (!post.getUser().equals(rater) && !post.getProjectStatus().equals(ProjectStatus.PROJECT_STATUS_END)) {
             throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
 
         List<Team> teamList = teamRepository.findAllByPost(post);
         List<String> userTypeList = new ArrayList<>();
-        List<User> userList=new ArrayList<>();
+        List<User> userList = new ArrayList<>();
         Long teamUserId;
 
         for (Long userId : userIds) {
@@ -46,6 +46,7 @@ public class AssessmentService {
                 }
                 team.getPost().updateStatus("종료");
                 teamUserId = team.getUser().getId();
+                //
                 if (teamUserId.equals(userId) && !teamUserId.equals(rater.getId())) {
                     userList.add(team.getUser());
                     userTypeList.add(team.getUser().getUserPropensityType());
@@ -55,7 +56,7 @@ public class AssessmentService {
         }
         String raterType = rater.getUserPropensityType();
         getAssessmentResult(raterType, userTypeList);
-        return new MailDto(userList,post);
+        return new MailDto(userList, post);
 
     }
 

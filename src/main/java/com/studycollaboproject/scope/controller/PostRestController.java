@@ -4,7 +4,10 @@ import com.studycollaboproject.scope.dto.*;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.Post;
+import com.studycollaboproject.scope.model.User;
+import com.studycollaboproject.scope.model.UserStatus;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
+import com.studycollaboproject.scope.service.ApplicantService;
 import com.studycollaboproject.scope.service.PostService;
 import com.studycollaboproject.scope.service.TeamService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,6 +35,7 @@ public class PostRestController {
 
     private final PostService postService;
     private final TeamService teamService;
+    private final ApplicantService applicantService;
 
     @Operation(summary = "프로젝트 작성")
     @PostMapping("/api/post")
@@ -129,24 +133,36 @@ public class PostRestController {
 
     }
 
-    @Operation(summary = "프로젝트 상세 정보")
+    @Operation(summary = "프로젝트 상세 조회")
     @GetMapping("/api/post/{postId}")
     public ResponseEntity<Object> getPost(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
                                @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("GET, [{}], /api/post/{}", MDC.get("UUID"), postId);
 
         List<MemberListResponseDto> member = teamService.getMember(postId);
-        boolean isTeamStarter = false;
-        boolean isBookmarkChecked = false;
 
+        boolean isBookmarkChecked = false;
+        String userStatus;
         Post post = postService.loadPostByPostId(postId);
+
         if (userDetails != null) {
-            isTeamStarter = postService.isTeamStarter(post,userDetails.getUsername());
-            isBookmarkChecked = postService.isBookmarkChecked(post,userDetails.getUser());
+            User user = userDetails.getUser();
+            if (postService.isTeamStarter(post,user.getSnsId())){
+                userStatus = UserStatus.USER_STATUS_TEAM_STARTER.getUserStatus();
+            }else if (teamService.isMemeber(post,user)){
+                userStatus = UserStatus.USER_STATUS_MEMBER.getUserStatus();
+            }else if (applicantService.isApplicant(post,user)){
+                userStatus = UserStatus.USER_STATUS_APPLICANT.getUserStatus();
+            }else {
+                userStatus = UserStatus.USER_STATUS_USER.getUserStatus();
+            }
+            isBookmarkChecked = postService.isBookmarkChecked(post,user);
+        }else {
+            userStatus = UserStatus.USER_STATUS_ANONYMOUS.getUserStatus();
         }
         PostResponseDto postDetail = new PostResponseDto(post, isBookmarkChecked);
         return new ResponseEntity<>(
-                new ResponseDto("프로젝트 상세 정보 조회 성공", new PostDetailDto(postDetail, member,isTeamStarter, isBookmarkChecked)),
+                new ResponseDto("프로젝트 상세 정보 조회 성공", new PostDetailDto(postDetail, member,userStatus)),
                 HttpStatus.OK
         );
     }

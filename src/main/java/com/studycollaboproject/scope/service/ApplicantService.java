@@ -55,7 +55,7 @@ public class ApplicantService {
     }
 
     @Transactional
-    public boolean cancelApply(String snsId, Long postId) {
+    public void cancelApply(String snsId, Long postId) {
 
         // [예외처리] 요청한 유저의 정보가 탈퇴 등과 같은 이유로 존재하지 않을 때
         User user = userRepository.findBySnsId(snsId).orElseThrow(
@@ -72,13 +72,15 @@ public class ApplicantService {
 
         applicant.deleteApply();
         applicantRepository.delete(applicant);
-
-        return true;
     }
 
     @Transactional
     public List<MemberListResponseDto> getApplicant(Post post) {
         return applicantRepository.findAllByPost(post)
                 .stream().map(MemberListResponseDto::new).collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public boolean isApplicant(Post post, User user) {
+        return applicantRepository.findByUserAndPost(user,post).isPresent();
     }
 }
