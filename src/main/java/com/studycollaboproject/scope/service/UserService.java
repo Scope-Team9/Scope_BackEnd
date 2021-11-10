@@ -64,12 +64,11 @@ public class UserService {
 
     //email 중복 체크
     public ResponseDto emailCheckByEmail(String email) {
-        boolean isEmailPresent = userRepository.findByEmail(email).isPresent();
-        if (isEmailPresent) {
-            throw new RestApiException(ErrorCode.ALREADY_EMAIL_ERROR);
-        } else {
-            return new ResponseDto("사용 가능한 메일입니다.", "");
-        }
+        userRepository.findByEmail(email).ifPresent(
+                user -> {
+                    throw new RestApiException(ErrorCode.ALREADY_EMAIL_ERROR);
+                });
+        return new ResponseDto("사용 가능한 메일입니다.", "");
     }
 
     //닉네임 중복 체크
@@ -81,6 +80,7 @@ public class UserService {
             return new ResponseDto("사용가능한 닉네임입니다.", "");
         }
     }
+
 
     //sns 로그인 시 기존 회원 여부 판단
     public ResponseDto SignupEmailCheck(String email, String snsId, String sns) {
@@ -131,7 +131,7 @@ public class UserService {
         techStackRepository.deleteAllByUser(user);
         user.resetTechStack();
 
-        if(!user.getNickname().equals(nickname)){
+        if (!user.getNickname().equals(nickname)) {
             nicknameCheckByNickname(nickname);
         }
         if (!user.getEmail().equals(email)) {
