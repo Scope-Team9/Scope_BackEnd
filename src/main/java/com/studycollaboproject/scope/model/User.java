@@ -44,7 +44,7 @@ public class User extends Timestamped {
     @Column(unique = true,nullable = false)
     private String mailAuthenticationCode;
 
-    private boolean isVerifiedEmail;
+    private Boolean isVerifiedEmail;
 
 
     private boolean emailReceiveAgreement;
