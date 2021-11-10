@@ -136,6 +136,10 @@ public class UserRestController {
     public ResponseEntity<Object> bookmarkCheck(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
                                                 @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("POST, [{}], /api/bookmark/{}", MDC.get("UUID"), postId);
+
+        if (userDetails.getUser() == null){
+            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
+        }
         return new ResponseEntity<>(
                 userService.bookmarkCheck(postId, userDetails.getSnsId()),
                 HttpStatus.CREATED

@@ -64,7 +64,7 @@ public class UserService {
         if (isEmailPresent) {
             throw new RestApiException(ErrorCode.ALREADY_EMAIL_ERROR);
         } else {
-            return new ResponseDto("사용가능한 메일입니다.", "");
+            return new ResponseDto("사용 가능한 메일입니다.", "");
         }
     }
 
