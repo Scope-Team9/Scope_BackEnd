@@ -60,4 +60,9 @@ public class TeamService {
         } else throw new RestApiException(ErrorCode.NO_RECRUITMENT_ERROR);
 
     }
+
+    public boolean isMemeber(Post post, User user) {
+        return teamRepository.findByUserAndPost(user,post).isPresent();
+
+    }
 }
