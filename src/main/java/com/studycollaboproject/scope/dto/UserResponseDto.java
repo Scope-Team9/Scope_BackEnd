@@ -22,6 +22,8 @@ public class UserResponseDto {
     private Long userId;
     @Schema(description = "이메일")
     private String email;
+    @Schema(description = "이메일")
+    private boolean isVerifiedEmail;
 
 
 
@@ -33,5 +35,6 @@ public class UserResponseDto {
         this.techStackList = techStackList;
         this.userId = getUserId();
         this.email = user.getEmail();
+        this.isVerifiedEmail = isVerifiedEmail();
     }
 }
