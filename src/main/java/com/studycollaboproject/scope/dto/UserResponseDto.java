@@ -20,6 +20,9 @@ public class UserResponseDto {
     private List<String> techStackList;
     @Schema(description = "아이디")
     private Long userId;
+    @Schema(description = "이메일")
+    private String email;
+
 
 
     public UserResponseDto(User user, List<String> techStackList){
@@ -29,6 +32,6 @@ public class UserResponseDto {
         this.nickname = user.getNickname();
         this.techStackList = techStackList;
         this.userId = getUserId();
-
+        this.email = user.getEmail();
     }
 }
