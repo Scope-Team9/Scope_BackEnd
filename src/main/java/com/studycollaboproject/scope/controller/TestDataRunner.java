@@ -198,8 +198,8 @@ public class TestDataRunner implements ApplicationRunner {
                                 contents,
                                 totalMember,
                                 "모집중",
-                                startDate,
-                                endDate,
+                                startDate.toString(),
+                                endDate.toString(),
                                 techStackList.get(index2)
                         );
 //                        requestDtoList.add(postRequestDto);
