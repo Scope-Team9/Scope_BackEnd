@@ -35,6 +35,7 @@ public class UserResponseDto {
         this.techStackList = techStackList;
         this.userId = getUserId();
         this.email = user.getEmail();
-        this.isVerifiedEmail = user.getIsVerifiedEmail();
+//        this.isVerifiedEmail = user.getIsVerifiedEmail();
+        this.isVerifiedEmail = getIsVerifiedEmail();
     }
 }

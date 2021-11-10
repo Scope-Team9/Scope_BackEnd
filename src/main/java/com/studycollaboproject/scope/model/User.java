@@ -47,10 +47,10 @@ public class User extends Timestamped {
     private Boolean isVerifiedEmail;
 
 
-    private boolean emailReceiveAgreement;
+    private Boolean emailReceiveAgreement;
 
 //    @Column(nullable = false)
-    private boolean recommendationAgreement;
+    private Boolean recommendationAgreement;
 
     @OneToMany(mappedBy = "user")
     private List<Bookmark> bookmarkList = new ArrayList<>();
