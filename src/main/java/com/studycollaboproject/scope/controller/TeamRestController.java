@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -48,11 +49,11 @@ public class TeamRestController {
                                                @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) throws MessagingException {
         log.info("POST, [{}], /api/team/{}, userId={}, accept={}", MDC.get("UUID"), postId, requestDto.getUserId(), requestDto.isAccept());
         // [예외처리] 로그인 정보가 없을 때
-        if (userDetails == null) {
-            throw new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR);
-        }
+        String snsId = Optional.ofNullable(userDetails).orElseThrow(
+                () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
+        ).getSnsId();
         //로그인 사용자 정보 불러오기
-        User user = userService.loadUserBySnsId(userDetails.getSnsId());
+        User user = userService.loadUserBySnsId(snsId);
         //로그인 사용자가 해당 프로젝트의 생성자 인지 확인
         Post post = postService.loadPostIfOwner(postId, user);
         //지원자 정보 확인
