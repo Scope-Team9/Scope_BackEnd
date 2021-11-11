@@ -26,7 +26,7 @@ public class RestApiExceptionHandler {
     }
 
     @ExceptionHandler(value = {NoAuthException.class})
-    public ResponseEntity<Object> handleNoAuthException(BadRequestException ex) {
+    public ResponseEntity<Object> handleNoAuthException(NoAuthException ex) {
         log.info("!!!UnAuth Error, [{}], message={}", MDC.get("UUID"), ex.getMessage());
         ResponseDto restApiException = new ResponseDto(ex.getMessage(), "");
         return new ResponseEntity<>(
@@ -36,7 +36,7 @@ public class RestApiExceptionHandler {
     }
 
     @ExceptionHandler(value = {ForbiddenException.class})
-    public ResponseEntity<Object> handleForbiddenException(BadRequestException ex) {
+    public ResponseEntity<Object> handleForbiddenException(ForbiddenException ex) {
         log.info("!!!Forbidden Error, [{}], message={}", MDC.get("UUID"), ex.getMessage());
         ResponseDto restApiException = new ResponseDto(ex.getMessage(), "");
         return new ResponseEntity<>(
