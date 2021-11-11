@@ -2,7 +2,7 @@ package com.studycollaboproject.scope.service;
 
 import com.studycollaboproject.scope.dto.MemberListResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.exception.BadRequestException;
 import com.studycollaboproject.scope.model.*;
 import com.studycollaboproject.scope.repository.ApplicantRepository;
 import com.studycollaboproject.scope.repository.TeamRepository;
@@ -25,7 +25,7 @@ public class TeamService {
     public Team acceptMember(Post post, User user, Boolean accept) {
         // [예외처리] 대기열에서 신청자의 정보를 찾을 수 없을 때
         Applicant applicant = applicantRepository.findByUserAndPost(user, post).orElseThrow(
-                () -> new RestApiException(ErrorCode.NO_APPLICANT_ERROR)
+                () -> new BadRequestException(ErrorCode.NO_APPLICANT_ERROR)
         );
         //대기열에서 삭제
         applicant.deleteApply();
@@ -50,14 +50,14 @@ public class TeamService {
     public void memberResignation(User member, Post post) {
         if (post.getProjectStatus().equals(ProjectStatus.PROJECT_STATUS_RECRUITMENT)) {
             teamRepository.deleteByUserAndPost(member, post);
-        } else throw new RestApiException(ErrorCode.NO_RECRUITMENT_ERROR);
+        } else throw new BadRequestException(ErrorCode.NO_RECRUITMENT_ERROR);
     }
 
     public void memberSecession(User user, Post post) {
 
         if (post.getProjectStatus().equals(ProjectStatus.PROJECT_STATUS_RECRUITMENT)) {
             teamRepository.deleteByUserAndPost(user, post);
-        } else throw new RestApiException(ErrorCode.NO_RECRUITMENT_ERROR);
+        } else throw new BadRequestException(ErrorCode.NO_RECRUITMENT_ERROR);
 
     }
 

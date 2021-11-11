@@ -1,8 +1,9 @@
 package com.studycollaboproject.scope.security;
 
 
+import com.studycollaboproject.scope.exception.BadRequestException;
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.exception.NoAuthException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +14,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
@@ -93,7 +93,7 @@ public class JwtTokenProvider {
     public boolean validateToken(String jwtToken) {
         if (jwtToken == null) {
             log.info("토큰이 존재하지 않습니다.");
-            throw new RestApiException(ErrorCode.NO_TOKEN_ERROR);
+            throw new BadRequestException(ErrorCode.NO_TOKEN_ERROR);
         }
         try {
             JwtParser parser = Jwts.parserBuilder().setSigningKey(getSigninKey()).build();
@@ -103,11 +103,11 @@ public class JwtTokenProvider {
 
         } catch (ExpiredJwtException e) {
             log.info("만료된 토큰");
-            throw new RestApiException(ErrorCode.TOKEN_EXPRIRATOION_ERROR);
+            throw new BadRequestException(ErrorCode.TOKEN_EXPRIRATOION_ERROR);
 
         } catch (Exception e) {
             log.info("정상적인 토큰이 아닙니다.");
-            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
+            throw new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
 
     }

@@ -2,7 +2,8 @@ package com.studycollaboproject.scope.controller;
 
 import com.studycollaboproject.scope.dto.*;
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.exception.ForbiddenException;
+import com.studycollaboproject.scope.exception.NoAuthException;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
 import com.studycollaboproject.scope.service.MailService;
@@ -43,12 +44,11 @@ public class UserRestController {
     public ResponseEntity<Object> getMyPage(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails,
                                             @Parameter(description = "조회하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId) {
         log.info("GET, [{}], /api/user", MDC.get("UUID"));
-        System.out.println("userId = " + userId);
         User user = userService.loadUserByUserId(userId);
         MypageResponseDto responseDto;
-        if (userDetails==null){
+        if (userDetails == null) {
             responseDto = postService.getMyPostList(user, "");
-        }else {
+        } else {
             responseDto = postService.getMyPostList(user, userDetails.getUsername());
         }
 
@@ -73,7 +73,7 @@ public class UserRestController {
         }
         // [예외처리] 로그인 정보가 없을 때
         else {
-            throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
+            throw new ForbiddenException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
     }
 
@@ -132,7 +132,7 @@ public class UserRestController {
             );
         }
         // [예외처리] 로그인 정보가 없을 때
-        else throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
+        else throw new ForbiddenException(ErrorCode.NO_AUTHORIZATION_ERROR);
 
     }
 
@@ -143,8 +143,8 @@ public class UserRestController {
                                                 @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("POST, [{}], /api/bookmark/{}", MDC.get("UUID"), postId);
 
-        if (userDetails.getUser() == null){
-            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
+        if (userDetails.getUser() == null) {
+            throw new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
         return new ResponseEntity<>(
                 userService.bookmarkCheck(postId, userDetails.getSnsId()),
@@ -165,7 +165,7 @@ public class UserRestController {
         }
         // [예외처리] 로그인 정보가 없을 때
         else {
-            throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
+            throw new ForbiddenException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
     }
 

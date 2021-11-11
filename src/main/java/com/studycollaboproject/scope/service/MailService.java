@@ -2,7 +2,7 @@ package com.studycollaboproject.scope.service;
 
 import com.studycollaboproject.scope.dto.MailDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.exception.BadRequestException;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -61,7 +61,6 @@ public class MailService {
         String email = mailDto.getToEmail();
         Context context = new Context();
         context.setVariable("postTitle", mailDto.getPostTitle());
-        System.out.println("mailDto = " + mailDto.getPostTitle());
         context.setVariable("toNickname", mailDto.getToNickname());
         context.setVariable("fromNickname", mailDto.getFromNickname());
         context.setVariable("postId", mailDto.getPostId());
@@ -119,10 +118,10 @@ public class MailService {
             if (code.equals(user.get().getMailAuthenticationCode())) {
                 user.get().verifiedEmail();
             } else {
-                throw new RestApiException(ErrorCode.NO_TOKEN_ERROR);
+                throw new BadRequestException(ErrorCode.NO_TOKEN_ERROR);
             }
         } else {
-            throw new RestApiException(ErrorCode.NO_USER_ERROR);
+            throw new BadRequestException(ErrorCode.NO_USER_ERROR);
         }
     }
 }
