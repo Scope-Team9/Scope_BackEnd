@@ -37,9 +37,10 @@ public class ApplicantService {
                 () -> new RestApiException(ErrorCode.NO_POST_ERROR)
         );
         // [예외처리] 신청했던 프로젝트에 다시 신청하는 경우
-        if(applicantRepository.findByUserAndPost(user, post).isPresent()){
+        applicantRepository.findByUserAndPost(user, post).ifPresent(applicant->{
             throw new RestApiException(ErrorCode.ALREADY_APPLY_POST_ERROR);
-        }
+        });
+
         // [예외처리] 이미 시작한 프로젝트에 신청할 경우
         if (!post.getProjectStatus().equals(ProjectStatus.PROJECT_STATUS_RECRUITMENT)){
             throw new RestApiException(ErrorCode.ALREADY_STARTED_ERROR);

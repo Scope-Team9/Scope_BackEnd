@@ -64,8 +64,7 @@ public class UserService {
 
     //email 중복 체크
     public ResponseDto emailCheckByEmail(String email) {
-        userRepository.findByEmail(email).ifPresent(
-                user -> {
+        userRepository.findByEmail(email).ifPresent(user -> {
                     throw new RestApiException(ErrorCode.ALREADY_EMAIL_ERROR);
                 });
         return new ResponseDto("사용 가능한 메일입니다.", "");
@@ -73,12 +72,10 @@ public class UserService {
 
     //닉네임 중복 체크
     public ResponseDto nicknameCheckByNickname(String nickname) {
-        boolean isNicknamePresent = userRepository.findByNickname(nickname).isPresent();
-        if (isNicknamePresent) {
+        userRepository.findByNickname(nickname).ifPresent(user -> {
             throw new RestApiException(ErrorCode.ALREADY_NICKNAME_ERROR);
-        } else {
-            return new ResponseDto("사용가능한 닉네임입니다.", "");
-        }
+        });
+        return new ResponseDto("사용가능한 닉네임입니다.", "");
     }
 
 
