@@ -1,7 +1,7 @@
 package com.studycollaboproject.scope.service;
 
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.exception.BadRequestException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -29,11 +29,11 @@ public class ImageService {
             } catch (IOException e) {
                 e.printStackTrace();
                 log.info("이미지 파일 저장 경로 에러");
-                throw new RestApiException(ErrorCode.IMAGE_SAVE_ERROR);
+                throw new BadRequestException(ErrorCode.IMAGE_SAVE_ERROR);
             }
             log.info("이미지 파일 데이터 형식 에러");
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new RestApiException(ErrorCode.IMAGE_SAVE_ERROR);
+            throw new BadRequestException(ErrorCode.IMAGE_SAVE_ERROR);
         }
         return fileName;
     }

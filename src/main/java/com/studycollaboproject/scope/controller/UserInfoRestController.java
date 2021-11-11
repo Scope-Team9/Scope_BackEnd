@@ -3,7 +3,7 @@ package com.studycollaboproject.scope.controller;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.UserInfoResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.exception.ForbiddenException;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -23,7 +23,7 @@ public class UserInfoRestController {
     @GetMapping("/api/myuser")
     public ResponseEntity<Object> userInfo(@Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         if (userDetails.getUser() == null) {
-            throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
+            throw new ForbiddenException(ErrorCode.NO_AUTHORIZATION_ERROR);
         } else {
             UserInfoResponseDto userInfoResponseDto = new UserInfoResponseDto(userDetails.getUser().getNickname(), userDetails.getUser().getId(), userDetails.getUser().getEmail(), userDetails.getUser().getUserPropensityType());
             return new ResponseEntity<>(

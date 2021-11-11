@@ -4,7 +4,8 @@ import com.studycollaboproject.scope.dto.PropensityRequestDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.TestResultDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.exception.ForbiddenException;
+import com.studycollaboproject.scope.exception.NoAuthException;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
 import com.studycollaboproject.scope.service.TestService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -17,7 +18,10 @@ import org.slf4j.MDC;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
@@ -35,7 +39,7 @@ public class TestRestController {
                 requestDto.getUserPropensityType().toString(), requestDto.getMemberPropensityType().toString());
         // [예외처리] 로그인 정보가 없을 때
         if (userDetails == null) {
-            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
+            throw new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
         // [예외처리] 성향 테스트 수정을 요청한 유저와 DB에 저장된 유저의 정보가 다를 때
         if (userId.equals(userDetails.getUser().getId())) {
@@ -45,7 +49,7 @@ public class TestRestController {
                     new ResponseDto("성향 테스트가 업데이트 되었습니다.", resultDto),
                     HttpStatus.OK
             );
-        } else throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
+        } else throw new ForbiddenException(ErrorCode.NO_AUTHORIZATION_ERROR);
 
     }
 

@@ -5,7 +5,8 @@ import com.studycollaboproject.scope.dto.MemberListResponseDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.TeamRequestDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.exception.ForbiddenException;
+import com.studycollaboproject.scope.exception.NoAuthException;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.Team;
 import com.studycollaboproject.scope.model.User;
@@ -48,7 +49,7 @@ public class TeamRestController {
         log.info("POST, [{}], /api/team/{}, userId={}, accept={}", MDC.get("UUID"), postId, requestDto.getUserId(), requestDto.isAccept());
         // [예외처리] 로그인 정보가 없을 때
         if (userDetails == null) {
-            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
+            throw new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
         //로그인 사용자 정보 불러오기
         User user = userService.loadUserBySnsId(userDetails.getSnsId());
@@ -97,7 +98,7 @@ public class TeamRestController {
                     HttpStatus.OK
             );
             // [예외처리] 팀원 강퇴를 요청한 사용자가 게시물 작성자가 아닐 때
-        } else throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
+        } else throw new ForbiddenException(ErrorCode.NO_AUTHORIZATION_ERROR);
     }
 
     @Operation(summary = "팀 탈퇴")

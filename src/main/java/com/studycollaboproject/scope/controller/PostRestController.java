@@ -2,7 +2,7 @@ package com.studycollaboproject.scope.controller;
 
 import com.studycollaboproject.scope.dto.*;
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.exception.NoAuthException;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.model.UserStatus;
@@ -40,11 +40,11 @@ public class PostRestController {
     @Operation(summary = "프로젝트 작성")
     @PostMapping("/api/post")
     public ResponseEntity<Object> writePost(@RequestBody PostRequestDto postRequestDto,
-                                 @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
+                                            @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("POST, [{}], /api/post, requestDto={}", MDC.get("UUID"), postRequestDto.toString());
         // [예외처리] 로그인 정보가 없을 때
         if (userDetails == null) {
-            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
+            throw new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
 
         PostResponseDto responseDto = postService.writePost(postRequestDto, userDetails.getSnsId());
@@ -63,9 +63,9 @@ public class PostRestController {
                                            @Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails) {
         log.info("GET, [{}], /api/post, filter={}, sort={}, bookmarkRecommend={}", MDC.get("UUID"), filter, sort, bookmarkRecommend);
         String SnsId = "";
-        if(bookmarkRecommend.equals("recommend") || bookmarkRecommend.equals("bookmark")){
+        if (bookmarkRecommend.equals("recommend") || bookmarkRecommend.equals("bookmark")) {
             if (userDetails == null) {
-                throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
+                throw new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR);
             }
             SnsId = userDetails.getUsername();
         }
@@ -88,7 +88,7 @@ public class PostRestController {
         log.info("POST, [{}], /api/post/{}, requestDto={}", MDC.get("UUID"), postId, postRequestDto.toString());
         // [예외처리] 로그인 정보가 없을 때
         if (userDetails == null) {
-            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
+            throw new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
         PostResponseDto responseDto = postService.editPost(postId, postRequestDto, userDetails.getUsername());
         return new ResponseEntity<>(
@@ -105,11 +105,11 @@ public class PostRestController {
     ) {
         log.info("DELETE, [{}], /api/post/{}", MDC.get("UUID"), postId);
         if (userDetails == null) {
-            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
+            throw new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
-        Long deletedId = postService.deletePost(postId,userDetails.getUsername());
+        Long deletedId = postService.deletePost(postId, userDetails.getUsername());
         Map<String, Long> map = new HashMap<>();
-        map.put("postId",deletedId);
+        map.put("postId", deletedId);
         return new ResponseEntity<>(
                 new ResponseDto("프로젝트가 성공적으로 삭제되었습니다.", map),
                 HttpStatus.OK
@@ -119,11 +119,11 @@ public class PostRestController {
     @Operation(summary = "프로젝트 상태 변경")
     @PostMapping("/api/post/{postId}/status")
     public ResponseEntity<Object> updatePostStatus(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
-                                        @RequestBody ProjectStatusRequestDto requestDto,
-                                        @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
+                                                   @RequestBody ProjectStatusRequestDto requestDto,
+                                                   @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("POST, [{}], /api/post/{}/status, projectStatus={}", MDC.get("UUID"), postId, requestDto.getProjectStatus());
         if (userDetails == null) {
-            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
+            throw new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
         PostResponseDto responseDto = postService.updateStatus(postId, requestDto.getProjectStatus(), userDetails.getSnsId());
         return new ResponseEntity<>(
@@ -136,7 +136,7 @@ public class PostRestController {
     @Operation(summary = "프로젝트 상세 조회")
     @GetMapping("/api/post/{postId}")
     public ResponseEntity<Object> getPost(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
-                               @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
+                                          @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("GET, [{}], /api/post/{}", MDC.get("UUID"), postId);
 
         List<MemberListResponseDto> member = teamService.getMember(postId);
@@ -147,22 +147,22 @@ public class PostRestController {
 
         if (userDetails != null) {
             User user = userDetails.getUser();
-            if (postService.isTeamStarter(post,user.getSnsId())){
+            if (postService.isTeamStarter(post, user.getSnsId())) {
                 userStatus = UserStatus.USER_STATUS_TEAM_STARTER.getUserStatus();
-            }else if (teamService.isMemeber(post,user)){
+            } else if (teamService.isMemeber(post, user)) {
                 userStatus = UserStatus.USER_STATUS_MEMBER.getUserStatus();
-            }else if (applicantService.isApplicant(post,user)){
+            } else if (applicantService.isApplicant(post, user)) {
                 userStatus = UserStatus.USER_STATUS_APPLICANT.getUserStatus();
-            }else {
+            } else {
                 userStatus = UserStatus.USER_STATUS_USER.getUserStatus();
             }
-            isBookmarkChecked = postService.isBookmarkChecked(post,user);
-        }else {
+            isBookmarkChecked = postService.isBookmarkChecked(post, user);
+        } else {
             userStatus = UserStatus.USER_STATUS_ANONYMOUS.getUserStatus();
         }
         PostResponseDto postDetail = new PostResponseDto(post, isBookmarkChecked);
         return new ResponseEntity<>(
-                new ResponseDto("프로젝트 상세 정보 조회 성공", new PostDetailDto(postDetail, member,userStatus)),
+                new ResponseDto("프로젝트 상세 정보 조회 성공", new PostDetailDto(postDetail, member, userStatus)),
                 HttpStatus.OK
         );
     }
@@ -171,11 +171,11 @@ public class PostRestController {
     @Operation(summary = "프로젝트 git Repository URL 업데이트")
     @PostMapping("/api/post/{postId}/url")
     public ResponseEntity<Object> updateUrl(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails,
-                                 @RequestBody UrlUpdateRequestDto requestDto,
-                                 @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId) {
+                                            @RequestBody UrlUpdateRequestDto requestDto,
+                                            @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId) {
         log.info("POST, [{}], /api/post/{}/url, frontUrl={}, backUrl={}", MDC.get("UUID"), postId, requestDto.getFrontUrl(), requestDto.getBackUrl());
         if (userDetails == null) {
-            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
+            throw new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
         PostResponseDto responseDto = postService.updateUrl(requestDto.getBackUrl(), requestDto.getFrontUrl(), userDetails.getUsername(), postId);
         return new ResponseEntity<>(
