@@ -7,7 +7,6 @@ import com.studycollaboproject.scope.dto.TeamRequestDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.Post;
-import com.studycollaboproject.scope.model.Team;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
 import com.studycollaboproject.scope.service.MailService;
@@ -57,10 +56,10 @@ public class TeamRestController {
         //지원자 정보 확인
         User applyUser = userService.loadUserByUserId(requestDto.getUserId());
         //지원자 승인/거절
-        Team team = teamService.acceptMember(post, applyUser, requestDto.isAccept());
+        teamService.acceptMember(post, applyUser, requestDto.isAccept());
         //지원자 승인시 승인된 지원자에게 알림 메일 발송
-        if (team != null) {
-            mailService.acceptTeamMailBuilder(new MailDto(team));
+        if (requestDto.isAccept()) {
+            mailService.acceptTeamMailBuilder(new MailDto(applyUser,post));
         }
         //지원지 목록 출력
         List<MemberListResponseDto> responseDto = teamService.getMember(postId);
