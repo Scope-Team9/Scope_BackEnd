@@ -44,7 +44,6 @@ public class UserRestController {
     public ResponseEntity<Object> getMyPage(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails,
                                             @Parameter(description = "조회하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId) {
         log.info("GET, [{}], /api/user", MDC.get("UUID"));
-        System.out.println("userId = " + userId);
         User user = userService.loadUserByUserId(userId);
         MypageResponseDto responseDto;
         if (userDetails == null) {

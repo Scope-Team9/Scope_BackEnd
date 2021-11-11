@@ -61,7 +61,6 @@ public class MailService {
         String email = mailDto.getToEmail();
         Context context = new Context();
         context.setVariable("postTitle", mailDto.getPostTitle());
-        System.out.println("mailDto = " + mailDto.getPostTitle());
         context.setVariable("toNickname", mailDto.getToNickname());
         context.setVariable("fromNickname", mailDto.getFromNickname());
         context.setVariable("postId", mailDto.getPostId());
