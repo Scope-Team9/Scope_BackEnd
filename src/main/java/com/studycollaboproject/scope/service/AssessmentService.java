@@ -71,6 +71,13 @@ public class AssessmentService {
         }
 
     }
+    // 성향 추천 결과 테이블에 저장
+    @Transactional
+    public void testAssessmentResult(String rater, String member,Long count) {
+        TotalResult totalResult = totalResultRepository.findByUserTypeAndMemberType(rater,member);
+        Long result = totalResult.getResult()+count;
+        totalResult.setResult(result);
+    }
 
 
 }
