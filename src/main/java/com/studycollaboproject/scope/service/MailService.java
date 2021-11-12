@@ -88,7 +88,7 @@ public class MailService {
         setMail(subject, body, email);
     }
 
-    public void assessmantMailBuilder(MailDto mailDto) throws MessagingException {
+    public void assessmentMailBuilder(MailDto mailDto) throws MessagingException {
         for (User user : mailDto.getToUserList()) {
             Context context = new Context();
             context.setVariable("title", mailDto.getPostTitle());
@@ -98,7 +98,6 @@ public class MailService {
             String body = templateEngine.process("applicationNoticeEmail", context);
             setMail(subject, body, user.getEmail());
         }
-
     }
 
     public void authMailSender(String email, User user) throws MessagingException {

@@ -106,18 +106,18 @@ public class PostService {
             techList = techStackConverter.convertStringToTech(userTechStackStringList);
             if ("deadline".equals(sort)) {
                 for (String propensity : propensityTypeList) {
-//                    filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByStartDate(propensity));
-                    filterPosts.addAll(postRepository.findDistinctByUser_UserPropensityTypeAndProjectStatusAndUserSnsIdIsNotAndTechStackList_TechInOrderByStartDate(propensity, ProjectStatus.PROJECT_STATUS_RECRUITMENT, "unknown", techList));
+                    filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByStartDate(propensity, techList));
+//                    filterPosts.addAll(postRepository.findDistinctByUser_UserPropensityTypeAndProjectStatusAndUserSnsIdIsNotAndTechStackList_TechInOrderByStartDate(propensity, ProjectStatus.PROJECT_STATUS_RECRUITMENT, "unknown", techList));
                 }
             } else {
                 for (String propensity : propensityTypeList) {
-//                    filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByCreatedAt(propensity));
-                    filterPosts.addAll(postRepository.findDistinctByUser_UserPropensityTypeAndProjectStatusAndUserSnsIdIsNotAndTechStackList_TechInOrderByCreatedAtDesc(propensity, ProjectStatus.PROJECT_STATUS_RECRUITMENT, "unknown", techList));
+                    filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByCreatedAt(propensity, techList));
+//                    filterPosts.addAll(postRepository.findDistinctByUser_UserPropensityTypeAndProjectStatusAndUserSnsIdIsNotAndTechStackList_TechInOrderByCreatedAtDesc(propensity, ProjectStatus.PROJECT_STATUS_RECRUITMENT, "unknown", techList));
                 }
             }
 
-            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
-//            List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
+            List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
+//            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
             return filterPosts.stream().map(o -> new PostResponseDto(o, checkBookmark(o, bookmarkList))).collect(Collectors.toList());
         }
 
@@ -125,11 +125,11 @@ public class PostService {
         else if ("bookmark".equals(bookmarkRecommend)) {
 
             if ("deadline".equals(sort)) {
-//                filterPosts = postRepository.findAllByBookmarkOrderByStartDate(snsId);
-                filterPosts = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
+                filterPosts = postRepository.findAllByBookmarkOrderByStartDate(snsId);
+//                filterPosts = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
             } else {
-//                filterPosts = postRepository.findAllByBookmarkOrderByCreatedAt(snsId);
-                filterPosts = postRepository.findAllByBookmarkList_User_SnsIdOrderByCreatedAtDesc(snsId);
+                filterPosts = postRepository.findAllByBookmarkOrderByCreatedAt(snsId);
+//                filterPosts = postRepository.findAllByBookmarkList_User_SnsIdOrderByCreatedAtDesc(snsId);
             }
 
             return filterPosts.stream().map(o -> new PostResponseDto(o, true)).collect(Collectors.toList());
@@ -137,18 +137,18 @@ public class PostService {
         // 전체 조회의 경우.
         else {
             if ("deadline".equals(sort)) {
-//                filterPosts = postRepository.findAllByTechInOrderByStartDate(techList);
-                filterPosts = postRepository.findDistinctByTechStackList_TechInOrderByStartDate(techList);
+                filterPosts = postRepository.findAllByTechInOrderByStartDate(techList);
+//                filterPosts = postRepository.findDistinctByTechStackList_TechInOrderByStartDate(techList);
             } else {
-//                filterPosts = postRepository.findAllByTechInOrderByCreatedAt(techList);
-                filterPosts = postRepository.findDistinctByTechStackList_TechInOrderByCreatedAtDesc(techList);
+                filterPosts = postRepository.findAllByTechInOrderByCreatedAt(techList);
+//                filterPosts = postRepository.findDistinctByTechStackList_TechInOrderByCreatedAtDesc(techList);
             }
             if (snsId.equals("")) {
                 return filterPosts.stream().map(o -> new PostResponseDto(o, false)).collect(Collectors.toList());
             }
 
-            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
-//            List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
+            List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
+//            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
             return filterPosts.stream().map(o -> new PostResponseDto(o, checkBookmark(o, bookmarkList))).collect(Collectors.toList());
         }
     }
@@ -163,10 +163,10 @@ public class PostService {
     }
 
     public MypageResponseDto getMyPostList(User user, String loginUserSnsId) {
-//        List<Post> includePostList = postRepository.findAllByUserSnsId(user.getSnsId());
-//        List<Post> bookmarkPostList = postRepository.findAllBookmarkByUserSnsId(user.getSnsId());
-        List<Post> includePostList = postRepository.findAllByUser(user);
-        List<Post> bookmarkPostList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(user.getSnsId());
+        List<Post> includePostList = postRepository.findAllByUserSnsId(user.getSnsId());
+        List<Post> bookmarkPostList = postRepository.findAllBookmarkByUserSnsId(user.getSnsId());
+//        List<Post> includePostList = postRepository.findAllByUser(user);
+//        List<Post> bookmarkPostList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(user.getSnsId());
         List<PostResponseDto> myBookmarkList = bookmarkPostList.stream().map(o -> new PostResponseDto(o, true)).collect(Collectors.toList());
         List<PostResponseDto> includedList = includePostList.stream().map(o -> new PostResponseDto(o, checkBookmark(o, bookmarkPostList))).collect(Collectors.toList());
 
@@ -230,23 +230,6 @@ public class PostService {
                 () -> new ForbiddenException(ErrorCode.NO_AUTHORIZATION_ERROR)
         );
     }
-
-//    public Map<String, Object> sendByDisplayNumber(int displayNumber, int page, List<Post> filterPosts, String snsId) {
-//        List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
-//        int index = displayNumber * page;
-//        int toIndex = Math.min(filterPosts.size(), index + displayNumber);
-//
-//        List<PostResponseDto> postResponseDtos = filterPosts.subList(index, toIndex)
-//                .stream().map(o -> new PostResponseDto(o, checkBookmark(o, bookmarkList))).collect(Collectors.toList());
-//        int totalPostSize = filterPosts.size();
-//        int totalPage = (int) Math.ceil( (double) totalPostSize/displayNumber);
-//
-//        Map<String, Object> postsAndTotalPage = new HashMap<>();
-//        postsAndTotalPage.put("postResponseDtos", postResponseDtos);
-//        postsAndTotalPage.put("totalPage", totalPage);
-//        return postsAndTotalPage;
-//    }
-
     @Transactional
     public PostResponseDto updateStatus(Long postId, String projectStatus, String snsId) {
         Post post = postRepository.findById(postId).orElseThrow(

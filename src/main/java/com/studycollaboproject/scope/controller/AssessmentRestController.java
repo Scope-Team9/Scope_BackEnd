@@ -53,7 +53,7 @@ public class AssessmentRestController {
         MailDto mailDto = assessmentService.assessmentMember(postId, user, requestDto.getUserIds());
 
         //팀장을 제외한 팀원들에게 프로젝트 종료와 평가를 알리는 메일 보내기
-        mailService.assessmantMailBuilder(mailDto);
+        mailService.assessmentMailBuilder(mailDto);
 
         return new ResponseEntity<>(
                 new ResponseDto("팀원 평가 정보가 성공적으로 저장되었습니다.", ""),

@@ -22,6 +22,7 @@ public class PostRepositoryExtensionImpl extends QuerydslRepositorySupport imple
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
                 .orderBy(post.createdAt.desc())
+                .orderBy(post.projectStatus.desc())
                 .distinct();
         return query.fetch();
     }
@@ -33,6 +34,7 @@ public class PostRepositoryExtensionImpl extends QuerydslRepositorySupport imple
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
                 .orderBy(post.startDate.asc())
+                .orderBy(post.projectStatus.desc())
                 .distinct();
         return query.fetch();
     }
@@ -44,6 +46,7 @@ public class PostRepositoryExtensionImpl extends QuerydslRepositorySupport imple
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
                 .orderBy(post.startDate.asc())
+                .orderBy(post.projectStatus.desc())
                 .distinct();
         return query.fetch();
     }
@@ -55,15 +58,17 @@ public class PostRepositoryExtensionImpl extends QuerydslRepositorySupport imple
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
                 .orderBy(post.createdAt.desc())
+                .orderBy(post.projectStatus.desc())
                 .distinct();
         return query.fetch();
     }
 
     @Override
-    public List<Post> findAllByPropensityTypeOrderByStartDate(String propensity) {
+    public List<Post> findAllByPropensityTypeOrderByStartDate(String propensity, List<Tech> techList) {
         JPQLQuery<Post> query = from(post)
                 .where(post.user.snsId.notEqualsIgnoreCase("unknown")
                         .and(post.projectStatus.eq(ProjectStatus.PROJECT_STATUS_RECRUITMENT))
+                        .and(post.techStackList.any().tech.in(techList))
                         .and(post.user.userPropensityType.eq(propensity)))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
@@ -73,10 +78,11 @@ public class PostRepositoryExtensionImpl extends QuerydslRepositorySupport imple
     }
 
     @Override
-    public List<Post> findAllByPropensityTypeOrderByCreatedAt(String propensity) {
+    public List<Post> findAllByPropensityTypeOrderByCreatedAt(String propensity, List<Tech> techList) {
         JPQLQuery<Post> query = from(post)
                 .where(post.user.snsId.notEqualsIgnoreCase("unknown")
                         .and(post.projectStatus.eq(ProjectStatus.PROJECT_STATUS_RECRUITMENT))
+                        .and(post.techStackList.any().tech.in(techList))
                         .and(post.user.userPropensityType.eq(propensity)))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
