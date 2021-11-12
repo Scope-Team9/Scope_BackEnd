@@ -34,21 +34,21 @@
 //
 //    @Override
 //    public void run(ApplicationArguments args){
-//        if (totalResultRepository.count() == 0L) {
-//            String[] propensityTypeList = {"LVG", "LVP", "LHG", "LHP", "FVG", "FVP", "FHG", "FHP","RHP"};
-//
-//            for (String s : propensityTypeList) {
-//                for (String s1 : propensityTypeList) {
-//                    TotalResult totalResult = new TotalResult(s, s1);
-//                    totalResultRepository.save(totalResult);
-//                }
-//            }
-//        }
-//
-//        if (userRepository.findBySnsId("unknown").isEmpty()) {
-//            User user = new User(new TestUserSetupDto());
-//            userRepository.save(user);
-//        }
+////        if (totalResultRepository.count() == 0L) {
+////            String[] propensityTypeList = {"LVG", "LVP", "LHG", "LHP", "FVG", "FVP", "FHG", "FHP","RHP"};
+////
+////            for (String s : propensityTypeList) {
+////                for (String s1 : propensityTypeList) {
+////                    TotalResult totalResult = new TotalResult(s, s1);
+////                    totalResultRepository.save(totalResult);
+////                }
+////            }
+////        }
+////
+////        if (userRepository.findBySnsId("unknown").isEmpty()) {
+////            User user = new User(new TestUserSetupDto());
+////            userRepository.save(user);
+////        }
 //
 ////        for (PostRequestDto requestDto : requestDtoList) {
 ////            System.out.println("requestDto = " + requestDto);
@@ -76,11 +76,11 @@
 //        techStack.add("JavaScript");
 //        techStack.add("Python");
 //        techStack.add("Node");
-//        techStack.add("C++");
+//        techStack.add("cpp");
 //        techStack.add("Flask");
 //        techStack.add("Django");
 //        techStack.add("React");
-//        techStack.add("PHP");
+//        techStack.add("php");
 //        techStack.add("Swift");
 //        techStack.add("Kotlin");
 //        techStack.add("TypeScript");
@@ -132,11 +132,18 @@
 //            userList.add(user);
 //        }
 //
+//        List<String> online = new ArrayList<>();
 //        List<String> term = new ArrayList<>();
 //        List<String> subject = new ArrayList<>();
 //        List<String> person = new ArrayList<>();
 //        List<String> want = new ArrayList<>();
 //        List<Integer> member = new ArrayList<>();
+//
+//        online.add("온라인으로만 ");
+//        online.add("오프라인으로 ");
+//        online.add("온라인 및 오프라인 ");
+//        online.add("비대면으로 ");
+//        online.add("오프라인으로도 가능하고 ");
 //
 //        term.add("짧게 ");
 //        term.add("3개월간 ");
@@ -174,37 +181,40 @@
 //        member.add(5);
 //        member.add(4);
 //        member.add(3);
+//        member.add(2);
 //
 ////        List<PostRequestDto> requestDtoList = new ArrayList<>();
-//        for (String ter : term) {
-//            for (String sub : subject) {
-//                for (String per : person) {
-//                    for (String wan : want) {
-//                        index1 = (int)((Math.random() * 100) % member.size());
-//                        index2 = (int)((Math.random() * 100) % techStackList.size());
-//                        index3 = (int)((Math.random() * 100) % userList.size());
-//                        String title = ter + sub + per + wan;
-//                        String summary = per + wan;
-//                        int totalMember = member.get(index1);
-//                        String contents = ter + sub + per + totalMember + "명 " + wan;
-//                        int period1 = (int)((Math.random() * 100) % 20);
-//                        int period2 = (int)(Math.random() * 100);
+//        for(String on : online) {
+//            for (String ter : term) {
+//                for (String sub : subject) {
+//                    for (String per : person) {
+//                        for (String wan : want) {
+//                            index1 = (int) ((Math.random() * 100) % member.size());
+//                            index2 = (int) ((Math.random() * 100) % techStackList.size());
+//                            index3 = (int) ((Math.random() * 100) % userList.size());
+//                            String title = on + ter + sub + per + wan;
+//                            String summary = per + wan;
+//                            int totalMember = member.get(index1);
+//                            String contents = on + ter + sub + per + totalMember + "명 " + wan;
+//                            int period1 = (int) ((Math.random() * 100) % 20);
+//                            int period2 = (int) (Math.random() * 100);
 //
-//                        LocalDate startDate = LocalDate.now().plusDays(period1);
-//                        LocalDate endDate = LocalDate.now().plusDays(period2);
-//                        PostRequestDto postRequestDto = new PostRequestDto(
-//                                title,
-//                                summary,
-//                                contents,
-//                                totalMember,
-//                                "모집중",
-//                                startDate.toString(),
-//                                endDate.toString(),
-//                                techStackList.get(index2)
-//                        );
+//                            LocalDate startDate = LocalDate.now().plusDays(period1);
+//                            LocalDate endDate = LocalDate.now().plusDays(period2);
+//                            PostRequestDto postRequestDto = new PostRequestDto(
+//                                    title,
+//                                    summary,
+//                                    contents,
+//                                    totalMember,
+//                                    "모집중",
+//                                    startDate.toString(),
+//                                    endDate.toString(),
+//                                    techStackList.get(index2)
+//                            );
 ////                        requestDtoList.add(postRequestDto);
 //
-//                        postService.writePost(postRequestDto, userList.get(index3).getSnsId());
+//                            postService.writePost(postRequestDto, userList.get(index3).getSnsId());
+//                        }
 //                    }
 //                }
 //            }
