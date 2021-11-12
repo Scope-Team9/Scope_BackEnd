@@ -33,9 +33,9 @@ public class UserResponseDto {
         this.memberPropensityType = user.getMemberPropensityType();
         this.nickname = user.getNickname();
         this.techStackList = techStackList;
-        this.userId = getUserId();
+        this.userId = user.getId();
         this.email = user.getEmail();
-//        this.isVerifiedEmail = user.getIsVerifiedEmail();
-        this.isVerifiedEmail = getIsVerifiedEmail();
+        this.isVerifiedEmail = user.getIsVerifiedEmail();
+//        this.isVerifiedEmail = getIsVerifiedEmail();
     }
 }
