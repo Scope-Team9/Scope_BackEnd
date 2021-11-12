@@ -116,8 +116,8 @@ public class PostService {
                 }
             }
 
-//            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
             List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
+//            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
             return filterPosts.stream().map(o -> new PostResponseDto(o, checkBookmark(o, bookmarkList))).collect(Collectors.toList());
         }
 
@@ -147,8 +147,8 @@ public class PostService {
                 return filterPosts.stream().map(o -> new PostResponseDto(o, false)).collect(Collectors.toList());
             }
 
-//            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
             List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
+//            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
             return filterPosts.stream().map(o -> new PostResponseDto(o, checkBookmark(o, bookmarkList))).collect(Collectors.toList());
         }
     }

@@ -126,7 +126,7 @@
 //                techStacks.add(techStack1);
 //                techStackRepository.save(techStack1);
 //            }
-//            String token1 = jwtTokenProvider.createToken(user.getSnsId()).split("\\.")[1];
+//            String token1 = jwtTokenProvider.createToken(user.getSnsId());
 //            user.addTechStackListAndToken(techStacks,token1);
 //            userRepository.save(user);
 //            userList.add(user);
