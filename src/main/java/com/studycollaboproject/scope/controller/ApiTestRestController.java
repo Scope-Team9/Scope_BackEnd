@@ -1,5 +1,6 @@
 package com.studycollaboproject.scope.controller;
 
+import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.SignupTestDto;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.UserRepository;
@@ -50,7 +51,7 @@ public class ApiTestRestController {
 
     @Operation(summary = "팀원평가 저장")
     @PostMapping("/api-test/assessment")
-    public ResponseDto saveAssessment(@RequestBody String rater, @RequestBody String memberType,@RequestBody Long count) {
+    public ResponseDto saveAssessment(@RequestBody String rater, @RequestBody String memberType, @RequestBody Long count) {
         assessmentService.testAssessmentResult(rater, memberType, count);
         return new ResponseDto("성공적으로 저장","");
 
