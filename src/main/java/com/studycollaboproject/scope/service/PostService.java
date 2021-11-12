@@ -1,8 +1,12 @@
 package com.studycollaboproject.scope.service;
 
-import com.studycollaboproject.scope.dto.*;
+import com.studycollaboproject.scope.dto.MypageResponseDto;
+import com.studycollaboproject.scope.dto.PostRequestDto;
+import com.studycollaboproject.scope.dto.PostResponseDto;
+import com.studycollaboproject.scope.dto.UserResponseDto;
+import com.studycollaboproject.scope.exception.BadRequestException;
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.exception.ForbiddenException;
 import com.studycollaboproject.scope.model.*;
 import com.studycollaboproject.scope.repository.*;
 import com.studycollaboproject.scope.util.TechStackConverter;
@@ -10,7 +14,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -30,7 +37,7 @@ public class PostService {
     public PostResponseDto writePost(PostRequestDto postRequestDto, String snsId) {
         List<String> postTechStackList = postRequestDto.getTechStackList();
         User user = userRepository.findBySnsId(snsId).orElseThrow(() ->
-                new RestApiException(ErrorCode.NO_USER_ERROR));
+                new BadRequestException(ErrorCode.NO_USER_ERROR));
 
         Post post = new Post(postRequestDto, user);
         List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(postTechStackList, null, post));
@@ -54,7 +61,7 @@ public class PostService {
             techStackRepository.saveAll(techStackList);
             return new PostResponseDto(post);
         } else {
-            throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
+            throw new ForbiddenException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
     }
 
@@ -72,7 +79,7 @@ public class PostService {
             postRepository.delete(post);
             return postId;
         } else {
-            throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
+            throw new ForbiddenException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
 
     }
@@ -168,7 +175,7 @@ public class PostService {
 
     public List<String> getPropensityTypeList(String snsId) {
         User user = userRepository.findBySnsId(snsId).orElseThrow(() ->
-                new RestApiException(ErrorCode.NO_USER_ERROR));
+                new BadRequestException(ErrorCode.NO_USER_ERROR));
 
         String userPropensityType = user.getUserPropensityType();
         String memberPropensityType = user.getMemberPropensityType();
@@ -194,33 +201,33 @@ public class PostService {
     @Transactional
     public PostResponseDto updateUrl(String backUrl, String frontUrl, String snsId, Long postId) {
         User user = userRepository.findBySnsId(snsId).orElseThrow(() ->
-                new RestApiException(ErrorCode.NO_USER_ERROR));
+                new BadRequestException(ErrorCode.NO_USER_ERROR));
         Post post = loadPostByPostId(postId);
         if (isTeamStarter(post, snsId)) {
             Team team = loadTeamByUserAndPost(user, post);
             team.setUrl(frontUrl, backUrl);
         } else {
-            throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
+            throw new ForbiddenException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
         return new PostResponseDto(post);
     }
 
     public Team loadTeamByUserAndPost(User user, Post post) {
         return teamRepository.findByUserAndPost(user, post).orElseThrow(
-                () -> new RestApiException(ErrorCode.NO_POST_ERROR)
+                () -> new BadRequestException(ErrorCode.NO_POST_ERROR)
         );
     }
 
 
     public Post loadPostByPostId(Long postId) {
         return postRepository.findById(postId).orElseThrow(
-                () -> new RestApiException(ErrorCode.NO_POST_ERROR)
+                () -> new BadRequestException(ErrorCode.NO_POST_ERROR)
         );
     }
 
     public Post loadPostIfOwner(Long postId, User user) {
         return postRepository.findByIdAndUser(postId, user).orElseThrow(
-                () -> new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR)
+                () -> new ForbiddenException(ErrorCode.NO_AUTHORIZATION_ERROR)
         );
     }
 
@@ -243,15 +250,15 @@ public class PostService {
     @Transactional
     public PostResponseDto updateStatus(Long postId, String projectStatus, String snsId) {
         Post post = postRepository.findById(postId).orElseThrow(
-                () -> new RestApiException(ErrorCode.NO_POST_ERROR)
+                () -> new BadRequestException(ErrorCode.NO_POST_ERROR)
         );
         userRepository.findBySnsId(snsId).orElseThrow(
-                () -> new RestApiException(ErrorCode.NO_USER_ERROR)
+                () -> new BadRequestException(ErrorCode.NO_USER_ERROR)
         );
         if (snsId.equals(post.getUser().getSnsId())) {
             post.updateStatus(projectStatus);
         } else {
-            throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
+            throw new ForbiddenException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
         return new PostResponseDto(post);
     }

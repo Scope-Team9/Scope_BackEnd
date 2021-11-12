@@ -1,6 +1,5 @@
 package com.studycollaboproject.scope.controller;
 
-import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.SignupTestDto;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.UserRepository;

@@ -1,8 +1,9 @@
 package com.studycollaboproject.scope.service;
 
 import com.studycollaboproject.scope.dto.MailDto;
+import com.studycollaboproject.scope.exception.BadRequestException;
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.exception.ForbiddenException;
 import com.studycollaboproject.scope.model.*;
 import com.studycollaboproject.scope.repository.PostRepository;
 import com.studycollaboproject.scope.repository.TeamRepository;
@@ -25,10 +26,10 @@ public class AssessmentService {
     @Transactional
     public MailDto assessmentMember(Long postId, User rater, List<Long> userIds) {
         Post post = postRepository.findById(postId).orElseThrow(
-                () -> new RestApiException(ErrorCode.NO_POST_ERROR)
+                () -> new BadRequestException(ErrorCode.NO_POST_ERROR)
         );// [예외처리] 팀장이 아니면서 프로젝트 상태가 "동료"가 아닌 경우
         if (!post.getUser().equals(rater) && !post.getProjectStatus().equals(ProjectStatus.PROJECT_STATUS_END)) {
-            throw new RestApiException(ErrorCode.NO_AUTHORIZATION_ERROR);
+            throw new ForbiddenException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
 
         List<Team> teamList = teamRepository.findAllByPost(post);
@@ -40,7 +41,7 @@ public class AssessmentService {
             for (Team team : teamList) {
                 if (team.getUser().equals(rater)) {
                     if (team.isAssessment()) {
-                        throw new RestApiException(ErrorCode.ALREADY_ASSESSMENT_ERROR);
+                        throw new BadRequestException(ErrorCode.ALREADY_ASSESSMENT_ERROR);
                     }
                     team.setAssessment();
                 }

@@ -2,7 +2,7 @@ package com.studycollaboproject.scope.service;
 
 import com.studycollaboproject.scope.dto.MemberListResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.exception.BadRequestException;
 import com.studycollaboproject.scope.model.Applicant;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.ProjectStatus;
@@ -30,20 +30,19 @@ public class ApplicantService {
 
         // [예외처리] 요청한 유저의 정보가 탈퇴 등과 같은 이유로 존재하지 않을 때
         User user = userRepository.findBySnsId(snsId).orElseThrow(
-                () -> new RestApiException(ErrorCode.NO_USER_ERROR)
+                () -> new BadRequestException(ErrorCode.NO_USER_ERROR)
         );
         // [예외처리] 조회하고자 하는 게시물이 삭제 등과 같은 이유로 존재하지 않을 때
         Post post = postRepository.findById(postId).orElseThrow(
-                () -> new RestApiException(ErrorCode.NO_POST_ERROR)
+                () -> new BadRequestException(ErrorCode.NO_POST_ERROR)
         );
         // [예외처리] 신청했던 프로젝트에 다시 신청하는 경우
         applicantRepository.findByUserAndPost(user, post).ifPresent(applicant->{
-            throw new RestApiException(ErrorCode.ALREADY_APPLY_POST_ERROR);
+            throw new BadRequestException(ErrorCode.ALREADY_APPLY_POST_ERROR);
         });
-
         // [예외처리] 이미 시작한 프로젝트에 신청할 경우
         if (!post.getProjectStatus().equals(ProjectStatus.PROJECT_STATUS_RECRUITMENT)){
-            throw new RestApiException(ErrorCode.ALREADY_STARTED_ERROR);
+            throw new BadRequestException(ErrorCode.ALREADY_STARTED_ERROR);
         }
 
         Applicant applicant = Applicant.builder()
@@ -60,15 +59,15 @@ public class ApplicantService {
 
         // [예외처리] 요청한 유저의 정보가 탈퇴 등과 같은 이유로 존재하지 않을 때
         User user = userRepository.findBySnsId(snsId).orElseThrow(
-                () -> new RestApiException(ErrorCode.NO_USER_ERROR)
+                () -> new BadRequestException(ErrorCode.NO_USER_ERROR)
         );
         // [예외처리] 조회하고자 하는 게시물이 삭제 등과 같은 이유로 존재하지 않을 때
         Post post = postRepository.findById(postId).orElseThrow(
-                () -> new RestApiException(ErrorCode.NO_POST_ERROR)
+                () -> new BadRequestException(ErrorCode.NO_POST_ERROR)
         );
         // [예외처리] 대기열에 대기 정보가 없을 때
         Applicant applicant = applicantRepository.findByUserAndPost(user, post).orElseThrow(
-                () -> new RestApiException(ErrorCode.NO_APPLICANT_ERROR)
+                () -> new BadRequestException(ErrorCode.NO_APPLICANT_ERROR)
         );
 
         applicant.deleteApply();

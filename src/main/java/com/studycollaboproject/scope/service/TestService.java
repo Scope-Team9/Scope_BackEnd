@@ -2,7 +2,7 @@ package com.studycollaboproject.scope.service;
 
 import com.studycollaboproject.scope.dto.TestResultDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.exception.BadRequestException;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class TestService {
     @Transactional
     public TestResultDto updatePropensityType(String snsId, List<String> userPropensityType, List<String> memberPropensityType) {
         User user = userRepository.findBySnsId(snsId).orElseThrow(
-                () -> new RestApiException(ErrorCode.NO_USER_ERROR)
+                () -> new BadRequestException(ErrorCode.NO_USER_ERROR)
         );
 
         String userType = testResult(userPropensityType);       //user의 성향 테스트 결과

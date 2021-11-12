@@ -2,7 +2,7 @@ package com.studycollaboproject.scope.service;
 
 import com.studycollaboproject.scope.dto.*;
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.exception.BadRequestException;
 import com.studycollaboproject.scope.model.Bookmark;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.TechStack;
@@ -44,13 +44,13 @@ public class UserService {
     // sns id로 user 정보 반환
     public User loadUserBySnsId(String snsId) {
         return userRepository.findBySnsId(snsId).orElseThrow(
-                () -> new RestApiException(ErrorCode.NO_USER_ERROR));
+                () -> new BadRequestException(ErrorCode.NO_USER_ERROR));
     }
 
     //user id로 정보 반환
     public User loadUserByUserId(Long userId) {
         return userRepository.findById(userId).orElseThrow(
-                () -> new RestApiException(ErrorCode.NO_USER_ERROR));
+                () -> new BadRequestException(ErrorCode.NO_USER_ERROR));
     }
 
     public User loadUnknownUser() {
@@ -65,7 +65,7 @@ public class UserService {
     //email 중복 체크
     public ResponseDto emailCheckByEmail(String email) {
         userRepository.findByEmail(email).ifPresent(user -> {
-                    throw new RestApiException(ErrorCode.ALREADY_EMAIL_ERROR);
+                    throw new BadRequestException(ErrorCode.ALREADY_EMAIL_ERROR);
                 });
         return new ResponseDto("사용 가능한 메일입니다.", "");
     }
@@ -73,11 +73,10 @@ public class UserService {
     //닉네임 중복 체크
     public ResponseDto nicknameCheckByNickname(String nickname) {
         userRepository.findByNickname(nickname).ifPresent(user -> {
-            throw new RestApiException(ErrorCode.ALREADY_NICKNAME_ERROR);
+            throw new BadRequestException(ErrorCode.ALREADY_NICKNAME_ERROR);
         });
         return new ResponseDto("사용가능한 닉네임입니다.", "");
     }
-
 
     //sns 로그인 시 기존 회원 여부 판단
     public ResponseDto SignupEmailCheck(String email, String snsId, String sns) {
@@ -97,12 +96,12 @@ public class UserService {
     public ResponseDto bookmarkCheck(Long postId, String snsId) {
         // [예외처리] 북마크하고자 하는 post를 삭제 등과 같은 이유로 찾을 수 없을 때
         Post post = postRepository.findById(postId).orElseThrow(
-                () -> new RestApiException(ErrorCode.NO_POST_ERROR)
+                () -> new BadRequestException(ErrorCode.NO_POST_ERROR)
         );
         User user = loadUserBySnsId(snsId);
         // [예외처리] 사용자가 자신의 게시물을 북마크하려고 할 때
         if (post.getUser().equals(user)) {
-            throw new RestApiException(ErrorCode.NO_BOOKMARK_MY_POST_ERROR);
+            throw new BadRequestException(ErrorCode.NO_BOOKMARK_MY_POST_ERROR);
         }
         Map<String, String> isBookmarkChecked = new HashMap<>();
 
@@ -128,7 +127,7 @@ public class UserService {
         techStackRepository.deleteAllByUser(user);
         user.resetTechStack();
 
-        if (!user.getNickname().equals(nickname)) {
+        if(!user.getNickname().equals(nickname)){
             nicknameCheckByNickname(nickname);
         }
         if (!user.getEmail().equals(email)) {

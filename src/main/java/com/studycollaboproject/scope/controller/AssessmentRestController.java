@@ -4,7 +4,7 @@ import com.studycollaboproject.scope.dto.AssessmentRequestDto;
 import com.studycollaboproject.scope.dto.MailDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.exception.NoAuthException;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
 import com.studycollaboproject.scope.service.AssessmentService;
@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.mail.MessagingException;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -41,13 +42,14 @@ public class AssessmentRestController {
     @PostMapping("/api/assessment/{postId}")
     public ResponseEntity<Object> assessmentMember(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
                                                    @RequestBody AssessmentRequestDto requestDto,
-                                                   @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) throws MessagingException{
+                                                   @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) throws MessagingException {
         log.info("POST, [{}], /api/assessment/{}, userIds={}", MDC.get("UUID"), postId, requestDto.getUserIds().toString());
         // [예외처리] 로그인 정보가 없을 때
-        if (userDetails == null) {
-            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
-        }
-        User user = userService.loadUserBySnsId(userDetails.getSnsId());
+        String snsId = Optional.ofNullable(userDetails).orElseThrow(
+                () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
+        ).getSnsId();
+
+        User user = userService.loadUserBySnsId(snsId);
         MailDto mailDto = assessmentService.assessmentMember(postId, user, requestDto.getUserIds());
 
         //팀장을 제외한 팀원들에게 프로젝트 종료와 평가를 알리는 메일 보내기
