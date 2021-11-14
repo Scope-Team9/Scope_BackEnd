@@ -54,7 +54,6 @@ public class ApplicantRestController {
 
         Applicant applicant = applicantService.applyPost(snsId, postId, requestDto.getComment());
         mailService.applicantMailBuilder(new MailDto(applicant));
-
         return new ResponseEntity<>(
                 new ResponseDto("프로젝트에 지원되었습니다.", ""),
                 HttpStatus.CREATED

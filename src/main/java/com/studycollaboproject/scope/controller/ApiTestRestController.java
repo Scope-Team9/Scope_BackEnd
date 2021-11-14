@@ -27,18 +27,18 @@ public class ApiTestRestController {
     private final JwtTokenProvider jwtTokenProvider;
     private final AssessmentService assessmentService;
 
-//    @Operation(summary = "TEST용 회원가입")
-//    @PostMapping("/api-test")
-//    public Map<String, String> makeApiTestUser(@RequestBody SignupTestDto signupTestDto) {
-//        String jwtToken = jwtTokenProvider.createToken(signupTestDto.getSnsId());
-//        System.out.println("jwtToken = " + jwtToken);
-//        System.out.println("jwtToken.split(\".\")[1] = " + jwtToken.split("\\.")[1]);
-//        User user = new User(signupTestDto, jwtToken.split("\\.")[1]);
-//        userRepository.save(user);
-//        Map<String, String> token = new HashMap<>();
-//        token.put("token", jwtToken);
-//        return token;
-//    }
+    @Operation(summary = "TEST용 회원가입")
+    @PostMapping("/api-test")
+    public Map<String, String> makeApiTestUser(@RequestBody SignupTestDto signupTestDto) {
+        String jwtToken = jwtTokenProvider.createToken(signupTestDto.getSnsId());
+        System.out.println("jwtToken = " + jwtToken);
+        System.out.println("jwtToken.split(\".\")[1] = " + jwtToken.split("\\.")[1]);
+        User user = new User(signupTestDto, jwtToken.split("\\.")[1]);
+        userRepository.save(user);
+        Map<String, String> token = new HashMap<>();
+        token.put("token", jwtToken);
+        return token;
+    }
 
     @Operation(summary = "SNS ID로 JWT 받기")
     @GetMapping("/api-test")
