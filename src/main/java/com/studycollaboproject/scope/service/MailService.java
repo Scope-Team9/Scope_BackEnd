@@ -87,7 +87,13 @@ public class MailService {
 
     @Async
     public void acceptTeamMailBuilder(MailDto mailDto) throws MessagingException {
-
+        try {
+            log.info("==================================================");
+            log.info("프로젝트 매칭 알림 메일 발송");
+            Thread.sleep(5000);
+        }catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String email = mailDto.getToEmail();
         Context context = new Context();
         context.setVariable("title", mailDto.getPostTitle());
@@ -98,9 +104,17 @@ public class MailService {
         String body = templateEngine.process("acceptTeamEmail", context);
 
         setMail(subject, body, email);
+        log.info("==================================================");
     }
     @Async
     public void assessmentMailBuilder(MailDto mailDto) throws MessagingException {
+        try {
+            log.info("==================================================");
+            log.info("프로젝트 종료 알림 메일 발송");
+            Thread.sleep(5000);
+        }catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         for (User user : mailDto.getToUserList()) {
             Context context = new Context();
             context.setVariable("title", mailDto.getPostTitle());
@@ -109,6 +123,7 @@ public class MailService {
             String subject = "[scope]" + user.getNickname() + "님의 프로젝트가 종료되었습니다!";
             String body = templateEngine.process("applicationNoticeEmail", context);
             setMail(subject, body, user.getEmail());
+            log.info("==================================================");
         }
     }
 
