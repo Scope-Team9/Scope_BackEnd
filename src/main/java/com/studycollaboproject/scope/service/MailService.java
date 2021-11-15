@@ -58,16 +58,12 @@ public class MailService {
         mimeMessageHelper.setText(body, true);
         sendMail(mimeMessageHelper.getMimeMessage());
     }
+
     @Async
     public void applicantMailBuilder(MailDto mailDto) throws MessagingException {
-        try {
-            log.info("==================================================");
-            log.info("지원 알림 메일 발송");
-            Thread.sleep(5000);
-        }catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
+        log.info("==================================================");
+        log.info("지원 알림 메일 발송");
         String email = mailDto.getToEmail();
         Context context = new Context();
         context.setVariable("postTitle", mailDto.getPostTitle());
@@ -87,13 +83,10 @@ public class MailService {
 
     @Async
     public void acceptTeamMailBuilder(MailDto mailDto) throws MessagingException {
-        try {
-            log.info("==================================================");
-            log.info("프로젝트 매칭 알림 메일 발송");
-            Thread.sleep(5000);
-        }catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        log.info("==================================================");
+        log.info("프로젝트 매칭 알림 메일 발송");
+
         String email = mailDto.getToEmail();
         Context context = new Context();
         context.setVariable("title", mailDto.getPostTitle());
@@ -106,15 +99,14 @@ public class MailService {
         setMail(subject, body, email);
         log.info("==================================================");
     }
+
     @Async
     public void assessmentMailBuilder(MailDto mailDto) throws MessagingException {
-        try {
-            log.info("==================================================");
-            log.info("프로젝트 종료 알림 메일 발송");
-            Thread.sleep(5000);
-        }catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        log.info("==================================================");
+        log.info("프로젝트 종료 알림 메일 발송");
+
+
         for (User user : mailDto.getToUserList()) {
             Context context = new Context();
             context.setVariable("title", mailDto.getPostTitle());
@@ -127,7 +119,10 @@ public class MailService {
         }
     }
 
+    @Async
     public void authMailSender(String email, User user) throws MessagingException {
+        log.info("==================================================");
+        log.info("이메일 인증 메일 발송");
         Context context = new Context();
         context.setVariable("userId", user.getId());
         context.setVariable("code", user.getMailAuthenticationCode());
