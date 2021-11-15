@@ -103,7 +103,7 @@ public class JwtTokenProvider {
 
         } catch (ExpiredJwtException e) {
             log.info("만료된 토큰");
-            throw new BadRequestException(ErrorCode.TOKEN_EXPRIRATOION_ERROR);
+            throw new BadRequestException(ErrorCode.TOKEN_EXPIRATION_ERROR);
 
         } catch (Exception e) {
             log.info("정상적인 토큰이 아닙니다.");

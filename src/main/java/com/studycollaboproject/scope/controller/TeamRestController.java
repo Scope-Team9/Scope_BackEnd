@@ -84,16 +84,19 @@ public class TeamRestController {
     }
 
     @Operation(summary = "팀원 강퇴")
-    @DeleteMapping("/api/team/resignation")
-    public ResponseEntity<Object> memberResignation(@RequestBody Long memberId, @RequestBody Long postId,
+    @DeleteMapping("/api/team/resignation/{postId}")
+    public ResponseEntity<Object> memberResignation(@Parameter(description = "유저 ID", in = ParameterIn.QUERY) @RequestParam Long userId,
+                                                    @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH)@PathVariable Long postId,
                                                     @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        log.info("DELETE, [{}], /api/team/resignation", MDC.get("UUID"));
+        log.info("DELETE, [{}], /api/team/resignation/{}, userId={}", MDC.get("UUID"), postId, userId);
         Post post = postService.loadPostByPostId(postId);
-        User user = userDetails.getUser();
+        User user = Optional.ofNullable(userDetails).map(UserDetailsImpl::getUser).orElseThrow(
+                () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
+        );
 
         if (post.getUser().equals(user)) {
-            User member = userService.loadUserByUserId(memberId);
-            teamService.memberResignation(member, post);
+            User member = userService.loadUserByUserId(userId);
+            teamService.memberDelete(member, post);
             return new ResponseEntity<>(
                     new ResponseDto("팀에서 팀원을 삭제했습니다.", ""),
                     HttpStatus.OK
@@ -103,13 +106,15 @@ public class TeamRestController {
     }
 
     @Operation(summary = "팀 탈퇴")
-    @DeleteMapping("/api/team/secession")
-    public ResponseEntity<Object> memberSecession(@RequestBody Long postId,
+    @DeleteMapping("/api/team/secession/{postId}")
+    public ResponseEntity<Object> memberSecession(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
                                                   @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        log.info("DELETE, [{}], /api/team/secession", MDC.get("UUID"));
+        log.info("DELETE, [{}], /api/team/secession/{}", MDC.get("UUID"), postId);
         Post post = postService.loadPostByPostId(postId);
-        User user = userDetails.getUser();
-        teamService.memberSecession(user, post);
+        User user = Optional.ofNullable(userDetails).map(UserDetailsImpl::getUser).orElseThrow(
+                () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
+        );
+        teamService.memberDelete(user, post);
         return new ResponseEntity<>(
                 new ResponseDto("팀에서 나왔습니다.", ""),
                 HttpStatus.OK
