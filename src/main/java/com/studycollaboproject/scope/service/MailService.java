@@ -6,10 +6,12 @@ import com.studycollaboproject.scope.exception.BadRequestException;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
@@ -22,6 +24,7 @@ import java.util.Properties;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class MailService {
 
     private final SpringTemplateEngine templateEngine;
@@ -55,8 +58,15 @@ public class MailService {
         mimeMessageHelper.setText(body, true);
         sendMail(mimeMessageHelper.getMimeMessage());
     }
-
+    @Async
     public void applicantMailBuilder(MailDto mailDto) throws MessagingException {
+        try {
+            log.info("==================================================");
+            log.info("지원 알림 메일 발송");
+            Thread.sleep(5000);
+        }catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         String email = mailDto.getToEmail();
         Context context = new Context();
@@ -68,14 +78,22 @@ public class MailService {
         String subject = "[scope]" + mailDto.getToNickname() + "님의 프로젝트에" + mailDto.getFromNickname() + "님이 팀원 신청을 했습니다.";
         String body = templateEngine.process("applicantEmail", context);
         setMail(subject, body, email);
+        log.info("==================================================");
     }
 
     public void sendMail(MimeMessage message) {
         getJavaMailSender().send(message);
     }
 
+    @Async
     public void acceptTeamMailBuilder(MailDto mailDto) throws MessagingException {
-
+        try {
+            log.info("==================================================");
+            log.info("프로젝트 매칭 알림 메일 발송");
+            Thread.sleep(5000);
+        }catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String email = mailDto.getToEmail();
         Context context = new Context();
         context.setVariable("title", mailDto.getPostTitle());
@@ -86,9 +104,17 @@ public class MailService {
         String body = templateEngine.process("acceptTeamEmail", context);
 
         setMail(subject, body, email);
+        log.info("==================================================");
     }
-
+    @Async
     public void assessmentMailBuilder(MailDto mailDto) throws MessagingException {
+        try {
+            log.info("==================================================");
+            log.info("프로젝트 종료 알림 메일 발송");
+            Thread.sleep(5000);
+        }catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         for (User user : mailDto.getToUserList()) {
             Context context = new Context();
             context.setVariable("title", mailDto.getPostTitle());
@@ -97,6 +123,7 @@ public class MailService {
             String subject = "[scope]" + user.getNickname() + "님의 프로젝트가 종료되었습니다!";
             String body = templateEngine.process("applicationNoticeEmail", context);
             setMail(subject, body, user.getEmail());
+            log.info("==================================================");
         }
     }
 
