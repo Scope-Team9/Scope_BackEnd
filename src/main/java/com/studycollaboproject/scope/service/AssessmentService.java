@@ -46,23 +46,31 @@ public class AssessmentService {
         List<String> userTypeList = new ArrayList<>();
         List<User> userList = new ArrayList<>();
 
-        for (Team team : teamList) {
-            if (!team.getId().equals(teamCheck.getId())) {
-                if(userIds.contains(team.getUser().getId())){
-                    userTypeList.add(team.getUser().getUserPropensityType());
-                    userList.add(team.getUser());
-                }
-                else{
-                    throw new BadRequestException(ErrorCode.NO_TEAM_ERROR);
-                }
+        for (Long userId : userIds) {
+            int index = checkTeamMember(teamList, userId);
+            if(index >= 0) {
+                userTypeList.add(teamList.get(index).getUser().getUserPropensityType());
+                userList.add(teamList.get(index).getUser());
+            }
+            else {
+                throw new BadRequestException(ErrorCode.NO_TEAM_ERROR);
             }
         }
 
+        teamCheck.setAssessment();
         String raterType = rater.getUserPropensityType();
         getAssessmentResult(raterType, userTypeList);
         return new MailDto(userList, post);
     }
 
+    private int checkTeamMember(List<Team> teamList, Long userId) {
+        for (int i = 0 ;i < teamList.size(); i++){
+            if(teamList.get(i).getUser().getId().equals(userId)) {
+                return i;
+            }
+        }
+        return -1;
+    }
     // 성향 추천 결과 테이블에 저장
     public void getAssessmentResult(String rater, List<String> userList) {
 
