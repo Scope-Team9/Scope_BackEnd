@@ -1,5 +1,6 @@
-package com.studycollaboproject.scope.security;
+package com.studycollaboproject.scope.filter;
 
+import com.studycollaboproject.scope.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;

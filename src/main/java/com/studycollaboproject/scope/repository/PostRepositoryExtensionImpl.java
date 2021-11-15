@@ -92,10 +92,20 @@ public class PostRepositoryExtensionImpl extends QuerydslRepositorySupport imple
     }
 
     @Override
-    public List<Post> findAllByUserSnsId(String snsId) {
+    public List<Post> findMemberPostByUserSnsId(String snsId) {
         JPQLQuery<Post> query = from(post)
-                .where(post.teamList.any().user.snsId.eq(snsId)
-                        .or(post.applicantList.any().user.snsId.eq(snsId)))
+                .where(post.teamList.any().user.snsId.eq(snsId))
+                .leftJoin(post.user, user).fetchJoin()
+                .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .orderBy(post.createdAt.desc())
+                .distinct();
+        return query.fetch();
+    }
+
+    @Override
+    public List<Post> findReadyPostByUserSnsId(String snsId) {
+        JPQLQuery<Post> query = from(post)
+                .where(post.applicantList.any().user.snsId.eq(snsId))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
                 .orderBy(post.createdAt.desc())

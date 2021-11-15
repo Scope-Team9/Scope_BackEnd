@@ -27,6 +27,9 @@ public class TeamService {
         Applicant applicant = applicantRepository.findByUserAndPost(user, post).orElseThrow(
                 () -> new BadRequestException(ErrorCode.NO_APPLICANT_ERROR)
         );
+        if(accept && post.getTotalMember() == post.getRecruitmentMember()){
+            throw new BadRequestException(ErrorCode.NO_EXCEED_MEMBER_ERROR);
+        }
         //대기열에서 삭제
         applicant.deleteApply();
         applicantRepository.delete(applicant);

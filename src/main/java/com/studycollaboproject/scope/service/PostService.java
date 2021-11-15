@@ -163,14 +163,16 @@ public class PostService {
     }
 
     public MypageResponseDto getMyPostList(User user, String loginUserSnsId) {
-        List<Post> includePostList = postRepository.findAllByUserSnsId(user.getSnsId());
+        List<Post> includePostList = postRepository.findMemberPostByUserSnsId(user.getSnsId());
+        List<Post> readyPostList = postRepository.findReadyPostByUserSnsId(user.getSnsId());
         List<Post> bookmarkPostList = postRepository.findAllBookmarkByUserSnsId(user.getSnsId());
 //        List<Post> includePostList = postRepository.findAllByUser(user);
 //        List<Post> bookmarkPostList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(user.getSnsId());
+        List<PostResponseDto> readyList = readyPostList.stream().map(o -> new PostResponseDto(o, true)).collect(Collectors.toList());
         List<PostResponseDto> myBookmarkList = bookmarkPostList.stream().map(o -> new PostResponseDto(o, true)).collect(Collectors.toList());
         List<PostResponseDto> includedList = includePostList.stream().map(o -> new PostResponseDto(o, checkBookmark(o, bookmarkPostList))).collect(Collectors.toList());
 
-        return new MypageResponseDto(includedList, myBookmarkList, new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList())), loginUserSnsId.equals(user.getSnsId()));
+        return new MypageResponseDto(includedList, readyList, myBookmarkList, new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList())), loginUserSnsId.equals(user.getSnsId()));
     }
 
     public List<String> getPropensityTypeList(String snsId) {
