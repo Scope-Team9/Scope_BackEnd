@@ -20,12 +20,12 @@ import org.slf4j.MDC;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
@@ -41,20 +41,16 @@ public class UserRestController {
 
     @Operation(summary = "마이 페이지")
     @GetMapping("/api/user/{userId}")
-    public ResponseEntity<Object> getMyPage(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails,
+    public ResponseEntity<Object> getMyPage(@Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails,
                                             @Parameter(description = "조회하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId) {
         log.info("GET, [{}], /api/user", MDC.get("UUID"));
         User user = userService.loadUserByUserId(userId);
-        MypageResponseDto responseDto;
-        if (userDetails == null) {
-            responseDto = postService.getMyPostList(user, "");
-        } else {
-            responseDto = postService.getMyPostList(user, userDetails.getUsername());
-        }
 
+        String snsId = Optional.ofNullable(userDetails).map(UserDetailsImpl::getSnsId).orElse("");
+        MypageResponseDto responseDto = postService.getMyPostList(user, snsId);
 
         return new ResponseEntity<>(
-                new ResponseDto("", responseDto),
+                new ResponseDto("회원 정보 조회 성공", responseDto),
                 HttpStatus.OK
         );
     }

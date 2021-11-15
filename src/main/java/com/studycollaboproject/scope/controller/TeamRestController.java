@@ -51,6 +51,7 @@ public class TeamRestController {
         String snsId = Optional.ofNullable(userDetails).orElseThrow(
                 () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
         ).getSnsId();
+
         //로그인 사용자 정보 불러오기
         User user = userService.loadUserBySnsId(snsId);
         //로그인 사용자가 해당 프로젝트의 생성자 인지 확인

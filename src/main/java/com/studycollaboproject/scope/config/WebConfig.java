@@ -1,8 +1,8 @@
 package com.studycollaboproject.scope.config;
 
 import com.studycollaboproject.scope.filter.LogFilter;
-import com.studycollaboproject.scope.security.ExceptionHandlerFilter;
-import com.studycollaboproject.scope.security.JwtAuthenticationFilter;
+import com.studycollaboproject.scope.filter.ExceptionHandlerFilter;
+import com.studycollaboproject.scope.filter.JwtAuthenticationFilter;
 import com.studycollaboproject.scope.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
