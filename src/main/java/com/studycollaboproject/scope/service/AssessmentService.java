@@ -27,40 +27,50 @@ public class AssessmentService {
     public MailDto assessmentMember(Long postId, User rater, List<Long> userIds) {
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new BadRequestException(ErrorCode.NO_POST_ERROR)
-        );// [예외처리] 팀장이 아니면서 프로젝트 상태가 "동료"가 아닌 경우
-        if (!post.getUser().equals(rater) && !post.getProjectStatus().equals(ProjectStatus.PROJECT_STATUS_END)) {
-            throw new ForbiddenException(ErrorCode.NO_AUTHORIZATION_ERROR);
+        );// [예외처리] 팀장이 아니면서 프로젝트 상태가 "진행중"가 아닌 경우
+
+        Team teamCheck = teamRepository.findByUserAndPost(rater, post).orElseThrow(
+                () -> new ForbiddenException(ErrorCode.NO_TEAM_ERROR)
+        );
+        if (teamCheck.isAssessment()) {
+            throw new BadRequestException(ErrorCode.ALREADY_ASSESSMENT_ERROR);
         }
 
+        if (post.getUser().equals(rater) && !post.getProjectStatus().equals(ProjectStatus.PROJECT_STATUS_END)) {
+            post.updateStatus("종료");
+        }
+        if(!post.getProjectStatus().equals(ProjectStatus.PROJECT_STATUS_END)){
+            throw new BadRequestException(ErrorCode.NOT_AVAILABLE_ACCESS);
+        }
         List<Team> teamList = teamRepository.findAllByPost(post);
         List<String> userTypeList = new ArrayList<>();
         List<User> userList = new ArrayList<>();
-        Long teamUserId;
 
         for (Long userId : userIds) {
-            for (Team team : teamList) {
-                if (team.getUser().equals(rater)) {
-                    if (team.isAssessment()) {
-                        throw new BadRequestException(ErrorCode.ALREADY_ASSESSMENT_ERROR);
-                    }
-                    team.setAssessment();
-                }
-                team.getPost().updateStatus("종료");
-                teamUserId = team.getUser().getId();
-                //
-                if (teamUserId.equals(userId) && !teamUserId.equals(rater.getId())) {
-                    userList.add(team.getUser());
-                    userTypeList.add(team.getUser().getUserPropensityType());
-                    break;
-                }
+            int index = checkTeamMember(teamList, userId);
+            if(index >= 0) {
+                userTypeList.add(teamList.get(index).getUser().getUserPropensityType());
+                userList.add(teamList.get(index).getUser());
+            }
+            else {
+                throw new BadRequestException(ErrorCode.NO_TEAM_ERROR);
             }
         }
+
+        teamCheck.setAssessment();
         String raterType = rater.getUserPropensityType();
         getAssessmentResult(raterType, userTypeList);
         return new MailDto(userList, post);
-
     }
 
+    private int checkTeamMember(List<Team> teamList, Long userId) {
+        for (int i = 0 ;i < teamList.size(); i++){
+            if(teamList.get(i).getUser().getId().equals(userId)) {
+                return i;
+            }
+        }
+        return -1;
+    }
     // 성향 추천 결과 테이블에 저장
     public void getAssessmentResult(String rater, List<String> userList) {
 

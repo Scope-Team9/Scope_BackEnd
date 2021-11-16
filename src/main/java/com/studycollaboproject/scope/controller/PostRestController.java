@@ -135,7 +135,6 @@ public class PostRestController {
                 new ResponseDto("프로젝트 상태가 성공적으로 수정되었습니다.", responseDto),
                 HttpStatus.OK
         );
-
     }
 
     @Operation(summary = "프로젝트 상세 조회")
@@ -154,7 +153,7 @@ public class PostRestController {
             User user = userDetails.getUser();
             if (postService.isTeamStarter(post, user.getSnsId())) {
                 userStatus = UserStatus.USER_STATUS_TEAM_STARTER.getUserStatus();
-            } else if (teamService.isMemeber(post, user)) {
+            } else if (teamService.isMember(post, user)) {
                 userStatus = UserStatus.USER_STATUS_MEMBER.getUserStatus();
             } else if (applicantService.isApplicant(post, user)) {
                 userStatus = UserStatus.USER_STATUS_APPLICANT.getUserStatus();
