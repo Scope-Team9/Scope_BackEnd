@@ -1,5 +1,6 @@
 package com.studycollaboproject.scope.webSocket;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -11,29 +12,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+// 클라이언트들이 발송한 메시지들을 받아서 처리함
+@Component
 public class WebSocketHandler extends TextWebSocketHandler {
     
     List<WebSocketSession> sessionList = new ArrayList<>();
     Map<String, WebSocketSession> userSessions = new HashMap<>();
 
-    // hand shack 후 클라이언트 접속, 연결 시
-    @Override
-    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        //현재 접속한 session 정보 저장
-        Map<String ,Object> sessionVal = session.getAttributes();
-        System.out.println("sessionVal = " + sessionVal);
-
-        //session 정보에서 user 정보 추출
-
-        //
-    }
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        super.handleTextMessage(session, message);
+        // 클라이언트가 보낸 정보 중 data만 추출
+        String payload = message.getPayload();
+        System.out.println("클라이언트가 보낸 메시지 = " + payload);
+        TextMessage textMessage = new TextMessage("서버가 냅다 보내는 메시지");
+        session.sendMessage(textMessage);
     }
 
-    @Override
-    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        super.afterConnectionClosed(session, status);
-    }
+
 }
