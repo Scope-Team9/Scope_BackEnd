@@ -14,9 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
@@ -34,7 +32,8 @@ public class UserService {
 
     //기술스택 리스트와 유저 정보를 같이 DB에 저장
     public UserResponseDto saveUser(List<String> techStack, User user, String token) {
-        List<TechStack> techStackList = techStackConverter.convertStringToTechStack(techStack, user, null);
+        Set<String> techList = new HashSet<>(techStack);
+        List<TechStack> techStackList = techStackConverter.convertStringToTechStack(new ArrayList<>(techList), user, null);
         user.addTechStackListAndToken(techStackList, token);
         User savedUser = userRepository.save(user);
         techStackRepository.saveAll(techStackList);
