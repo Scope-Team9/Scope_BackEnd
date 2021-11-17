@@ -7,17 +7,19 @@ import org.springframework.web.socket.config.annotation.*;
 
 @RequiredArgsConstructor
 @Configuration
-@EnableWebSocket
-public class WebSocketConfig implements WebSocketConfigurer{
+@EnableWebSocketMessageBroker
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
-    private final WebSocketHandler webSocketHandler;
 
-    //[공식문서] 내장 인터셉터를 사용해서 http 세션 속성을 websocket 세션에 전달
+    private final CustomHandshakeHandler handshakeHandler;
+
     @Override
-    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        //handshake 위한 주소 설정
-        registry.addHandler(webSocketHandler,"/ws/my")
+    public void registerStompEndpoints(StompEndpointRegistry registry) {
+        registry.addEndpoint("ws/scope")
+                .setHandshakeHandler(handshakeHandler)
                 .setAllowedOrigins("*");
-
+        System.out.println("registry = " + registry);
+        System.out.println(registry.getClass().getName());
     }
+
 }
