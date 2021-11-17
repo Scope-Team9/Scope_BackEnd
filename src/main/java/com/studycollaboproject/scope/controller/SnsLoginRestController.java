@@ -31,7 +31,7 @@ public class SnsLoginRestController {
     @Operation(summary = "카카오 로그인")
     @GetMapping("/api/login/kakao")
     public ResponseEntity<Object> kakaoLogin(@Parameter(description = "코드 값", in = ParameterIn.QUERY) @RequestParam String code) throws JsonProcessingException {
-        log.info("GET, [{}], /api/login/kakao, code={}", MDC.get("UUID"), code);
+        log.info("[{}], 카카오 로그인, GET, /api/login/kakao, code={}", MDC.get("UUID"), code);
         SnsInfoDto snsInfoDto = kakaoUserService.kakaoLogin(code);
         return new ResponseEntity<>(
                 userService.SignupEmailCheck(snsInfoDto.getEmail(), snsInfoDto.getId(), "K-"),
@@ -42,7 +42,7 @@ public class SnsLoginRestController {
     @Operation(summary = "Github 로그인")
     @GetMapping("/api/login/github")
     public ResponseEntity<Object> githubLogin(@Parameter(description = "코드 값", in = ParameterIn.QUERY) @RequestParam String code) throws JsonProcessingException {
-        log.info("GET, [{}], /api/login/github, code={}", MDC.get("UUID"), code);
+        log.info("[{}], Github 로그인, GET, /api/login/github, code={}", MDC.get("UUID"), code);
         SnsInfoDto snsInfoDto = githubUserService.githubLogin(code);
         return new ResponseEntity<>(
                 userService.SignupEmailCheck(snsInfoDto.getEmail(), snsInfoDto.getId(), "G-"),

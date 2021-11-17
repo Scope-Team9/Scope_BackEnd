@@ -33,8 +33,6 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
         chain.doFilter(request, response);  // request로 정보를 받아와서 검증을 한 후 결과를 reponse로 내보냄
-        log.info("====================token=================");
-        log.info("[{}] token={}", MDC.get("UUID"), token);
-        log.info("====================token=================");
+        log.info("[{}], token={}", MDC.get("UUID"), token);
     }
 }

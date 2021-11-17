@@ -51,6 +51,7 @@ public class TeamService {
                 .stream().map(MemberListResponseDto::new).collect(Collectors.toCollection(ArrayList::new));
     }
 
+    @Transactional
     public void memberDelete(User user, Post post) {
         if (post.getUser().getId().equals(user.getId())) {
             throw new BadRequestException(ErrorCode.NOT_AVAILABLE_ACCESS);

@@ -46,6 +46,7 @@ public class Team extends Timestamped {
     }
 
     public void deleteTeam() {
+        this.post.deleteMember();
         this.post.getTeamList().remove(this);
         this.user.getTeamList().remove(this);
     }

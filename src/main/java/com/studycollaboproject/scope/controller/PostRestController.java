@@ -41,7 +41,7 @@ public class PostRestController {
     @PostMapping("/api/post")
     public ResponseEntity<Object> writePost(@RequestBody PostRequestDto postRequestDto,
                                             @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        log.info("POST, [{}], /api/post, requestDto={}", MDC.get("UUID"), postRequestDto.toString());
+        log.info("[{}], 프로젝트 작성, POST, /api/post, requestDto={}", MDC.get("UUID"), postRequestDto.toString());
         // [예외처리] 로그인 정보가 없을 때
         String snsId = Optional.ofNullable(userDetails).orElseThrow(
                 () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
@@ -61,7 +61,7 @@ public class PostRestController {
                                            @Parameter(description = "정렬 기준", in = ParameterIn.QUERY, example = "createdAt") @RequestParam String sort,
                                            @Parameter(description = "북마크 / 추천", in = ParameterIn.QUERY, example = "bookmark", allowEmptyValue = true) @RequestParam String bookmarkRecommend,
                                            @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        log.info("GET, [{}], /api/post, filter={}, sort={}, bookmarkRecommend={}", MDC.get("UUID"), filter, sort, bookmarkRecommend);
+        log.info("[{}], 프로젝트 조회, GET, /api/post, filter={}, sort={}, bookmarkRecommend={}", MDC.get("UUID"), filter, sort, bookmarkRecommend);
         String snsId = "";
 
         if (bookmarkRecommend.equals("recommend") || bookmarkRecommend.equals("bookmark")) {
@@ -85,7 +85,7 @@ public class PostRestController {
             @RequestBody PostRequestDto postRequestDto,
             @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails
     ) {
-        log.info("POST, [{}], /api/post/{}, requestDto={}", MDC.get("UUID"), postId, postRequestDto.toString());
+        log.info("[{}], 프로젝트 수정, POST, /api/post/{}, requestDto={}", MDC.get("UUID"), postId, postRequestDto.toString());
         // [예외처리] 로그인 정보가 없을 때
         String snsId = Optional.ofNullable(userDetails).orElseThrow(
                 () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
@@ -104,7 +104,7 @@ public class PostRestController {
             @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
             @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails
     ) {
-        log.info("DELETE, [{}], /api/post/{}", MDC.get("UUID"), postId);
+        log.info("[{}], 프로젝트 삭제, DELETE, /api/post/{}", MDC.get("UUID"), postId);
 
         String snsId = Optional.ofNullable(userDetails).orElseThrow(
                 () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
@@ -124,7 +124,7 @@ public class PostRestController {
     public ResponseEntity<Object> updatePostStatus(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
                                                    @RequestBody ProjectStatusRequestDto requestDto,
                                                    @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        log.info("POST, [{}], /api/post/{}/status, projectStatus={}", MDC.get("UUID"), postId, requestDto.getProjectStatus());
+        log.info("[{}], 프로젝트 상태 변경, POST, /api/post/{}/status, projectStatus={}", MDC.get("UUID"), postId, requestDto.getProjectStatus());
 
         String snsId = Optional.ofNullable(userDetails).orElseThrow(
                 () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
@@ -141,7 +141,7 @@ public class PostRestController {
     @GetMapping("/api/post/{postId}")
     public ResponseEntity<Object> getPost(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
                                           @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        log.info("GET, [{}], /api/post/{}", MDC.get("UUID"), postId);
+        log.info("[{}], 프로젝트 상세 조회, GET, /api/post/{}", MDC.get("UUID"), postId);
 
         List<MemberListResponseDto> member = teamService.getMember(postId);
 
@@ -172,12 +172,12 @@ public class PostRestController {
     }
 
 
-    @Operation(summary = "프로젝트 git Repository URL 업데이트")
+    @Operation(summary = "프로젝트 Github URL 업데이트")
     @PostMapping("/api/post/{postId}/url")
     public ResponseEntity<Object> updateUrl(@Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails,
                                             @RequestBody UrlUpdateRequestDto requestDto,
                                             @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId) {
-        log.info("POST, [{}], /api/post/{}/url, frontUrl={}, backUrl={}", MDC.get("UUID"), postId, requestDto.getFrontUrl(), requestDto.getBackUrl());
+        log.info("[{}], 프로젝트 Github URL 업데이트, POST, /api/post/{}/url, frontUrl={}, backUrl={}", MDC.get("UUID"), postId, requestDto.getFrontUrl(), requestDto.getBackUrl());
 
         String snsId = Optional.ofNullable(userDetails).orElseThrow(
                 () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
