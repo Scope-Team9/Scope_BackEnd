@@ -14,10 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -35,12 +32,12 @@ public class PostService {
 
     @Transactional
     public PostResponseDto writePost(PostRequestDto postRequestDto, String snsId) {
-        List<String> postTechStackList = postRequestDto.getTechStackList();
+        Set<String> postTechStackList = new HashSet<>(postRequestDto.getTechStackList());
         User user = userRepository.findBySnsId(snsId).orElseThrow(() ->
                 new BadRequestException(ErrorCode.NO_USER_ERROR));
 
         Post post = new Post(postRequestDto, user);
-        List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(postTechStackList, null, post));
+        List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(new ArrayList<>(postTechStackList), null, post));
         teamRepository.save(new Team(user, post));
         techStackRepository.saveAll(techStackList);
         post.updateTechStack(techStackList);

@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
@@ -21,7 +22,7 @@ public class AspectTime
         Object result = joinPoint.proceed();
 
         stopWatch.stop();
-        log.info("WorkTime : {} ms",stopWatch.getLastTaskTimeNanos()/1000000.0);
+        log.info("[{}], WorkTime : {} ms", MDC.get("UUID"), stopWatch.getLastTaskTimeNanos()/1000000.0);
 
         return result;
     }

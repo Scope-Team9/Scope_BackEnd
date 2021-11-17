@@ -112,6 +112,10 @@ public class Post extends Timestamped {
         this.recruitmentMember += 1;
     }
 
+    public void deleteMember() {
+        this.recruitmentMember -= 1;
+    }
+
     public void updateTechStack(List<TechStack> techStackList) {
         this.techStackList = techStackList;
     }

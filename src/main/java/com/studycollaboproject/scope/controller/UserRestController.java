@@ -43,7 +43,7 @@ public class UserRestController {
     @GetMapping("/api/user/{userId}")
     public ResponseEntity<Object> getMyPage(@Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails,
                                             @Parameter(description = "조회하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId) {
-        log.info("GET, [{}], /api/user", MDC.get("UUID"));
+        log.info("[{}], 마이 페이지, GET, /api/user", MDC.get("UUID"));
         User user = userService.loadUserByUserId(userId);
 
         String snsId = Optional.ofNullable(userDetails).map(UserDetailsImpl::getSnsId).orElse("");
@@ -59,7 +59,7 @@ public class UserRestController {
     @PostMapping("/api/user/{userId}")
     public ResponseEntity<Object> updateUserinfo(@Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails,
                                                  @RequestBody UserRequestDto userRequestDto, @Parameter(description = "수정하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId) {
-        log.info("POST, [{}], /api/user, userRequestDto={}", MDC.get("UUID"), userRequestDto);
+        log.info("[{}], 회원 정보 수정, POST, /api/user, userRequestDto={}", MDC.get("UUID"), userRequestDto);
         if (userId.equals(userDetails.getUser().getId())) {
             UserResponseDto userResponseDto = userService.updateUserInfo(userDetails.getUsername(), userRequestDto);
             return new ResponseEntity<>(
@@ -76,7 +76,7 @@ public class UserRestController {
     @Operation(summary = "회원 가입 - 회원 정보와 테스트 결과 저장")
     @PostMapping("/api/signup")
     public ResponseEntity<Object> signup(@RequestBody SignupRequestDto signupRequestDto) {
-        log.info("POST, [{}], /api/signup, signupRequestDto={}", MDC.get("UUID"), signupRequestDto.toString());
+        log.info("[{}], 회원 가입 - 회원 정보와 테스트 결과 저장, POST, /api/signup, signupRequestDto={}", MDC.get("UUID"), signupRequestDto.toString());
 
         String userTestResult = testService.testResult(signupRequestDto.getUserPropensityType());
         String memberTestResult = testService.testResult(signupRequestDto.getMemberPropensityType());
@@ -97,7 +97,7 @@ public class UserRestController {
     @Operation(summary = "이메일 중복 확인")
     @GetMapping("/api/login/email")
     public ResponseEntity<Object> emailCheck(@Parameter(description = "이메일", in = ParameterIn.QUERY) @RequestParam String email) {
-        log.info("GET, [{}], /api/login/email, email={}", MDC.get("UUID"), email);
+        log.info("[{}], 이메일 중복 확인, GET, /api/login/email, email={}", MDC.get("UUID"), email);
 
         return new ResponseEntity<>(
                 userService.emailCheckByEmail(email),
@@ -108,7 +108,7 @@ public class UserRestController {
     @Operation(summary = "닉네임 중복 확인")
     @GetMapping("/api/login/nickname")
     public ResponseEntity<Object> nicknameCheck(@Parameter(description = "닉네임", in = ParameterIn.QUERY) @RequestParam String nickname) {
-        log.info("GET, [{}], /api/login/nickname, nickname={}", MDC.get("UUID"), nickname);
+        log.info("[{}], 닉네임 중복 확인, GET, /api/login/nickname, nickname={}", MDC.get("UUID"), nickname);
         return new ResponseEntity<>(
                 userService.nicknameCheckByNickname(nickname),
                 HttpStatus.OK
@@ -119,7 +119,7 @@ public class UserRestController {
     @PostMapping("/api/user/{userId}/desc")
     public ResponseEntity<Object> updateUserDesc(@Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails,
                                                  @RequestBody String introduction, @Parameter(description = "수정하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId) {
-        log.info("POST, [{}], /api/user/desc, userDesc={}", MDC.get("UUID"), introduction);
+        log.info("[{}], 유저 소개 업데이트, POST, /api/user/desc, userDesc={}", MDC.get("UUID"), introduction);
         if (userId.equals(userDetails.getUser().getId())) {
             UserResponseDto userResponseDto = userService.updateUserDesc(userDetails.getUsername(), introduction);
             return new ResponseEntity<>(
@@ -137,7 +137,7 @@ public class UserRestController {
     @PostMapping("/api/bookmark/{postId}")
     public ResponseEntity<Object> bookmarkCheck(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
                                                 @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        log.info("POST, [{}], /api/bookmark/{}", MDC.get("UUID"), postId);
+        log.info("[{}], 북마크 추가, POST, /api/bookmark/{}", MDC.get("UUID"), postId);
 
         if (userDetails.getUser() == null) {
             throw new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR);
@@ -152,7 +152,7 @@ public class UserRestController {
     @DeleteMapping("api/user/{userId}")
     public ResponseEntity<Object> deleteUser(@Parameter(description = "탈퇴하려는 회원 ID", in = ParameterIn.PATH) @PathVariable Long userId,
                                              @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        log.info("POST, [{}], /api/user/{}", MDC.get("UUID"), userId);
+        log.info("[{}], 회원 탈퇴, POST, /api/user/{}", MDC.get("UUID"), userId);
         if (userDetails.getUser().getId().equals(userId)) {
             return new ResponseEntity<>(
                     userService.deleteUser(userDetails.getUser()),
@@ -169,6 +169,7 @@ public class UserRestController {
     @GetMapping("api/user/email")
     public ResponseEntity<Object> emailAuthentication(@Parameter(description = "이메일", in = ParameterIn.QUERY) @RequestParam String email,
                                                       @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) throws MessagingException {
+        log.info("[{}], 이메일 인증 전송, GET, api/user/email, email={}", MDC.get("UUID"), email);
         mailService.authMailSender(email, userDetails.getUser());
         return new ResponseEntity<>(
                 new ResponseDto("이메일이 전송되었습니다.", ""),
@@ -180,6 +181,7 @@ public class UserRestController {
     @GetMapping("api/user/email/auth/{userId}")
     public ResponseEntity<Object> recEmailCode(@Parameter(description = "인증 코드", in = ParameterIn.QUERY) @RequestParam String code,
                                                @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long userId) {
+        log.info("[{}], 이메일 인증 코드 확인, GET, api/user/email/auth/{}, code={}", MDC.get("UUID"), userId, code);
         mailService.emailAuthCodeCheck(code, userId);
         return new ResponseEntity<>(
                 new ResponseDto("인증이 성공적으로 이루어졌습니다.", ""),

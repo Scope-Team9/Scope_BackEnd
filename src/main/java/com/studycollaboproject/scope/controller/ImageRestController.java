@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +26,7 @@ public class ImageRestController {
     @Operation(summary = "이미지 등록")
     @PostMapping("/api/image")
     public ResponseEntity<Object> saveImage(@RequestBody String image) {
-        log.info("POST, /api/image");
+        log.info("[{}], 이미지 등록, POST, /api/image", MDC.get("UUID"));
         String fileName = imageService.saveImageData(image);
         log.info("fileName : {}", fileName);
         Map<String, String> responseMap = new HashMap<>();
