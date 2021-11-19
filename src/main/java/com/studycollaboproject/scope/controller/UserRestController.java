@@ -99,8 +99,9 @@ public class UserRestController {
     public ResponseEntity<Object> emailCheck(@Parameter(description = "이메일", in = ParameterIn.QUERY) @RequestParam String email) {
         log.info("[{}], 이메일 중복 확인, GET, /api/login/email, email={}", MDC.get("UUID"), email);
 
+        userService.emailCheckByEmail(email);
         return new ResponseEntity<>(
-                userService.emailCheckByEmail(email),
+                new ResponseDto("사용 가능한 메일입니다.", ""),
                 HttpStatus.OK
         );
     }
@@ -109,8 +110,9 @@ public class UserRestController {
     @GetMapping("/api/login/nickname")
     public ResponseEntity<Object> nicknameCheck(@Parameter(description = "닉네임", in = ParameterIn.QUERY) @RequestParam String nickname) {
         log.info("[{}], 닉네임 중복 확인, GET, /api/login/nickname, nickname={}", MDC.get("UUID"), nickname);
+        userService.nicknameCheckByNickname(nickname);
         return new ResponseEntity<>(
-                userService.nicknameCheckByNickname(nickname),
+                new ResponseDto("사용가능한 닉네임입니다.", ""),
                 HttpStatus.OK
         );
     }
