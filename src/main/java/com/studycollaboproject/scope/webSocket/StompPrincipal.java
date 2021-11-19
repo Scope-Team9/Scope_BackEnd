@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.security.Principal;
+import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,6 +14,7 @@ public class StompPrincipal implements Principal { //Principal - 웹 소켓 주�
 
     @Override
     public String getName() {
+        this.name = UUID.randomUUID().toString();
         return this.name;
     }
 }

@@ -66,8 +66,8 @@ public class UserRestController {
                     new ResponseDto("회원 정보가 수정되었습니다.", userResponseDto),
                     HttpStatus.OK
             );
+            // [예외처리] 로그인 정보가 없을 때
         }
-        // [예외처리] 로그인 정보가 없을 때
         else {
             throw new ForbiddenException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
