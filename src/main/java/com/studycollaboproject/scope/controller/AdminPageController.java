@@ -2,10 +2,17 @@ package com.studycollaboproject.scope.controller;
 
 import com.studycollaboproject.scope.dto.PostResponseDto;
 import com.studycollaboproject.scope.dto.UserResponseDto;
+import com.studycollaboproject.scope.exception.ErrorCode;
+import com.studycollaboproject.scope.exception.NoAuthException;
+import com.studycollaboproject.scope.model.TotalResult;
+import com.studycollaboproject.scope.model.User;
+import com.studycollaboproject.scope.repository.TotalResultRepository;
+import com.studycollaboproject.scope.repository.UserRepository;
 import com.studycollaboproject.scope.service.PostService;
 import com.studycollaboproject.scope.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 
 @Controller
@@ -22,6 +30,8 @@ import java.util.Map;
 public class AdminPageController {
     private final PostService postService;
     private final UserService userService;
+    private final UserRepository userRepository;
+    private final TotalResultRepository totalResultRepository;
 
     @GetMapping(value = "")
     public String adminSelect(){
@@ -161,11 +171,15 @@ public class AdminPageController {
                 ))
         ));
 
-        List<UserResponseDto> userResponseDtos = userService.adminUserPropensityType();
-        for ( UserResponseDto userResponseDto:userResponseDtos) {
+//        List<UserResponseDto> userResponseDtos = userService.adminUserPropensityType();
+        List<TotalResult> totalResult = totalResultRepository.findAll();
+        for ( TotalResult result : totalResult) {
 
-            String userPropensityType = userResponseDto.getUserPropensityType();
-            String memberPropenstiyType = userResponseDto.getMemberPropensityType();
+//            String userPropensityType = userResponseDto.getUserPropensityType();
+//            String memberPropenstiyType = userResponseDto.getMemberPropensityType();
+            String userPropensityType = result.getUserType();
+            String memberPropenstiyType = result.getMemberType();
+
             int num = userPropensityMap.get(userPropensityType).get(memberPropenstiyType)+1;
             userPropensityMap.get(userPropensityType).replace(memberPropenstiyType,num);
         }
@@ -197,6 +211,19 @@ public class AdminPageController {
             postService.adminDeletePost(postId);
         }
         return postIds;
+    }
+
+    @ResponseBody
+    @PostMapping(value = "adminuserdelete")
+    public List<Long> deleteuser(@RequestBody List<Long> userIds){
+        System.out.println(userIds);
+        for (Long userId: userIds){
+            User user = userRepository.findById(userId).
+                    orElseThrow(() ->new NoAuthException(ErrorCode.NO_USER_ERROR));
+            userService.deleteUser(user);
+        }
+
+        return userIds;
     }
 
 
