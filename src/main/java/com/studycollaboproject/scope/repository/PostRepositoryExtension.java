@@ -15,9 +15,9 @@ public interface PostRepositoryExtension {
 
     List<Post> findAllByBookmarkOrderByCreatedAt(String snsId);
 
-    List<Post> findAllByPropensityTypeOrderByStartDate(String propensity, List<Tech> techList);
+    List<Post> findAllByPropensityTypeOrderByStartDate(String propensity, List<Tech> techList, String snsId);
 
-    List<Post> findAllByPropensityTypeOrderByCreatedAt(String propensity, List<Tech> techList);
+    List<Post> findAllByPropensityTypeOrderByCreatedAt(String propensity, List<Tech> techList, String snsId);
 
     List<Post> findMemberPostByUserSnsId(String snsID);
 

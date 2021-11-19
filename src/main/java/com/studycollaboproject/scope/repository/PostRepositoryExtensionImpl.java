@@ -64,9 +64,10 @@ public class PostRepositoryExtensionImpl extends QuerydslRepositorySupport imple
     }
 
     @Override
-    public List<Post> findAllByPropensityTypeOrderByStartDate(String propensity, List<Tech> techList) {
+    public List<Post> findAllByPropensityTypeOrderByStartDate(String propensity, List<Tech> techList, String snsId) {
         JPQLQuery<Post> query = from(post)
                 .where(post.user.snsId.notEqualsIgnoreCase("unknown")
+                        .and(post.user.snsId.notEqualsIgnoreCase(snsId))
                         .and(post.projectStatus.eq(ProjectStatus.PROJECT_STATUS_RECRUITMENT))
                         .and(post.techStackList.any().tech.in(techList))
                         .and(post.user.userPropensityType.eq(propensity)))
@@ -78,9 +79,10 @@ public class PostRepositoryExtensionImpl extends QuerydslRepositorySupport imple
     }
 
     @Override
-    public List<Post> findAllByPropensityTypeOrderByCreatedAt(String propensity, List<Tech> techList) {
+    public List<Post> findAllByPropensityTypeOrderByCreatedAt(String propensity, List<Tech> techList, String snsId) {
         JPQLQuery<Post> query = from(post)
                 .where(post.user.snsId.notEqualsIgnoreCase("unknown")
+                        .and(post.user.snsId.notEqualsIgnoreCase(snsId))
                         .and(post.projectStatus.eq(ProjectStatus.PROJECT_STATUS_RECRUITMENT))
                         .and(post.techStackList.any().tech.in(techList))
                         .and(post.user.userPropensityType.eq(propensity)))

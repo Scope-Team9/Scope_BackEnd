@@ -103,12 +103,12 @@ public class PostService {
             techList = techStackConverter.convertStringToTech(userTechStackStringList);
             if ("deadline".equals(sort)) {
                 for (String propensity : propensityTypeList) {
-                    filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByStartDate(propensity, techList));
+                    filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByStartDate(propensity, techList, snsId));
 //                    filterPosts.addAll(postRepository.findDistinctByUser_UserPropensityTypeAndProjectStatusAndUserSnsIdIsNotAndTechStackList_TechInOrderByStartDate(propensity, ProjectStatus.PROJECT_STATUS_RECRUITMENT, "unknown", techList));
                 }
             } else {
                 for (String propensity : propensityTypeList) {
-                    filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByCreatedAt(propensity, techList));
+                    filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByCreatedAt(propensity, techList, snsId));
 //                    filterPosts.addAll(postRepository.findDistinctByUser_UserPropensityTypeAndProjectStatusAndUserSnsIdIsNotAndTechStackList_TechInOrderByCreatedAtDesc(propensity, ProjectStatus.PROJECT_STATUS_RECRUITMENT, "unknown", techList));
                 }
             }

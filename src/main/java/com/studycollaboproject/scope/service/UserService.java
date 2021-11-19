@@ -1,8 +1,8 @@
 package com.studycollaboproject.scope.service;
 
 import com.studycollaboproject.scope.dto.*;
-import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.BadRequestException;
+import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.model.Bookmark;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.TechStack;
@@ -62,19 +62,19 @@ public class UserService {
     }
 
     //email 중복 체크
-    public ResponseDto emailCheckByEmail(String email) {
+    public boolean emailCheckByEmail(String email) {
         userRepository.findByEmail(email).ifPresent(user -> {
-                    throw new BadRequestException(ErrorCode.ALREADY_EMAIL_ERROR);
-                });
-        return new ResponseDto("사용 가능한 메일입니다.", "");
+            throw new BadRequestException(ErrorCode.ALREADY_EMAIL_ERROR);
+        });
+        return true;
     }
 
     //닉네임 중복 체크
-    public ResponseDto nicknameCheckByNickname(String nickname) {
+    public boolean nicknameCheckByNickname(String nickname) {
         userRepository.findByNickname(nickname).ifPresent(user -> {
             throw new BadRequestException(ErrorCode.ALREADY_NICKNAME_ERROR);
         });
-        return new ResponseDto("사용가능한 닉네임입니다.", "");
+        return true;
     }
 
     //sns 로그인 시 기존 회원 여부 판단
@@ -126,7 +126,7 @@ public class UserService {
         techStackRepository.deleteAllByUser(user);
         user.resetTechStack();
 
-        if(!user.getNickname().equals(nickname)){
+        if (!user.getNickname().equals(nickname)) {
             nicknameCheckByNickname(nickname);
         }
         if (!user.getEmail().equals(email)) {
