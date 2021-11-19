@@ -84,6 +84,16 @@ public class PostService {
 
     }
 
+    @Transactional
+    public void adminDeletePost(Long postId) {
+        Post post = loadPostByPostId(postId);
+        techStackRepository.deleteAllByPost(post);
+        teamRepository.deleteAllByPost(post);
+        bookmarkRepository.deleteAllByPost(post);
+        applicantRepository.deleteAllByPost(post);
+        postRepository.delete(post);
+    }
+
 
     public List<PostResponseDto> readPost(String filter,
                                           String sort,

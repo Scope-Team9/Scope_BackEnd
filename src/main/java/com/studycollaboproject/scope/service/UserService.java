@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,6 +92,16 @@ public class UserService {
         }
     }
 
+    public List<UserResponseDto> adminUserPropensityType(){
+        List<UserResponseDto> userResponseDtos = new ArrayList<>();
+        List<User> allUser = userRepository.findAll();
+        for (User user : allUser) {
+            UserResponseDto userResponseDto = new UserResponseDto(user);
+            userResponseDtos.add(userResponseDto);
+        }
+        return userResponseDtos;
+    }
+
     //북마크 체크여부 판단
     @Transactional
     public ResponseDto bookmarkCheck(Long postId, String snsId) {
@@ -166,4 +177,5 @@ public class UserService {
 
         return new ResponseDto("성공적으로 회원 정보가 삭제되었습니다.", "");
     }
+
 }

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns: lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <meta charset="UTF-8">
+    <title>adminPropensityPage</title>
+</head>
+
+<body>
+<form name="userForm">
+    <h1>Propensity page</h1>
+    <table>
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">LVG</th>
+            <th scope="col">LVP</th>
+            <th scope="col">LHG</th>
+            <th scope="col">LHP</th>
+            <th scope="col">FVG</th>
+            <th scope="col">FVP</th>
+            <th scope="col">FHG</th>
+            <th scope="col">FHP</th>
+            <th scope="col">RHP</th>
+            <th scope="col">unknown</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:with="GetMap=${map.get('LVG')}">
+            <th> LVG</th>
+            <td th:text="${GetMap.get('LVG')}"></td>
+            <td th:text="${GetMap.get('LVP')}"></td>
+            <td th:text="${GetMap.get('LHG')}"></td>
+            <td th:text="${GetMap.get('LHP')}"></td>
+            <td th:text="${GetMap.get('FVG')}"></td>
+            <td th:text="${GetMap.get('FVP')}"></td>
+            <td th:text="${GetMap.get('FHG')}"></td>
+            <td th:text="${GetMap.get('FHP')}"></td>
+            <td th:text="${GetMap.get('RHP')}"></td>
+            <td th:text="${GetMap.get('unknown')}"></td>
+        </tr>
+        <tr th:with="GetMap=${map.get('LVP')}">
+            <th>LVP</th>
+            <td th:text="${GetMap.get('LVG')}"></td>
+            <td th:text="${GetMap.get('LVP')}"></td>
+            <td th:text="${GetMap.get('LHG')}"></td>
+            <td th:text="${GetMap.get('LHP')}"></td>
+            <td th:text="${GetMap.get('FVG')}"></td>
+            <td th:text="${GetMap.get('FVP')}"></td>
+            <td th:text="${GetMap.get('FHG')}"></td>
+            <td th:text="${GetMap.get('FHP')}"></td>
+            <td th:text="${GetMap.get('RHP')}"></td>
+            <td th:text="${GetMap.get('unknown')}"></td>
+        </tr>
+        <tr th:with="GetMap=${map.get('LHG')}">
+            <th>LHG</th>
+            <td th:text="${GetMap.get('LVG')}"></td>
+            <td th:text="${GetMap.get('LVP')}"></td>
+            <td th:text="${GetMap.get('LHG')}"></td>
+            <td th:text="${GetMap.get('LHP')}"></td>
+            <td th:text="${GetMap.get('FVG')}"></td>
+            <td th:text="${GetMap.get('FVP')}"></td>
+            <td th:text="${GetMap.get('FHG')}"></td>
+            <td th:text="${GetMap.get('FHP')}"></td>
+            <td th:text="${GetMap.get('RHP')}"></td>
+            <td th:text="${GetMap.get('unknown')}"></td>
+        </tr>
+        <tr th:with="GetMap=${map.get('LHP')}">
+            <th>LHP</th>
+            <td th:text="${GetMap.get('LVG')}"></td>
+            <td th:text="${GetMap.get('LVP')}"></td>
+            <td th:text="${GetMap.get('LHG')}"></td>
+            <td th:text="${GetMap.get('LHP')}"></td>
+            <td th:text="${GetMap.get('FVG')}"></td>
+            <td th:text="${GetMap.get('FVP')}"></td>
+            <td th:text="${GetMap.get('FHG')}"></td>
+            <td th:text="${GetMap.get('FHP')}"></td>
+            <td th:text="${GetMap.get('RHP')}"></td>
+            <td th:text="${GetMap.get('unknown')}"></td>
+        </tr>
+        <tr th:with="GetMap=${map.get('FVG')}">
+            <th>FVG</th>
+            <td th:text="${GetMap.get('LVG')}"></td>
+            <td th:text="${GetMap.get('LVP')}"></td>
+            <td th:text="${GetMap.get('LHG')}"></td>
+            <td th:text="${GetMap.get('LHP')}"></td>
+            <td th:text="${GetMap.get('FVG')}"></td>
+            <td th:text="${GetMap.get('FVP')}"></td>
+            <td th:text="${GetMap.get('FHG')}"></td>
+            <td th:text="${GetMap.get('FHP')}"></td>
+            <td th:text="${GetMap.get('RHP')}"></td>
+            <td th:text="${GetMap.get('unknown')}"></td>
+        </tr>
+        <tr th:with="GetMap=${map.get('FVP')}">
+            <th>FVP</th>
+            <td th:text="${GetMap.get('LVG')}"></td>
+            <td th:text="${GetMap.get('LVP')}"></td>
+            <td th:text="${GetMap.get('LHG')}"></td>
+            <td th:text="${GetMap.get('LHP')}"></td>
+            <td th:text="${GetMap.get('FVG')}"></td>
+            <td th:text="${GetMap.get('FVP')}"></td>
+            <td th:text="${GetMap.get('FHG')}"></td>
+            <td th:text="${GetMap.get('FHP')}"></td>
+            <td th:text="${GetMap.get('RHP')}"></td>
+            <td th:text="${GetMap.get('unknown')}"></td>
+        </tr>
+        <tr th:with="GetMap=${map.get('FHG')}">
+            <th>FHG</th>
+            <td th:text="${GetMap.get('LVG')}"></td>
+            <td th:text="${GetMap.get('LVP')}"></td>
+            <td th:text="${GetMap.get('LHG')}"></td>
+            <td th:text="${GetMap.get('LHP')}"></td>
+            <td th:text="${GetMap.get('FVG')}"></td>
+            <td th:text="${GetMap.get('FVP')}"></td>
+            <td th:text="${GetMap.get('FHG')}"></td>
+            <td th:text="${GetMap.get('FHP')}"></td>
+            <td th:text="${GetMap.get('RHP')}"></td>
+            <td th:text="${GetMap.get('unknown')}"></td>
+        </tr>
+        <tr th:with="GetMap=${map.get('FHP')}">
+            <th>FHP</th>
+            <td th:text="${GetMap.get('LVG')}"></td>
+            <td th:text="${GetMap.get('LVP')}"></td>
+            <td th:text="${GetMap.get('LHG')}"></td>
+            <td th:text="${GetMap.get('LHP')}"></td>
+            <td th:text="${GetMap.get('FVG')}"></td>
+            <td th:text="${GetMap.get('FVP')}"></td>
+            <td th:text="${GetMap.get('FHG')}"></td>
+            <td th:text="${GetMap.get('FHP')}"></td>
+            <td th:text="${GetMap.get('RHP')}"></td>
+            <td th:text="${GetMap.get('unknown')}"></td>
+        </tr>
+        <tr th:with="GetMap=${map.get('RHP')}">
+            <th>RHP</th>
+            <td th:text="${GetMap.get('LVG')}"></td>
+            <td th:text="${GetMap.get('LVP')}"></td>
+            <td th:text="${GetMap.get('LHG')}"></td>
+            <td th:text="${GetMap.get('LHP')}"></td>
+            <td th:text="${GetMap.get('FVG')}"></td>
+            <td th:text="${GetMap.get('FVP')}"></td>
+            <td th:text="${GetMap.get('FHG')}"></td>
+            <td th:text="${GetMap.get('FHP')}"></td>
+            <td th:text="${GetMap.get('RHP')}"></td>
+            <td th:text="${GetMap.get('unknown')}"></td>
+        </tr>
+        <tr th:with="GetMap=${map.get('unknown')}">
+            <th>unknown</th>
+            <td th:text="${GetMap.get('LVG')}"></td>
+            <td th:text="${GetMap.get('LVP')}"></td>
+            <td th:text="${GetMap.get('LHG')}"></td>
+            <td th:text="${GetMap.get('LHP')}"></td>
+            <td th:text="${GetMap.get('FVG')}"></td>
+            <td th:text="${GetMap.get('FVP')}"></td>
+            <td th:text="${GetMap.get('FHG')}"></td>
+            <td th:text="${GetMap.get('FHP')}"></td>
+            <td th:text="${GetMap.get('RHP')}"></td>
+            <td th:text="${GetMap.get('unknown')}"></td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+</body>
+</html>

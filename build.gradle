@@ -51,6 +51,9 @@ dependencies {
     implementation group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '3.0.4'
 
 
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.13.0'
+
 }
 //querydsl 추가 시작
 def querydslDir = "$buildDir/generated/querydsl"

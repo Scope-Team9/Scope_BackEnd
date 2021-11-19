@@ -8,6 +8,7 @@ import java.util.List;
 
 @Getter
 public class UserResponseDto {
+
     @Schema(description = "사용자 성향")
     private String userPropensityType;
     @Schema(description = "사용자의 선호 팀원 성향")
@@ -38,4 +39,12 @@ public class UserResponseDto {
         this.isVerifiedEmail = user.getIsVerifiedEmail();
 //        this.isVerifiedEmail = getIsVerifiedEmail();
     }
+    public UserResponseDto(User user) {
+        this.userPropensityType = user.getUserPropensityType();
+        this.memberPropensityType = user.getMemberPropensityType();
+        this.nickname = user.getNickname();
+        this.userId = user.getId();
+        this.email = user.getEmail();
+    }
+
 }
