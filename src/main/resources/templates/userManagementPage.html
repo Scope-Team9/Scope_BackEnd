@@ -41,15 +41,15 @@
 
         function Delete(){
 
-            var PostIdArray = [];
+            var UserIdArray = [];
 
             $("input:checkbox[name=cchk]:checked").each(function(){
-                PostIdArray.push($(this).val());
+                UserIdArray.push($(this).val());
             });
 
-            console.log(PostIdArray);
+            console.log(UserIdArray);
 
-            if(PostIdArray == ""){
+            if(UserIdArray == ""){
                 alert("삭제할 항목을 선택해주세요.");
                 return false;
             }
@@ -61,7 +61,7 @@
                     type : 'POST'
                     ,url : '/admin/adminuserdelete'
                     ,dataType : 'json'
-                    ,data : JSON.stringify(PostIdArray)
+                    ,data : JSON.stringify(UserIdArray)
                     ,contentType: "application/json; charset=utf-8"
                     ,success : function(result) {
                         alert("해당글이 정상적으로 삭제되었습니다.");

@@ -58,8 +58,7 @@ public class AdminPageController {
                         "FVP", 0,
                         "FHG", 0,
                         "FHP", 0,
-                        "RHP", 0,
-                        "unknown",0
+                        "RHP", 0
                 )),
                 "LVP", new HashMap<>(Map.of(
                         "LVG", 0,
@@ -70,8 +69,7 @@ public class AdminPageController {
                         "FVP", 0,
                         "FHG", 0,
                         "FHP", 0,
-                        "RHP", 0,
-                        "unknown",0
+                        "RHP", 0
                 )),
                 "LHG", new HashMap<>(Map.of(
                         "LVG", 0,
@@ -82,8 +80,7 @@ public class AdminPageController {
                         "FVP", 0,
                         "FHG", 0,
                         "FHP", 0,
-                        "RHP", 0,
-                        "unknown",0
+                        "RHP", 0
                 )),
                 "LHP", new HashMap<>(Map.of(
                         "LVG", 0,
@@ -94,8 +91,7 @@ public class AdminPageController {
                         "FVP", 0,
                         "FHG", 0,
                         "FHP", 0,
-                        "RHP", 0,
-                        "unknown",0
+                        "RHP", 0
                 )),
                 "FVG", new HashMap<>(Map.of(
                         "LVG", 0,
@@ -106,8 +102,7 @@ public class AdminPageController {
                         "FVP", 0,
                         "FHG", 0,
                         "FHP", 0,
-                        "RHP", 0,
-                        "unknown",0
+                        "RHP", 0
                 )),
                 "FVP",new HashMap<>(Map.of(
                         "LVG", 0,
@@ -118,8 +113,7 @@ public class AdminPageController {
                         "FVP", 0,
                         "FHG", 0,
                         "FHP", 0,
-                        "RHP", 0,
-                        "unknown",0
+                        "RHP", 0
                 )),
                 "FHG", new HashMap<>(Map.of(
                         "LVG", 0,
@@ -130,8 +124,7 @@ public class AdminPageController {
                         "FVP", 0,
                         "FHG", 0,
                         "FHP", 0,
-                        "RHP", 0,
-                        "unknown",0
+                        "RHP", 0
                 )),
                 "FHP", new HashMap<>(Map.of(
                         "LVG", 0,
@@ -142,8 +135,7 @@ public class AdminPageController {
                         "FVP", 0,
                         "FHG", 0,
                         "FHP", 0,
-                        "RHP", 0,
-                        "unknown",0
+                        "RHP", 0
                 )),
                 "RHP",new HashMap<>(Map.of(
                         "LVG", 0,
@@ -154,8 +146,7 @@ public class AdminPageController {
                         "FVP", 0,
                         "FHG", 0,
                         "FHP", 0,
-                        "RHP", 0,
-                        "unknown",0
+                        "RHP", 0
                 )),
                 "unknown",new HashMap<>(Map.of(
                 "LVG", 0,
@@ -166,21 +157,19 @@ public class AdminPageController {
                 "FVP", 0,
                 "FHG", 0,
                 "FHP", 0,
-                "RHP", 0,
-                "unknown",0
+                "RHP", 0
                 ))
         ));
 
 //        List<UserResponseDto> userResponseDtos = userService.adminUserPropensityType();
         List<TotalResult> totalResult = totalResultRepository.findAll();
         for ( TotalResult result : totalResult) {
-
 //            String userPropensityType = userResponseDto.getUserPropensityType();
 //            String memberPropenstiyType = userResponseDto.getMemberPropensityType();
             String userPropensityType = result.getUserType();
             String memberPropenstiyType = result.getMemberType();
+            int num = result.getResult().intValue();
 
-            int num = userPropensityMap.get(userPropensityType).get(memberPropenstiyType)+1;
             userPropensityMap.get(userPropensityType).replace(memberPropenstiyType,num);
         }
         System.out.println(userPropensityMap);
@@ -220,9 +209,9 @@ public class AdminPageController {
         for (Long userId: userIds){
             User user = userRepository.findById(userId).
                     orElseThrow(() ->new NoAuthException(ErrorCode.NO_USER_ERROR));
+            System.out.println(user.getNickname());
             userService.deleteUser(user);
         }
-
         return userIds;
     }
 
