@@ -2,6 +2,7 @@ package com.studycollaboproject.scope.repository;
 
 import com.querydsl.jpa.JPQLQuery;
 import com.studycollaboproject.scope.model.*;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import java.util.List;
@@ -124,5 +125,45 @@ public class PostRepositoryExtensionImpl extends QuerydslRepositorySupport imple
                 .orderBy(post.createdAt.desc())
                 .distinct();
         return query.fetch();
+    }
+
+    @Override
+    public List<Post> findAllByKeywordOrderByCreatedAt(String keyword, Pageable pageable) {
+        JPQLQuery<Post> query = from(post)
+                .where(post.title.contains(keyword)
+                        .or(post.contents.contains(keyword))
+                        .or(post.summary.contains(keyword)))
+                .leftJoin(post.user, user).fetchJoin()
+                .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .orderBy(post.createdAt.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .distinct();
+        return query.fetch();
+    }
+
+    @Override
+    public List<Post> findAllByKeywordOrderByStartDate(String keyword, Pageable pageable) {
+        JPQLQuery<Post> query = from(post)
+                .where(post.title.contains(keyword)
+                        .or(post.contents.contains(keyword))
+                        .or(post.summary.contains(keyword)))
+                .leftJoin(post.user, user).fetchJoin()
+                .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .orderBy(post.startDate.asc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .distinct();
+        return query.fetch();
+    }
+
+    @Override
+    public Long countByKeyword(String keyword) {
+        return from(post)
+                .where(post.title.contains(keyword)
+                        .or(post.contents.contains(keyword))
+                        .or(post.summary.contains(keyword)))
+                .fetchCount();
+
     }
 }

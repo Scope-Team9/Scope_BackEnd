@@ -1,9 +1,6 @@
 package com.studycollaboproject.scope.service;
 
-import com.studycollaboproject.scope.dto.MypageResponseDto;
-import com.studycollaboproject.scope.dto.PostRequestDto;
-import com.studycollaboproject.scope.dto.PostResponseDto;
-import com.studycollaboproject.scope.dto.UserResponseDto;
+import com.studycollaboproject.scope.dto.*;
 import com.studycollaboproject.scope.exception.BadRequestException;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.ForbiddenException;
@@ -11,6 +8,7 @@ import com.studycollaboproject.scope.model.*;
 import com.studycollaboproject.scope.repository.*;
 import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -113,9 +111,8 @@ public class PostService {
                 }
             }
 
-            List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
 //            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
-            return filterPosts.stream().map(o -> new PostResponseDto(o, checkBookmark(o, bookmarkList))).collect(Collectors.toList());
+            return filterPosts.stream().map(o -> new PostResponseDto(o, checkBookmark(o, snsId))).collect(Collectors.toList());
         }
 
         // bookmarkRecommend가 Bookmark라면 북마크 포스트만 리턴한다.
@@ -144,13 +141,13 @@ public class PostService {
                 return filterPosts.stream().map(o -> new PostResponseDto(o, false)).collect(Collectors.toList());
             }
 
-            List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
-//            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
-            return filterPosts.stream().map(o -> new PostResponseDto(o, checkBookmark(o, bookmarkList))).collect(Collectors.toList());
+            return filterPosts.stream().map(o -> new PostResponseDto(o, checkBookmark(o, snsId))).collect(Collectors.toList());
         }
     }
 
-    private boolean checkBookmark(Post post, List<Post> bookmarkList) {
+    public boolean checkBookmark(Post post, String snsId) {
+        List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
+        //            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
         for (Post bookmarkPost : bookmarkList) {
             if (bookmarkPost.getId().equals(post.getId())) {
                 return true;
@@ -167,7 +164,7 @@ public class PostService {
 //        List<Post> bookmarkPostList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(user.getSnsId());
         List<PostResponseDto> readyList = readyPostList.stream().map(o -> new PostResponseDto(o, true)).collect(Collectors.toList());
         List<PostResponseDto> myBookmarkList = bookmarkPostList.stream().map(o -> new PostResponseDto(o, true)).collect(Collectors.toList());
-        List<PostResponseDto> includedList = includePostList.stream().map(o -> new PostResponseDto(o, checkBookmark(o, bookmarkPostList))).collect(Collectors.toList());
+        List<PostResponseDto> includedList = includePostList.stream().map(o -> new PostResponseDto(o, checkBookmark(o, loginUserSnsId))).collect(Collectors.toList());
 
         return new MypageResponseDto(includedList, readyList, myBookmarkList, new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList())), loginUserSnsId.equals(user.getSnsId()));
     }
@@ -249,10 +246,16 @@ public class PostService {
         return post.getUser().getSnsId().equals(snsId);
     }
 
-    // 현재 로그인 한 사용자 북마크 체크여부 확인
-    public boolean isBookmarkChecked(Post post, User user) {
-        Optional<Bookmark> bookmark = bookmarkRepository.findByPostAndUser(post, user);
-        return bookmark.isPresent();
+    public PostListDto searchPost(String snsId, String keyword, String sort, int displayNum, int page) {
+        PageRequest pageRequest = PageRequest.of(page - 1, displayNum);
+        List<Post> searchPostList;
+        if (sort.equals("deadline")) {
+            searchPostList = postRepository.findAllByKeywordOrderByStartDate(keyword, pageRequest);
+        } else {
+            searchPostList = postRepository.findAllByKeywordOrderByCreatedAt(keyword, pageRequest);
+        }
+        Long totalPage = postRepository.countByKeyword(keyword);
 
+        return new PostListDto(searchPostList.stream().map(o -> new PostResponseDto(o, checkBookmark(o, snsId))).collect(Collectors.toList()), (long)page, totalPage);
     }
 }
