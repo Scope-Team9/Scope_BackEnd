@@ -3,7 +3,6 @@ package com.studycollaboproject.scope.service;
 import com.studycollaboproject.scope.dto.*;
 import com.studycollaboproject.scope.exception.BadRequestException;
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.model.Bookmark;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.TechStack;
 import com.studycollaboproject.scope.model.User;
@@ -14,7 +13,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @Service
@@ -87,31 +89,6 @@ public class UserService {
         } else {
             LoginReponseDto loginReponseDto = new LoginReponseDto(jwtTokenProvider.createToken(id), user.getEmail(), user.getNickname(), user.getId());
             return new ResponseDto("로그인이 완료되었습니다", loginReponseDto);
-        }
-    }
-
-    //북마크 체크여부 판단
-    @Transactional
-    public ResponseDto bookmarkCheck(Long postId, String snsId) {
-        // [예외처리] 북마크하고자 하는 post를 삭제 등과 같은 이유로 찾을 수 없을 때
-        Post post = postRepository.findById(postId).orElseThrow(
-                () -> new BadRequestException(ErrorCode.NO_POST_ERROR)
-        );
-        User user = loadUserBySnsId(snsId);
-        // [예외처리] 사용자가 자신의 게시물을 북마크하려고 할 때
-        if (post.getUser().equals(user)) {
-            throw new BadRequestException(ErrorCode.NO_BOOKMARK_MY_POST_ERROR);
-        }
-        Map<String, String> isBookmarkChecked = new HashMap<>();
-
-        if (postService.checkBookmark(post, snsId)) {
-            bookmarkRepository.deleteByUserAndPost(user, post);
-            isBookmarkChecked.put("isBookmarkChecked", "false");
-            return new ResponseDto("북마크 삭제 성공", isBookmarkChecked);
-        } else {
-            bookmarkRepository.save(new Bookmark(user, post));
-            isBookmarkChecked.put("isBookmarkChecked", "true");
-            return new ResponseDto("북마크 추가 성공", isBookmarkChecked);
         }
     }
 

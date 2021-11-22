@@ -8,7 +8,6 @@ import com.studycollaboproject.scope.model.*;
 import com.studycollaboproject.scope.repository.*;
 import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -111,8 +110,10 @@ public class PostService {
                 }
             }
 
+            List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
+            //            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
 //            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
-            return filterPosts.stream().map(o -> new PostResponseDto(o, checkBookmark(o, snsId))).collect(Collectors.toList());
+            return filterPosts.stream().map(o -> new PostResponseDto(o, hasPostFromPostList(o.getId(), bookmarkList))).collect(Collectors.toList());
         }
 
         // bookmarkRecommend가 Bookmark라면 북마크 포스트만 리턴한다.
@@ -141,19 +142,53 @@ public class PostService {
                 return filterPosts.stream().map(o -> new PostResponseDto(o, false)).collect(Collectors.toList());
             }
 
-            return filterPosts.stream().map(o -> new PostResponseDto(o, checkBookmark(o, snsId))).collect(Collectors.toList());
+            List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
+            //            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
+            return filterPosts.stream().map(o -> new PostResponseDto(o, hasPostFromPostList(o.getId(), bookmarkList))).collect(Collectors.toList());
         }
     }
 
-    public boolean checkBookmark(Post post, String snsId) {
+    public boolean hasPostFromUserBookmarkList(Post post, String snsId) {
         List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
         //            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
-        for (Post bookmarkPost : bookmarkList) {
-            if (bookmarkPost.getId().equals(post.getId())) {
+        return hasPostFromPostList(post.getId(), bookmarkList);
+    }
+
+    public boolean hasPostFromPostList(Long postId, List<Post> postList) {
+        for (Post p : postList) {
+            if (p.getId().equals(postId)) {
                 return true;
             }
         }
         return false;
+    }
+
+    //북마크 체크여부 판단
+    @Transactional
+    public ResponseDto bookmarkPost(Long postId, String snsId) {
+        // [예외처리] 북마크하고자 하는 post를 삭제 등과 같은 이유로 찾을 수 없을 때
+        Post post = postRepository.findById(postId).orElseThrow(
+                () -> new BadRequestException(ErrorCode.NO_POST_ERROR)
+        );
+        User user = userRepository.findBySnsId(snsId).orElseThrow(
+                () -> new BadRequestException(ErrorCode.NO_USER_ERROR)
+        );
+        // [예외처리] 사용자가 자신의 게시물을 북마크하려고 할 때
+        if (post.getUser().equals(user)) {
+            throw new BadRequestException(ErrorCode.NO_BOOKMARK_MY_POST_ERROR);
+        }
+        Map<String, String> isBookmarkChecked = new HashMap<>();
+        Bookmark bookmark = bookmarkRepository.findByPostAndUser(post, user).orElseGet(() -> new Bookmark(user, post));
+        if (bookmark.getId() != null) {
+            bookmark.delete();
+            bookmarkRepository.delete(bookmark);
+            isBookmarkChecked.put("isBookmarkChecked", "false");
+            return new ResponseDto("북마크 삭제 성공", isBookmarkChecked);
+        } else {
+            bookmarkRepository.save(bookmark);
+            isBookmarkChecked.put("isBookmarkChecked", "true");
+            return new ResponseDto("북마크 추가 성공", isBookmarkChecked);
+        }
     }
 
     public MypageResponseDto getMyPostList(User user, String loginUserSnsId) {
@@ -164,7 +199,7 @@ public class PostService {
 //        List<Post> bookmarkPostList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(user.getSnsId());
         List<PostResponseDto> readyList = readyPostList.stream().map(o -> new PostResponseDto(o, true)).collect(Collectors.toList());
         List<PostResponseDto> myBookmarkList = bookmarkPostList.stream().map(o -> new PostResponseDto(o, true)).collect(Collectors.toList());
-        List<PostResponseDto> includedList = includePostList.stream().map(o -> new PostResponseDto(o, checkBookmark(o, loginUserSnsId))).collect(Collectors.toList());
+        List<PostResponseDto> includedList = includePostList.stream().map(o -> new PostResponseDto(o, hasPostFromPostList(o.getId(), bookmarkPostList))).collect(Collectors.toList());
 
         return new MypageResponseDto(includedList, readyList, myBookmarkList, new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList())), loginUserSnsId.equals(user.getSnsId()));
     }
@@ -226,6 +261,7 @@ public class PostService {
                 () -> new ForbiddenException(ErrorCode.NO_AUTHORIZATION_ERROR)
         );
     }
+
     @Transactional
     public PostResponseDto updateStatus(Long postId, String projectStatus, String snsId) {
         Post post = postRepository.findById(postId).orElseThrow(
@@ -246,16 +282,15 @@ public class PostService {
         return post.getUser().getSnsId().equals(snsId);
     }
 
-    public PostListDto searchPost(String snsId, String keyword, String sort, int displayNum, int page) {
-        PageRequest pageRequest = PageRequest.of(page - 1, displayNum);
+    public List<PostResponseDto> searchPost(String snsId, String keyword, String sort) {
         List<Post> searchPostList;
         if (sort.equals("deadline")) {
-            searchPostList = postRepository.findAllByKeywordOrderByStartDate(keyword, pageRequest);
+            searchPostList = postRepository.findAllByKeywordOrderByStartDate(keyword);
         } else {
-            searchPostList = postRepository.findAllByKeywordOrderByCreatedAt(keyword, pageRequest);
+            searchPostList = postRepository.findAllByKeywordOrderByCreatedAt(keyword);
         }
-        Long totalPage = postRepository.countByKeyword(keyword);
-
-        return new PostListDto(searchPostList.stream().map(o -> new PostResponseDto(o, checkBookmark(o, snsId))).collect(Collectors.toList()), (long)page, totalPage);
+        List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
+        //            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
+        return searchPostList.stream().map(o -> new PostResponseDto(o, hasPostFromPostList(o.getId(), bookmarkList))).collect(Collectors.toList());
     }
 }
