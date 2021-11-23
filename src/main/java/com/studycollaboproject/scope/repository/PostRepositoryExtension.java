@@ -11,7 +11,7 @@ public interface PostRepositoryExtension {
 
     List<Post> findAllByTechInOrderByStartDate(List<Tech> techList);
 
-    List<Post> findAllByBookmarkOrderByStartDate(String snsId );
+    List<Post> findAllByBookmarkOrderByStartDate(String snsId);
 
     List<Post> findAllByBookmarkOrderByCreatedAt(String snsId);
 
@@ -24,4 +24,8 @@ public interface PostRepositoryExtension {
     List<Post> findReadyPostByUserSnsId(String snsID);
 
     List<Post> findAllBookmarkByUserSnsId(String snsId);
+
+    List<Post> findAllByKeywordOrderByCreatedAt(String keyword);
+
+    List<Post> findAllByKeywordOrderByStartDate(String keyword);
 }

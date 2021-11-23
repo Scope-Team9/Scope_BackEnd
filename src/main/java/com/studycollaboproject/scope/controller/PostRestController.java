@@ -160,7 +160,7 @@ public class PostRestController {
             } else {
                 userStatus = UserStatus.USER_STATUS_USER.getUserStatus();
             }
-            isBookmarkChecked = postService.isBookmarkChecked(post, user);
+            isBookmarkChecked = postService.hasPostFromUserBookmarkList(post, user.getSnsId());
         } else {
             userStatus = UserStatus.USER_STATUS_ANONYMOUS.getUserStatus();
         }
@@ -170,7 +170,6 @@ public class PostRestController {
                 HttpStatus.OK
         );
     }
-
 
     @Operation(summary = "프로젝트 Github URL 업데이트")
     @PostMapping("/api/post/{postId}/url")
@@ -186,6 +185,21 @@ public class PostRestController {
         PostResponseDto responseDto = postService.updateUrl(requestDto.getBackUrl(), requestDto.getFrontUrl(), snsId, postId);
         return new ResponseEntity<>(
                 new ResponseDto("프로젝트 URL이 성공적으로 저장되었습니다.", responseDto),
+                HttpStatus.OK
+        );
+    }
+
+    @Operation(summary = "프로젝트 검색")
+    @GetMapping("/api/post/search")
+    public ResponseEntity<Object> searchPost(@Parameter(description = "키워드", in = ParameterIn.QUERY) @RequestParam String keyword,
+                                             @Parameter(description = "정렬", in = ParameterIn.QUERY, example = "createdAt") @RequestParam String sort,
+//                                             @Parameter(description = "정렬", in = ParameterIn.QUERY, example = "15") @RequestParam int displayNum,
+//                                             @Parameter(description = "정렬", in = ParameterIn.QUERY, example = "1") @RequestParam int page,
+                                             @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        String snsId = Optional.ofNullable(userDetails).map(UserDetailsImpl::getSnsId).orElse("");
+        List<PostResponseDto> postList = postService.searchPost(snsId, keyword, sort);
+        return new ResponseEntity<>(
+                new ResponseDto("프로젝트 검색 성공.", postList),
                 HttpStatus.OK
         );
     }

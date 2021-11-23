@@ -29,9 +29,6 @@ public class Post extends Timestamped {
 
     private LocalDate endDate;
 
-    @Column(nullable = false)
-    private String summary;
-
     @Column(nullable = false, length = 10000)
     private String contents;
 
@@ -77,7 +74,6 @@ public class Post extends Timestamped {
         this.title = postRequestDto.getTitle();
         this.startDate = LocalDate.parse(postRequestDto.getStartDate().substring(0, 10));
         this.endDate = LocalDate.parse(postRequestDto.getEndDate().substring(0, 10));
-        this.summary = postRequestDto.getSummary();
         this.contents = postRequestDto.getContents();
         this.totalMember = postRequestDto.getTotalMember();
         this.user = user;
@@ -89,7 +85,6 @@ public class Post extends Timestamped {
         this.title = postRequestDto.getTitle();
         this.startDate = LocalDate.parse(postRequestDto.getStartDate().substring(0, 10));
         this.endDate = LocalDate.parse(postRequestDto.getEndDate().substring(0, 10));
-        this.summary = postRequestDto.getSummary();
         this.contents = postRequestDto.getContents();
         this.totalMember = postRequestDto.getTotalMember();
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());

@@ -1,7 +1,6 @@
 package com.studycollaboproject.scope.dto;
 
 import com.studycollaboproject.scope.model.Post;
-import com.studycollaboproject.scope.model.ProjectStatus;
 import com.studycollaboproject.scope.model.TechStack;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
@@ -19,12 +18,10 @@ public class PostResponseDto {
     private Long postId;
     @Schema(description = "프로젝트 제목")
     private String title;
-    @Schema(description = "프로젝트 한줄요약")
-    private String summary;
     @Schema(description = "프로젝트 내용")
     private String contents;
     @Schema(description = "기술 스택")
-    private List<String> techStack;
+    private List<String> techStack = new ArrayList<>();
     @Schema(description = "총 인원")
     private int totalMember;
     @Schema(description = "현재 인원")
@@ -51,12 +48,11 @@ public class PostResponseDto {
     public PostResponseDto(Post post) {
         this.postId = post.getId();
         this.title = post.getTitle();
-        this.summary = post.getSummary();
         this.contents = post.getContents();
         this.techStack = new ArrayList<>();
         List<TechStack> techStackList = post.getTechStackList();
         for (TechStack stack : techStackList) {
-            techStack.add(stack.getTech().getTech());
+            this.techStack.add(stack.getTech().getTech());
         }
         this.totalMember = post.getTotalMember();
         this.recruitmentMember = post.getRecruitmentMember();
@@ -71,15 +67,14 @@ public class PostResponseDto {
         this.bookmarkChecked = false;
     }
 
-    public PostResponseDto(Post post,boolean bookmarkChecked) {
+    public PostResponseDto(Post post, boolean bookmarkChecked) {
         this.postId = post.getId();
         this.title = post.getTitle();
-        this.summary = post.getSummary();
         this.contents = post.getContents();
         this.techStack = new ArrayList<>();
         List<TechStack> techStackList = post.getTechStackList();
         for (TechStack stack : techStackList) {
-            techStack.add(stack.getTech().getTech());
+            this.techStack.add(stack.getTech().getTech());
         }
         this.totalMember = post.getTotalMember();
         this.recruitmentMember = post.getRecruitmentMember();

@@ -134,7 +134,6 @@ public class UserRestController {
 
     }
 
-
     @Operation(summary = "북마크 추가")
     @PostMapping("/api/bookmark/{postId}")
     public ResponseEntity<Object> bookmarkCheck(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
@@ -145,7 +144,7 @@ public class UserRestController {
             throw new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
         return new ResponseEntity<>(
-                userService.bookmarkCheck(postId, userDetails.getSnsId()),
+                postService.bookmarkPost(postId, userDetails.getSnsId()),
                 HttpStatus.CREATED
         );
     }
