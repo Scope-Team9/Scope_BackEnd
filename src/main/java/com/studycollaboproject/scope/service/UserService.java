@@ -29,7 +29,6 @@ public class UserService {
     private final TechStackConverter techStackConverter;
     private final TechStackRepository techStackRepository;
     private final PostRepository postRepository;
-    private final PostService postService;
     private final ApplicantRepository applicantRepository;
     private final TeamRepository teamRepository;
 
@@ -130,8 +129,15 @@ public class UserService {
 
     @Transactional
     public ResponseDto deleteUser(User user) {
+
+        techStackRepository.deleteAllByUser(user);
+        applicantRepository.deleteAllByUser(user);
+        bookmarkRepository.deleteAllByUser(user);
+        teamRepository.deleteAllByUser(user);
+
         List<Post> postList = postRepository.findAllByUser(user);
-    // 탈퇴하려는 유저의 Post 중 상태가 종료가 아닌 Post를 삭제
+
+        // 탈퇴하려는 유저의 Post 중 상태가 종료가 아닌 Post를 삭제
         for (Post post : postList) {
             if (post.getProjectStatus().equals(ProjectStatus.PROJECT_STATUS_END)) {
                 post.deleteUser(loadUnknownUser());
@@ -139,13 +145,7 @@ public class UserService {
                 postRepository.delete(post);
             }
         }
-        techStackRepository.deleteAllByUser(user);
-        applicantRepository.deleteAllByUser(user);
-        bookmarkRepository.deleteAllByUser(user);
-        teamRepository.deleteAllByUser(user);
-
         userRepository.delete(user);
-
         return new ResponseDto("성공적으로 회원 정보가 삭제되었습니다.", "");
     }
 }
