@@ -1,5 +1,6 @@
 package com.studycollaboproject.scope.webSocket;
 
+import com.studycollaboproject.scope.redis.ConnectedUser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.Message;
@@ -29,13 +30,15 @@ public class StompHandler implements ChannelInterceptor {
             //accessor.getDestination() -> 로그인한 유저를 한 방에 몰아 넣을 거라 안바뀜
             //accessor.getUser().getName() -> UUID
             //accessor.getFirstNativeHeader("nickname") -> 프론트에게 받아야 하는 값 {nickname:닉네임값}
-            alertService.userConnect(accessor.getDestination(),accessor.getUser().getName(),accessor.getFirstNativeHeader("nickname"));
+            ConnectedUser connectedUser = new ConnectedUser(accessor.getFirstNativeHeader("nickname"),accessor.getUser().getName());
+            alertService.userConnect(connectedUser);
+
         } else if (StompCommand.SUBSCRIBE == accessor.getCommand()) {
             log.info("[SUBSCRIBE] 소켓에 메시지 요청");
 
         } else if (StompCommand.DISCONNECT == accessor.getCommand()) {
             log.info("[DISCONNECT] 로그아웃, 소켓 연결 종료");
-            alertService.userDisConnect(accessor.getUser().getName());
+            alertService.userDisConnect(accessor.getFirstNativeHeader("nickname"));
         }
         return message;
     }

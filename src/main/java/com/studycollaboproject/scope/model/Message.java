@@ -1,5 +1,6 @@
 package com.studycollaboproject.scope.model;
 
+import com.studycollaboproject.scope.dto.MessageRequestDto;
 import com.studycollaboproject.scope.util.Timestamped;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -31,6 +32,15 @@ public class Message extends Timestamped {
     @Column(nullable = false)
     private String receivedId;
 
-    @Column(nullable = false)
-    private String sentId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sent_id")
+    private User user;
+
+    public Message(MessageRequestDto messageRequestDto, User user) {
+        this.title = messageRequestDto.getTitle();
+        this.message = messageRequestDto.getMessage();
+        this.receivedId = messageRequestDto.getReceivedId();
+        this.user = user;
+    }
+
 }
