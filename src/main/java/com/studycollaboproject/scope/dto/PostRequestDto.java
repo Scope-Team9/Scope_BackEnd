@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Getter
@@ -24,9 +25,9 @@ public class PostRequestDto {
     @Schema(description = "프로젝트 상태")
     private String projectStatus;
     @Schema(description = "시작 시간")
-    private String startDate;
+    private Timestamp startDate;
     @Schema(description = "종료 시간")
-    private String endDate;
+    private Timestamp endDate;
     @Schema(description = "글쓰기시 프로젝트 기술 스택")
     private List<String> techStackList;
 }

@@ -56,8 +56,8 @@ public class PostResponseDto {
         }
         this.totalMember = post.getTotalMember();
         this.recruitmentMember = post.getRecruitmentMember();
-        this.endDate = post.getEndDate();
-        this.startDate = post.getStartDate();
+        this.endDate = post.getEndDate().toLocalDate();
+        this.startDate = post.getStartDate().toLocalDate();
         this.projectStatus = post.getProjectStatus().getProjectStatus();
         this.frontUrl = post.getFrontUrl();
         this.backUrl = post.getBackUrl();
@@ -79,8 +79,8 @@ public class PostResponseDto {
         this.totalMember = post.getTotalMember();
         this.recruitmentMember = post.getRecruitmentMember();
         this.bookmarkChecked = bookmarkChecked;
-        this.endDate = post.getEndDate();
-        this.startDate = post.getStartDate();
+        this.endDate = post.getEndDate().toLocalDate();
+        this.startDate = post.getStartDate().toLocalDate();
         this.projectStatus = post.getProjectStatus().getProjectStatus();
         this.frontUrl = post.getFrontUrl();
         this.backUrl = post.getBackUrl();
