@@ -5,6 +5,7 @@ import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.Bookmark;
 import com.studycollaboproject.scope.model.Post;
+import com.studycollaboproject.scope.model.ProjectStatus;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.*;
 import com.studycollaboproject.scope.security.JwtTokenProvider;
@@ -12,6 +13,7 @@ import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
 import java.util.*;
 
@@ -29,7 +31,7 @@ public class UserService {
     private final ApplicantRepository applicantRepository;
     private final TeamRepository teamRepository;
 
-    public MypageResponseDto  Mypage(User mypageUser, UserDetails userDetails, MypagePostListDto mypagePostListDto) {
+    public MypageResponseDto Mypage(User mypageUser, UserDetails userDetails, MypagePostListDto mypagePostListDto) {
         boolean isMyMypage;
         if (!(userDetails == null)) {
             User user = loadUserBySnsId(userDetails.getUsername());
@@ -57,7 +59,7 @@ public class UserService {
 
     //기술스택 리스트와 유저 정보를 같이 DB에 저장
     public UserResponseDto saveUser(List<String> techStack, User user, String token) {
-        user.addTechStackListAndToken(techStackConverter.convertStringToTechStack(techStack,user, null),token);
+        user.addTechStackListAndToken(techStackConverter.convertStringToTechStack(techStack, user, null), token);
         User savedUser = userRepository.save(user);
         return new UserResponseDto(savedUser, techStackConverter.convertTechStackToString(user.getTechStackList()));
     }
@@ -95,9 +97,9 @@ public class UserService {
 
     //닉네임 중복 체크
     public ResponseDto nicknameCheckByNickname(String nickname) {
-        boolean isNicknamePresent=userRepository.findByNickname(nickname).isPresent();
+        boolean isNicknamePresent = userRepository.findByNickname(nickname).isPresent();
         if (isNicknamePresent) {
-            throw  new RestApiException(ErrorCode.ALREADY_NICKNAME_ERROR);
+            throw new RestApiException(ErrorCode.ALREADY_NICKNAME_ERROR);
         } else {
             return new ResponseDto("200", "사용가능한 닉네임입니다.", "");
         }
@@ -111,7 +113,7 @@ public class UserService {
         if (user == null) {
             return new ResponseDto("300", "추가 정보 작성이 필요한 사용자입니다.", new SnsInfoDto(email, id));
         } else {
-            LoginReponseDto loginReponseDto = new LoginReponseDto(jwtTokenProvider.createToken(id), user.getEmail(), user.getNickname(),user.getId());
+            LoginReponseDto loginReponseDto = new LoginReponseDto(jwtTokenProvider.createToken(id), user.getEmail(), user.getNickname(), user.getId());
             return new ResponseDto("200", "로그인이 완료되었습니다", loginReponseDto);
         }
     }
@@ -157,8 +159,8 @@ public class UserService {
 
         techStackRepository.deleteAllByUser(user);
         user.resetTechStack();
-        user.updateUserInfo(email,nickname,
-                techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(),user, null));
+        user.updateUserInfo(email, nickname,
+                techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(), user, null));
         return new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList()));
     }
 
@@ -172,10 +174,17 @@ public class UserService {
     }
 
     @Transactional
-    public ResponseDto deleteUser(User user){
+    public ResponseDto deleteUser(User user) {
+
         List<Post> postList = postRepository.findAllByUser(user);
+        // 탈퇴하려는 유저의 Post 중 상태가 종료가 아닌 Post를 삭제
+
         for (Post post : postList) {
-            post.deleteUser(loadUnknownUser());
+            if (post.getProjectStatus().equals(ProjectStatus.PROJECT_STATUS_END)) {
+                post.deleteUser(loadUnknownUser());
+            } else {
+                postRepository.delete(post);
+            }
         }
         techStackRepository.deleteAllByUser(user);
         applicantRepository.deleteAllByUser(user);
@@ -184,6 +193,6 @@ public class UserService {
 
         userRepository.delete(user);
 
-        return new ResponseDto("OK","성공적으로 회원 정보가 삭제되었습니다.","");
+        return new ResponseDto("OK", "성공적으로 회원 정보가 삭제되었습니다.", "");
     }
 }
