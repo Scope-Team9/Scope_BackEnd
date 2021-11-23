@@ -4,6 +4,7 @@ import com.studycollaboproject.scope.dto.*;
 import com.studycollaboproject.scope.exception.BadRequestException;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.model.Post;
+import com.studycollaboproject.scope.model.ProjectStatus;
 import com.studycollaboproject.scope.model.TechStack;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.*;
@@ -130,8 +131,13 @@ public class UserService {
     @Transactional
     public ResponseDto deleteUser(User user) {
         List<Post> postList = postRepository.findAllByUser(user);
+    // 탈퇴하려는 유저의 Post 중 상태가 종료가 아닌 Post를 삭제
         for (Post post : postList) {
-            post.deleteUser(loadUnknownUser());
+            if (post.getProjectStatus().equals(ProjectStatus.PROJECT_STATUS_END)) {
+                post.deleteUser(loadUnknownUser());
+            } else {
+                postRepository.delete(post);
+            }
         }
         techStackRepository.deleteAllByUser(user);
         applicantRepository.deleteAllByUser(user);
