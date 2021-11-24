@@ -7,6 +7,8 @@ import com.studycollaboproject.scope.model.QTechStack;
 import com.studycollaboproject.scope.model.Tech;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.studycollaboproject.scope.model.QPost.post;
@@ -22,7 +24,8 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
     @Override
     public List<Post> findAllByTechInOrderByCreatedAt(List<Tech> techList) {
         return queryFactory.selectFrom(post)
-                .where(post.techStackList.any().tech.in(techList))
+                .where(post.techStackList.any().tech.in(techList)
+                        .and(post.projectStatus.in(ProjectStatus.PROJECT_STATUS_RECRUITMENT, ProjectStatus.PROJECT_STATUS_INPROGRESS)))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
                 .orderBy(post.createdAt.desc())
@@ -34,7 +37,9 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
     @Override
     public List<Post> findAllByTechInOrderByStartDate(List<Tech> techList) {
         return queryFactory.selectFrom(post)
-                .where(post.techStackList.any().tech.in(techList))
+                .where(post.techStackList.any().tech.in(techList)
+                        .and(post.startDate.goe(LocalDate.now().atStartOfDay()))
+                        .and(post.projectStatus.in(ProjectStatus.PROJECT_STATUS_RECRUITMENT, ProjectStatus.PROJECT_STATUS_INPROGRESS)))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
                 .orderBy(post.startDate.asc())
@@ -46,7 +51,8 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
     @Override
     public List<Post> findAllByBookmarkOrderByStartDate(String snsId) {
         return queryFactory.selectFrom(post)
-                .where(post.bookmarkList.any().user.snsId.equalsIgnoreCase(snsId))
+                .where(post.bookmarkList.any().user.snsId.equalsIgnoreCase(snsId)
+                        .and(post.startDate.goe(LocalDateTime.now())))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
                 .orderBy(post.startDate.asc())
@@ -73,6 +79,7 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
                 .where(post.user.snsId.notEqualsIgnoreCase("unknown")
                         .and(post.user.snsId.notEqualsIgnoreCase(snsId))
                         .and(post.projectStatus.eq(ProjectStatus.PROJECT_STATUS_RECRUITMENT))
+                        .and(post.startDate.goe(LocalDateTime.now()))
                         .and(post.techStackList.any().tech.in(techList))
                         .and(post.user.userPropensityType.eq(propensity)))
                 .leftJoin(post.user, user).fetchJoin()
@@ -147,6 +154,7 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
         return queryFactory.selectFrom(post)
                 .where(post.title.contains(keyword)
                         .or(post.contents.contains(keyword)))
+                .where(post.startDate.goe(LocalDateTime.now()))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
                 .orderBy(post.startDate.asc())
