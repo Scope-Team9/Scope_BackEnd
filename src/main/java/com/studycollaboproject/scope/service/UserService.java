@@ -142,6 +142,7 @@ public class UserService {
             if (post.getProjectStatus().equals(ProjectStatus.PROJECT_STATUS_END)) {
                 post.deleteUser(loadUnknownUser());
             } else {
+                techStackRepository.deleteAllByPost(post);
                 postRepository.delete(post);
             }
         }
