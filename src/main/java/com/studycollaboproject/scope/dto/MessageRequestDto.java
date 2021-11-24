@@ -1,14 +1,17 @@
 package com.studycollaboproject.scope.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public class MessageRequestDto {
 
     String title;
     String message;
-    String receivedId;
-    String sentId;
+    String receivedNickname;
+    String sentNickname;
 }

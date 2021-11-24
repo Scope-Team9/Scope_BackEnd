@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Service
 public class AlertService {
@@ -20,11 +22,13 @@ public class AlertService {
 
     // 메세지 보낼 시 특정 uuid로 알림
     public void sendMsg(MessageRequestDto messageRequestDto) {
-        ConnectedUser connectedUser = userRedisRepository.findById(messageRequestDto.getSentId())
-                .orElseThrow(()
-                -> new BadRequestException(ErrorCode.NO_USER_ERROR));
-        String userUuid = connectedUser.getUserUuid();
-        simpMessagingTemplate.convertAndSendToUser(userUuid,"/sub/alert","새로운 메세지 : " + messageRequestDto.getMessage());
+        Optional<ConnectedUser> connectedUser = userRedisRepository.findById(messageRequestDto.getReceivedNickname());
+//        connectedUser.ifPresent();
+
+//                .orElseThrow(()
+//                -> new BadRequestException(ErrorCode.NO_USER_ERROR));
+//        String userUuid = connectedUser.getUserUuid();
+//        simpMessagingTemplate.convertAndSendToUser(userUuid,"/sub/alert","새로운 메세지 : " + messageRequestDto.getMessage());
 
     }
 
