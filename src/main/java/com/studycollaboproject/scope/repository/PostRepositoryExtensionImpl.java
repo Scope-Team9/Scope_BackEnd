@@ -22,13 +22,13 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
     }
 
     @Override
-    public List<Post> findAllByTechInOrderByCreatedAt(List<Tech> techList) {
+    public List<Post> findAllByTechInOrderByModifiedAt(List<Tech> techList) {
         return queryFactory.selectFrom(post)
                 .where(post.techStackList.any().tech.in(techList)
                         .and(post.projectStatus.in(ProjectStatus.PROJECT_STATUS_RECRUITMENT, ProjectStatus.PROJECT_STATUS_INPROGRESS)))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.createdAt.desc())
+                .orderBy(post.modifiedAt.desc())
                 .orderBy(post.projectStatus.desc())
                 .distinct()
                 .fetch();
@@ -62,12 +62,12 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
     }
 
     @Override
-    public List<Post> findAllByBookmarkOrderByCreatedAt(String snsId) {
+    public List<Post> findAllByBookmarkOrderByModifiedAt(String snsId) {
         return queryFactory.selectFrom(post)
                 .where(post.bookmarkList.any().user.snsId.equalsIgnoreCase(snsId))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.createdAt.desc())
+                .orderBy(post.modifiedAt.desc())
                 .orderBy(post.projectStatus.desc())
                 .distinct()
                 .fetch();
@@ -90,7 +90,7 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
     }
 
     @Override
-    public List<Post> findAllByPropensityTypeOrderByCreatedAt(String propensity, List<Tech> techList, String snsId) {
+    public List<Post> findAllByPropensityTypeOrderByModifiedAt(String propensity, List<Tech> techList, String snsId) {
         return queryFactory.selectFrom(post)
                 .where(post.user.snsId.notEqualsIgnoreCase("unknown")
                         .and(post.user.snsId.notEqualsIgnoreCase(snsId))
@@ -99,7 +99,7 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
                         .and(post.user.userPropensityType.eq(propensity)))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.createdAt.desc())
+                .orderBy(post.modifiedAt.desc())
                 .distinct()
                 .fetch();
     }
@@ -110,7 +110,7 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
                 .where(post.teamList.any().user.snsId.eq(snsId))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.createdAt.desc())
+                .orderBy(post.modifiedAt.desc())
                 .distinct()
                 .fetch();
     }
@@ -121,7 +121,7 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
                 .where(post.applicantList.any().user.snsId.eq(snsId))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.createdAt.desc())
+                .orderBy(post.modifiedAt.desc())
                 .distinct()
                 .fetch();
     }
@@ -132,19 +132,19 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
                 .where(post.bookmarkList.any().user.snsId.eq(snsId))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.createdAt.desc())
+                .orderBy(post.modifiedAt.desc())
                 .distinct()
                 .fetch();
     }
 
     @Override
-    public List<Post> findAllByKeywordOrderByCreatedAt(String keyword) {
+    public List<Post> findAllByKeywordOrderByModifiedAt(String keyword) {
         return queryFactory.selectFrom(post)
                 .where(post.title.contains(keyword)
                         .or(post.contents.contains(keyword)))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.createdAt.desc())
+                .orderBy(post.modifiedAt.desc())
                 .distinct()
                 .fetch();
     }
