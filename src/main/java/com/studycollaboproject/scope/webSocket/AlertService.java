@@ -144,9 +144,10 @@ public class AlertService {
 
         }
 
+        // 게시자 , 게시물id, 지원자
         else if(type == AlertType.END_PROJECT)
         {
-            alertMessage = "프로젝트가 종료되었습니다.";
+            alertMessage = "프로젝트가 종료되었습니다. 팀원평가를 해주세요.";
             alertType = AlertType.END_PROJECT;
 
         }

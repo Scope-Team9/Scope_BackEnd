@@ -56,7 +56,7 @@ public class ApplicantService {
 
         // 지원 한 알람 저장
         AlertType alertType = AlertType.NEW_APPLICANT;
-        alertService.saveAlert(applicant.getUser().getNickname(),alertType,applicant.getId(),applicant.getPost().getUser());
+        alertService.saveAlert(applicant.getUser().getNickname(),alertType,applicant.getPost().getId(),applicant.getPost().getUser());
         alertService.alertToUser(applicant.getPost().getUser(),applicant.getComment());
         return applicantRepository.save(applicant);
     }

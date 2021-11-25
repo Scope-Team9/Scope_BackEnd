@@ -24,19 +24,23 @@ public class StompHandler implements ChannelInterceptor {
         // CONNECT -  웹 소켓 연결 요청
         // SUBSCRIBE - 소켓에 메시지 요청
         // DISCONNECT - 로그아웃시 소켓 연결 종료
+
         if (StompCommand.CONNECT == accessor.getCommand()) {
             log.info("[CONNECT] 웹 소켓 연결 요청");
             // 연결시ㅣ 닉네임과 연결 경로 저장
             //accessor.getDestination() -> 로그인한 유저를 한 방에 몰아 넣을 거라 안바뀜
             //accessor.getUser().getName() -> UUID
             //accessor.getFirstNativeHeader("nickname") -> 프론트에게 받아야 하는 값 {nickname:닉네임값}
-            ConnectedUser connectedUser = new ConnectedUser(accessor.getFirstNativeHeader("nickname"),accessor.getUser().getName());
+            ConnectedUser connectedUser = new ConnectedUser(accessor.getFirstNativeHeader("nickname"),
+                    accessor.getUser().getName());
             alertService.userConnect(connectedUser);
+        }
 
-        } else if (StompCommand.SUBSCRIBE == accessor.getCommand()) {
+        else if (StompCommand.SUBSCRIBE == accessor.getCommand()) {
             log.info("[SUBSCRIBE] 소켓에 메시지 요청");
+        }
 
-        } else if (StompCommand.DISCONNECT == accessor.getCommand()) {
+        else if (StompCommand.DISCONNECT == accessor.getCommand()) {
             log.info("[DISCONNECT] 로그아웃, 소켓 연결 종료");
             alertService.userDisConnect(accessor.getFirstNativeHeader("nickname"));
         }

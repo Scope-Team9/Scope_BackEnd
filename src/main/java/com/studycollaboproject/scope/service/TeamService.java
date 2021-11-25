@@ -46,7 +46,7 @@ public class TeamService {
 
             // 알림 저장
             AlertType alertType = AlertType.MATCH_TEAM;
-            alertService.saveAlert(post.getUser().getNickname(),alertType, team.getId(), user);
+            alertService.saveAlert(post.getUser().getNickname(),alertType, team.getPost().getId(), user);
 
             // 알림 소켓으로 보내기
             alertService.alertToUser(user, post.getUser().getNickname() + "님의 팀에 지원이 승낙되었습니다.");
