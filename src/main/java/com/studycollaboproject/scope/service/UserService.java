@@ -1,16 +1,13 @@
 package com.studycollaboproject.scope.service;
 
 import com.studycollaboproject.scope.dto.*;
+import com.studycollaboproject.scope.exception.BadRequestException;
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
-import com.studycollaboproject.scope.model.Bookmark;
-import com.studycollaboproject.scope.model.Post;
-import com.studycollaboproject.scope.model.User;
+import com.studycollaboproject.scope.model.*;
 import com.studycollaboproject.scope.repository.*;
 import com.studycollaboproject.scope.security.JwtTokenProvider;
 import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.*;
