@@ -1,6 +1,7 @@
 package com.studycollaboproject.scope.dto;
 
 import com.studycollaboproject.scope.model.Post;
+import com.studycollaboproject.scope.model.Tech;
 import com.studycollaboproject.scope.model.TechStack;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
@@ -74,7 +75,11 @@ public class PostResponseDto {
         this.techStack = new ArrayList<>();
         List<TechStack> techStackList = post.getTechStackList();
         for (TechStack stack : techStackList) {
-            this.techStack.add(stack.getTech().getTech());
+            if (stack.getTech().equals(Tech.TECH_CPP)){
+                this.techStack.add("C++");
+            }else {
+                this.techStack.add(stack.getTech().getTech());
+            }
         }
         this.totalMember = post.getTotalMember();
         this.recruitmentMember = post.getRecruitmentMember();
