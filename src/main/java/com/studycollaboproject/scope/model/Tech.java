@@ -9,7 +9,7 @@ public enum Tech {
     TECH_JS("JavaScript"),
     TECH_PYTHON("Python"),
     TECH_NODEJS("Node"),
-    TECH_CPP("cpp"),
+    TECH_CPP("C++"),
     TECH_FLASK("Flask"),
     TECH_DJANGO("Django"),
     TECH_VUE("Vue"),
