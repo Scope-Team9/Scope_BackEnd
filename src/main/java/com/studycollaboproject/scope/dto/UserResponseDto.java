@@ -32,13 +32,13 @@ public class UserResponseDto {
         this.introduction = user.getIntroduction();
         this.memberPropensityType = user.getMemberPropensityType();
         this.nickname = user.getNickname();
-        this.techStackList = techStackList;
         for (int i=0;i<techStackList.size();i++){
             if (techStackList.get(i).equals("cpp")){
                 techStackList.set(i,"C++");
                 break;
             }
         }
+        this.techStackList = techStackList;
         this.userId = user.getId();
         this.email = user.getEmail();
         this.isVerifiedEmail = user.getIsVerifiedEmail();
