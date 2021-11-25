@@ -9,6 +9,6 @@ public class MessageRequestDto {
 
     String title;
     String message;
-    String receivedId;
-    String sentId;
+    String receivedNickname;
+    String sentNickname;
 }

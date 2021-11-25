@@ -25,7 +25,10 @@ public enum ErrorCode {
     ALREADY_STARTED_ERROR("모집중인 프로젝트가 아닙니다."),
     NO_RECRUITMENT_ERROR("이미 진행중인 프로젝트입니다."),
     NO_EXCEED_MEMBER_ERROR("이미 모집 정원이 가득 찼습니다."),
-    NOT_AVAILABLE_ACCESS("불가능한 접근입니다.")
+    NOT_AVAILABLE_ACCESS("불가능한 접근입니다."),
+    NO_MESSAGE_ERROR("해당 쪽지를 찾을 수 없습니다."),
+    NO_ALERT_ERROR("해당 알림을 찾을 수 없습니다."),
+    NO_UUID_ERROR("해당 UUID를 찾을 수 없습니다.")
     ;
 
     private String message;

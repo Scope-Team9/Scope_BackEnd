@@ -11,11 +11,11 @@ import javax.persistence.Id;
 public class ConnectedUser extends Timestamped {
 
     @Id
-    private String snsId;
+    private String userNickname;
     private String userUuid;
 
-    public ConnectedUser(String snsId, String userUuid) {
-        this.snsId = snsId;
+    public ConnectedUser(String userNickname, String userUuid) {
+        this.userNickname = userNickname;
         this.userUuid = userUuid;
     }
 }

@@ -5,6 +5,7 @@ import com.studycollaboproject.scope.dto.MessageResponseDto;
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.NoAuthException;
+import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.security.UserDetailsImpl;
 import com.studycollaboproject.scope.service.MessageService;
 import com.studycollaboproject.scope.webSocket.AlertService;
@@ -27,7 +28,6 @@ import java.util.Optional;
 @RestController
 public class MessageController {
     private final MessageService messageService;
-    private final AlertService alertService;
     @PostMapping("/api/message")
     public ResponseEntity<Object> writeMessage(@RequestBody MessageRequestDto messageRequestDto,
                                                @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails, HttpSession session)
@@ -38,9 +38,12 @@ public class MessageController {
                 () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
         ).getSnsId();
 
-        // 쪽지 보냈을 때 메세지 저장
+        User writeUser = userDetails.getUser();
+        String writeUserNickname = writeUser.getNickname();
+
+        // 쪽지 저장
         MessageResponseDto responseDto = messageService.sentMessage(messageRequestDto, snsId);
-        alertService.sendMsg(messageRequestDto);
+
         // responseDto에 저장 후 응답
         return new ResponseEntity<>(
                 new ResponseDto("메세지가 성공적으로 발송되었습니다.", responseDto),

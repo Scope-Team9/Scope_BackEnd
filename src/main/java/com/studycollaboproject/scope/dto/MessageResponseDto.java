@@ -9,13 +9,13 @@ import lombok.Setter;
 public class MessageResponseDto {
     String title;
     String message;
-    String receivedId;
-    String sentId;
+    String receivedNickname;
+    String sentNickname;
 
     public MessageResponseDto(Message message) {
         this.title = message.getTitle();
         this.message = message.getMessage();
-        this.receivedId = message.getReceivedId();
-        this.sentId = message.getUser().getSnsId();
+        this.receivedNickname = message.getReceivedNickname();
+        this.sentNickname = message.getUser().getNickname();
     }
 }

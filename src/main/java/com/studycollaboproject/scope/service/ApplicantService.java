@@ -10,6 +10,8 @@ import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.ApplicantRepository;
 import com.studycollaboproject.scope.repository.PostRepository;
 import com.studycollaboproject.scope.repository.UserRepository;
+import com.studycollaboproject.scope.webSocket.AlertService;
+import com.studycollaboproject.scope.webSocket.AlertType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +26,7 @@ public class ApplicantService {
     private final ApplicantRepository applicantRepository;
     private final UserRepository userRepository;
     private final PostRepository postRepository;
+    private final AlertService alertService;
 
     @Transactional
     public Applicant applyPost(String snsId, Long postId, String comment) {
@@ -51,6 +54,10 @@ public class ApplicantService {
                 .comment(comment)
                 .build();
 
+        // 지원 한 알람 저장
+        AlertType alertType = AlertType.NEW_APPLICANT;
+        alertService.saveAlert(applicant.getUser().getNickname(),alertType,applicant.getId(),applicant.getPost().getUser());
+        alertService.alertToUser(applicant.getPost().getUser(),applicant.getComment());
         return applicantRepository.save(applicant);
     }
 

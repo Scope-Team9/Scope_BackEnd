@@ -7,6 +7,8 @@ import com.studycollaboproject.scope.exception.ForbiddenException;
 import com.studycollaboproject.scope.model.*;
 import com.studycollaboproject.scope.repository.ApplicantRepository;
 import com.studycollaboproject.scope.repository.TeamRepository;
+import com.studycollaboproject.scope.webSocket.AlertService;
+import com.studycollaboproject.scope.webSocket.AlertType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +23,7 @@ public class TeamService {
 
     private final TeamRepository teamRepository;
     private final ApplicantRepository applicantRepository;
-
+    private final AlertService alertService;
     @Transactional
     public void acceptMember(Post post, User user, Boolean accept) {
         // [예외처리] 대기열에서 신청자의 정보를 찾을 수 없을 때
@@ -41,6 +43,13 @@ public class TeamService {
                     .post(post)
                     .build();
             teamRepository.save(team);
+
+            // 알림 저장
+            AlertType alertType = AlertType.MATCH_TEAM;
+            alertService.saveAlert(post.getUser().getNickname(),alertType, team.getId(), user);
+
+            // 알림 소켓으로 보내기
+            alertService.alertToUser(user, post.getUser().getNickname() + "님의 팀에 지원이 승낙되었습니다.");
         }
 
     }

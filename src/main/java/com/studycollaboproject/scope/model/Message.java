@@ -30,7 +30,7 @@ public class Message extends Timestamped {
     private String message;
 
     @Column(nullable = false)
-    private String receivedId;
+    private String receivedNickname;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sent_id")
@@ -39,7 +39,7 @@ public class Message extends Timestamped {
     public Message(MessageRequestDto messageRequestDto, User user) {
         this.title = messageRequestDto.getTitle();
         this.message = messageRequestDto.getMessage();
-        this.receivedId = messageRequestDto.getReceivedId();
+        this.receivedNickname = messageRequestDto.getReceivedNickname();
         this.user = user;
     }
 

@@ -64,7 +64,7 @@ public class TeamRestController {
         if (requestDto.isAccept()) {
             mailService.acceptTeamMailBuilder(new MailDto(applyUser,post));
         }
-        //지원지 목록 출력
+        //지원자 목록 출력
         List<MemberListResponseDto> responseDto = teamService.getMember(postId);
         return new ResponseEntity<>(
                 new ResponseDto("신청 상태가 변경되었습니다.", responseDto),
