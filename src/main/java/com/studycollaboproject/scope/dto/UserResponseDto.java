@@ -20,6 +20,11 @@ public class UserResponseDto {
     private List<String> techStackList;
     @Schema(description = "아이디")
     private Long userId;
+    @Schema(description = "이메일")
+    private String email;
+    @Schema(description = "이메일")
+    private Boolean isVerifiedEmail;
+
 
 
     public UserResponseDto(User user, List<String> techStackList){
@@ -28,7 +33,9 @@ public class UserResponseDto {
         this.memberPropensityType = user.getMemberPropensityType();
         this.nickname = user.getNickname();
         this.techStackList = techStackList;
-        this.userId = getUserId();
-
+        this.userId = user.getId();
+        this.email = user.getEmail();
+        this.isVerifiedEmail = user.getIsVerifiedEmail();
+//        this.isVerifiedEmail = getIsVerifiedEmail();
     }
 }

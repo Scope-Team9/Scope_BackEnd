@@ -1,4 +1,4 @@
-package com.studycollaboproject.scope.security;
+package com.studycollaboproject.scope.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.studycollaboproject.scope.dto.ResponseDto;
@@ -15,6 +15,10 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
+            if(request.getContentLengthLong() > 10000000) {
+                errorResponse(response, "Request content exceed limit of 10000 bytes");
+                return ;
+            }
             filterChain.doFilter(request, response);
         } catch (RuntimeException exception) {
             errorResponse(response, exception.getLocalizedMessage());
@@ -25,7 +29,7 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
         ObjectMapper om = new ObjectMapper();
 
         //에러 메시지
-        ResponseDto responseDto = new ResponseDto("failed", localizedMessage, "");
+        ResponseDto responseDto = new ResponseDto(localizedMessage, "");
 
         //JSON 형식으로 변환
         String jsonString = om.writeValueAsString(responseDto);

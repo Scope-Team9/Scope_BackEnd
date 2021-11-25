@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,15 +25,16 @@ public class Post extends Timestamped {
     @Column(nullable = false)
     private String title;
 
-    private LocalDate startDate;
+    private LocalDateTime startDate;
 
-    private LocalDate endDate;
-
-    @Column(nullable = false)
-    private String summary;
+    private LocalDateTime endDate;
 
     @Column(nullable = false)
+    @Lob
     private String contents;
+
+    @Lob
+    private String readmeData;
 
     @Column(nullable = false)
     private int totalMember;
@@ -75,9 +76,8 @@ public class Post extends Timestamped {
 
     public Post(PostRequestDto postRequestDto, User user) {
         this.title = postRequestDto.getTitle();
-        this.startDate = postRequestDto.getStartDate();
-        this.endDate = postRequestDto.getEndDate();
-        this.summary = postRequestDto.getSummary();
+        this.startDate = postRequestDto.getStartDate().toLocalDateTime();
+        this.endDate = postRequestDto.getEndDate().toLocalDateTime();
         this.contents = postRequestDto.getContents();
         this.totalMember = postRequestDto.getTotalMember();
         this.user = user;
@@ -87,13 +87,11 @@ public class Post extends Timestamped {
     public void update(PostRequestDto postRequestDto) {
 
         this.title = postRequestDto.getTitle();
-        this.startDate = postRequestDto.getStartDate();
-        this.endDate = postRequestDto.getEndDate();
-        this.summary = postRequestDto.getSummary();
+        this.startDate = postRequestDto.getStartDate().toLocalDateTime();
+        this.endDate = postRequestDto.getEndDate().toLocalDateTime();
         this.contents = postRequestDto.getContents();
         this.totalMember = postRequestDto.getTotalMember();
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
-
     }
 
     public void deleteUser(User user) {
@@ -113,7 +111,15 @@ public class Post extends Timestamped {
         this.recruitmentMember += 1;
     }
 
+    public void deleteMember() {
+        this.recruitmentMember -= 1;
+    }
+
     public void updateTechStack(List<TechStack> techStackList) {
         this.techStackList = techStackList;
+    }
+
+    public void updateReadmeData(String text) {
+        this.readmeData = text;
     }
 }

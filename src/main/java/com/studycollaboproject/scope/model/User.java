@@ -38,18 +38,19 @@ public class User extends Timestamped {
     @Column(unique = true, nullable = false)
     private String nickname;
 
+    @Column(length = 5000)
     private String introduction;
 
-    @Column(unique = true,nullable = false)
+    @Column(unique = true, nullable = false)
     private String mailAuthenticationCode;
 
-    private boolean isVerifiedEmail;
+    private Boolean isVerifiedEmail;
 
 
-    private boolean emailReceiveAgreement;
+    private Boolean emailReceiveAgreement;
 
-//    @Column(nullable = false)
-    private boolean recommendationAgreement;
+    //    @Column(nullable = false)
+    private Boolean recommendationAgreement;
 
     @OneToMany(mappedBy = "user")
     private List<Bookmark> bookmarkList = new ArrayList<>();
@@ -63,18 +64,20 @@ public class User extends Timestamped {
     @OneToMany(mappedBy = "user")
     private List<Applicant> applicantList = new ArrayList<>();
 
-    public User(SignupRequestDto signupRequestDto, String userTestResult, String memberTestResult){
-        this.email =signupRequestDto.getEmail();
+    public User(SignupRequestDto signupRequestDto, String userTestResult, String memberTestResult) {
+        this.email = signupRequestDto.getEmail();
         this.snsId = signupRequestDto.getSnsId();
         this.nickname = signupRequestDto.getNickname();
         this.userPropensityType = userTestResult;
         this.memberPropensityType = memberTestResult;
         this.isVerifiedEmail = false;
         this.emailReceiveAgreement = false;
+        this.recommendationAgreement = false;
         this.introduction = "";
     }
-    public User(SignupTestDto signupTestDto, String token){
-        this.email =signupTestDto.getEmail();
+
+    public User(SignupTestDto signupTestDto, String token) {
+        this.email = signupTestDto.getEmail();
         this.snsId = signupTestDto.getSnsId();
         this.nickname = signupTestDto.getNickname();
         this.userPropensityType = signupTestDto.getUserPropensityType();
@@ -82,16 +85,20 @@ public class User extends Timestamped {
         this.introduction = "";
         this.isVerifiedEmail = false;
         this.emailReceiveAgreement = false;
+        this.recommendationAgreement = false;
         this.mailAuthenticationCode = token;
     }
-    public User(String snsId,String userPropensityType,String memberPropensityType, String nickname,String email){
+
+    public User(String snsId, String userPropensityType, String memberPropensityType, String nickname, String email) {
         this.snsId = snsId;
         this.email = email;
         this.userPropensityType = userPropensityType;
         this.memberPropensityType = memberPropensityType;
         this.nickname = nickname;
         this.introduction = "";
-
+        this.isVerifiedEmail = false;
+        this.emailReceiveAgreement = false;
+        this.recommendationAgreement = false;
     }
 
     public User(TestUserSetupDto testUserSetupDto) {
@@ -103,10 +110,11 @@ public class User extends Timestamped {
         this.introduction = "";
         this.isVerifiedEmail = false;
         this.emailReceiveAgreement = false;
+        this.recommendationAgreement = false;
         this.mailAuthenticationCode = UUID.randomUUID().toString();
     }
 
-    public void addTechStackListAndToken(List<TechStack> techStackList, String token){
+    public void addTechStackListAndToken(List<TechStack> techStackList, String token) {
         this.mailAuthenticationCode = token.split("\\.")[1];
         this.techStackList = techStackList;
     }
@@ -121,11 +129,11 @@ public class User extends Timestamped {
         return this.memberPropensityType;
     }
 
-    public void resetTechStack(){
+    public void resetTechStack() {
         this.techStackList = new ArrayList<>();
     }
 
-    public void updateUserInfo(String email, String nickname,List<TechStack> techStackList){
+    public void updateUserInfo(String email, String nickname, List<TechStack> techStackList) {
         this.email = email;
         this.nickname = nickname;
         this.techStackList = techStackList;
@@ -135,8 +143,8 @@ public class User extends Timestamped {
         this.introduction = userDesc;
     }
 
-    public void verifiedEmail(){
-        this.isVerifiedEmail=true;
+    public void verifiedEmail() {
+        this.isVerifiedEmail = true;
         this.emailReceiveAgreement = true;
     }
 }

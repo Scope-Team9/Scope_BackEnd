@@ -1,10 +1,13 @@
 package com.studycollaboproject.scope.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Getter
 @Entity
+@NoArgsConstructor
 public class TotalResult {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,14 +24,10 @@ public class TotalResult {
     @Column(nullable = false)
     private Long result;
 
-    public TotalResult(){
+    public TotalResult(String userType, String memberType){
+        this.userType = userType;
+        this.memberType = memberType;
         this.result = 0L;
-    }
-
-    public TotalResult(String s, String s1) {
-        this.result = 0L;
-        this.userType = s;
-        this.memberType = s1;
     }
 
     public void setResult(Long result){

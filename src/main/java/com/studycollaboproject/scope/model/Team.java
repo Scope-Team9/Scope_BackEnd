@@ -27,21 +27,27 @@ public class Team extends Timestamped {
     @JoinColumn(name="post_id")
     private Post post;
 
-    private boolean isAssement;
+    private boolean isAssessment;
 
     @Builder
     public Team(User user, Post post){
         this.post = post;
         this.user = user;
         post.updateMember();
-        isAssement=false;
+        this.isAssessment = false;
     }
 
-    public void setAssement(){
-        this.isAssement = true;
+    public void setAssessment(){
+        this.isAssessment = true;
     }
 
     public void setUrl(String frontUrl, String backUrl){
         this.post.setUrl(frontUrl,backUrl);
+    }
+
+    public void deleteTeam() {
+        this.post.deleteMember();
+        this.post.getTeamList().remove(this);
+        this.user.getTeamList().remove(this);
     }
 }

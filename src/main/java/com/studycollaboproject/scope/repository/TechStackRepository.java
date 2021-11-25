@@ -16,4 +16,6 @@ public interface TechStackRepository extends JpaRepository<TechStack, Long> {
     void deleteAllByPost(Post post);
 
     List<TechStack> findAllByUserIsNullAndTechIn(List<Tech> tech);
+
+    List<TechStack> findAllByUser_SnsId(String snsId);
 }

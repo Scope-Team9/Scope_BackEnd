@@ -2,7 +2,7 @@ package com.studycollaboproject.scope.service;
 
 import com.studycollaboproject.scope.dto.TestResultDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.exception.BadRequestException;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class TestService {
     @Transactional
     public TestResultDto updatePropensityType(String snsId, List<String> userPropensityType, List<String> memberPropensityType) {
         User user = userRepository.findBySnsId(snsId).orElseThrow(
-                () -> new RestApiException(ErrorCode.NO_USER_ERROR)
+                () -> new BadRequestException(ErrorCode.NO_USER_ERROR)
         );
 
         String userType = testResult(userPropensityType);       //user의 성향 테스트 결과
@@ -35,19 +35,18 @@ public class TestService {
         for (String userSelected : userPropensityType) {
             userTypeMap.put(userSelected, userTypeMap.getOrDefault(userSelected, 0) + 1);
         }
+        int typeLValue = userTypeMap.getOrDefault("L", 0);
+
         userType.append(userTypeMap.getOrDefault("L", 0) > userTypeMap.getOrDefault("F", 0) ? 'L' : 'F');
         userType.append(userTypeMap.getOrDefault("V", 0) > userTypeMap.getOrDefault("H", 0) ? 'V' : 'H');
         userType.append(userTypeMap.getOrDefault("P", 0) > userTypeMap.getOrDefault("G", 0) ? 'P' : 'G');
 
-        return new String(userType);
-    }
+        String userTypeString = new String(userType);
+        if(userTypeString.equals("FHP") && typeLValue > 0){
+            userTypeString = "RHP";
+        }
 
-    public TestResultDto getPropensityType(String snsId) {
-        User user = userRepository.findBySnsId(snsId).orElseThrow(
-                () -> new RestApiException(ErrorCode.NO_USER_ERROR)
-        );
-
-        return new TestResultDto(user.getUserPropensityType(), user.getMemberPropensityType());
+        return userTypeString;
     }
 }
 

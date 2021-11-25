@@ -1,13 +1,15 @@
 package com.studycollaboproject.scope.security;
 
 
+import com.studycollaboproject.scope.exception.BadRequestException;
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.exception.NoAuthException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,7 +27,10 @@ import java.util.Date;
 @Slf4j
 public class JwtTokenProvider {
 
-    private String secretKey = "tmzhvmtpfvmtmxjelvmfhwprxmtmzhvmtmxjelzhffkqhvmfhwprxm"; // 암호 키 설정
+
+    @Value("${jwtToken}")
+    private String secretKey; // 암호 키 설정
+
     SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256; // 알고리즘 선택
 
 
@@ -62,10 +67,8 @@ public class JwtTokenProvider {
     // 토큰에 숨겨져 있는 회원의 정보를 추출해와 UserDetails 객체에 담은 후 UsernamePasswordAuthenticationToken 이용해서 Authentication에 담겨서
     // SecurityContextHolder.getContext에 최종적으로 담겨서 로그아웃 하기 전까지 계속 사용되어진다.
     public Authentication getAuthentication(String token) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
-        log.info("=============getAuthentication============");
-        log.info("[{}] snsId={}", MDC.get("UUID"), userDetails.getUsername());
-        log.info("=============getAuthentication============");
+        UserDetailsImpl userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
+        log.info("[{}], snsId={}, email={}, nickname={}", MDC.get("UUID"), userDetails.getSnsId(), userDetails.getUser().getEmail(), userDetails.getUser().getNickname());
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
@@ -88,7 +91,7 @@ public class JwtTokenProvider {
     public boolean validateToken(String jwtToken) {
         if (jwtToken == null) {
             log.info("토큰이 존재하지 않습니다.");
-            throw new RestApiException(ErrorCode.NO_TOKEN_ERROR);
+            throw new BadRequestException(ErrorCode.NO_TOKEN_ERROR);
         }
         try {
             JwtParser parser = Jwts.parserBuilder().setSigningKey(getSigninKey()).build();
@@ -98,11 +101,11 @@ public class JwtTokenProvider {
 
         } catch (ExpiredJwtException e) {
             log.info("만료된 토큰");
-            throw new RestApiException(ErrorCode.TOKEN_EXPRIRATOION_ERROR);
+            throw new BadRequestException(ErrorCode.TOKEN_EXPIRATION_ERROR);
 
         } catch (Exception e) {
             log.info("정상적인 토큰이 아닙니다.");
-            throw new RestApiException(ErrorCode.NO_AUTHENTICATION_ERROR);
+            throw new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR);
         }
 
     }

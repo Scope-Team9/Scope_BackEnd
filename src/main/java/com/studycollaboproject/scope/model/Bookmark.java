@@ -19,16 +19,23 @@ public class Bookmark extends Timestamped {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="post_id")
+    @JoinColumn(name = "post_id")
     private Post post;
 
     @Builder
-    public Bookmark(User user, Post post){
+    public Bookmark(User user, Post post) {
         this.post = post;
+        this.post.getBookmarkList().add(this);
         this.user = user;
+        this.user.getBookmarkList().add(this);
+    }
+
+    public void delete() {
+        this.post.getBookmarkList().remove(this);
+        this.user.getBookmarkList().remove(this);
     }
 }

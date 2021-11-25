@@ -13,15 +13,13 @@ public class PostDetailDto {
     private PostResponseDto post;
     @Schema(description = "프로젝트 맴버")
     private List<MemberListResponseDto> members;
-    @Schema(description = "게시글 작성자인지 여부")
-    private boolean isTeamStarter;
-    @Schema(description = "북마크 체크 여부")
-    private boolean isBookmarkChecked;
+    @Schema(description = "유저 상태")
+    private String userStatus;
 
-    public PostDetailDto(PostResponseDto postDetail, List<MemberListResponseDto> members,boolean isTeamStarter, boolean isBookmarkChecked) {
+
+    public PostDetailDto(PostResponseDto postDetail, List<MemberListResponseDto> members, String userStatus) {
         this.post = postDetail;
         this.members = members;
-        this.isTeamStarter = isTeamStarter;
-        this.isBookmarkChecked = isBookmarkChecked;
+        this.userStatus = userStatus;
     }
 }

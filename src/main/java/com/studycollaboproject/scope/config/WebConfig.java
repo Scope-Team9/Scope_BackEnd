@@ -1,8 +1,8 @@
 package com.studycollaboproject.scope.config;
 
 import com.studycollaboproject.scope.filter.LogFilter;
-import com.studycollaboproject.scope.security.ExceptionHandlerFilter;
-import com.studycollaboproject.scope.security.JwtAuthenticationFilter;
+import com.studycollaboproject.scope.filter.ExceptionHandlerFilter;
+import com.studycollaboproject.scope.filter.JwtAuthenticationFilter;
 import com.studycollaboproject.scope.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -24,7 +24,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:3000")
+                .allowedOrigins("http://localhost:3000","http://kbumsoo.s3-website.ap-northeast-2.amazonaws.com/")
                 //클라이언트 로컬 주소임. 클라이언트에서 내 서버의 api에 접근 시 허용에 관한 부분. CORS.
                 //2개 이상의 origin에 대해서 허용할 수 있음!
                 .allowedMethods("POST", "GET", "PUT", "DELETE", "HEAD", "OPTIONS") // 클라이언트에서 요청하는 메소드 어디까지 허용할 것인가.
@@ -63,7 +63,6 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         File file = new File("");
         String rootPath = "file://" + file.getAbsoluteFile().getPath() + "/images/";
-        System.out.println("rootPath = " + rootPath);
         registry.addResourceHandler("/images/**")
                 .addResourceLocations(rootPath);
     }

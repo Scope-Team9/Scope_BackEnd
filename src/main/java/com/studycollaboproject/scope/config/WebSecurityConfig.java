@@ -1,7 +1,5 @@
 package com.studycollaboproject.scope.config;
 
-import com.studycollaboproject.scope.security.ExceptionHandlerFilter;
-import com.studycollaboproject.scope.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -2,14 +2,16 @@ package com.studycollaboproject.scope.service;
 
 import com.studycollaboproject.scope.dto.MailDto;
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.exception.RestApiException;
+import com.studycollaboproject.scope.exception.BadRequestException;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
@@ -22,6 +24,7 @@ import java.util.Properties;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class MailService {
 
     private final SpringTemplateEngine templateEngine;
@@ -56,12 +59,14 @@ public class MailService {
         sendMail(mimeMessageHelper.getMimeMessage());
     }
 
+    @Async
     public void applicantMailBuilder(MailDto mailDto) throws MessagingException {
 
+        log.info("==================================================");
+        log.info("지원 알림 메일 발송");
         String email = mailDto.getToEmail();
         Context context = new Context();
         context.setVariable("postTitle", mailDto.getPostTitle());
-        System.out.println("mailDto = " + mailDto.getPostTitle());
         context.setVariable("toNickname", mailDto.getToNickname());
         context.setVariable("fromNickname", mailDto.getFromNickname());
         context.setVariable("postId", mailDto.getPostId());
@@ -69,13 +74,18 @@ public class MailService {
         String subject = "[scope]" + mailDto.getToNickname() + "님의 프로젝트에" + mailDto.getFromNickname() + "님이 팀원 신청을 했습니다.";
         String body = templateEngine.process("applicantEmail", context);
         setMail(subject, body, email);
+        log.info("==================================================");
     }
 
     public void sendMail(MimeMessage message) {
         getJavaMailSender().send(message);
     }
 
+    @Async
     public void acceptTeamMailBuilder(MailDto mailDto) throws MessagingException {
+
+        log.info("==================================================");
+        log.info("프로젝트 매칭 알림 메일 발송");
 
         String email = mailDto.getToEmail();
         Context context = new Context();
@@ -87,9 +97,16 @@ public class MailService {
         String body = templateEngine.process("acceptTeamEmail", context);
 
         setMail(subject, body, email);
+        log.info("==================================================");
     }
 
-    public void assessmantMailBuilder(MailDto mailDto) throws MessagingException {
+    @Async
+    public void assessmentMailBuilder(MailDto mailDto) throws MessagingException {
+
+        log.info("==================================================");
+        log.info("프로젝트 종료 알림 메일 발송");
+
+
         for (User user : mailDto.getToUserList()) {
             Context context = new Context();
             context.setVariable("title", mailDto.getPostTitle());
@@ -98,11 +115,14 @@ public class MailService {
             String subject = "[scope]" + user.getNickname() + "님의 프로젝트가 종료되었습니다!";
             String body = templateEngine.process("applicationNoticeEmail", context);
             setMail(subject, body, user.getEmail());
+            log.info("==================================================");
         }
-
     }
 
+    @Async
     public void authMailSender(String email, User user) throws MessagingException {
+        log.info("==================================================");
+        log.info("이메일 인증 메일 발송");
         Context context = new Context();
         context.setVariable("userId", user.getId());
         context.setVariable("code", user.getMailAuthenticationCode());
@@ -119,10 +139,10 @@ public class MailService {
             if (code.equals(user.get().getMailAuthenticationCode())) {
                 user.get().verifiedEmail();
             } else {
-                throw new RestApiException(ErrorCode.NO_TOKEN_ERROR);
+                throw new BadRequestException(ErrorCode.NO_TOKEN_ERROR);
             }
         } else {
-            throw new RestApiException(ErrorCode.NO_USER_ERROR);
+            throw new BadRequestException(ErrorCode.NO_USER_ERROR);
         }
     }
 }

@@ -1,102 +1,164 @@
 package com.studycollaboproject.scope.repository;
 
-import com.querydsl.jpa.JPQLQuery;
-import com.studycollaboproject.scope.model.*;
-import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.studycollaboproject.scope.model.Post;
+import com.studycollaboproject.scope.model.ProjectStatus;
+import com.studycollaboproject.scope.model.QTechStack;
+import com.studycollaboproject.scope.model.Tech;
 
+import javax.persistence.EntityManager;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.studycollaboproject.scope.model.QPost.post;
 import static com.studycollaboproject.scope.model.QUser.user;
 
-public class PostRepositoryExtensionImpl extends QuerydslRepositorySupport implements PostRepositoryExtension {
-    public PostRepositoryExtensionImpl() {
-        super(Post.class);
+public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
+    private final JPAQueryFactory queryFactory;
+
+    public PostRepositoryExtensionImpl(EntityManager em) {
+        this.queryFactory = new JPAQueryFactory(em);
     }
 
-
     @Override
-    public List<Post> findAllByTechInOrderByCreatedAt(List<Tech> techList) {
-        JPQLQuery<Post> query = from(post)
-                .where(post.techStackList.any().tech.in(techList))
+    public List<Post> findAllByTechInOrderByModifiedAt(List<Tech> techList) {
+        return queryFactory.selectFrom(post)
+                .where(post.techStackList.any().tech.in(techList)
+                        .and(post.projectStatus.in(ProjectStatus.PROJECT_STATUS_RECRUITMENT, ProjectStatus.PROJECT_STATUS_INPROGRESS)))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.createdAt.desc());
-        return query.fetch();
+                .orderBy(post.modifiedAt.desc())
+                .orderBy(post.projectStatus.desc())
+                .distinct()
+                .fetch();
     }
 
     @Override
     public List<Post> findAllByTechInOrderByStartDate(List<Tech> techList) {
-        JPQLQuery<Post> query = from(post)
-                .where(post.techStackList.any().tech.in(techList))
+        return queryFactory.selectFrom(post)
+                .where(post.techStackList.any().tech.in(techList)
+                        .and(post.startDate.goe(LocalDate.now().atStartOfDay()))
+                        .and(post.projectStatus.in(ProjectStatus.PROJECT_STATUS_RECRUITMENT, ProjectStatus.PROJECT_STATUS_INPROGRESS)))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.startDate.asc());
-        return query.fetch();
+                .orderBy(post.startDate.asc())
+                .orderBy(post.projectStatus.desc())
+                .distinct()
+                .fetch();
     }
 
     @Override
     public List<Post> findAllByBookmarkOrderByStartDate(String snsId) {
-        JPQLQuery<Post> query = from(post)
+        return queryFactory.selectFrom(post)
+                .where(post.bookmarkList.any().user.snsId.equalsIgnoreCase(snsId)
+                        .and(post.startDate.goe(LocalDateTime.now())))
+                .leftJoin(post.user, user).fetchJoin()
+                .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .orderBy(post.startDate.asc())
+                .orderBy(post.projectStatus.desc())
+                .distinct()
+                .fetch();
+    }
+
+    @Override
+    public List<Post> findAllByBookmarkOrderByModifiedAt(String snsId) {
+        return queryFactory.selectFrom(post)
                 .where(post.bookmarkList.any().user.snsId.equalsIgnoreCase(snsId))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.startDate.asc());
-        return query.fetch();
+                .orderBy(post.modifiedAt.desc())
+                .orderBy(post.projectStatus.desc())
+                .distinct()
+                .fetch();
     }
 
     @Override
-    public List<Post> findAllByBookmarkOrderByCreatedAt(String snsId) {
-        JPQLQuery<Post> query = from(post)
-                .where(post.bookmarkList.any().user.snsId.equalsIgnoreCase(snsId))
-                .leftJoin(post.user, user).fetchJoin()
-                .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.createdAt.desc());
-        return query.fetch();
-    }
-
-    @Override
-    public List<Post> findAllByPropensityTypeOrderByStartDate(String propensity) {
-        JPQLQuery<Post> query = from(post)
+    public List<Post> findAllByPropensityTypeOrderByStartDate(String propensity, List<Tech> techList, String snsId) {
+        return queryFactory.selectFrom(post)
                 .where(post.user.snsId.notEqualsIgnoreCase("unknown")
+                        .and(post.user.snsId.notEqualsIgnoreCase(snsId))
                         .and(post.projectStatus.eq(ProjectStatus.PROJECT_STATUS_RECRUITMENT))
+                        .and(post.startDate.goe(LocalDateTime.now()))
+                        .and(post.techStackList.any().tech.in(techList))
                         .and(post.user.userPropensityType.eq(propensity)))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.startDate.asc());
-        return query.fetch();
+                .orderBy(post.startDate.asc())
+                .distinct()
+                .fetch();
     }
 
     @Override
-    public List<Post> findAllByPropensityTypeOrderByCreatedAt(String propensity) {
-        JPQLQuery<Post> query = from(post)
+    public List<Post> findAllByPropensityTypeOrderByModifiedAt(String propensity, List<Tech> techList, String snsId) {
+        return queryFactory.selectFrom(post)
                 .where(post.user.snsId.notEqualsIgnoreCase("unknown")
+                        .and(post.user.snsId.notEqualsIgnoreCase(snsId))
                         .and(post.projectStatus.eq(ProjectStatus.PROJECT_STATUS_RECRUITMENT))
+                        .and(post.techStackList.any().tech.in(techList))
                         .and(post.user.userPropensityType.eq(propensity)))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.createdAt.desc());
-        return query.fetch();
+                .orderBy(post.modifiedAt.desc())
+                .distinct()
+                .fetch();
     }
 
     @Override
-    public List<Post> findAllByUserSnsId(String snsId) {
-        JPQLQuery<Post> query = from(post)
-                .where(post.teamList.any().user.snsId.eq(snsId)
-                        .or(post.applicantList.any().user.snsId.eq(snsId)))
+    public List<Post> findMemberPostByUserSnsId(String snsId) {
+        return queryFactory.selectFrom(post)
+                .where(post.teamList.any().user.snsId.eq(snsId))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.createdAt.desc());
-        return query.fetch();
+                .orderBy(post.modifiedAt.desc())
+                .distinct()
+                .fetch();
+    }
+
+    @Override
+    public List<Post> findReadyPostByUserSnsId(String snsId) {
+        return queryFactory.selectFrom(post)
+                .where(post.applicantList.any().user.snsId.eq(snsId))
+                .leftJoin(post.user, user).fetchJoin()
+                .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .orderBy(post.modifiedAt.desc())
+                .distinct()
+                .fetch();
     }
 
     @Override
     public List<Post> findAllBookmarkByUserSnsId(String snsId) {
-        JPQLQuery<Post> query = from(post)
+        return queryFactory.selectFrom(post)
                 .where(post.bookmarkList.any().user.snsId.eq(snsId))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.createdAt.desc());
-        return query.fetch();
+                .orderBy(post.modifiedAt.desc())
+                .distinct()
+                .fetch();
+    }
+
+    @Override
+    public List<Post> findAllByKeywordOrderByModifiedAt(String keyword) {
+        return queryFactory.selectFrom(post)
+                .where(post.title.contains(keyword)
+                        .or(post.contents.contains(keyword)))
+                .leftJoin(post.user, user).fetchJoin()
+                .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .orderBy(post.modifiedAt.desc())
+                .distinct()
+                .fetch();
+    }
+
+    @Override
+    public List<Post> findAllByKeywordOrderByStartDate(String keyword) {
+        return queryFactory.selectFrom(post)
+                .where(post.title.contains(keyword)
+                        .or(post.contents.contains(keyword)))
+                .where(post.startDate.goe(LocalDateTime.now()))
+                .leftJoin(post.user, user).fetchJoin()
+                .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .orderBy(post.startDate.asc())
+                .distinct()
+                .fetch();
     }
 }

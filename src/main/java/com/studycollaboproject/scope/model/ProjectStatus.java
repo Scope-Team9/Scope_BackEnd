@@ -5,9 +5,9 @@ import lombok.Getter;
 @Getter
 public enum ProjectStatus {
 
+    PROJECT_STATUS_RECRUITMENT("모집중"),
     PROJECT_STATUS_INPROGRESS("진행중"),
-    PROJECT_STATUS_END("종료"),
-    PROJECT_STATUS_RECRUITMENT("모집중");
+    PROJECT_STATUS_END("종료");
 
     private final String projectStatus;
 

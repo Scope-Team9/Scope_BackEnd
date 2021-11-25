@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # profile.sh
+
 function find_idle_profile()
 {
     # curl 결과로 연결할 서비스 결정
@@ -8,17 +9,16 @@ function find_idle_profile()
 
     RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost/profile)
 
-
-    if [ ${RESPONSE_CODE} -ge 400 ] # 400 보다 크면 (즉, 40x/50x 에러 모두 포함)
+    if [ "${RESPONSE_CODE}" -ge 400 ] # 400 보다 크면 (즉, 40x/50x 에러 모두 포함)
     # 만약 오류가 있다면 강제로 1번에 배포하기 위해 real2로 둠
     then
-        CURRENT_PROFILE=real2
+        CURRENT_PROFILE='real2'
     else
         CURRENT_PROFILE=$(curl -s http://localhost/profile)
     fi
 
     # IDLE_PROFILE : nginx와 연결되지 않은 profile
-    if [ ${CURRENT_PROFILE} == real1 ]
+    if [ "${CURRENT_PROFILE}" == 'real1' ]
     then
       IDLE_PROFILE=real2
     else
@@ -34,10 +34,10 @@ function find_idle_port()
 {
     IDLE_PROFILE=$(find_idle_profile)
 
-    if [ ${IDLE_PROFILE} == real1 ]
+    if [ "${IDLE_PROFILE}" == 'real1' ]
     then
-      echo "8081"
+      echo '8081'
     else
-      echo "8082"
+      echo '8082'
     fi
 }
