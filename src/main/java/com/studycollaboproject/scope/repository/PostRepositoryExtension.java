@@ -7,17 +7,17 @@ import java.util.List;
 
 public interface PostRepositoryExtension {
 
-    List<Post> findAllByTechInOrderByCreatedAt(List<Tech> techList);
+    List<Post> findAllByTechInOrderByModifiedAt(List<Tech> techList);
 
     List<Post> findAllByTechInOrderByStartDate(List<Tech> techList);
 
     List<Post> findAllByBookmarkOrderByStartDate(String snsId);
 
-    List<Post> findAllByBookmarkOrderByCreatedAt(String snsId);
+    List<Post> findAllByBookmarkOrderByModifiedAt(String snsId);
 
     List<Post> findAllByPropensityTypeOrderByStartDate(String propensity, List<Tech> techList, String snsId);
 
-    List<Post> findAllByPropensityTypeOrderByCreatedAt(String propensity, List<Tech> techList, String snsId);
+    List<Post> findAllByPropensityTypeOrderByModifiedAt(String propensity, List<Tech> techList, String snsId);
 
     List<Post> findMemberPostByUserSnsId(String snsID);
 
@@ -25,7 +25,7 @@ public interface PostRepositoryExtension {
 
     List<Post> findAllBookmarkByUserSnsId(String snsId);
 
-    List<Post> findAllByKeywordOrderByCreatedAt(String keyword);
+    List<Post> findAllByKeywordOrderByModifiedAt(String keyword);
 
     List<Post> findAllByKeywordOrderByStartDate(String keyword);
 }

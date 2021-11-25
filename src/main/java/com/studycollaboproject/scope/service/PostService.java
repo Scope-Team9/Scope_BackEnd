@@ -105,7 +105,7 @@ public class PostService {
                 }
             } else {
                 for (String propensity : propensityTypeList) {
-                    filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByCreatedAt(propensity, techList, snsId));
+                    filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByModifiedAt(propensity, techList, snsId));
 //                    filterPosts.addAll(postRepository.findDistinctByUser_UserPropensityTypeAndProjectStatusAndUserSnsIdIsNotAndTechStackList_TechInOrderByCreatedAtDesc(propensity, ProjectStatus.PROJECT_STATUS_RECRUITMENT, "unknown", techList));
                 }
             }
@@ -123,7 +123,7 @@ public class PostService {
                 filterPosts = postRepository.findAllByBookmarkOrderByStartDate(snsId);
 //                filterPosts = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
             } else {
-                filterPosts = postRepository.findAllByBookmarkOrderByCreatedAt(snsId);
+                filterPosts = postRepository.findAllByBookmarkOrderByModifiedAt(snsId);
 //                filterPosts = postRepository.findAllByBookmarkList_User_SnsIdOrderByCreatedAtDesc(snsId);
             }
 
@@ -135,7 +135,7 @@ public class PostService {
                 filterPosts = postRepository.findAllByTechInOrderByStartDate(techList);
 //                filterPosts = postRepository.findDistinctByTechStackList_TechInOrderByStartDate(techList);
             } else {
-                filterPosts = postRepository.findAllByTechInOrderByCreatedAt(techList);
+                filterPosts = postRepository.findAllByTechInOrderByModifiedAt(techList);
 //                filterPosts = postRepository.findDistinctByTechStackList_TechInOrderByCreatedAtDesc(techList);
             }
             if (snsId.equals("")) {
@@ -287,7 +287,7 @@ public class PostService {
         if (sort.equals("deadline")) {
             searchPostList = postRepository.findAllByKeywordOrderByStartDate(keyword);
         } else {
-            searchPostList = postRepository.findAllByKeywordOrderByCreatedAt(keyword);
+            searchPostList = postRepository.findAllByKeywordOrderByModifiedAt(keyword);
         }
         List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
         //            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
