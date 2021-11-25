@@ -126,6 +126,12 @@ public class UserService {
         techStackRepository.deleteAllByUser(user);
         applicantRepository.deleteAllByUser(user);
         bookmarkRepository.deleteAllByUser(user);
+        List<Team> teamList =teamRepository.findAllByUser(user);
+        if (!teamList.isEmpty()){
+            for (Team team : teamList) {
+                team.getPost().deleteMember();
+            }
+        }
         teamRepository.deleteAllByUser(user);
 
         List<Post> postList = postRepository.findAllByUser(user);
