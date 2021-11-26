@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns: lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Scope</title>
 </head>
 <body>
@@ -11,22 +12,16 @@
         <tbody>
         <tr>
             <td style="background-color:#fff;color:#5065df;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:17px;font-weight:400;line-height:28px;padding:0;padding-left:5%;padding-right:5%;vertical-align:top">
-                <table style="border-collapse:collapse;width:50%;max-width:600px;min-width:350px;border-spacing:0;table-layout:fixed;vertical-align:top;margin: auto">
+                <table style="border-collapse:collapse;width:100%;max-width:600px;border-spacing:0;table-layout:fixed;vertical-align:top;margin: auto">
                     <tbody>
                     <tr>
                         <td height="40"
                             style="color:#5065df;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:0;font-weight:400;height:40px;line-height:0;padding:0;vertical-align:top">
                         </td>
                     </tr>
-                    <tr>
-                        <!--                                                                <td valign="top" style="color:#2b2b2b;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:17px;font-weight:400;line-height:1;padding:0;vertical-align:top">-->
-                        <!--                                                                    <a href="https://upbit.com/home" style="font-size:0;line-height:0" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://upbit.com/home&amp;source=gmail&amp;ust=1636043669732000&amp;usg=AFQjCNE9wuLb9shFSWT0Wqe1j9coJXKMwQ"><img src="https://ci3.googleusercontent.com/proxy/doqWF8X8MsVDEIDJ3tUkR1kCMZGgHv9cRd6PvHtZnqDF_yLdO2yLFIZGfEd-f7O0loFRSjwsNr8ESqpjNb7oNE2m2fuLTr0=s0-d-e1-ft#https://static.upbit.com/email/images/upbit_logo.png" alt="upbit" width="79" height="18" style="border:0;height:18px;outline:none;text-decoration:none;width:79px;vertical-align:top" class="CToWUd"></a>-->
-                        <!--                                                                </td>-->
-                    </tr>
-                    <tr>
-                        <td height="60"
-                            style="color:#5065df;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:0;font-weight:400;height:60px;line-height:0;padding:0;vertical-align:top">
-                            &nbsp;
+
+                    <tr height="100">
+                        <td style="padding-bottom:20px;"><img th:src="${logo}"  style="max-width:80px" />
                         </td>
                     </tr>
                     <tr height="100">
@@ -57,20 +52,14 @@
                                                 style="border-collapse:collapse;width:100%">
                                             <!--                                                                프로필사진-->
                                             <tr>
-                                                <a href="https://www.instagram.com/9_ml_er/?hl=ko"
-                                                   style="    color: #3b5998;
-    text-decoration: none;
-    display: block;
-    padding: 30px 0 0 0;"
-                                                   target="_blank"
-                                                >
+
                                                     <img
                                                             alt=""
-                                                            src="https://cdn.pixabay.com/photo/2017/08/07/00/07/fox-2597803_1280.jpg"
+                                                            th:src="${propensityType}"
                                                             width="84"
                                                             height="84"
                                                             style="border:solid 1px rgba(0,0,0,0.15);border-radius:50%"
-                                                            jslog="138226; u014N:xr6bB; 53:W2ZhbHNlXQ.."></a>
+                                                            jslog="138226; u014N:xr6bB; 53:W2ZhbHNlXQ..">
                                             </tr>
                                             <!--                                                                닉네임-->
                                             <tr>
