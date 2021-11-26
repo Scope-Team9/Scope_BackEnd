@@ -36,7 +36,6 @@ public class UserIntegrationTest {
     TestService testService;
 
     User user1;
-    Post post;
     List<String> tech = new ArrayList<>();
     List<String> userPropensityType = new ArrayList<>();
     List<String> memberPropensityType = new ArrayList<>();

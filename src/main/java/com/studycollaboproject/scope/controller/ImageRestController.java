@@ -36,7 +36,4 @@ public class ImageRestController {
                 HttpStatus.CREATED
         );
     }
-
-
-
 }

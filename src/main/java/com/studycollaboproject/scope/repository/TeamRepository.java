@@ -8,10 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface TeamRepository extends JpaRepository<Team, Long> {
+public interface TeamRepository extends JpaRepository<Team, Long>, TeamRepositoryExtension {
     List<Team> findAllByPostId(Long postId);
-
-    List<Team> findAllByUser(User user);
 
     Optional<Team> findByUserAndPost(User user, Post post);
 

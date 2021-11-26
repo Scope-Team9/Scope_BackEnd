@@ -9,6 +9,7 @@ import com.studycollaboproject.scope.security.JwtTokenProvider;
 import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
 import java.util.*;
 
@@ -126,13 +127,11 @@ public class UserService {
         techStackRepository.deleteAllByUser(user);
         applicantRepository.deleteAllByUser(user);
         bookmarkRepository.deleteAllByUser(user);
-        List<Team> teamList =teamRepository.findAllByUser(user);
-        if (!teamList.isEmpty()){
-            for (Team team : teamList) {
-                team.getPost().deleteMember();
-            }
+        List<Team> teamList = teamRepository.findAllByUser(user);
+        for (Team team : teamList) {
+            team.deleteTeam();
+            teamRepository.delete(team);
         }
-        teamRepository.deleteAllByUser(user);
 
         List<Post> postList = postRepository.findAllByUser(user);
 
@@ -142,6 +141,9 @@ public class UserService {
                 post.deleteUser(loadUnknownUser());
             } else {
                 techStackRepository.deleteAllByPost(post);
+                teamRepository.deleteAllByPost(post);
+                bookmarkRepository.deleteAllByPost(post);
+                applicantRepository.deleteAllByPost(post);
                 postRepository.delete(post);
             }
         }
