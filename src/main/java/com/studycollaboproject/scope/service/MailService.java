@@ -124,6 +124,7 @@ public class MailService {
         log.info("==================================================");
         log.info("이메일 인증 메일 발송");
         Context context = new Context();
+        context.setVariable("propensityType","/"+user.getUserPropensityType()+".png");
         context.setVariable("userId", user.getId());
         context.setVariable("code", user.getMailAuthenticationCode());
         context.setVariable("nickname", user.getNickname());
