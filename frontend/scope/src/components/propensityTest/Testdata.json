@@ -1,0 +1,174 @@
+{
+  "userbtn": [
+    {
+      "question": "Q1",
+      "id": "UL",
+      "text": "내 주장을 펼치며 회의 분위기를 탄탄하게 이끌기",
+      "value": "L",
+      "active": false
+    },
+    {
+      "question": "Q1",
+      "id": "UF",
+      "text": "다른 사람들의 의견을 들으며 뭘 맡아서 해야할지 파악하기",
+      "value": "F",
+      "active": false
+    },
+    {
+      "question": "Q2",
+      "id": "UL",
+      "text": "스터디를 어떻게 운영할지 잠깐 생각해보고 스터디장을 맡아서 진행한다.",
+      "value": "L",
+      "active": false
+    },
+    {
+      "question": "Q2",
+      "id": "UF",
+      "text": "누가 스터디를 잘 이끌 사람인지 살핀다.",
+      "value": "F",
+      "active": false
+    },
+    {
+      "question": "Q3",
+      "id": "UL",
+      "text": "큰 보상과 무거운책임",
+      "value": "L",
+      "active": false
+    },
+    {
+      "question": "Q3",
+      "id": "UF",
+      "text": "평범한 보상과 평범한 책임",
+      "value": "F",
+      "active": false
+    },
+    {
+      "question": "Q4",
+      "id": "UV",
+      "text": "팀장의 존재는 프로젝트를 진행함에 있어 필수적이다",
+      "value": "V",
+      "active": false
+    },
+    {
+      "question": "Q4",
+      "id": "UH",
+      "text": "평범한 보상과 평범한 책임",
+      "value": "H",
+      "active": false
+    },
+    {
+      "question": "Q5",
+      "id": "UV",
+      "text": "큰 보상과 무거운책임",
+      "value": "V",
+      "active": false
+    },
+    {
+      "question": "Q5",
+      "id": "UH",
+      "text": "평범한 보상과 평범한 책임",
+      "value": "H",
+      "active": false
+    },
+    {
+      "question": "Q6",
+      "id": "UV",
+      "text": "큰 보상과 무거운책임",
+      "value": "V",
+      "active": false
+    },
+    {
+      "question": "Q6",
+      "id": "UH",
+      "text": "평범한 보상과 평범한 책임",
+      "value": "H",
+      "active": false
+    }
+  ],
+  "memberbtn": [
+    {
+      "question": "Q1",
+      "id": "ML",
+      "text": "내 주장을 펼치며 회의 분위기를 탄탄하게 이끌기",
+      "value": "L",
+      "active": false
+    },
+    {
+      "question": "Q1",
+      "id": "MF",
+      "text": "다른 사람들의 의견을 들으며 뭘 맡아서 해야할지 파악하기",
+      "value": "F",
+      "active": false
+    },
+    {
+      "question": "Q2",
+      "id": "ML",
+      "text": "스터디를 어떻게 운영할지 잠깐 생각해보고 스터디장을 맡아서 진행한다.",
+      "value": "L",
+      "active": false
+    },
+    {
+      "question": "Q2",
+      "id": "MF",
+      "text": "누가 스터디를 잘 이끌 사람인지 살핀다.",
+      "value": "F",
+      "active": false
+    },
+    {
+      "question": "Q3",
+      "id": "ML",
+      "text": "큰 보상과 무거운책임",
+      "value": "L",
+      "active": false
+    },
+    {
+      "question": "Q3",
+      "id": "MF",
+      "text": "평범한 보상과 평범한 책임",
+      "value": "F",
+      "active": false
+    },
+    {
+      "question": "Q4",
+      "id": "MV",
+      "text": "팀장의 존재는 프로젝트를 진행함에 있어 필수적이다",
+      "value": "V",
+      "active": false
+    },
+    {
+      "question": "Q4",
+      "id": "MH",
+      "text": "소통이 원활하게만 잘 된다면 팀장이 없어도 문제없이 프로젝트를 진행할수 있다.",
+      "value": "H",
+      "active": false
+    },
+    {
+      "question": "Q5",
+      "id": "MV",
+      "text": "능력에 따른 적절한 권한의 분배 하에 진행되는 회의",
+      "value": "V",
+      "active": false
+    },
+    {
+      "question": "Q5",
+      "id": "MH",
+      "text": "평범한 보상과 평범한 책임",
+      "value": "H",
+      "active": false
+    },
+    {
+      "question": "Q6",
+      "id": "MV",
+      "text": "큰 보상과 무거운책임",
+      "value": "V",
+      "active": false
+    },
+    {
+      "question": "Q6",
+      "id": "MH",
+      "text": "평범한 보상과 평범한 책임",
+      "value": "H",
+      "active": false
+    }
+  ]
+}

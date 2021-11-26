@@ -3,7 +3,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
     id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
-}
+    id "com.github.node-gradle.node" version "3.1.1"}
 
 group = 'com.studycollaboproject'
 version = '0.0.1-SNAPSHOT'
@@ -50,8 +50,38 @@ dependencies {
     // jasypt
     implementation group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '3.0.4'
 
-
+    // node plugin
 }
+
+// react build
+def webappDir = "$projectDir/frontend/scope"
+// node 버전 및 npm, node 설치파일 저장 디렉토리 명시
+node {
+    version = '10.15.3'
+    download=true
+    workDir = file("${project.buildDir}/nodejs")
+    npmWorkDir=file("${project.buildDir}/npm")
+}
+// npm install 과정
+task appNpmInstall(type: NpmTask) {
+    workingDir = file("${project.projectDir}/frontend/scope")
+    args = ["install"]
+}
+// yarn build
+task yarnBuild(type: YarnTask) {
+    workingDir = file("${project.projectDir}/frontend/scope")
+    args = ['build']
+}
+// 빌드된 결과 resources로 이동
+task copyWebApp(type: Copy) {
+    from "frontend/scope/build"
+    into "$projectDir/src/main/resources/static"
+}
+yarnBuild.dependsOn appNpmInstall
+copyWebApp.dependsOn yarnBuild
+compileJava.dependsOn copyWebApp
+
+apply plugin: "com.ewerk.gradle.plugins.querydsl"
 //querydsl 추가 시작
 def querydslDir = "$buildDir/generated/querydsl"
 
@@ -76,4 +106,3 @@ compileQuerydsl {
 compileQuerydsl.doFirst {
     if(file(querydslDir).exists() ) delete(file(querydslDir))
 }
-

@@ -1,0 +1,91 @@
+{
+  "post":{
+    "posts":[
+                 {"postId":"postId1",
+                  "postType":"postType",
+                  "title":"title",
+                  "techStack":"React",
+                  "summary":"summary",
+                  "totalMember":"totalMember",
+                  "recruitmentMember":"recruitmentMember",
+                  "projectStatus":"projectStatus",
+                  "startDate":"startDate",
+                  "endDate":"endDate"},
+
+                  {"postId":"postId12",
+                    "postType":"postType",
+                    "title":"title",
+                    "techStack":"React",
+                    "summary":"summary",
+                    "totalMember":"totalMember",
+                    "recruitmentMember":"recruitmentMember",
+                    "projectStatus":"projectStatus",
+                    "startDate":"startDate",
+                    "endDate":"endDate"}
+                   
+    ],
+    "totalPost":"totalPost",
+    "totalPage":"totalPage",
+    "nowPage":"nowPage"
+},
+
+"user":{
+  "user":{
+                "kakaoId":"kakaoId",
+                "githubId":"githubId",
+                "userTechStack":"React",
+                "userPropensityType":"type",
+                "memberPropensityType":"type",
+                "nickname":"nickname",
+                "introduction":"introduction",
+                "email":"email",
+                "bookmark":[
+                                     {"postId":"postId1",
+                                       "postType":"postType",
+                                        "title":"title",
+                                        "summary":"summary",
+                                        "techStack":"React",
+                                        "totalMember":"totalMember",
+                                        "recruitmentMember":"recruitmentMember",
+                                        "projectStatus":"projectStatus",
+                                        "startDate":"startDate",
+                                        "endDate":"endDate"}],
+                "applied":[
+                                     {"postId":"postId",
+                                       "postType":"postType",
+                                        "title":"title",
+                                        "summary":"summary",
+                                        "techStack":"REACT",
+                                        "totalMember":"totalMember",
+                                        "recruitmentMember":"recruitmentMember",
+                                        "projectStatus":"projectStatus",
+                                        "startDate":"startDate",
+                                        "endDate":"endDate"}],
+                "inProgress":[
+                                     {"postId":"postId",
+                                       "postType":"postType",
+                                        "title":"title",
+                                        "summary":"summary",
+                                        "techStack":"[techStack]",
+                                        "totalMember":"totalMember",
+                                        "recruitmentMember":"recruitmentMember",
+                                        "projectStatus":"projectStatus",
+                                        "startDate":"startDate",
+                                        "endDate":"endDate"}],
+                "completed":[
+                                     {"postId":"postId",
+                                       "postType":"postType",
+                                        "title":"title",
+                                        "summary":"summary",
+                                        "techStack":"[techStack]",
+                                        "totalMember":"totalMember",
+                                        "recruitmentMember":"recruitmentMember",
+                                        "projectStatus":"projectStatus",
+                                        "startDate":"startDate",
+                                        "endDate":"endDate"}]
+   }
+},
+  "profile": {
+    "name": "typicode"
+  }
+}
