@@ -19,21 +19,21 @@
                         </td>
                     </tr>
                     <tr>
-                        <!--                                                                <td valign="top" style="color:#2b2b2b;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:17px;font-weight:400;line-height:1;padding:0;vertical-align:top">-->
-                        <!--                                                                    <a href="https://upbit.com/home" style="font-size:0;line-height:0" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://upbit.com/home&amp;source=gmail&amp;ust=1636043669732000&amp;usg=AFQjCNE9wuLb9shFSWT0Wqe1j9coJXKMwQ"><img src="https://ci3.googleusercontent.com/proxy/doqWF8X8MsVDEIDJ3tUkR1kCMZGgHv9cRd6PvHtZnqDF_yLdO2yLFIZGfEd-f7O0loFRSjwsNr8ESqpjNb7oNE2m2fuLTr0=s0-d-e1-ft#https://static.upbit.com/email/images/upbit_logo.png" alt="upbit" width="79" height="18" style="border:0;height:18px;outline:none;text-decoration:none;width:79px;vertical-align:top" class="CToWUd"></a>-->
-                        <!--                                                                </td>-->
+
                     </tr>
                     <tr height="100">
-                        <td style="padding-bottom:20px;"><img src="logo.png"  style="max-width:80px" />
+                        <td style="padding-bottom:20px;"><img th:src="@{/logo.png}" style="max-width:80px"/>
                         </td>
                     </tr>
                     <tr height="100">
                         <td style="color:#2b2b2b;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:32px;font-weight:300;line-height:42px;padding:0;vertical-align:top">
-                            프로젝트 매칭 성공</td>
+                            프로젝트 매칭 성공
+                        </td>
                     </tr>
                     <tr>
                         <td style="color:#2b2b2b;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:17px;font-weight:800;line-height:28px;padding:0;vertical-align:top">
-                            <span th:text="${toNickname}"></span>님 안녕하세요!<br><br><span th:text="${fromNicckname}"></span>님의 프로젝트 참여를 축하드립니다!<br>
+                            <span th:text="${toNickname}"></span>님 안녕하세요!<br><br><span
+                                th:text="${fromNicckname}"></span>님의 프로젝트 참여를 축하드립니다!<br>
 
                         </td>
                     </tr>
@@ -60,7 +60,8 @@
                                             <!--        카드박스-->
                                             <td>
                                                 <div style="text-align: center;margin-bottom: 30px">
-                                                    <h2 th:text="${title}" class="card-text" style="color: #2b2b2b">프로젝트 타이틀</h2>
+                                                    <h2 th:text="${title}" class="card-text" style="color: #2b2b2b">프로젝트
+                                                        타이틀</h2>
 
                                                 </div>
                                             </td>
