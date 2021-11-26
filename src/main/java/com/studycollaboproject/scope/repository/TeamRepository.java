@@ -13,8 +13,6 @@ public interface TeamRepository extends JpaRepository<Team, Long>, TeamRepositor
 
     Optional<Team> findByUserAndPost(User user, Post post);
 
-    List<Team> findAllByPost(Post post);
-
     void deleteAllByPost(Post post);
 
     void deleteAllByUser(User user);
