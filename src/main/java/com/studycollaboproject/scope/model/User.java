@@ -41,7 +41,6 @@ public class User extends Timestamped {
     @Column(length = 5000)
     private String introduction;
 
-    @Column(unique = true, nullable = false)
     private String mailAuthenticationCode;
 
     private Boolean isVerifiedEmail;
@@ -111,11 +110,10 @@ public class User extends Timestamped {
         this.isVerifiedEmail = false;
         this.emailReceiveAgreement = false;
         this.recommendationAgreement = false;
-        this.mailAuthenticationCode = UUID.randomUUID().toString();
     }
 
-    public void addTechStackListAndToken(List<TechStack> techStackList, String token) {
-        this.mailAuthenticationCode = token.split("\\.")[1];
+    public void addTechStackList(List<TechStack> techStackList) {
+
         this.techStackList = techStackList;
     }
 
@@ -143,6 +141,9 @@ public class User extends Timestamped {
         this.introduction = userDesc;
     }
 
+    public void setmailAuthenticationCode(){
+        this.mailAuthenticationCode = UUID.randomUUID().toString();
+    }
     public void verifiedEmail() {
         this.isVerifiedEmail = true;
         this.emailReceiveAgreement = true;

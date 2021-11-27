@@ -32,17 +32,17 @@ public class MailService {
     private final SpringTemplateEngine templateEngine;
     private final JavaMailSender javaMailSender;
     private final UserRepository userRepository;
-    private static final Map<String, String> propensityMatching = new HashMap<String, String>(){
+    private static final Map<String, String> propensityMatching = new HashMap<String, String>() {
         {
-            put("LVG","호랑이");
-            put("LVP","늑대");
-            put("LHG","여우");
-            put("LHP","곰");
-            put("FVG","토끼");
-            put("FVP","허스키");
-            put("FHG","고양이");
-            put("FHP","물개");
-            put("RHP","너구리");
+            put("LVG", "호랑이");
+            put("LVP", "늑대");
+            put("LHG", "여우");
+            put("LHP", "곰");
+            put("FVG", "토끼");
+            put("FVP", "허스키");
+            put("FHG", "고양이");
+            put("FHP", "물개");
+            put("RHP", "너구리");
         }
     };
 
@@ -83,7 +83,7 @@ public class MailService {
         log.info("지원 알림 메일 발송");
         String email = mailDto.getToEmail();
         Context context = new Context();
-        context.setVariable("logo", url+"/img/logo.png");
+        context.setVariable("logo", url + "/img/logo.png");
         context.setVariable("comment", mailDto.getComment());
         context.setVariable("postTitle", mailDto.getPostTitle());
         context.setVariable("toNickname", mailDto.getToNickname());
@@ -108,7 +108,7 @@ public class MailService {
 
         String email = mailDto.getToEmail();
         Context context = new Context();
-        context.setVariable("logo", url+"/img/logo.png");
+        context.setVariable("logo", url + "/img/logo.png");
         context.setVariable("title", mailDto.getPostTitle());
         context.setVariable("toNickname", mailDto.getToNickname());
         context.setVariable("fromNicckname", mailDto.getFromNickname());
@@ -129,7 +129,7 @@ public class MailService {
 
         for (User user : mailDto.getToUserList()) {
             Context context = new Context();
-            context.setVariable("logo", url+"/img/logo.png");
+            context.setVariable("logo", url + "/img/logo.png");
             context.setVariable("title", mailDto.getPostTitle());
             context.setVariable("nickname", user.getNickname());
             context.setVariable("userId", mailDto.getToUserId());
@@ -145,8 +145,8 @@ public class MailService {
         log.info("==================================================");
         log.info("이메일 인증 메일 발송");
         Context context = new Context();
-        context.setVariable("logo", url+"/img/logo.png");
-        context.setVariable("propensityType",url+"/img/"+propensityMatching.get(user.getUserPropensityType())+".png");
+        context.setVariable("logo", url + "/img/logo.png");
+        context.setVariable("propensityType", url + "/img/" + propensityMatching.get(user.getUserPropensityType()) + ".png");
         context.setVariable("userId", user.getId());
         context.setVariable("code", user.getMailAuthenticationCode());
         context.setVariable("nickname", user.getNickname());
@@ -156,16 +156,20 @@ public class MailService {
     }
 
     @Transactional
-    public void emailAuthCodeCheck(String code, Long userId) {
+    public String emailAuthCodeCheck(String code, Long userId) {
+
         Optional<User> user = userRepository.findById(userId);
+
+
         if (user.isPresent()) {
-            if (code.equals(user.get().getMailAuthenticationCode())) {
+            if (user.get().getMailAuthenticationCode().equals(code)) {
                 user.get().verifiedEmail();
+                return "이메일 인증이 완료되었습니다.";
             } else {
-                throw new BadRequestException(ErrorCode.NO_TOKEN_ERROR);
+                return "유효한 토큰값이 아닙니다.";
             }
         } else {
-            throw new BadRequestException(ErrorCode.NO_USER_ERROR);
+            return "유저를 찾을 수 없습니다.";
         }
     }
 }

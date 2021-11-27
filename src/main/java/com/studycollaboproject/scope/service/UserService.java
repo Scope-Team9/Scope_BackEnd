@@ -30,7 +30,7 @@ public class UserService {
     public UserResponseDto saveUser(List<String> techStack, User user, String token) {
         Set<String> techList = new HashSet<>(techStack);
         List<TechStack> techStackList = techStackConverter.convertStringToTechStack(new ArrayList<>(techList), user, null);
-        user.addTechStackListAndToken(techStackList, token);
+        user.addTechStackList(techStackList);
         User savedUser = userRepository.save(user);
         techStackRepository.saveAll(techStackList);
         return new UserResponseDto(savedUser, techStackConverter.convertTechStackToString(user.getTechStackList()));
@@ -149,5 +149,10 @@ public class UserService {
         }
         userRepository.delete(user);
         return new ResponseDto("성공적으로 회원 정보가 삭제되었습니다.", "");
+    }
+
+    @Transactional
+    public void setEmailAuthCode(User user) {
+        user.setmailAuthenticationCode();
     }
 }
