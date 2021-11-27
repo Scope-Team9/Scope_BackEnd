@@ -141,6 +141,7 @@ public class MailService {
     }
 
     @Async
+    @Transactional
     public void authMailSender(String email, User user) throws MessagingException {
         log.info("==================================================");
         log.info("이메일 인증 메일 발송");
@@ -155,7 +156,6 @@ public class MailService {
         setMail(subject, body, email);
     }
 
-    @Transactional
     public String emailAuthCodeCheck(String code, Long userId) {
 
         Optional<User> user = userRepository.findById(userId);
