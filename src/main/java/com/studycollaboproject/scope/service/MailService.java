@@ -97,7 +97,7 @@ public class MailService {
         context.setVariable("title", mailDto.getPostTitle());
         context.setVariable("toNickname", mailDto.getToNickname());
         context.setVariable("fromNicckname", mailDto.getFromNickname());
-        context.setVariable("userId", mailDto.getToUserId());
+        context.setVariable("postId", mailDto.getPostId());
         String subject = "[scope]" + mailDto.getToNickname() + "님의 프로젝트 신청이 수락되었습니다!";
         String body = templateEngine.process("acceptTeamEmail", context);
 
@@ -117,7 +117,7 @@ public class MailService {
             context.setVariable("logo", url+"/logo.png");
             context.setVariable("title", mailDto.getPostTitle());
             context.setVariable("nickname", user.getNickname());
-            context.setVariable("postId", mailDto.getPostId());
+            context.setVariable("userId", mailDto.getToUserId());
             String subject = "[scope]" + user.getNickname() + "님의 프로젝트가 종료되었습니다!";
             String body = templateEngine.process("applicationNoticeEmail", context);
             setMail(subject, body, user.getEmail());
