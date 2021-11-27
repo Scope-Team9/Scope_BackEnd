@@ -63,7 +63,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         File file = new File("");
         String rootPath = "file://" + file.getAbsoluteFile().getPath() + "/images/";
-        registry.addResourceHandler("/images/**")
-                .addResourceLocations(rootPath);
+        registry.addResourceHandler("/**")
+                .addResourceLocations(rootPath ,"classpath:","classpath:/static/","classpath:/templates/");
     }
 }
