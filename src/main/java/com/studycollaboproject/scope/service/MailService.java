@@ -19,6 +19,8 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 
@@ -30,6 +32,19 @@ public class MailService {
     private final SpringTemplateEngine templateEngine;
     private final JavaMailSender javaMailSender;
     private final UserRepository userRepository;
+    private static final Map<String, String> propensityMatching = new HashMap<String, String>(){
+        {
+            put("LVG","호랑이");
+            put("LVP","늑대");
+            put("LHG","여우");
+            put("LHP","곰");
+            put("FVG","토끼");
+            put("FVP","허스키");
+            put("FHG","고양이");
+            put("FHP","물개");
+            put("RHP","너구리");
+        }
+    };
 
     @Value("${serverUrl}")
     private String url;
@@ -68,7 +83,7 @@ public class MailService {
         log.info("지원 알림 메일 발송");
         String email = mailDto.getToEmail();
         Context context = new Context();
-        context.setVariable("logo", url+"/logo.png");
+        context.setVariable("logo", url+"/img/logo.png");
         context.setVariable("comment", mailDto.getComment());
         context.setVariable("postTitle", mailDto.getPostTitle());
         context.setVariable("toNickname", mailDto.getToNickname());
@@ -93,7 +108,7 @@ public class MailService {
 
         String email = mailDto.getToEmail();
         Context context = new Context();
-        context.setVariable("logo", url+"/logo.png");
+        context.setVariable("logo", url+"/img/logo.png");
         context.setVariable("title", mailDto.getPostTitle());
         context.setVariable("toNickname", mailDto.getToNickname());
         context.setVariable("fromNicckname", mailDto.getFromNickname());
@@ -114,7 +129,7 @@ public class MailService {
 
         for (User user : mailDto.getToUserList()) {
             Context context = new Context();
-            context.setVariable("logo", url+"/logo.png");
+            context.setVariable("logo", url+"/img/logo.png");
             context.setVariable("title", mailDto.getPostTitle());
             context.setVariable("nickname", user.getNickname());
             context.setVariable("userId", mailDto.getToUserId());
@@ -130,8 +145,8 @@ public class MailService {
         log.info("==================================================");
         log.info("이메일 인증 메일 발송");
         Context context = new Context();
-        context.setVariable("logo", url+"/logo.png");
-        context.setVariable("propensityType",url+"/"+user.getUserPropensityType()+".png");
+        context.setVariable("logo", url+"/img/logo.png");
+        context.setVariable("propensityType",url+"/img/"+propensityMatching.get(user.getUserPropensityType())+".png");
         context.setVariable("userId", user.getId());
         context.setVariable("code", user.getMailAuthenticationCode());
         context.setVariable("nickname", user.getNickname());
