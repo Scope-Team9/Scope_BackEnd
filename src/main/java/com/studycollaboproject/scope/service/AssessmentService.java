@@ -31,6 +31,7 @@ public class AssessmentService {
                 () -> new BadRequestException(ErrorCode.NO_POST_ERROR)
         );// [예외처리] 팀장이 아니면서 프로젝트 상태가 "진행중"가 아닌 경우
 
+        // 팀원 평가 여부 체크
         Team teamCheck = teamRepository.findByUserAndPost(rater, post).orElseThrow(
                 () -> new ForbiddenException(ErrorCode.NO_TEAM_ERROR)
         );
@@ -38,52 +39,26 @@ public class AssessmentService {
             throw new BadRequestException(ErrorCode.ALREADY_ASSESSMENT_ERROR);
         }
 
+        // 프로젝트 게시자의 경우 진행중일 경우 평가하고 프로젝트가 종료된다.
         if (post.getUser().equals(rater) && !post.getProjectStatus().equals(ProjectStatus.PROJECT_STATUS_END)) {
             post.updateStatus("종료");
         }
+
+        // 프로젝트 종료가 아니면 평가할 수 없다
         if(!post.getProjectStatus().equals(ProjectStatus.PROJECT_STATUS_END)){
             throw new BadRequestException(ErrorCode.NOT_AVAILABLE_ACCESS);
         }
-        List<Team> teamList = teamRepository.findAllByPost(post);
-        List<String> userTypeList = new ArrayList<>();
+        // 프로젝트 팀원 조회
+        List<Team> teamList = teamRepository.findTeamMember(post, userIds);
+        List<String> userTypeList = teamList.stream().map(o -> o.getUser().getUserPropensityType()).collect(Collectors.toList());
+
+        totalResultRepository.updateAssessmentResult(rater.getUserPropensityType(), userTypeList);
         List<User> userList = teamList.stream().map(Team::getUser).collect(Collectors.toList());
-        System.out.println("userList = " + userList);
-
-        Set<Long> ids = Set.copyOf(userIds);
-        for (Long userId : ids) {
-            int index = checkTeamMember(teamList, userId);
-            if(index >= 0) {
-                userTypeList.add(teamList.get(index).getUser().getUserPropensityType());
-            }
-            else {
-                throw new BadRequestException(ErrorCode.NO_TEAM_ERROR);
-            }
-        }
-
         teamCheck.setAssessment();
-        String raterType = rater.getUserPropensityType();
-        getAssessmentResult(raterType, userTypeList);
+
         return new MailDto(userList, post);
     }
 
-    private int checkTeamMember(List<Team> teamList, Long userId) {
-        for (int i = 0 ;i < teamList.size(); i++){
-            if(teamList.get(i).getUser().getId().equals(userId)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-    // 성향 추천 결과 테이블에 저장
-    public void getAssessmentResult(String rater, List<String> userList) {
-
-        for (String member : userList) {
-            TotalResult totalResult = totalResultRepository.findByUserTypeAndMemberType(rater, member);
-            Long result = totalResult.getResult() + 1L;
-            totalResult.setResult(result);
-        }
-
-    }
     // 성향 추천 결과 테이블에 저장
     @Transactional
     public void testAssessmentResult(String rater, String member,Long count) {
@@ -91,6 +66,4 @@ public class AssessmentService {
         Long result = totalResult.getResult()+count;
         totalResult.setResult(result);
     }
-
-
 }

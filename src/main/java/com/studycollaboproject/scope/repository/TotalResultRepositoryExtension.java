@@ -6,8 +6,6 @@ import com.studycollaboproject.scope.model.User;
 
 import java.util.List;
 
-public interface TeamRepositoryExtension {
-    List<Team> findAllByUser(User user);
-
-    List<Team> findTeamMember(Post post, List<Long> userIds);
+public interface TotalResultRepositoryExtension {
+    void updateAssessmentResult(String userType, List<String> memberTypes);
 }
