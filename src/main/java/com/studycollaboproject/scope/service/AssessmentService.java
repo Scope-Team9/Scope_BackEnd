@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -44,13 +46,14 @@ public class AssessmentService {
         }
         List<Team> teamList = teamRepository.findAllByPost(post);
         List<String> userTypeList = new ArrayList<>();
-        List<User> userList = new ArrayList<>();
+        List<User> userList = teamList.stream().map(Team::getUser).collect(Collectors.toList());
+        System.out.println("userList = " + userList);
 
-        for (Long userId : userIds) {
+        Set<Long> ids = Set.copyOf(userIds);
+        for (Long userId : ids) {
             int index = checkTeamMember(teamList, userId);
             if(index >= 0) {
                 userTypeList.add(teamList.get(index).getUser().getUserPropensityType());
-                userList.add(teamList.get(index).getUser());
             }
             else {
                 throw new BadRequestException(ErrorCode.NO_TEAM_ERROR);

@@ -31,6 +31,8 @@ public class MailService {
     private final JavaMailSender javaMailSender;
     private final UserRepository userRepository;
 
+    @Value("${serverUrl}")
+    private String url;
     @Value("${spring.mail.password}")
     private String pass;
     @Value("${spring.mail.username}")
@@ -66,6 +68,7 @@ public class MailService {
         log.info("지원 알림 메일 발송");
         String email = mailDto.getToEmail();
         Context context = new Context();
+        context.setVariable("logo", url+"/logo.png");
         context.setVariable("postTitle", mailDto.getPostTitle());
         context.setVariable("toNickname", mailDto.getToNickname());
         context.setVariable("fromNickname", mailDto.getFromNickname());
@@ -89,6 +92,7 @@ public class MailService {
 
         String email = mailDto.getToEmail();
         Context context = new Context();
+        context.setVariable("logo", url+"/logo.png");
         context.setVariable("title", mailDto.getPostTitle());
         context.setVariable("toNickname", mailDto.getToNickname());
         context.setVariable("fromNicckname", mailDto.getFromNickname());
@@ -109,6 +113,7 @@ public class MailService {
 
         for (User user : mailDto.getToUserList()) {
             Context context = new Context();
+            context.setVariable("logo", url+"/logo.png");
             context.setVariable("title", mailDto.getPostTitle());
             context.setVariable("nickname", user.getNickname());
             context.setVariable("postId", mailDto.getPostId());
@@ -124,7 +129,8 @@ public class MailService {
         log.info("==================================================");
         log.info("이메일 인증 메일 발송");
         Context context = new Context();
-        context.setVariable("propensityType","/"+user.getUserPropensityType()+".png");
+        context.setVariable("logo", url+"/logo.png");
+        context.setVariable("propensityType",url+"/"+user.getUserPropensityType()+".png");
         context.setVariable("userId", user.getId());
         context.setVariable("code", user.getMailAuthenticationCode());
         context.setVariable("nickname", user.getNickname());

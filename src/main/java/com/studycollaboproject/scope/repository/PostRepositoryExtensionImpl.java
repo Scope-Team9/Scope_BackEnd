@@ -1,10 +1,7 @@
 package com.studycollaboproject.scope.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.studycollaboproject.scope.model.Post;
-import com.studycollaboproject.scope.model.ProjectStatus;
-import com.studycollaboproject.scope.model.QTechStack;
-import com.studycollaboproject.scope.model.Tech;
+import com.studycollaboproject.scope.model.*;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
