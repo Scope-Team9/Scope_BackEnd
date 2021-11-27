@@ -2,7 +2,6 @@ package com.studycollaboproject.scope.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.studycollaboproject.scope.model.Post;
-import com.studycollaboproject.scope.model.QUser;
 import com.studycollaboproject.scope.model.Team;
 import com.studycollaboproject.scope.model.User;
 
@@ -11,7 +10,7 @@ import java.util.List;
 
 import static com.studycollaboproject.scope.model.QPost.post;
 import static com.studycollaboproject.scope.model.QTeam.team;
-import static com.studycollaboproject.scope.model.QUser.*;
+import static com.studycollaboproject.scope.model.QUser.user;
 
 public class TeamRepositoryExtensionImpl implements TeamRepositoryExtension {
     private final JPAQueryFactory queryFactory;
@@ -30,9 +29,10 @@ public class TeamRepositoryExtensionImpl implements TeamRepositoryExtension {
     }
 
     @Override
-    public List<Team> findAllByPost(Post post) {
+    public List<Team> findTeamMember(Post post, List<Long> userIds) {
         return queryFactory.selectFrom(team)
-                .where(team.post.id.eq(post.getId()))
+                .where(team.post.id.eq(post.getId())
+                        .and(team.user.id.in(userIds)))
                 .leftJoin(team.user, user).fetchJoin()
                 .distinct()
                 .fetch();
