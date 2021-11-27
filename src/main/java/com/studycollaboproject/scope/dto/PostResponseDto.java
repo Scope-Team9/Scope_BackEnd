@@ -45,6 +45,8 @@ public class PostResponseDto {
     private String nickname;
     @Schema(description = "작성자 아이디")
     private Long userId;
+    @Schema(description = "채팅 url")
+    private String chatUrl;
 
     public PostResponseDto(Post post) {
         this.postId = post.getId();
@@ -69,6 +71,7 @@ public class PostResponseDto {
     }
 
     public PostResponseDto(Post post, boolean bookmarkChecked) {
+        this.chatUrl = post.getChatUrl();
         this.postId = post.getId();
         this.title = post.getTitle();
         this.contents = post.getContents();
