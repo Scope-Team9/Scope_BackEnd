@@ -29,11 +29,21 @@ public class TeamRepositoryExtensionImpl implements TeamRepositoryExtension {
     }
 
     @Override
-    public List<Team> findTeamMember(Post post, List<Long> userIds) {
+    public List<Team> findAssessmentTeamMember(Post post, List<Long> userIds) {
         return queryFactory.selectFrom(team)
                 .where(team.post.id.eq(post.getId())
                         .and(team.user.id.in(userIds)))
                 .leftJoin(team.user, user).fetchJoin()
+                .distinct()
+                .fetch();
+    }
+
+    @Override
+    public List<Team> findAllByPostId(Long postId) {
+        return queryFactory.selectFrom(team)
+                .where(team.post.id.eq(postId))
+                .leftJoin(team.user, user).fetchJoin()
+                .leftJoin(team.post, post).fetchJoin()
                 .distinct()
                 .fetch();
     }

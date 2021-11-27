@@ -9,5 +9,7 @@ import java.util.List;
 public interface TeamRepositoryExtension {
     List<Team> findAllByUser(User user);
 
-    List<Team> findTeamMember(Post post, List<Long> userIds);
+    List<Team> findAssessmentTeamMember(Post post, List<Long> userIds);
+
+    List<Team> findAllByPostId(Long postId);
 }
