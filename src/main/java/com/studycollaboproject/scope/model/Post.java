@@ -47,6 +47,8 @@ public class Post extends Timestamped {
     @Column(nullable = false)
     private boolean recommendationAgree;
 
+    private String chatUrl;
+
     private String frontUrl;
 
     private String backUrl;
@@ -77,6 +79,7 @@ public class Post extends Timestamped {
         this.endDate = postRequestDto.getEndDate().toLocalDateTime();
         this.contents = postRequestDto.getContents();
         this.totalMember = postRequestDto.getTotalMember();
+        this.chatUrl = postRequestDto.getChatUrl();
         this.user = user;
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
     }
@@ -89,6 +92,7 @@ public class Post extends Timestamped {
         this.contents = postRequestDto.getContents();
         this.totalMember = postRequestDto.getTotalMember();
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
+        this.chatUrl = postRequestDto.getChatUrl();
     }
 
     public void deleteUser(User user) {
