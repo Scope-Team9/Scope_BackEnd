@@ -14,6 +14,6 @@ public class HomeController {
     @GetMapping(value={"/", "/message", "/mypage/:id", "/postadd", "/postedit/:id", "/addmarkdown" ,
     "/postdetail/:id", "/user/kakao/callback","/user/github/callback"})
     public String home () {
-        return "/index.html";
+        return "index.html";
     }
 }
