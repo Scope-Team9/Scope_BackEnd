@@ -33,9 +33,6 @@ public class Post extends Timestamped {
     @Lob
     private String contents;
 
-    @Lob
-    private String readmeData;
-
     @Column(nullable = false)
     private int totalMember;
 
@@ -117,9 +114,5 @@ public class Post extends Timestamped {
 
     public void updateTechStack(List<TechStack> techStackList) {
         this.techStackList = techStackList;
-    }
-
-    public void updateReadmeData(String text) {
-        this.readmeData = text;
     }
 }

@@ -15,7 +15,7 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
-            if(request.getContentLengthLong() > 10000000) {
+            if(request.getContentLengthLong() > 5000000) {
                 errorResponse(response, "Request content exceed limit of 10000 bytes");
                 return ;
             }

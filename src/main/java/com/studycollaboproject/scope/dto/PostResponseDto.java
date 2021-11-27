@@ -75,11 +75,7 @@ public class PostResponseDto {
         this.techStack = new ArrayList<>();
         List<TechStack> techStackList = post.getTechStackList();
         for (TechStack stack : techStackList) {
-            if (stack.getTech().equals(Tech.TECH_CPP)){
-                this.techStack.add("C++");
-            }else {
                 this.techStack.add(stack.getTech().getTech());
-            }
         }
         this.totalMember = post.getTotalMember();
         this.recruitmentMember = post.getRecruitmentMember();

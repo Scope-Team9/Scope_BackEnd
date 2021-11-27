@@ -45,7 +45,7 @@ public class TechStackConverter {
                         techStackList.add(new TechStack(Tech.TECH_NODEJS, user));
                     }
                     break;
-                case "cpp":
+                case "C++":
                     if(user == null){
                         techStackList.add(new TechStack(Tech.TECH_CPP, post));
                     } else {
@@ -136,7 +136,7 @@ public class TechStackConverter {
                 case "Node":
                     techList.add(Tech.TECH_NODEJS);
                     break;
-                case "cpp":
+                case "C++":
                     techList.add(Tech.TECH_CPP);
                     break;
                 case "Flask":
