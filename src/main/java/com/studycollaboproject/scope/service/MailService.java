@@ -69,6 +69,7 @@ public class MailService {
         String email = mailDto.getToEmail();
         Context context = new Context();
         context.setVariable("logo", url+"/logo.png");
+        context.setVariable("comment", mailDto.getComment());
         context.setVariable("postTitle", mailDto.getPostTitle());
         context.setVariable("toNickname", mailDto.getToNickname());
         context.setVariable("fromNickname", mailDto.getFromNickname());
