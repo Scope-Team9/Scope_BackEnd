@@ -171,9 +171,11 @@ public class UserRestController {
     public ResponseEntity<Object> emailAuthentication(@Parameter(description = "이메일", in = ParameterIn.QUERY) @RequestParam String email,
                                                       @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) throws MessagingException {
         log.info("[{}], 이메일 인증 전송, GET, api/user/email, email={}", MDC.get("UUID"), email);
-        User user = userDetails.getUser();
-        userService.setEmailAuthCode(user);
-        mailService.authMailSender(email, user);
+
+        userService.setEmailAuthCode(userDetails.getSnsId());
+
+        mailService.authMailSender(email, userDetails.getUser());
+
         return new ResponseEntity<>(
                 new ResponseDto("이메일이 전송되었습니다.", ""),
                 HttpStatus.OK
