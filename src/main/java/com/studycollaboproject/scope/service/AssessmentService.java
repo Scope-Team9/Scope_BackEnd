@@ -12,9 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -48,12 +46,13 @@ public class AssessmentService {
         if(!post.getProjectStatus().equals(ProjectStatus.PROJECT_STATUS_END)){
             throw new BadRequestException(ErrorCode.NOT_AVAILABLE_ACCESS);
         }
-        // 프로젝트 팀원 조회
-        List<Team> teamList = teamRepository.findTeamMember(post, userIds);
+        // 프로젝트 추천 팀원 조회
+        List<Team> teamList = teamRepository.findAssessmentTeamMember(post, userIds);
         List<String> userTypeList = teamList.stream().map(o -> o.getUser().getUserPropensityType()).collect(Collectors.toList());
 
         totalResultRepository.updateAssessmentResult(rater.getUserPropensityType(), userTypeList);
-        List<User> userList = teamList.stream().map(Team::getUser).collect(Collectors.toList());
+        List<User> userList = teamRepository.findAllByPostId(postId).stream().map(Team::getUser).collect(Collectors.toList());
+
         teamCheck.setAssessment();
 
         return new MailDto(userList, post);
