@@ -31,8 +31,8 @@ public class ImageService {
                 log.info("이미지 파일 저장 경로 에러");
                 throw new BadRequestException(ErrorCode.IMAGE_SAVE_ERROR);
             }
-            log.info("이미지 파일 데이터 형식 에러");
         } catch (ArrayIndexOutOfBoundsException e) {
+            log.info("이미지 파일 데이터 형식 에러");
             throw new BadRequestException(ErrorCode.IMAGE_SAVE_ERROR);
         }
         return fileName;

@@ -3,10 +3,7 @@ package com.studycollaboproject.scope.service;
 import com.studycollaboproject.scope.dto.*;
 import com.studycollaboproject.scope.exception.BadRequestException;
 import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.model.Post;
-import com.studycollaboproject.scope.model.ProjectStatus;
-import com.studycollaboproject.scope.model.TechStack;
-import com.studycollaboproject.scope.model.User;
+import com.studycollaboproject.scope.model.*;
 import com.studycollaboproject.scope.repository.*;
 import com.studycollaboproject.scope.security.JwtTokenProvider;
 import com.studycollaboproject.scope.util.TechStackConverter;
@@ -14,10 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
@@ -36,7 +30,7 @@ public class UserService {
     public UserResponseDto saveUser(List<String> techStack, User user, String token) {
         Set<String> techList = new HashSet<>(techStack);
         List<TechStack> techStackList = techStackConverter.convertStringToTechStack(new ArrayList<>(techList), user, null);
-        user.addTechStackListAndToken(techStackList, token);
+        user.addTechStackList(techStackList);
         User savedUser = userRepository.save(user);
         techStackRepository.saveAll(techStackList);
         return new UserResponseDto(savedUser, techStackConverter.convertTechStackToString(user.getTechStackList()));
@@ -133,7 +127,11 @@ public class UserService {
         techStackRepository.deleteAllByUser(user);
         applicantRepository.deleteAllByUser(user);
         bookmarkRepository.deleteAllByUser(user);
-        teamRepository.deleteAllByUser(user);
+        List<Team> teamList = teamRepository.findAllByUser(user);
+        for (Team team : teamList) {
+            team.deleteTeam();
+            teamRepository.delete(team);
+        }
 
         List<Post> postList = postRepository.findAllByUser(user);
 
@@ -143,10 +141,21 @@ public class UserService {
                 post.deleteUser(loadUnknownUser());
             } else {
                 techStackRepository.deleteAllByPost(post);
+                teamRepository.deleteAllByPost(post);
+                bookmarkRepository.deleteAllByPost(post);
+                applicantRepository.deleteAllByPost(post);
                 postRepository.delete(post);
             }
         }
         userRepository.delete(user);
         return new ResponseDto("성공적으로 회원 정보가 삭제되었습니다.", "");
+    }
+
+    @Transactional
+    public User setEmailAuthCode(String snsId) {
+        User user = userRepository.findBySnsId(snsId).orElseThrow(() -> new BadRequestException(ErrorCode.NO_USER_ERROR));
+        user.setmailAuthenticationCode();
+        return user;
+
     }
 }

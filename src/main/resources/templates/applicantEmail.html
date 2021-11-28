@@ -4,6 +4,7 @@
     <title>Scope</title>
 
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
 <div style="height:100%;text-align: center;">
@@ -12,7 +13,7 @@
         <tbody>
         <tr>
             <td style="background-color:#fff;color:#5065df;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:17px;font-weight:400;line-height:28px;padding:0;padding-left:5%;padding-right:5%;vertical-align:top">
-                <table style="border-collapse:collapse;width:50%;max-width:600px;min-width:350px;border-spacing:0;table-layout:fixed;vertical-align:top;margin: auto">
+                <table style="border-collapse:collapse;width:100%;max-width:600px;border-spacing:0;table-layout:fixed;vertical-align:top;margin: auto">
                     <tbody>
                     <tr>
                         <td height="40"
@@ -31,6 +32,10 @@
                         </td>
                     </tr>
                     <tr height="100">
+                        <td style="padding-bottom:20px;"><img th:src="${logo}"  style="max-width:80px" />
+                        </td>
+                    </tr>
+                    <tr height="100">
                         <td style="color:#2b2b2b;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:32px;font-weight:300;line-height:42px;padding:0;vertical-align:top">
                             팀원 신청 알림</td>
                     </tr>
@@ -39,6 +44,14 @@
                             <span th:text="${toNickname}"></span>님 안녕하세요!<br><br><span th:text="${fromNickname}"></span>님이 프로젝트 참여신청을 하셨습니다!<br>
 
                         </td>
+
+                    </tr>
+                    <tr>
+                        <td style="color:#2b2b2b;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:17px;font-weight:800;line-height:28px;padding:0;vertical-align:top">
+                            <br>"<span th:text="${comment}"></span>"<br>
+
+                        </td>
+
                     </tr>
                     <td style="text-align: center">
                         <table
@@ -63,14 +76,14 @@
                                             <!--        카드박스-->
                                             <td>
                                                 <tr style="text-align: center;margin-bottom: 30px">
-                                                            <h2 th:text="${postTitle}"  style="color: #2b2b2b"></h2>
+                                                    <h2 th:text="${postTitle}"  style="color: #2b2b2b"></h2>
                                                 </tr>
                                             </td>
                                             <tr>
                                                 <td
                                                         height="60" align="center "
                                                         style="color:#1b8b2b;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:17px;font-weight:400;line-height:28px;padding:0;vertical-align:top">
-                                                    <a th:href="@{http://localhost:8080/api/applicant/{postId}(postId = ${postId})}"
+                                                    <a th:href="@{https://scopewith.com/postdetail/{postId}(postId = ${postId})}"
                                                        style="background-color:#5065df;border-radius:2px;color:#fff;display:inline-block;padding-bottom:11px;padding-left:30px;padding-right:30px;padding-top:11px;text-align:center;text-decoration:none"
                                                        target="_blank" data-saferedirecturl="">
                                                         <span style="color:#fff;font-family:sans-serif;font-size:17px;font-weight:600;line-height:28px;text-align:center">신청자 현황 보기</span>

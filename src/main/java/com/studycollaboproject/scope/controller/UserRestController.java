@@ -171,22 +171,15 @@ public class UserRestController {
     public ResponseEntity<Object> emailAuthentication(@Parameter(description = "이메일", in = ParameterIn.QUERY) @RequestParam String email,
                                                       @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) throws MessagingException {
         log.info("[{}], 이메일 인증 전송, GET, api/user/email, email={}", MDC.get("UUID"), email);
-        mailService.authMailSender(email, userDetails.getUser());
+
+        User user = userService.setEmailAuthCode(userDetails.getSnsId());
+        mailService.authMailSender(email, user);
+
         return new ResponseEntity<>(
                 new ResponseDto("이메일이 전송되었습니다.", ""),
                 HttpStatus.OK
         );
     }
 
-    @Operation(summary = "이메일 인증 코드 확인")
-    @GetMapping("api/user/email/auth/{userId}")
-    public ResponseEntity<Object> recEmailCode(@Parameter(description = "인증 코드", in = ParameterIn.QUERY) @RequestParam String code,
-                                               @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long userId) {
-        log.info("[{}], 이메일 인증 코드 확인, GET, api/user/email/auth/{}, code={}", MDC.get("UUID"), userId, code);
-        mailService.emailAuthCodeCheck(code, userId);
-        return new ResponseEntity<>(
-                new ResponseDto("인증이 성공적으로 이루어졌습니다.", ""),
-                HttpStatus.OK
-        );
-    }
+
 }

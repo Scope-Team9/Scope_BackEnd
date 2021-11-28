@@ -33,9 +33,6 @@ public class Post extends Timestamped {
     @Lob
     private String contents;
 
-    @Lob
-    private String readmeData;
-
     @Column(nullable = false)
     private int totalMember;
 
@@ -49,6 +46,8 @@ public class Post extends Timestamped {
     //추가기능 구현
     @Column(nullable = false)
     private boolean recommendationAgree;
+
+    private String chatUrl;
 
     private String frontUrl;
 
@@ -80,6 +79,7 @@ public class Post extends Timestamped {
         this.endDate = postRequestDto.getEndDate().toLocalDateTime();
         this.contents = postRequestDto.getContents();
         this.totalMember = postRequestDto.getTotalMember();
+        this.chatUrl = postRequestDto.getChatUrl();
         this.user = user;
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
     }
@@ -92,6 +92,7 @@ public class Post extends Timestamped {
         this.contents = postRequestDto.getContents();
         this.totalMember = postRequestDto.getTotalMember();
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
+        this.chatUrl = postRequestDto.getChatUrl();
     }
 
     public void deleteUser(User user) {
@@ -117,9 +118,5 @@ public class Post extends Timestamped {
 
     public void updateTechStack(List<TechStack> techStackList) {
         this.techStackList = techStackList;
-    }
-
-    public void updateReadmeData(String text) {
-        this.readmeData = text;
     }
 }

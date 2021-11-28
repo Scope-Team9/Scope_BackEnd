@@ -30,4 +30,7 @@ public class PostRequestDto {
     private Timestamp endDate;
     @Schema(description = "글쓰기시 프로젝트 기술 스택")
     private List<String> techStackList;
+    @Schema(description = "채팅 url")
+    private String chatUrl;
+
 }
