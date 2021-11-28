@@ -141,9 +141,9 @@ public class User extends Timestamped {
         this.introduction = userDesc;
     }
 
-//    public void setmailAuthenticationCode(){
-//        this.mailAuthenticationCode = UUID.randomUUID().toString();
-//    }
+    public void setmailAuthenticationCode(){
+        this.mailAuthenticationCode = UUID.randomUUID().toString();
+    }
 
     public void setUuid(String uuid){
         this.mailAuthenticationCode = uuid;
