@@ -154,6 +154,9 @@ public class UserService {
     @Transactional
     public void setEmailAuthCode(String snsId) {
         User user = userRepository.findBySnsId(snsId).orElseThrow(()->new BadRequestException(ErrorCode.NO_USER_ERROR));
-        user.setmailAuthenticationCode();
+        String uuid = UUID.randomUUID().toString();
+        user.setUuid(uuid);
+
+        //        user.setmailAuthenticationCode();
     }
 }
