@@ -173,7 +173,6 @@ public class UserRestController {
         log.info("[{}], 이메일 인증 전송, GET, api/user/email, email={}", MDC.get("UUID"), email);
 
         User user = userService.setEmailAuthCode(userDetails.getSnsId());
-
         mailService.authMailSender(email, user);
 
         return new ResponseEntity<>(
