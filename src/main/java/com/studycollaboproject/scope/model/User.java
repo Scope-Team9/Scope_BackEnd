@@ -41,11 +41,9 @@ public class User extends Timestamped {
     @Column(length = 5000)
     private String introduction;
 
-    @Column(unique = true, nullable = false)
     private String mailAuthenticationCode;
 
     private Boolean isVerifiedEmail;
-
 
     private Boolean emailReceiveAgreement;
 
@@ -70,6 +68,7 @@ public class User extends Timestamped {
         this.nickname = signupRequestDto.getNickname();
         this.userPropensityType = userTestResult;
         this.memberPropensityType = memberTestResult;
+        this.mailAuthenticationCode = UUID.randomUUID().toString();
         this.isVerifiedEmail = false;
         this.emailReceiveAgreement = false;
         this.recommendationAgreement = false;
@@ -99,6 +98,7 @@ public class User extends Timestamped {
         this.isVerifiedEmail = false;
         this.emailReceiveAgreement = false;
         this.recommendationAgreement = false;
+        this.mailAuthenticationCode = UUID.randomUUID().toString();
     }
 
     public User(TestUserSetupDto testUserSetupDto) {
@@ -108,14 +108,13 @@ public class User extends Timestamped {
         this.snsId = testUserSetupDto.getSnsId();
         this.memberPropensityType = testUserSetupDto.getMemberPropensityType();
         this.introduction = "";
+        this.mailAuthenticationCode = UUID.randomUUID().toString();
         this.isVerifiedEmail = false;
         this.emailReceiveAgreement = false;
         this.recommendationAgreement = false;
-        this.mailAuthenticationCode = UUID.randomUUID().toString();
     }
 
-    public void addTechStackListAndToken(List<TechStack> techStackList, String token) {
-        this.mailAuthenticationCode = token.split("\\.")[1];
+    public void addTechStackList(List<TechStack> techStackList) {
         this.techStackList = techStackList;
     }
 
@@ -143,6 +142,13 @@ public class User extends Timestamped {
         this.introduction = userDesc;
     }
 
+    public void setmailAuthenticationCode(){
+        this.mailAuthenticationCode = UUID.randomUUID().toString();
+    }
+
+    public void setUuid(String uuid){
+        this.mailAuthenticationCode = uuid;
+    }
     public void verifiedEmail() {
         this.isVerifiedEmail = true;
         this.emailReceiveAgreement = true;

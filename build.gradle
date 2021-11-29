@@ -50,6 +50,8 @@ dependencies {
     // jasypt
     implementation group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '3.0.4'
 
+    // 유효성검사
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 
 }
 //querydsl 추가 시작

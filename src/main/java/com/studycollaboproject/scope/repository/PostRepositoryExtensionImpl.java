@@ -2,6 +2,7 @@ package com.studycollaboproject.scope.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.studycollaboproject.scope.model.*;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
@@ -11,11 +12,33 @@ import java.util.List;
 import static com.studycollaboproject.scope.model.QPost.post;
 import static com.studycollaboproject.scope.model.QUser.user;
 
+@RequiredArgsConstructor
 public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
     private final JPAQueryFactory queryFactory;
 
-    public PostRepositoryExtensionImpl(EntityManager em) {
-        this.queryFactory = new JPAQueryFactory(em);
+    @Override
+    public List<Post> findAllOrderByModifiedAt() {
+        return queryFactory.selectFrom(post)
+                .where(post.projectStatus.in(ProjectStatus.PROJECT_STATUS_RECRUITMENT, ProjectStatus.PROJECT_STATUS_INPROGRESS))
+                .leftJoin(post.user, user).fetchJoin()
+                .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .orderBy(post.modifiedAt.desc())
+                .orderBy(post.projectStatus.desc())
+                .distinct()
+                .fetch();
+    }
+
+    @Override
+    public List<Post> findAllOrderByStartDate() {
+        return queryFactory.selectFrom(post)
+                .where(post.startDate.goe(LocalDate.now().atStartOfDay())
+                        .and(post.projectStatus.in(ProjectStatus.PROJECT_STATUS_RECRUITMENT, ProjectStatus.PROJECT_STATUS_INPROGRESS)))
+                .leftJoin(post.user, user).fetchJoin()
+                .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .orderBy(post.startDate.asc())
+                .orderBy(post.projectStatus.desc())
+                .distinct()
+                .fetch();
     }
 
     @Override
@@ -107,6 +130,7 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
                 .where(post.teamList.any().user.snsId.eq(snsId))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .leftJoin(post.teamList, QTeam.team).fetchJoin()
                 .orderBy(post.modifiedAt.desc())
                 .distinct()
                 .fetch();
@@ -118,6 +142,7 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
                 .where(post.applicantList.any().user.snsId.eq(snsId))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .leftJoin(post.teamList, QTeam.team).fetchJoin()
                 .orderBy(post.modifiedAt.desc())
                 .distinct()
                 .fetch();
@@ -129,6 +154,7 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
                 .where(post.bookmarkList.any().user.snsId.eq(snsId))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .leftJoin(post.teamList, QTeam.team).fetchJoin()
                 .orderBy(post.modifiedAt.desc())
                 .distinct()
                 .fetch();

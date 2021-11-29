@@ -8,6 +8,10 @@ import java.util.List;
 
 public interface PostRepositoryExtension {
 
+    List<Post> findAllOrderByModifiedAt();
+
+    List<Post> findAllOrderByStartDate();
+
     List<Post> findAllByTechInOrderByModifiedAt(List<Tech> techList);
 
     List<Post> findAllByTechInOrderByStartDate(List<Tech> techList);

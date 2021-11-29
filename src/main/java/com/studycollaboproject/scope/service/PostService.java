@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.Timestamp;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -29,17 +30,24 @@ public class PostService {
 
     @Transactional
     public PostResponseDto writePost(PostRequestDto postRequestDto, String snsId) {
-        Set<String> postTechStackList = new HashSet<>(postRequestDto.getTechStackList());
         User user = userRepository.findBySnsId(snsId).orElseThrow(() ->
                 new BadRequestException(ErrorCode.NO_USER_ERROR));
-
+        vaildationDate(postRequestDto.getStartDate(),postRequestDto.getEndDate());
         Post post = new Post(postRequestDto, user);
-        List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(new ArrayList<>(postTechStackList), null, post));
+        Set<String> techStackStringList = new HashSet<>(postRequestDto.getTechStackList());
+        List<TechStack> techStackList = techStackConverter.convertStringToTechStack(new ArrayList<>(techStackStringList), null, post);
         teamRepository.save(new Team(user, post));
         techStackRepository.saveAll(techStackList);
         post.updateTechStack(techStackList);
         Post savedPost = postRepository.save(post);
         return new PostResponseDto(savedPost);
+    }
+
+    private void vaildationDate(Timestamp start, Timestamp end) {
+        if (start.compareTo(end)>-1){
+            throw new BadRequestException(ErrorCode.INVALID_INPUT_ERROR);
+        }
+
     }
 
     @Transactional
@@ -48,8 +56,8 @@ public class PostService {
         User user = post.getUser();
         if (user.getSnsId().equals(snsId)) {
             techStackRepository.deleteAllByPost(post);
-            List<String> postTechStackList = postRequestDto.getTechStackList();
-            List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(postTechStackList, null, post));
+            Set<String> techStackStringList = new HashSet<>(postRequestDto.getTechStackList());
+            List<TechStack> techStackList = techStackConverter.convertStringToTechStack(new ArrayList<>(techStackStringList), null, post);
             post.updateTechStack(techStackList);
             post.update(postRequestDto);
             techStackRepository.saveAll(techStackList);
@@ -90,14 +98,14 @@ public class PostService {
         // String으로 받아온 filter 값을 세미콜론으로 스플릿
         List<String> filterList = Arrays.stream(filter.split(";")).filter(o -> !o.equals("")).collect(Collectors.toList());
         // 받아온 techStack 값을 List<Tech>로 전환
-        List<Tech> techList = techStackConverter.convertStringToTech(filterList);
+//        List<Tech> techList = techStackConverter.convertStringToTech(filterList);
 
         // bookmarkRecommend가 recommend라면 추천 포스트만 리턴한다.
         if ("recommend".equals(bookmarkRecommend)) {
             List<String> propensityTypeList = getPropensityTypeList(snsId);
             List<TechStack> userTechStackList = techStackRepository.findAllByUser_SnsId(snsId);
             List<String> userTechStackStringList = techStackConverter.convertTechStackToString(userTechStackList);
-            techList = techStackConverter.convertStringToTech(userTechStackStringList);
+            List<Tech> techList = techStackConverter.convertStringToTech(userTechStackStringList);
             if ("deadline".equals(sort)) {
                 for (String propensity : propensityTypeList) {
                     filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByStartDate(propensity, techList, snsId));
@@ -132,10 +140,10 @@ public class PostService {
         // 전체 조회의 경우.
         else {
             if ("deadline".equals(sort)) {
-                filterPosts = postRepository.findAllByTechInOrderByStartDate(techList);
+                filterPosts = postRepository.findAllOrderByStartDate();
 //                filterPosts = postRepository.findDistinctByTechStackList_TechInOrderByStartDate(techList);
             } else {
-                filterPosts = postRepository.findAllByTechInOrderByModifiedAt(techList);
+                filterPosts = postRepository.findAllOrderByModifiedAt();
 //                filterPosts = postRepository.findDistinctByTechStackList_TechInOrderByCreatedAtDesc(techList);
             }
             if (snsId.equals("")) {
@@ -199,7 +207,7 @@ public class PostService {
 //        List<Post> bookmarkPostList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(user.getSnsId());
         List<PostResponseDto> readyList = readyPostList.stream().map(o -> new PostResponseDto(o, true, loginUserSnsId)).collect(Collectors.toList());
         List<PostResponseDto> myBookmarkList = bookmarkPostList.stream().map(o -> new PostResponseDto(o, true, loginUserSnsId)).collect(Collectors.toList());
-        List<PostResponseDto> includedList = includePostList.stream().map(o -> new PostResponseDto(o, hasPostFromPostList(o.getId(), bookmarkPostList),loginUserSnsId)).collect(Collectors.toList());
+        List<PostResponseDto> includedList = includePostList.stream().map(o -> new PostResponseDto(o, hasPostFromPostList(o.getId(), bookmarkPostList), loginUserSnsId)).collect(Collectors.toList());
 
         return new MypageResponseDto(includedList, readyList, myBookmarkList, new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList())), loginUserSnsId.equals(user.getSnsId()));
     }

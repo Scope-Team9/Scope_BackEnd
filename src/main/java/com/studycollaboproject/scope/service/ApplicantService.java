@@ -9,6 +9,7 @@ import com.studycollaboproject.scope.model.ProjectStatus;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.ApplicantRepository;
 import com.studycollaboproject.scope.repository.PostRepository;
+import com.studycollaboproject.scope.repository.TeamRepository;
 import com.studycollaboproject.scope.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,7 @@ public class ApplicantService {
     private final ApplicantRepository applicantRepository;
     private final UserRepository userRepository;
     private final PostRepository postRepository;
+    private final TeamRepository teamRepository;
 
     @Transactional
     public Applicant applyPost(String snsId, Long postId, String comment) {
@@ -37,9 +39,12 @@ public class ApplicantService {
                 () -> new BadRequestException(ErrorCode.NO_POST_ERROR)
         );
         // [예외처리] 신청했던 프로젝트에 다시 신청하는 경우
-        applicantRepository.findByUserAndPost(user, post).ifPresent(applicant->{
+        if(teamRepository.existsByPostIdAndUserSnsId(postId, snsId)){
+            throw new BadRequestException(ErrorCode.ALREADY_TEAM_ERROR);
+        }
+        if(applicantRepository.existsByUserIdAndPostId(user.getId(), post.getId())) {
             throw new BadRequestException(ErrorCode.ALREADY_APPLY_POST_ERROR);
-        });
+        }
         // [예외처리] 이미 시작한 프로젝트에 신청할 경우
         if (!post.getProjectStatus().equals(ProjectStatus.PROJECT_STATUS_RECRUITMENT)){
             throw new BadRequestException(ErrorCode.ALREADY_STARTED_ERROR);

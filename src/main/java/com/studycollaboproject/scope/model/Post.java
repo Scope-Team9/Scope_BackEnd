@@ -10,7 +10,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Entity
@@ -67,7 +69,7 @@ public class Post extends Timestamped {
 
     @OneToMany(mappedBy = "post")
     @JsonIgnore
-    private List<Team> teamList = new ArrayList<>();
+    private Set<Team> teamList = new HashSet<>();
 
     @OneToMany(mappedBy = "post")
     @JsonIgnore

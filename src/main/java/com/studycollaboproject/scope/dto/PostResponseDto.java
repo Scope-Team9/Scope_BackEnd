@@ -2,15 +2,13 @@ package com.studycollaboproject.scope.dto;
 
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.Team;
-import com.studycollaboproject.scope.model.Tech;
 import com.studycollaboproject.scope.model.TechStack;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Getter
 @NoArgsConstructor
@@ -48,9 +46,10 @@ public class PostResponseDto {
     private Long userId;
     @Schema(description = "채팅 url")
     private String chatUrl;
-    @Schema(description = "현재 멤버 정보")
-    private List<Long> memberId = new ArrayList<>();
-    @Schema(description = "작성자/ 유저 체크")
+    @Schema(description = "현재 멤버 정보 / 평가정보 체크")
+//    private List<Long> memberId = new ArrayList<>();
+    private Map<Long, Boolean> memberIdAndAssessment = new HashMap<>();
+    @Schema(description = "작성자 / 유저 체크")
     private boolean writerEquals;
 
     public PostResponseDto(Post post) {
@@ -119,10 +118,10 @@ public class PostResponseDto {
         this.propensityType = post.getUser().getUserPropensityType();
         this.nickname = post.getUser().getNickname();
         this.userId = post.getUser().getId();
-        this.memberId = new ArrayList<>();
-        List <Team> memberIdList = post.getTeamList();
+        this.memberIdAndAssessment = new HashMap<>();
+        Set<Team> memberIdList = post.getTeamList();
         for(Team member : memberIdList){
-            this.memberId.add(member.getUser().getId());
+            this.memberIdAndAssessment.put(member.getUser().getId(),member.isAssessment());
         }
         this.writerEquals = post.getUser().getSnsId().equals(snsId);
     }

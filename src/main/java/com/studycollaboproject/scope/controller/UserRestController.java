@@ -20,9 +20,11 @@ import org.slf4j.MDC;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -75,14 +77,14 @@ public class UserRestController {
 
     @Operation(summary = "회원 가입 - 회원 정보와 테스트 결과 저장")
     @PostMapping("/api/signup")
-    public ResponseEntity<Object> signup(@RequestBody SignupRequestDto signupRequestDto) {
+    public ResponseEntity<Object> signup(@Valid @RequestBody SignupRequestDto signupRequestDto) {
         log.info("[{}], 회원 가입 - 회원 정보와 테스트 결과 저장, POST, /api/signup, signupRequestDto={}", MDC.get("UUID"), signupRequestDto.toString());
 
         String userTestResult = testService.testResult(signupRequestDto.getUserPropensityType());
         String memberTestResult = testService.testResult(signupRequestDto.getMemberPropensityType());
         User user = new User(signupRequestDto, userTestResult, memberTestResult);
         String token = userService.createToken(user);
-        UserResponseDto userResponseDto = userService.saveUser(signupRequestDto.getTechStack(), user, token);
+        UserResponseDto userResponseDto = userService.saveUser(signupRequestDto.getTechStack(), user);
 
         Map<String, Object> map = new HashMap<>();
         map.put("token", token);
@@ -171,22 +173,15 @@ public class UserRestController {
     public ResponseEntity<Object> emailAuthentication(@Parameter(description = "이메일", in = ParameterIn.QUERY) @RequestParam String email,
                                                       @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) throws MessagingException {
         log.info("[{}], 이메일 인증 전송, GET, api/user/email, email={}", MDC.get("UUID"), email);
-        mailService.authMailSender(email, userDetails.getUser());
+
+        User user = userService.setEmailAuthCode(userDetails.getSnsId());
+        mailService.authMailSender(email, user);
+
         return new ResponseEntity<>(
                 new ResponseDto("이메일이 전송되었습니다.", ""),
                 HttpStatus.OK
         );
     }
 
-    @Operation(summary = "이메일 인증 코드 확인")
-    @GetMapping("api/user/email/auth/{userId}")
-    public ResponseEntity<Object> recEmailCode(@Parameter(description = "인증 코드", in = ParameterIn.QUERY) @RequestParam String code,
-                                               @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long userId) {
-        log.info("[{}], 이메일 인증 코드 확인, GET, api/user/email/auth/{}, code={}", MDC.get("UUID"), userId, code);
-        mailService.emailAuthCodeCheck(code, userId);
-        return new ResponseEntity<>(
-                new ResponseDto("인증이 성공적으로 이루어졌습니다.", ""),
-                HttpStatus.OK
-        );
-    }
+
 }

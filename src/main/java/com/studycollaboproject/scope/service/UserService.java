@@ -11,7 +11,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @Service
@@ -27,10 +30,10 @@ public class UserService {
     private final TeamRepository teamRepository;
 
     //기술스택 리스트와 유저 정보를 같이 DB에 저장
-    public UserResponseDto saveUser(List<String> techStack, User user, String token) {
-        Set<String> techList = new HashSet<>(techStack);
-        List<TechStack> techStackList = techStackConverter.convertStringToTechStack(new ArrayList<>(techList), user, null);
-        user.addTechStackListAndToken(techStackList, token);
+    public UserResponseDto saveUser(List<String> techStack, User user) {
+        Set<String> techStackStringList = new HashSet<>(techStack);
+        List<TechStack> techStackList = techStackConverter.convertStringToTechStack(new ArrayList<>(techStackStringList), user, null);
+        user.addTechStackList(techStackList);
         User savedUser = userRepository.save(user);
         techStackRepository.saveAll(techStackList);
         return new UserResponseDto(savedUser, techStackConverter.convertTechStackToString(user.getTechStackList()));
@@ -67,6 +70,9 @@ public class UserService {
 
     //닉네임 중복 체크
     public boolean nicknameCheckByNickname(String nickname) {
+        if (nickname.length()<2||nickname.length()>5){
+            throw new BadRequestException(ErrorCode.INVALID_INPUT_ERROR);
+        }
         userRepository.findByNickname(nickname).ifPresent(user -> {
             throw new BadRequestException(ErrorCode.ALREADY_NICKNAME_ERROR);
         });
@@ -104,8 +110,8 @@ public class UserService {
             emailCheckByEmail(email);
         }
 
-        techStackRepository.deleteAllByUser(user);
-        List<TechStack> techStackList = techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(), user, null);
+        Set<String> techStackStringList = new HashSet<>(userRequestDto.getUserTechStack());
+        List<TechStack> techStackList = techStackConverter.convertStringToTechStack(new ArrayList<>(techStackStringList), user, null);
         user.resetTechStack();
         user.updateUserInfo(email, nickname, techStackList);
         techStackRepository.saveAll(techStackList);
@@ -149,5 +155,13 @@ public class UserService {
         }
         userRepository.delete(user);
         return new ResponseDto("성공적으로 회원 정보가 삭제되었습니다.", "");
+    }
+
+    @Transactional
+    public User setEmailAuthCode(String snsId) {
+        User user = userRepository.findBySnsId(snsId).orElseThrow(() -> new BadRequestException(ErrorCode.NO_USER_ERROR));
+        user.setmailAuthenticationCode();
+        return user;
+
     }
 }
