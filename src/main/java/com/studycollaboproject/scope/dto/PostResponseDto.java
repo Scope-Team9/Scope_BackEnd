@@ -2,7 +2,6 @@ package com.studycollaboproject.scope.dto;
 
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.Team;
-import com.studycollaboproject.scope.model.Tech;
 import com.studycollaboproject.scope.model.TechStack;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
@@ -49,7 +48,7 @@ public class PostResponseDto {
     private String chatUrl;
     @Schema(description = "현재 멤버 정보 / 평가정보 체크")
 //    private List<Long> memberId = new ArrayList<>();
-    private Map<Long, Boolean> memberIdAndAssessment;
+    private Map<Long, Boolean> memberIdAndAssessment = new HashMap<>();
     @Schema(description = "작성자 / 유저 체크")
     private boolean writerEquals;
 
