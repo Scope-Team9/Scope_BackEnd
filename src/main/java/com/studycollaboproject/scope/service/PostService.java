@@ -90,14 +90,14 @@ public class PostService {
         // String으로 받아온 filter 값을 세미콜론으로 스플릿
         List<String> filterList = Arrays.stream(filter.split(";")).filter(o -> !o.equals("")).collect(Collectors.toList());
         // 받아온 techStack 값을 List<Tech>로 전환
-        List<Tech> techList = techStackConverter.convertStringToTech(filterList);
+//        List<Tech> techList = techStackConverter.convertStringToTech(filterList);
 
         // bookmarkRecommend가 recommend라면 추천 포스트만 리턴한다.
         if ("recommend".equals(bookmarkRecommend)) {
             List<String> propensityTypeList = getPropensityTypeList(snsId);
             List<TechStack> userTechStackList = techStackRepository.findAllByUser_SnsId(snsId);
             List<String> userTechStackStringList = techStackConverter.convertTechStackToString(userTechStackList);
-            techList = techStackConverter.convertStringToTech(userTechStackStringList);
+            List<Tech> techList = techStackConverter.convertStringToTech(userTechStackStringList);
             if ("deadline".equals(sort)) {
                 for (String propensity : propensityTypeList) {
                     filterPosts.addAll(postRepository.findAllByPropensityTypeOrderByStartDate(propensity, techList, snsId));
@@ -132,10 +132,10 @@ public class PostService {
         // 전체 조회의 경우.
         else {
             if ("deadline".equals(sort)) {
-                filterPosts = postRepository.findAllByTechInOrderByStartDate(techList);
+                filterPosts = postRepository.findAllOrderByStartDate();
 //                filterPosts = postRepository.findDistinctByTechStackList_TechInOrderByStartDate(techList);
             } else {
-                filterPosts = postRepository.findAllByTechInOrderByModifiedAt(techList);
+                filterPosts = postRepository.findAllOrderByModifiedAt();
 //                filterPosts = postRepository.findDistinctByTechStackList_TechInOrderByCreatedAtDesc(techList);
             }
             if (snsId.equals("")) {
