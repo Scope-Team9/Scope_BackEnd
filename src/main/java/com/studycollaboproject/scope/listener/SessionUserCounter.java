@@ -2,15 +2,14 @@ package com.studycollaboproject.scope.listener;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-
-import javax.servlet.annotation.WebListener;
+import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
 @Slf4j
 @Getter
-@WebListener
+@Component
 public class SessionUserCounter implements HttpSessionListener {
     public static int count;
 
