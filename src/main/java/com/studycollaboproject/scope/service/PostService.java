@@ -44,7 +44,7 @@ public class PostService {
     }
 
     private void vaildationDate(Timestamp start, Timestamp end) {
-        if (start.compareTo(end)<1){
+        if (start.compareTo(end)>-1){
             throw new BadRequestException(ErrorCode.INVALID_INPUT_ERROR);
         }
 
