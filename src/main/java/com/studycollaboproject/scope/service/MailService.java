@@ -132,7 +132,7 @@ public class MailService {
             context.setVariable("logo", url + "/img/logo.png");
             context.setVariable("title", mailDto.getPostTitle());
             context.setVariable("nickname", user.getNickname());
-            context.setVariable("userId", mailDto.getToUserId());
+            context.setVariable("userId", user.getId());
             String subject = "[scope]" + user.getNickname() + "님의 프로젝트가 종료되었습니다!";
             String body = templateEngine.process("applicationNoticeEmail", context);
             setMail(subject, body, user.getEmail());
