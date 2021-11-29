@@ -57,7 +57,7 @@ public class PostResponseDto {
         this.title = post.getTitle();
         this.contents = post.getContents();
         this.techStack = new ArrayList<>();
-        List<TechStack> techStackList = post.getTechStackList();
+        List<TechStack> techStackList = new ArrayList<>(post.getTechStackList());
         for (TechStack stack : techStackList) {
             this.techStack.add(stack.getTech().getTech());
         }
@@ -80,7 +80,7 @@ public class PostResponseDto {
         this.title = post.getTitle();
         this.contents = post.getContents();
         this.techStack = new ArrayList<>();
-        List<TechStack> techStackList = post.getTechStackList();
+        List<TechStack> techStackList = new ArrayList<>(post.getTechStackList());
         for (TechStack stack : techStackList) {
                 this.techStack.add(stack.getTech().getTech());
         }
@@ -103,7 +103,7 @@ public class PostResponseDto {
         this.title = post.getTitle();
         this.contents = post.getContents();
         this.techStack = new ArrayList<>();
-        List<TechStack> techStackList = post.getTechStackList();
+        List<TechStack> techStackList = new ArrayList<>(post.getTechStackList());
         for (TechStack stack : techStackList) {
             this.techStack.add(stack.getTech().getTech());
         }
@@ -119,7 +119,7 @@ public class PostResponseDto {
         this.nickname = post.getUser().getNickname();
         this.userId = post.getUser().getId();
         this.memberIdAndAssessment = new HashMap<>();
-        Set<Team> memberIdList = post.getTeamList();
+        List<Team> memberIdList = post.getTeamList();
         for(Team member : memberIdList){
             this.memberIdAndAssessment.put(member.getUser().getId(),member.isAssessment());
         }
