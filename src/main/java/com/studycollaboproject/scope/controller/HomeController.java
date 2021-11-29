@@ -1,8 +1,5 @@
 package com.studycollaboproject.scope.controller;
 
-import com.studycollaboproject.scope.listener.SessionUserCounter;
-import lombok.RequiredArgsConstructor;
-import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 

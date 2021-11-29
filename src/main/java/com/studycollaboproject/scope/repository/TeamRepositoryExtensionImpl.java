@@ -4,20 +4,19 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.Team;
 import com.studycollaboproject.scope.model.User;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 
 import static com.studycollaboproject.scope.model.QPost.post;
 import static com.studycollaboproject.scope.model.QTeam.team;
 import static com.studycollaboproject.scope.model.QUser.user;
 
+@Repository
+@RequiredArgsConstructor
 public class TeamRepositoryExtensionImpl implements TeamRepositoryExtension {
     private final JPAQueryFactory queryFactory;
-
-    public TeamRepositoryExtensionImpl(EntityManager em) {
-        this.queryFactory = new JPAQueryFactory(em);
-    }
 
     @Override
     public List<Team> findAllByUser(User targetUser) {
@@ -49,10 +48,11 @@ public class TeamRepositoryExtensionImpl implements TeamRepositoryExtension {
     }
 
     @Override
-    public boolean existsByUserId(Long userId) {
+    public boolean existsByPostIdAndUserSnsId(Long postId, String userSnsId) {
         Integer fetchOne = queryFactory.selectOne()
                 .from(team)
-                .where(team.user.id.eq(userId))
+                .where(team.user.snsId.eq(userSnsId)
+                        .and(team.post.id.eq(postId)))
                 .fetchFirst();
 
         return fetchOne != null;
