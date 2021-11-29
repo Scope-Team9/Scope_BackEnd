@@ -1,11 +1,13 @@
 package com.studycollaboproject.scope.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.EntityManager;
 
 import static com.studycollaboproject.scope.model.QApplicant.applicant;
 
+@RequiredArgsConstructor
 public class ApplicantRepositoryExtensionImpl implements ApplicantRepositoryExtension {
     private final JPAQueryFactory queryFactory;
 
