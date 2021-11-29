@@ -1,5 +1,0 @@
-[WARN ] 04:13:41.336 com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h9m5s969ms161µs200ns).
-[WARN ] 11:02:48.736 com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5h27m6s393ms406µs200ns).
-[INFO ] 17:52:25.206 c.s.scope.util.AspectTime - [743e3b00-4420-4ae5-add1-6475b53dca59], WorkTime : 0.1207 ms
-[INFO ] 17:52:25.217 c.s.s.filter.JwtAuthenticationFilter - [743e3b00-4420-4ae5-add1-6475b53dca59], token=null
-[INFO ] 17:52:31.291 c.s.s.filter.JwtAuthenticationFilter - [ac1a4f43-1e7d-488f-87e9-43e7e7dd7db0], token=null
