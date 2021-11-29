@@ -32,7 +32,7 @@ public class MailService {
     private final SpringTemplateEngine templateEngine;
     private final JavaMailSender javaMailSender;
     private final UserRepository userRepository;
-    private static final Map<String, String> propensityMatching = new HashMap<String, String>() {
+    private static final Map<String, String> propensityMatching = new HashMap<>() {
         {
             put("LVG", "호랑이");
             put("LVP", "늑대");
