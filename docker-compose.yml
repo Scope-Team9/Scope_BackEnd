@@ -1,0 +1,24 @@
+version: "3"
+services:
+  scope1:
+    build: .   # Dockerfile 실행
+    image: scope  # 내가 만든 이미지 이름을 지정
+    container_name: real1  # 컨테이너 이름 지정
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./zip/:/scope/
+    environment:
+      active: real1  # Dockerfile 실행될 때 환경변수를 사용할 수 있게 지정
+      password: ${JASYPT_ENCRYPTOR_PASSWORD}
+  scope2:
+    build: .   # Dockerfile 실행
+    image: scope
+    container_name: real2
+    ports:
+      - "8082:8082"
+    volumes:
+      - ./zip/:/scope/
+    environment:
+      active: real2  # Dockerfile 실행될 때 환경변수를 사용할 수 있게 지정
+      password: ${JASYPT_ENCRYPTOR_PASSWORD}

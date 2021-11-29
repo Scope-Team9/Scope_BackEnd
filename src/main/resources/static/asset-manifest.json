@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e8824643.chunk.css",
+    "main.js": "/static/js/main.a81d4aa6.chunk.js",
+    "main.js.map": "/static/js/main.a81d4aa6.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.f03ace55.js",
+    "runtime-main.js.map": "/static/js/runtime-main.f03ace55.js.map",
+    "static/css/2.50fb5548.chunk.css": "/static/css/2.50fb5548.chunk.css",
+    "static/js/2.3e90a179.chunk.js": "/static/js/2.3e90a179.chunk.js",
+    "static/js/2.3e90a179.chunk.js.map": "/static/js/2.3e90a179.chunk.js.map",
+    "static/js/3.c65659f3.chunk.js": "/static/js/3.c65659f3.chunk.js",
+    "static/js/3.c65659f3.chunk.js.map": "/static/js/3.c65659f3.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.50fb5548.chunk.css.map": "/static/css/2.50fb5548.chunk.css.map",
+    "static/css/main.e8824643.chunk.css.map": "/static/css/main.e8824643.chunk.css.map",
+    "static/js/2.3e90a179.chunk.js.LICENSE.txt": "/static/js/2.3e90a179.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/static/media/GmarketSansMedium.3b975ddd.otf",
+    "static/media/Logo.df9d5eaf.png": "/static/media/Logo.df9d5eaf.png",
+    "static/media/PostAdd.2b16c1a9.jpg": "/static/media/PostAdd.2b16c1a9.jpg",
+    "static/media/PostDetail.71524391.png": "/static/media/PostDetail.71524391.png",
+    "static/media/MainSlide.css": "/static/media/slick.c94f7671.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f03ace55.js",
+    "static/css/2.50fb5548.chunk.css",
+    "static/js/2.3e90a179.chunk.js",
+    "static/css/main.e8824643.chunk.css",
+    "static/js/main.a81d4aa6.chunk.js"
+  ]
+}
