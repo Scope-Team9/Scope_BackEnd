@@ -23,7 +23,7 @@ public class TeamService {
     private final ApplicantRepository applicantRepository;
 
     @Transactional
-    public void acceptMember(Post post, User user, Boolean accept) {
+    public boolean acceptMember(Post post, User user, Boolean accept) {
         // [예외처리] 대기열에서 신청자의 정보를 찾을 수 없을 때
         Applicant applicant = applicantRepository.findByUserAndPost(user, post).orElseThrow(
                 () -> new BadRequestException(ErrorCode.NO_APPLICANT_ERROR)
@@ -35,14 +35,19 @@ public class TeamService {
         applicant.deleteApply();
         applicantRepository.delete(applicant);
 
+        if(teamRepository.existsByUserId(user.getId())){
+            throw new BadRequestException(ErrorCode.ALREADY_TEAM_ERROR);
+        }
+
         if (accept) {
             Team team = Team.builder()
                     .user(user)
                     .post(post)
                     .build();
             teamRepository.save(team);
+            return true;
         }
-
+        return false;
     }
 
     @Transactional
