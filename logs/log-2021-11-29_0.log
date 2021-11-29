@@ -1,5 +1,59 @@
-[WARN ] 04:13:41.336 com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h9m5s969ms161µs200ns).
-[WARN ] 11:02:48.736 com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5h27m6s393ms406µs200ns).
-[INFO ] 17:52:25.206 c.s.scope.util.AspectTime - [743e3b00-4420-4ae5-add1-6475b53dca59], WorkTime : 0.1207 ms
-[INFO ] 17:52:25.217 c.s.s.filter.JwtAuthenticationFilter - [743e3b00-4420-4ae5-add1-6475b53dca59], token=null
-[INFO ] 17:52:31.291 c.s.s.filter.JwtAuthenticationFilter - [ac1a4f43-1e7d-488f-87e9-43e7e7dd7db0], token=null
+[INFO ] 22:49:35.448 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.1 on DESKTOP-LRS5KO2 with PID 31648 (C:\Users\MH\Desktop\Scope_BackEnd\out\production\classes started by MH in C:\Users\MH\Desktop\Scope_BackEnd)
+[INFO ] 22:49:35.450 c.s.scope.ScopeApplication - The following profiles are active: real1
+[INFO ] 22:49:35.450 o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.0.Final
+[INFO ] 22:49:36.159 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 22:49:36.249 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 83 ms. Found 7 JPA repository interfaces.
+[INFO ] 22:49:36.460 c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[INFO ] 22:49:36.461 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 22:49:36.461 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 22:49:36.461 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 22:49:36.462 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 22:49:36.463 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[INFO ] 22:49:36.463 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[INFO ] 22:49:36.463 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 22:49:36.463 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 22:49:36.479 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'asyncConfig' of type [com.studycollaboproject.scope.config.AsyncConfig$$EnhancerBySpringCGLIB$$7d4a0322] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 22:49:36.595 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@310ed6b4' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 22:49:36.602 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 22:49:36.661 c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[INFO ] 22:49:36.667 c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[INFO ] 22:49:36.668 c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[INFO ] 22:49:36.817 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+[INFO ] 22:49:36.824 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+[INFO ] 22:49:36.824 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 22:49:36.824 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 22:49:36.921 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 22:49:36.921 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1439 ms
+[INFO ] 22:49:36.993 c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@8840c98 with name: jasyptStringEncryptor
+[INFO ] 22:49:37.111 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 22:49:37.144 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 22:49:37.232 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 22:49:37.305 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 22:49:37.534 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 22:49:37.550 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 22:49:38.377 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 22:49:38.386 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 22:49:38.796 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[WARN ] 22:49:38.824 o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'apiTestRestController' defined in file [C:\Users\MH\Desktop\Scope_BackEnd\out\production\classes\com\studycollaboproject\scope\controller\ApiTestRestController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'assessmentService' defined in file [C:\Users\MH\Desktop\Scope_BackEnd\out\production\classes\com\studycollaboproject\scope\service\AssessmentService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'postRepository' defined in com.studycollaboproject.scope.repository.PostRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot create inner bean '(inner bean)#3ba815ee' of type [org.springframework.data.repository.core.support.RepositoryFragmentsFactoryBean] while setting bean property 'repositoryFragments'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#3ba815ee': Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'postRepositoryExtensionImplFragment': Cannot resolve reference to bean 'postRepositoryExtensionImpl' while setting constructor argument; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'postRepositoryExtensionImpl' defined in file [C:\Users\MH\Desktop\Scope_BackEnd\out\production\classes\com\studycollaboproject\scope\repository\PostRepositoryExtensionImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.querydsl.jpa.impl.JPAQueryFactory' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+[INFO ] 22:49:38.825 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 22:49:38.826 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 22:49:38.833 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 22:49:38.835 o.a.catalina.core.StandardService - Stopping service [Tomcat]
+[INFO ] 22:49:38.843 o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+[ERROR] 22:49:38.859 o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.studycollaboproject.scope.repository.PostRepositoryExtensionImpl required a bean of type 'com.querydsl.jpa.impl.JPAQueryFactory' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.querydsl.jpa.impl.JPAQueryFactory' in your configuration.
+
