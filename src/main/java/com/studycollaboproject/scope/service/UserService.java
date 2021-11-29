@@ -27,7 +27,7 @@ public class UserService {
     private final TeamRepository teamRepository;
 
     //기술스택 리스트와 유저 정보를 같이 DB에 저장
-    public UserResponseDto saveUser(List<String> techStack, User user, String token) {
+    public UserResponseDto saveUser(List<String> techStack, User user) {
         Set<String> techList = new HashSet<>(techStack);
         List<TechStack> techStackList = techStackConverter.convertStringToTechStack(new ArrayList<>(techList), user, null);
         user.addTechStackList(techStackList);
