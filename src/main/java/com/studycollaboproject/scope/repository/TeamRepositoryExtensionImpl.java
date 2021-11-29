@@ -5,14 +5,15 @@ import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.Team;
 import com.studycollaboproject.scope.model.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 
 import static com.studycollaboproject.scope.model.QPost.post;
 import static com.studycollaboproject.scope.model.QTeam.team;
 import static com.studycollaboproject.scope.model.QUser.user;
 
+@Repository
 @RequiredArgsConstructor
 public class TeamRepositoryExtensionImpl implements TeamRepositoryExtension {
     private final JPAQueryFactory queryFactory;

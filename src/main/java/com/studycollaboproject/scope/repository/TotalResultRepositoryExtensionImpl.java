@@ -2,6 +2,7 @@ package com.studycollaboproject.scope.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -10,6 +11,7 @@ import static com.studycollaboproject.scope.model.QPost.post;
 import static com.studycollaboproject.scope.model.QTeam.team;
 import static com.studycollaboproject.scope.model.QTotalResult.totalResult;
 
+@Repository
 @RequiredArgsConstructor
 public class TotalResultRepositoryExtensionImpl implements TotalResultRepositoryExtension {
     private final JPAQueryFactory queryFactory;
