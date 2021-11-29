@@ -150,25 +150,22 @@ public class MailService {
         context.setVariable("userId", user.getId());
         context.setVariable("code", user.getMailAuthenticationCode());
         context.setVariable("nickname", user.getNickname());
+        context.setVariable("email", email);
         String subject = "[scope]" + user.getNickname() + "님! 이메일 인증을 완료해주세요.";
         String body = templateEngine.process("emailAuthentication", context);
         setMail(subject, body, email);
     }
+
     @Transactional
-    public String emailAuthCodeCheck(String code, Long userId) {
+    public String emailAuthCodeCheck(String code, Long userId, String email) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new BadRequestException(ErrorCode.NO_USER_ERROR));
 
-        Optional<User> user = userRepository.findById(userId);
-
-
-        if (user.isPresent()) {
-            if (user.get().getMailAuthenticationCode().equals(code)) {
-                user.get().verifiedEmail();
-                return "이메일 인증이 완료되었습니다.";
-            } else {
-                return "유효한 토큰값이 아닙니다.";
-            }
+        if (user.getMailAuthenticationCode().equals(code)) {
+            user.verifiedEmail(email);
+            return "이메일 인증이 완료되었습니다.";
         } else {
-            return "유저를 찾을 수 없습니다.";
+            return "유효한 토큰값이 아닙니다.";
         }
     }
+
 }

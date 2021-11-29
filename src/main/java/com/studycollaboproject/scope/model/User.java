@@ -128,17 +128,20 @@ public class User extends Timestamped {
         return this.memberPropensityType;
     }
 
+    public void updateEmail(String email){
+        this.email = email;
+    }
+
     public void resetTechStack() {
         this.techStackList = new ArrayList<>();
     }
 
-    public void updateUserInfo(String email, String nickname, List<TechStack> techStackList) {
-        this.email = email;
+    public void updateUserInfo(String nickname, List<TechStack> techStackList) {
         this.nickname = nickname;
         this.techStackList = techStackList;
     }
 
-    public void updateUserInfo(String userDesc) {
+    public void updateUserDesc(String userDesc) {
         this.introduction = userDesc;
     }
 
@@ -149,7 +152,8 @@ public class User extends Timestamped {
     public void setUuid(String uuid){
         this.mailAuthenticationCode = uuid;
     }
-    public void verifiedEmail() {
+    public void verifiedEmail(String email) {
+        this.email = email;
         this.isVerifiedEmail = true;
         this.emailReceiveAgreement = true;
     }

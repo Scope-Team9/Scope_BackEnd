@@ -61,11 +61,10 @@ public class UserService {
     }
 
     //email 중복 체크
-    public boolean emailCheckByEmail(String email) {
+    public void emailCheckByEmail(String email) {
         userRepository.findByEmail(email).ifPresent(user -> {
             throw new BadRequestException(ErrorCode.ALREADY_EMAIL_ERROR);
         });
-        return true;
     }
 
     //닉네임 중복 체크
@@ -97,7 +96,6 @@ public class UserService {
     public UserResponseDto updateUserInfo(String snsId, UserRequestDto userRequestDto) {
 
         String nickname = userRequestDto.getNickname();
-        String email = userRequestDto.getEmail();
         User user = loadUserBySnsId(snsId);
 
         techStackRepository.deleteAllByUser(user);
@@ -106,14 +104,11 @@ public class UserService {
         if (!user.getNickname().equals(nickname)) {
             nicknameCheckByNickname(nickname);
         }
-        if (!user.getEmail().equals(email)) {
-            emailCheckByEmail(email);
-        }
 
         Set<String> techStackStringList = new HashSet<>(userRequestDto.getUserTechStack());
         List<TechStack> techStackList = techStackConverter.convertStringToTechStack(new ArrayList<>(techStackStringList), user, null);
         user.resetTechStack();
-        user.updateUserInfo(email, nickname, techStackList);
+        user.updateUserInfo(nickname, techStackList);
         techStackRepository.saveAll(techStackList);
         return new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList()));
     }
@@ -122,7 +117,7 @@ public class UserService {
     @Transactional
     public UserResponseDto updateUserDesc(String snsId, String userDesc) {
         User user = loadUserBySnsId(snsId);
-        user.updateUserInfo(userDesc);
+        user.updateUserDesc(userDesc);
 
         return new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList()));
     }
@@ -164,4 +159,6 @@ public class UserService {
         return user;
 
     }
+
+
 }
