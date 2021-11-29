@@ -82,7 +82,7 @@ public class UserRestController {
         String memberTestResult = testService.testResult(signupRequestDto.getMemberPropensityType());
         User user = new User(signupRequestDto, userTestResult, memberTestResult);
         String token = userService.createToken(user);
-        UserResponseDto userResponseDto = userService.saveUser(signupRequestDto.getTechStack(), user, token);
+        UserResponseDto userResponseDto = userService.saveUser(signupRequestDto.getTechStack(), user);
 
         Map<String, Object> map = new HashMap<>();
         map.put("token", token);
