@@ -45,7 +45,6 @@ public class User extends Timestamped {
 
     private Boolean isVerifiedEmail;
 
-
     private Boolean emailReceiveAgreement;
 
     //    @Column(nullable = false)
@@ -69,6 +68,7 @@ public class User extends Timestamped {
         this.nickname = signupRequestDto.getNickname();
         this.userPropensityType = userTestResult;
         this.memberPropensityType = memberTestResult;
+        this.mailAuthenticationCode = "";
         this.isVerifiedEmail = false;
         this.emailReceiveAgreement = false;
         this.recommendationAgreement = false;
@@ -107,13 +107,13 @@ public class User extends Timestamped {
         this.snsId = testUserSetupDto.getSnsId();
         this.memberPropensityType = testUserSetupDto.getMemberPropensityType();
         this.introduction = "";
+        this.mailAuthenticationCode = "";
         this.isVerifiedEmail = false;
         this.emailReceiveAgreement = false;
         this.recommendationAgreement = false;
     }
 
     public void addTechStackList(List<TechStack> techStackList) {
-
         this.techStackList = techStackList;
     }
 

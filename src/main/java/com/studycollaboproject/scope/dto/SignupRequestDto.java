@@ -31,6 +31,4 @@ public class SignupRequestDto {
 
     @Schema(description = "유저 선호 성향 테스트 결과")
     List<String> memberPropensityType;
-
-
 }
