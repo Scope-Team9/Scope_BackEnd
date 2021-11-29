@@ -72,6 +72,9 @@ public class UserService {
 
     //닉네임 중복 체크
     public boolean nicknameCheckByNickname(String nickname) {
+        if (nickname.length()<2||nickname.length()>5){
+            throw new BadRequestException(ErrorCode.INVALID_INPUT_ERROR);
+        }
         userRepository.findByNickname(nickname).ifPresent(user -> {
             throw new BadRequestException(ErrorCode.ALREADY_NICKNAME_ERROR);
         });
