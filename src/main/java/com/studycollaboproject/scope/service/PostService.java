@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.Timestamp;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -32,7 +33,7 @@ public class PostService {
         Set<String> postTechStackList = new HashSet<>(postRequestDto.getTechStackList());
         User user = userRepository.findBySnsId(snsId).orElseThrow(() ->
                 new BadRequestException(ErrorCode.NO_USER_ERROR));
-
+        vaildationDate(postRequestDto.getStartDate(),postRequestDto.getEndDate());
         Post post = new Post(postRequestDto, user);
         List<TechStack> techStackList = new ArrayList<>(techStackConverter.convertStringToTechStack(new ArrayList<>(postTechStackList), null, post));
         teamRepository.save(new Team(user, post));
@@ -40,6 +41,13 @@ public class PostService {
         post.updateTechStack(techStackList);
         Post savedPost = postRepository.save(post);
         return new PostResponseDto(savedPost);
+    }
+
+    private void vaildationDate(Timestamp start, Timestamp end) {
+        if (start.compareTo(end)<1){
+            throw new BadRequestException(ErrorCode.INVALID_INPUT_ERROR);
+        }
+
     }
 
     @Transactional
@@ -199,7 +207,7 @@ public class PostService {
 //        List<Post> bookmarkPostList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(user.getSnsId());
         List<PostResponseDto> readyList = readyPostList.stream().map(o -> new PostResponseDto(o, true, loginUserSnsId)).collect(Collectors.toList());
         List<PostResponseDto> myBookmarkList = bookmarkPostList.stream().map(o -> new PostResponseDto(o, true, loginUserSnsId)).collect(Collectors.toList());
-        List<PostResponseDto> includedList = includePostList.stream().map(o -> new PostResponseDto(o, hasPostFromPostList(o.getId(), bookmarkPostList),loginUserSnsId)).collect(Collectors.toList());
+        List<PostResponseDto> includedList = includePostList.stream().map(o -> new PostResponseDto(o, hasPostFromPostList(o.getId(), bookmarkPostList), loginUserSnsId)).collect(Collectors.toList());
 
         return new MypageResponseDto(includedList, readyList, myBookmarkList, new UserResponseDto(user, techStackConverter.convertTechStackToString(user.getTechStackList())), loginUserSnsId.equals(user.getSnsId()));
     }
