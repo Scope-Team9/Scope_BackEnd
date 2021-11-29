@@ -3,6 +3,7 @@ package com.studycollaboproject.scope.repository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.studycollaboproject.scope.model.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ import java.util.List;
 import static com.studycollaboproject.scope.model.QPost.post;
 import static com.studycollaboproject.scope.model.QUser.user;
 
+@Repository
 @RequiredArgsConstructor
 public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
     private final JPAQueryFactory queryFactory;
