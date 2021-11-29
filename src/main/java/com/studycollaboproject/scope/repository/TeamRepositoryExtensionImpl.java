@@ -47,4 +47,14 @@ public class TeamRepositoryExtensionImpl implements TeamRepositoryExtension {
                 .distinct()
                 .fetch();
     }
+
+    @Override
+    public boolean existsByUserId(Long userId) {
+        Integer fetchOne = queryFactory.selectOne()
+                .from(team)
+                .where(team.user.id.eq(userId))
+                .fetchFirst();
+
+        return fetchOne != null;
+    }
 }

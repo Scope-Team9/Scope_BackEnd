@@ -11,7 +11,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @Service
@@ -28,16 +31,11 @@ public class UserService {
 
     //기술스택 리스트와 유저 정보를 같이 DB에 저장
     public UserResponseDto saveUser(List<String> techStack, User user) {
-        Set<String> techList = new HashSet<>(techStack);
-        System.out.println("techList = " + techList);
-        List<TechStack> techStackList = techStackConverter.convertStringToTechStack(new ArrayList<>(techList), user, null);
-        System.out.println("techStackList = " + techStackList);
+        Set<String> techStackStringList = new HashSet<>(techStack);
+        List<TechStack> techStackList = techStackConverter.convertStringToTechStack(new ArrayList<>(techStackStringList), user, null);
         user.addTechStackList(techStackList);
-        System.out.println("체크1");
         User savedUser = userRepository.save(user);
-        System.out.println("savedUser = " + savedUser);
         techStackRepository.saveAll(techStackList);
-        System.out.println("체크2");
         return new UserResponseDto(savedUser, techStackConverter.convertTechStackToString(user.getTechStackList()));
     }
 
@@ -112,8 +110,8 @@ public class UserService {
             emailCheckByEmail(email);
         }
 
-        techStackRepository.deleteAllByUser(user);
-        List<TechStack> techStackList = techStackConverter.convertStringToTechStack(userRequestDto.getUserTechStack(), user, null);
+        Set<String> techStackStringList = new HashSet<>(userRequestDto.getUserTechStack());
+        List<TechStack> techStackList = techStackConverter.convertStringToTechStack(new ArrayList<>(techStackStringList), user, null);
         user.resetTechStack();
         user.updateUserInfo(email, nickname, techStackList);
         techStackRepository.saveAll(techStackList);
