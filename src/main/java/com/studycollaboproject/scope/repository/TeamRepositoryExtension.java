@@ -12,4 +12,6 @@ public interface TeamRepositoryExtension {
     List<Team> findAssessmentTeamMember(Post post, List<Long> userIds);
 
     List<Team> findAllByPostId(Long postId);
+
+    boolean existsByUserId(Long userId);
 }

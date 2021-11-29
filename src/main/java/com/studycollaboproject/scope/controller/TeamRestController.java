@@ -59,9 +59,8 @@ public class TeamRestController {
         //지원자 정보 확인
         User applyUser = userService.loadUserByUserId(requestDto.getUserId());
         //지원자 승인/거절
-        teamService.acceptMember(post, applyUser, requestDto.isAccept());
         //지원자 승인시 승인된 지원자에게 알림 메일 발송
-        if (requestDto.isAccept()) {
+        if (teamService.acceptMember(post, applyUser, requestDto.isAccept())) {
             mailService.acceptTeamMailBuilder(new MailDto(applyUser,post));
         }
         //지원지 목록 출력
