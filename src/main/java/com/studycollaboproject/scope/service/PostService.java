@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.Timestamp;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -31,7 +32,7 @@ public class PostService {
     public PostResponseDto writePost(PostRequestDto postRequestDto, String snsId) {
         User user = userRepository.findBySnsId(snsId).orElseThrow(() ->
                 new BadRequestException(ErrorCode.NO_USER_ERROR));
-
+        vaildationDate(postRequestDto.getStartDate(),postRequestDto.getEndDate());
         Post post = new Post(postRequestDto, user);
         Set<String> techStackStringList = new HashSet<>(postRequestDto.getTechStackList());
         List<TechStack> techStackList = techStackConverter.convertStringToTechStack(new ArrayList<>(techStackStringList), null, post);
@@ -40,6 +41,13 @@ public class PostService {
         post.updateTechStack(techStackList);
         Post savedPost = postRepository.save(post);
         return new PostResponseDto(savedPost);
+    }
+
+    private void vaildationDate(Timestamp start, Timestamp end) {
+        if (start.compareTo(end)>-1){
+            throw new BadRequestException(ErrorCode.INVALID_INPUT_ERROR);
+        }
+
     }
 
     @Transactional

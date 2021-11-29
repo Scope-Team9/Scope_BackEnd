@@ -61,7 +61,7 @@ public class Post extends Timestamped {
 
     @OneToMany(mappedBy = "post")
     @JsonIgnore
-    private List<TechStack> techStackList = new ArrayList<>();
+    private Set<TechStack> techStackList = new HashSet<>();
 
     @OneToMany(mappedBy = "post")
     @JsonIgnore
@@ -69,7 +69,7 @@ public class Post extends Timestamped {
 
     @OneToMany(mappedBy = "post")
     @JsonIgnore
-    private Set<Team> teamList = new HashSet<>();
+    private List<Team> teamList = new ArrayList<>();
 
     @OneToMany(mappedBy = "post")
     @JsonIgnore
@@ -119,6 +119,6 @@ public class Post extends Timestamped {
     }
 
     public void updateTechStack(List<TechStack> techStackList) {
-        this.techStackList = techStackList;
+        this.techStackList = new HashSet<>(techStackList);
     }
 }

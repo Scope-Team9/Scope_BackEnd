@@ -22,6 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,7 @@ public class PostRestController {
 
     @Operation(summary = "프로젝트 작성")
     @PostMapping("/api/post")
-    public ResponseEntity<Object> writePost(@RequestBody PostRequestDto postRequestDto,
+    public ResponseEntity<Object> writePost(@Valid @RequestBody PostRequestDto postRequestDto,
                                             @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("[{}], 프로젝트 작성, POST, /api/post, requestDto={}", MDC.get("UUID"), postRequestDto.toString());
         // [예외처리] 로그인 정보가 없을 때
