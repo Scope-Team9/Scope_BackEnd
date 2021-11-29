@@ -68,7 +68,7 @@ public class User extends Timestamped {
         this.nickname = signupRequestDto.getNickname();
         this.userPropensityType = userTestResult;
         this.memberPropensityType = memberTestResult;
-        this.mailAuthenticationCode = "";
+        this.mailAuthenticationCode = UUID.randomUUID().toString();
         this.isVerifiedEmail = false;
         this.emailReceiveAgreement = false;
         this.recommendationAgreement = false;
@@ -98,6 +98,7 @@ public class User extends Timestamped {
         this.isVerifiedEmail = false;
         this.emailReceiveAgreement = false;
         this.recommendationAgreement = false;
+        this.mailAuthenticationCode = UUID.randomUUID().toString();
     }
 
     public User(TestUserSetupDto testUserSetupDto) {
@@ -107,7 +108,7 @@ public class User extends Timestamped {
         this.snsId = testUserSetupDto.getSnsId();
         this.memberPropensityType = testUserSetupDto.getMemberPropensityType();
         this.introduction = "";
-        this.mailAuthenticationCode = "";
+        this.mailAuthenticationCode = UUID.randomUUID().toString();
         this.isVerifiedEmail = false;
         this.emailReceiveAgreement = false;
         this.recommendationAgreement = false;
