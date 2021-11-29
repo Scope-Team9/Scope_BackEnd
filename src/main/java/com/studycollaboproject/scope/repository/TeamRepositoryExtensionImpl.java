@@ -49,10 +49,11 @@ public class TeamRepositoryExtensionImpl implements TeamRepositoryExtension {
     }
 
     @Override
-    public boolean existsByUserId(Long userId) {
+    public boolean existsByPostIdAndUserSnsId(Long postId, String userSnsId) {
         Integer fetchOne = queryFactory.selectOne()
                 .from(team)
-                .where(team.user.id.eq(userId))
+                .where(team.user.snsId.eq(userSnsId)
+                        .and(team.post.id.eq(postId)))
                 .fetchFirst();
 
         return fetchOne != null;

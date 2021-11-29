@@ -39,7 +39,7 @@ public class ApplicantService {
                 () -> new BadRequestException(ErrorCode.NO_POST_ERROR)
         );
         // [예외처리] 신청했던 프로젝트에 다시 신청하는 경우
-        if(teamRepository.existsByUserId(user.getId())){
+        if(teamRepository.existsByPostIdAndUserSnsId(postId, snsId)){
             throw new BadRequestException(ErrorCode.ALREADY_TEAM_ERROR);
         }
         if(applicantRepository.existsByUserIdAndPostId(user.getId(), post.getId())) {
