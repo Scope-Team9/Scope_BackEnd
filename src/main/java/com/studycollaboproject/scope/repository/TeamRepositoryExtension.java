@@ -13,5 +13,5 @@ public interface TeamRepositoryExtension {
 
     List<Team> findAllByPostId(Long postId);
 
-    boolean existsByUserId(Long userId);
+    boolean existsByPostIdAndUserSnsId(Long postId, String userSnsId);
 }
