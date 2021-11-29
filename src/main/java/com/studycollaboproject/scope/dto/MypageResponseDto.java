@@ -14,7 +14,6 @@ public class MypageResponseDto {
     private UserResponseDto user;
     @Schema(description = "북마크된 포스트 리스트")
     private List<PostResponseDto> bookmark;
-
     @Schema(description = "대기상태 포스트 리스트")
     private List<PostResponseDto> ready;
     @Schema(description = "모집중인 포스트 리스트")

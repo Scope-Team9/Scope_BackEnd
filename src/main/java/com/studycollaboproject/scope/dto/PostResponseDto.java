@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @NoArgsConstructor
@@ -50,7 +51,7 @@ public class PostResponseDto {
     private String chatUrl;
     @Schema(description = "현재 멤버 정보")
     private List<Long> memberId = new ArrayList<>();
-    @Schema(description = "작성자/ 유저 체크")
+    @Schema(description = "작성자 / 유저 체크")
     private boolean writerEquals;
 
     public PostResponseDto(Post post) {
@@ -120,7 +121,7 @@ public class PostResponseDto {
         this.nickname = post.getUser().getNickname();
         this.userId = post.getUser().getId();
         this.memberId = new ArrayList<>();
-        List <Team> memberIdList = post.getTeamList();
+        Set<Team> memberIdList = post.getTeamList();
         for(Team member : memberIdList){
             this.memberId.add(member.getUser().getId());
         }

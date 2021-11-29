@@ -19,6 +19,31 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
     }
 
     @Override
+    public List<Post> findAllOrderByModifiedAt() {
+        return queryFactory.selectFrom(post)
+                .where(post.projectStatus.in(ProjectStatus.PROJECT_STATUS_RECRUITMENT, ProjectStatus.PROJECT_STATUS_INPROGRESS))
+                .leftJoin(post.user, user).fetchJoin()
+                .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .orderBy(post.modifiedAt.desc())
+                .orderBy(post.projectStatus.desc())
+                .distinct()
+                .fetch();
+    }
+
+    @Override
+    public List<Post> findAllOrderByStartDate() {
+        return queryFactory.selectFrom(post)
+                .where(post.startDate.goe(LocalDate.now().atStartOfDay())
+                        .and(post.projectStatus.in(ProjectStatus.PROJECT_STATUS_RECRUITMENT, ProjectStatus.PROJECT_STATUS_INPROGRESS)))
+                .leftJoin(post.user, user).fetchJoin()
+                .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .orderBy(post.startDate.asc())
+                .orderBy(post.projectStatus.desc())
+                .distinct()
+                .fetch();
+    }
+
+    @Override
     public List<Post> findAllByTechInOrderByModifiedAt(List<Tech> techList) {
         return queryFactory.selectFrom(post)
                 .where(post.techStackList.any().tech.in(techList)
@@ -107,6 +132,7 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
                 .where(post.teamList.any().user.snsId.eq(snsId))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .leftJoin(post.teamList, QTeam.team).fetchJoin()
                 .orderBy(post.modifiedAt.desc())
                 .distinct()
                 .fetch();
@@ -118,6 +144,7 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
                 .where(post.applicantList.any().user.snsId.eq(snsId))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .leftJoin(post.teamList, QTeam.team).fetchJoin()
                 .orderBy(post.modifiedAt.desc())
                 .distinct()
                 .fetch();
@@ -129,6 +156,7 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
                 .where(post.bookmarkList.any().user.snsId.eq(snsId))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .leftJoin(post.teamList, QTeam.team).fetchJoin()
                 .orderBy(post.modifiedAt.desc())
                 .distinct()
                 .fetch();
