@@ -20,9 +20,11 @@ import org.slf4j.MDC;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -75,7 +77,7 @@ public class UserRestController {
 
     @Operation(summary = "회원 가입 - 회원 정보와 테스트 결과 저장")
     @PostMapping("/api/signup")
-    public ResponseEntity<Object> signup(@RequestBody SignupRequestDto signupRequestDto) {
+    public ResponseEntity<Object> signup(@Valid @RequestBody SignupRequestDto signupRequestDto) {
         log.info("[{}], 회원 가입 - 회원 정보와 테스트 결과 저장, POST, /api/signup, signupRequestDto={}", MDC.get("UUID"), signupRequestDto.toString());
 
         String userTestResult = testService.testResult(signupRequestDto.getUserPropensityType());
