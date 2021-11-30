@@ -3,13 +3,15 @@ package com.studycollaboproject.scope.config;
 import com.studycollaboproject.scope.filter.ExceptionHandlerFilter;
 import com.studycollaboproject.scope.filter.JwtAuthenticationFilter;
 import com.studycollaboproject.scope.filter.LogFilter;
-//import com.studycollaboproject.scope.ipfilter.IpBanService;
+import com.studycollaboproject.scope.ipfilter.HttpInterceptor;
+import com.studycollaboproject.scope.ipfilter.IpBanService;
 import com.studycollaboproject.scope.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -20,7 +22,7 @@ import java.io.File;
 @RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
 
-//    private final IpBanService ipBanService;
+    private final IpBanService ipBanService;
     private final JwtTokenProvider jwtTokenProvider;
 
     @Override
@@ -71,10 +73,10 @@ public class WebConfig implements WebMvcConfigurer {
                 .addResourceLocations(rootPath, "classpath:", "classpath:/static/", "classpath:/templates/");
     }
 
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        HttpInterceptor httpInterceptor = new HttpInterceptor(ipBanService);
-//        registry.addInterceptor(httpInterceptor);
-//    }
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        HttpInterceptor httpInterceptor = new HttpInterceptor(ipBanService);
+        registry.addInterceptor(httpInterceptor);
+    }
 
 }

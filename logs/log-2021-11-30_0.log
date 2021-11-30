@@ -18802,3 +18802,282 @@ Identify and stop the process that's listening on port 8081 or configure this ap
 [INFO ] 08:02:56.464 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
 [INFO ] 08:02:56.464 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
 [INFO ] 08:02:56.464 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.537 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[WARN ] 17:31:18.542 com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=9h28m40s469ms418µs800ns).
+[INFO ] 17:31:18.543 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 17:31:18.543 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 17:31:18.543 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 17:31:18.543 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.543 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.543 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 17:31:18.543 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 17:31:18.544 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 17:31:18.544 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 17:31:18.544 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.544 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 17:31:18.545 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.549 c.s.s.filter.JwtAuthenticationFilter - [09b6a5c8-6415-4e19-adb3-4599af883ee5], token=null
+[INFO ] 17:31:18.563 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 17:31:18.563 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 17:31:18.563 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 17:31:18.564 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 17:31:18.564 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 17:31:18.564 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 17:31:18.564 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.564 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.564 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 17:31:18.564 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.564 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 17:31:18.564 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 17:31:18.565 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 17:31:18.565 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 17:31:18.565 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.564 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 17:31:18.565 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 17:31:18.565 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 17:31:18.565 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 17:31:18.565 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 17:31:18.565 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 17:31:18.565 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 17:31:18.565 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 17:31:18.565 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 17:31:18.565 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 17:31:18.565 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 17:31:18.565 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.566 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.565 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 17:31:18.566 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 17:31:18.565 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 17:31:18.565 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.567 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 17:31:18.566 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 17:31:18.567 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 17:31:18.566 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.566 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 17:31:18.566 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.567 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.567 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 17:31:18.567 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 17:31:18.567 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.567 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 17:31:18.567 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.567 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 17:31:18.567 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 17:31:18.567 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.567 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 17:31:18.567 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 17:31:18.567 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.567 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.567 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.568 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.568 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.637 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 17:31:18.638 c.s.s.controller.UserRestController - [9d47a28a-2199-4951-abf3-0116f3e02009], 마이 페이지, GET, /api/user
+[INFO ] 17:31:18.640 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 17:31:18.643 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 17:31:18.643 c.s.s.controller.UserRestController - [7c5d7232-c5f6-47bc-aa70-6477e19cbed3], 마이 페이지, GET, /api/user
+[INFO ] 17:31:18.646 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 17:31:18.646 c.s.scope.util.AspectTime - [e7f62985-66ea-4140-ad73-f71864222731], WorkTime : 5.0191 ms
+[INFO ] 17:31:18.646 c.s.scope.util.AspectTime - [fec1a1c0-3085-47ee-b0c2-cc59dbfbb106], WorkTime : 0.0071 ms
+[INFO ] 17:31:18.649 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 17:31:18.649 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 17:31:18.649 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 17:31:18.649 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 17:31:18.649 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.649 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.652 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 17:31:18.652 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 17:31:18.652 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 17:31:18.652 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 17:31:18.652 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 17:31:18.652 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 17:31:18.652 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.652 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 17:31:18.745 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1 트래픽 초과!!!
+[INFO ] 17:31:18.745 c.s.s.filter.JwtAuthenticationFilter - [b6a0f147-9073-43a0-b390-17cbd7cf3fc1], token=null
+[INFO ] 17:31:18.756 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1 트래픽 초과!!!
+[INFO ] 17:31:18.756 c.s.s.filter.JwtAuthenticationFilter - [092e6e5b-b8ad-4670-90ba-4d4671223c51], token=null
+[INFO ] 17:31:18.862 c.s.scope.util.AspectTime - [7c5d7232-c5f6-47bc-aa70-6477e19cbed3], WorkTime : 219.0499 ms
+[INFO ] 17:31:18.862 c.s.scope.util.AspectTime - [9d47a28a-2199-4951-abf3-0116f3e02009], WorkTime : 223.6923 ms
+[INFO ] 17:31:18.888 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 17:31:18.888 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 17:31:18.888 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 17:31:18.888 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 17:31:18.888 c.s.s.filter.JwtAuthenticationFilter - [9d47a28a-2199-4951-abf3-0116f3e02009], token=null
+[INFO ] 17:31:18.888 c.s.s.filter.JwtAuthenticationFilter - [7c5d7232-c5f6-47bc-aa70-6477e19cbed3], token=null
+[INFO ] 17:31:18.951 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 17:31:18.951 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 17:31:18.952 c.s.s.filter.JwtAuthenticationFilter - [e7f62985-66ea-4140-ad73-f71864222731], token=null
+[INFO ] 17:31:18.952 c.s.s.filter.JwtAuthenticationFilter - [fec1a1c0-3085-47ee-b0c2-cc59dbfbb106], token=null
+[INFO ] 17:31:18.980 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 17:31:18.982 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 17:31:18.989 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 17:31:24.919 o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.0.Final
+[INFO ] 17:31:24.919 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.1 on DESKTOP-LRS5KO2 with PID 37464 (C:\Users\MH\Desktop\Scope_BackEnd\out\production\classes started by MH in C:\Users\MH\Desktop\Scope_BackEnd)
+[INFO ] 17:31:24.921 c.s.scope.ScopeApplication - The following profiles are active: real1
+[INFO ] 17:31:25.618 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 17:31:25.712 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 83 ms. Found 8 JPA repository interfaces.
+[INFO ] 17:31:25.933 c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[INFO ] 17:31:25.933 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 17:31:25.934 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 17:31:25.934 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 17:31:25.935 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 17:31:25.935 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[INFO ] 17:31:25.936 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[INFO ] 17:31:25.936 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 17:31:25.936 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 17:31:25.953 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'asyncConfig' of type [com.studycollaboproject.scope.config.AsyncConfig$$EnhancerBySpringCGLIB$$d190bca0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 17:31:26.080 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@4570d7b6' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 17:31:26.087 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 17:31:26.152 c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[INFO ] 17:31:26.159 c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[INFO ] 17:31:26.160 c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[INFO ] 17:31:26.306 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+[INFO ] 17:31:26.313 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+[INFO ] 17:31:26.313 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 17:31:26.314 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 17:31:26.418 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 17:31:26.418 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1462 ms
+[INFO ] 17:31:26.487 c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@7a31ca20 with name: jasyptStringEncryptor
+[INFO ] 17:31:26.603 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 17:31:26.638 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 17:31:26.731 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 17:31:26.817 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 17:31:27.068 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 17:31:27.084 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 17:31:27.906 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 17:31:27.916 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 17:31:28.308 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 17:31:28.994 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 17:31:28.994 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/static/**'] with []
+[INFO ] 17:31:29.146 o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[INFO ] 17:31:29.490 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5e8684a3, org.springframework.security.web.context.SecurityContextPersistenceFilter@2ca464bb, org.springframework.security.web.header.HeaderWriterFilter@d8a2b1b, org.springframework.web.filter.CorsFilter@590ab84, org.springframework.security.web.authentication.logout.LogoutFilter@237b54bc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@258291de, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@75c45c4b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@8a8cab8, org.springframework.security.web.session.SessionManagementFilter@6e5df971, org.springframework.security.web.access.ExceptionTranslationFilter@8bd9d08, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1b89debc]
+[INFO ] 17:31:29.879 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+[INFO ] 17:31:29.899 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+[INFO ] 17:31:29.900 c.u.j.c.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+[INFO ] 17:31:29.901 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
+[INFO ] 17:31:29.902 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
+[INFO ] 17:31:29.902 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
+[INFO ] 17:31:29.902 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 17:31:29.902 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 17:31:29.902 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource server.ports [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 17:31:29.902 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 17:31:29.902 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 17:31:29.903 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+[INFO ] 17:31:29.914 c.s.scope.ScopeApplication - Started ScopeApplication in 5.344 seconds (JVM running for 6.408)
+[INFO ] 17:31:30.139 c.s.scope.util.AspectTime - [null], WorkTime : 221.5737 ms
+[INFO ] 17:31:47.768 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 17:31:47.769 o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 17:31:47.770 o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[INFO ] 17:31:47.811 c.s.s.filter.JwtAuthenticationFilter - [076648bd-62ab-4ba9-99cd-5e8d826d4afb], token=null
+[INFO ] 17:31:47.844 c.s.s.filter.JwtAuthenticationFilter - [141e54c4-b44a-4f60-b8b7-db1b5ec845f0], token=null
+[INFO ] 17:31:47.850 c.s.s.filter.JwtAuthenticationFilter - [4bed72c0-9020-4211-94a3-ba203cb9e646], token=null
+[INFO ] 17:31:47.859 c.s.s.filter.JwtAuthenticationFilter - [e1802791-a50f-4eb6-a846-692d44ae4088], token=null
+[INFO ] 17:31:48.020 c.s.s.filter.JwtAuthenticationFilter - [bf29dd6f-1d03-4d3b-b924-2baf2138cc7f], token=null
+[INFO ] 17:31:48.107 c.s.s.filter.JwtAuthenticationFilter - [0e68d220-c11a-45e0-84e8-f8ae72eca109], token=null
+[INFO ] 17:31:48.110 c.s.s.filter.JwtAuthenticationFilter - [8a477322-8372-4ffd-9776-4d87f39733e0], token=null
+[INFO ] 17:31:48.439 o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 290 ms
+[INFO ] 17:31:48.468 c.s.s.filter.JwtAuthenticationFilter - [2a7801ed-d589-4d96-8ce0-aa2b9f7f1bc7], token=null
+[INFO ] 17:31:48.475 c.s.s.filter.JwtAuthenticationFilter - [4d962afc-0248-4d02-bc3d-289cf4e84503], token=null
+[INFO ] 17:32:00.832 c.s.s.c.ApplicantRestController - [fdbfda0d-afa1-4343-b60f-5d6be983d3eb], 모집 현황, GET, /api/applicant/1
+[INFO ] 17:32:00.835 c.s.s.e.RestApiExceptionHandler - !!!UnAuth Error, [fdbfda0d-afa1-4343-b60f-5d6be983d3eb], message=로그인 사용자만 사용할 수 있습니다.
+[INFO ] 17:32:00.837 c.s.s.filter.JwtAuthenticationFilter - [fdbfda0d-afa1-4343-b60f-5d6be983d3eb], token=null
+[INFO ] 17:32:18.251 c.s.s.controller.PostRestController - [ec2663d9-9a91-4932-9901-e1765693ab99], 프로젝트 상세 조회, GET, /api/post/1
+[INFO ] 17:32:18.359 c.s.s.e.RestApiExceptionHandler - !!!Bad Request Error, [ec2663d9-9a91-4932-9901-e1765693ab99], message=해당 프로젝트를 찾을 수 없습니다.
+[INFO ] 17:32:18.360 c.s.s.filter.JwtAuthenticationFilter - [ec2663d9-9a91-4932-9901-e1765693ab99], token=null
+[INFO ] 17:33:02.290 c.s.s.controller.PostRestController - [5c0430a3-b076-45b1-a1d2-ca235ac2212c], 프로젝트 상세 조회, GET, /api/post/1
+[INFO ] 17:33:02.328 c.s.s.e.RestApiExceptionHandler - !!!Bad Request Error, [5c0430a3-b076-45b1-a1d2-ca235ac2212c], message=해당 프로젝트를 찾을 수 없습니다.
+[INFO ] 17:33:02.329 c.s.s.filter.JwtAuthenticationFilter - [5c0430a3-b076-45b1-a1d2-ca235ac2212c], token=null
+[INFO ] 17:33:02.668 c.s.s.controller.PostRestController - [dfb884d2-fe30-4e36-b825-bf6526f0d6e5], 프로젝트 상세 조회, GET, /api/post/1
+[INFO ] 17:33:02.704 c.s.s.e.RestApiExceptionHandler - !!!Bad Request Error, [dfb884d2-fe30-4e36-b825-bf6526f0d6e5], message=해당 프로젝트를 찾을 수 없습니다.
+[INFO ] 17:33:02.705 c.s.s.filter.JwtAuthenticationFilter - [dfb884d2-fe30-4e36-b825-bf6526f0d6e5], token=null
+[INFO ] 17:33:02.804 c.s.s.controller.PostRestController - [54128e21-0bab-4b8e-b5b3-dbc5a9ed1bc0], 프로젝트 상세 조회, GET, /api/post/1
+[INFO ] 17:33:02.838 c.s.s.e.RestApiExceptionHandler - !!!Bad Request Error, [54128e21-0bab-4b8e-b5b3-dbc5a9ed1bc0], message=해당 프로젝트를 찾을 수 없습니다.
+[INFO ] 17:33:02.840 c.s.s.filter.JwtAuthenticationFilter - [54128e21-0bab-4b8e-b5b3-dbc5a9ed1bc0], token=null
+[INFO ] 17:33:02.961 c.s.s.controller.PostRestController - [c820fb8a-73cc-4d41-9a2e-0f1232a3fb10], 프로젝트 상세 조회, GET, /api/post/1
+[INFO ] 17:33:03.068 c.s.s.e.RestApiExceptionHandler - !!!Bad Request Error, [c820fb8a-73cc-4d41-9a2e-0f1232a3fb10], message=해당 프로젝트를 찾을 수 없습니다.
+[INFO ] 17:33:03.069 c.s.s.filter.JwtAuthenticationFilter - [c820fb8a-73cc-4d41-9a2e-0f1232a3fb10], token=null
+[INFO ] 17:33:03.127 c.s.s.controller.PostRestController - [b80acac6-6e27-43a1-8b9c-b19b7f3e48e4], 프로젝트 상세 조회, GET, /api/post/1
+[INFO ] 17:33:03.162 c.s.s.e.RestApiExceptionHandler - !!!Bad Request Error, [b80acac6-6e27-43a1-8b9c-b19b7f3e48e4], message=해당 프로젝트를 찾을 수 없습니다.
+[INFO ] 17:33:03.163 c.s.s.filter.JwtAuthenticationFilter - [b80acac6-6e27-43a1-8b9c-b19b7f3e48e4], token=null
+[INFO ] 17:33:44.767 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 17:33:44.770 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 17:33:44.777 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 17:33:53.590 o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.0.Final
+[INFO ] 17:33:53.590 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.1 on DESKTOP-LRS5KO2 with PID 46996 (C:\Users\MH\Desktop\Scope_BackEnd\out\production\classes started by MH in C:\Users\MH\Desktop\Scope_BackEnd)
+[INFO ] 17:33:53.593 c.s.scope.ScopeApplication - The following profiles are active: real1
+[INFO ] 17:33:54.425 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 17:33:54.520 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 89 ms. Found 8 JPA repository interfaces.
+[INFO ] 17:33:54.753 c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[INFO ] 17:33:54.753 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 17:33:54.753 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 17:33:54.753 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 17:33:54.754 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 17:33:54.755 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[INFO ] 17:33:54.755 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[INFO ] 17:33:54.755 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 17:33:54.755 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 17:33:54.773 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'asyncConfig' of type [com.studycollaboproject.scope.config.AsyncConfig$$EnhancerBySpringCGLIB$$e930312e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 17:33:54.896 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@64da6cbd' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 17:33:54.903 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 17:33:54.967 c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[INFO ] 17:33:54.974 c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[INFO ] 17:33:54.975 c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[INFO ] 17:33:55.128 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+[INFO ] 17:33:55.135 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+[INFO ] 17:33:55.136 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 17:33:55.136 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 17:33:55.248 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 17:33:55.248 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1623 ms
+[INFO ] 17:33:55.321 c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@1d2fb82 with name: jasyptStringEncryptor
+[INFO ] 17:33:55.437 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 17:33:55.475 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 17:33:55.575 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 17:33:55.663 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 17:33:55.878 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 17:33:55.894 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 17:33:56.776 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 17:33:56.785 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 17:33:57.141 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 17:33:57.713 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 17:33:57.713 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/static/**'] with []
+[INFO ] 17:33:57.826 o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[INFO ] 17:33:58.127 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6d71f296, org.springframework.security.web.context.SecurityContextPersistenceFilter@6c120b00, org.springframework.security.web.header.HeaderWriterFilter@64b20d9c, org.springframework.web.filter.CorsFilter@4a15d5f5, org.springframework.security.web.authentication.logout.LogoutFilter@65b07b9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6c2a33af, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@493489dd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5319efc0, org.springframework.security.web.session.SessionManagementFilter@2eb0932c, org.springframework.security.web.access.ExceptionTranslationFilter@365a4b9b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4a49ce3a]
+[INFO ] 17:33:58.413 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+[INFO ] 17:33:58.431 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+[INFO ] 17:33:58.432 c.u.j.c.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+[INFO ] 17:33:58.433 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
+[INFO ] 17:33:58.433 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
+[INFO ] 17:33:58.433 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
+[INFO ] 17:33:58.433 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 17:33:58.433 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 17:33:58.433 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource server.ports [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 17:33:58.433 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 17:33:58.433 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 17:33:58.434 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+[INFO ] 17:33:58.442 c.s.scope.ScopeApplication - Started ScopeApplication in 5.164 seconds (JVM running for 6.526)
+[INFO ] 17:33:58.593 c.s.scope.util.AspectTime - [null], WorkTime : 147.8072 ms
+[INFO ] 17:33:58.713 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 17:33:58.713 o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 17:33:58.714 o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[INFO ] 17:33:58.754 c.s.s.controller.PostRestController - [b7afe5f8-28ab-480d-99b3-b0f6a8b02dfe], 프로젝트 상세 조회, GET, /api/post/1
+[INFO ] 17:33:58.850 c.s.s.e.RestApiExceptionHandler - !!!Bad Request Error, [b7afe5f8-28ab-480d-99b3-b0f6a8b02dfe], message=해당 프로젝트를 찾을 수 없습니다.
+[INFO ] 17:33:58.902 c.s.s.filter.JwtAuthenticationFilter - [b7afe5f8-28ab-480d-99b3-b0f6a8b02dfe], token=null
+[INFO ] 17:34:01.565 c.s.s.controller.PostRestController - [03af7a92-26bf-48f2-af15-e714ff8a4627], 프로젝트 상세 조회, GET, /api/post/1
+[INFO ] 17:34:01.589 c.s.s.e.RestApiExceptionHandler - !!!Bad Request Error, [03af7a92-26bf-48f2-af15-e714ff8a4627], message=해당 프로젝트를 찾을 수 없습니다.
+[INFO ] 17:34:01.591 c.s.s.filter.JwtAuthenticationFilter - [03af7a92-26bf-48f2-af15-e714ff8a4627], token=null
+[INFO ] 17:34:01.923 c.s.s.controller.PostRestController - [c965748d-0205-4737-af82-414763151415], 프로젝트 상세 조회, GET, /api/post/1
+[INFO ] 17:34:01.945 c.s.s.e.RestApiExceptionHandler - !!!Bad Request Error, [c965748d-0205-4737-af82-414763151415], message=해당 프로젝트를 찾을 수 없습니다.
+[INFO ] 17:34:01.946 c.s.s.filter.JwtAuthenticationFilter - [c965748d-0205-4737-af82-414763151415], token=null
+[INFO ] 17:34:02.093 c.s.s.controller.PostRestController - [d0839dc6-aa44-430c-9632-e214d317fc2a], 프로젝트 상세 조회, GET, /api/post/1
+[INFO ] 17:34:02.113 c.s.s.e.RestApiExceptionHandler - !!!Bad Request Error, [d0839dc6-aa44-430c-9632-e214d317fc2a], message=해당 프로젝트를 찾을 수 없습니다.
+[INFO ] 17:34:02.115 c.s.s.filter.JwtAuthenticationFilter - [d0839dc6-aa44-430c-9632-e214d317fc2a], token=null
+[INFO ] 17:34:03.035 c.s.s.controller.PostRestController - [779ca5f1-bca0-476d-bcb8-cd80d4600557], 프로젝트 상세 조회, GET, /api/post/2
+[INFO ] 17:34:03.083 c.s.scope.util.AspectTime - [779ca5f1-bca0-476d-bcb8-cd80d4600557], WorkTime : 47.3345 ms
+[INFO ] 17:34:03.101 c.s.s.filter.JwtAuthenticationFilter - [779ca5f1-bca0-476d-bcb8-cd80d4600557], token=null
+[INFO ] 17:34:03.188 c.s.s.controller.PostRestController - [fd9e1238-2df9-45a2-b442-3a569a22a9b9], 프로젝트 상세 조회, GET, /api/post/2
+[INFO ] 17:34:03.215 c.s.scope.util.AspectTime - [fd9e1238-2df9-45a2-b442-3a569a22a9b9], WorkTime : 26.9598 ms
+[INFO ] 17:34:03.216 c.s.s.filter.JwtAuthenticationFilter - [fd9e1238-2df9-45a2-b442-3a569a22a9b9], token=null
+[INFO ] 17:34:03.335 c.s.s.controller.PostRestController - [44143433-3dbe-41ce-8f3f-ec55c321d135], 프로젝트 상세 조회, GET, /api/post/2
+[INFO ] 17:34:03.364 c.s.scope.util.AspectTime - [44143433-3dbe-41ce-8f3f-ec55c321d135], WorkTime : 28.9887 ms
+[INFO ] 17:34:03.366 c.s.s.filter.JwtAuthenticationFilter - [44143433-3dbe-41ce-8f3f-ec55c321d135], token=null
