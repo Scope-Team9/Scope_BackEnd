@@ -1,0 +1,1454 @@
+[INFO ] 00:44:38.011 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 00:44:38.022 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 00:44:38.028 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 00:44:45.609 o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.0.Final
+[INFO ] 00:44:45.610 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.1 on DESKTOP-LRS5KO2 with PID 7924 (C:\Users\MH\Desktop\Scope_BackEnd\out\production\classes started by MH in C:\Users\MH\Desktop\Scope_BackEnd)
+[INFO ] 00:44:45.613 c.s.scope.ScopeApplication - The following profiles are active: real1
+[INFO ] 00:44:46.277 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 00:44:46.362 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 79 ms. Found 8 JPA repository interfaces.
+[INFO ] 00:44:46.569 c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[INFO ] 00:44:46.570 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 00:44:46.570 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 00:44:46.570 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 00:44:46.571 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 00:44:46.572 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[INFO ] 00:44:46.572 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[INFO ] 00:44:46.572 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 00:44:46.572 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 00:44:46.588 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'asyncConfig' of type [com.studycollaboproject.scope.config.AsyncConfig$$EnhancerBySpringCGLIB$$15010099] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 00:44:46.709 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@4c5a2baf' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 00:44:46.716 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 00:44:46.776 c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[INFO ] 00:44:46.782 c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[INFO ] 00:44:46.783 c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[INFO ] 00:44:46.931 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+[INFO ] 00:44:46.939 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+[INFO ] 00:44:46.939 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 00:44:46.939 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 00:44:47.057 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 00:44:47.057 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1412 ms
+[INFO ] 00:44:47.128 c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@2fd39436 with name: jasyptStringEncryptor
+[INFO ] 00:44:47.253 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 00:44:47.291 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 00:44:47.385 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 00:44:47.465 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 00:44:47.667 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 00:44:47.684 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 00:44:48.445 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 00:44:48.455 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 00:44:48.832 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 00:44:49.336 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 00:44:49.337 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/static/**'] with []
+[INFO ] 00:44:49.427 o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[INFO ] 00:44:49.698 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@423791, org.springframework.security.web.context.SecurityContextPersistenceFilter@2d398cfb, org.springframework.security.web.header.HeaderWriterFilter@46baac0d, org.springframework.web.filter.CorsFilter@3aac31b7, org.springframework.security.web.authentication.logout.LogoutFilter@7136ad9a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7d086485, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@294b045b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@57def953, org.springframework.security.web.session.SessionManagementFilter@77d42ed7, org.springframework.security.web.access.ExceptionTranslationFilter@6e5df971, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7a90f33d]
+[INFO ] 00:44:49.965 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+[INFO ] 00:44:49.982 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+[INFO ] 00:44:49.983 c.u.j.c.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+[INFO ] 00:44:49.984 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
+[INFO ] 00:44:49.984 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
+[INFO ] 00:44:49.984 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
+[INFO ] 00:44:49.984 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 00:44:49.984 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 00:44:49.984 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource server.ports [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 00:44:49.984 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 00:44:49.985 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 00:44:49.985 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+[INFO ] 00:44:49.993 c.s.scope.ScopeApplication - Started ScopeApplication in 4.694 seconds (JVM running for 5.609)
+[INFO ] 00:44:50.140 c.s.scope.util.AspectTime - [null], WorkTime : 144.1406 ms
+[INFO ] 00:45:11.647 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 00:45:11.647 o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 00:45:11.648 o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+[INFO ] 00:45:11.689 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:45:11.690 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:11.691 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:11.691 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:11.691 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:11.691 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:11.691 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:11.693 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:45:11.693 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:45:11.693 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:11.694 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:11.694 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:11.694 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:11.694 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:11.694 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:11.700 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:11.700 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:11.700 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:11.701 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:11.701 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:11.701 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:11.701 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:11.701 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:11.701 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:11.701 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:11.701 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:11.701 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:45:11.701 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:45:11.702 c.s.s.filter.JwtAuthenticationFilter - [84e2f7fd-7db4-47e2-a9ea-9f6b4b00a977], token=null
+[INFO ] 00:45:11.834 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:45:11.834 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:11.834 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:11.834 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:11.834 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:11.834 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:11.834 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:11.835 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:45:11.835 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:45:11.835 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:11.835 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:11.835 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:11.835 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:11.835 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:11.835 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:11.839 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:11.839 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:11.839 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:11.839 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:11.839 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:11.839 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:11.839 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:11.839 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:11.839 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:11.839 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:11.839 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:11.839 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:45:11.839 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:45:11.839 c.s.s.filter.JwtAuthenticationFilter - [b8a7ee00-ab19-4186-8e64-e6fd3d32daf4], token=null
+[INFO ] 00:45:15.968 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:45:15.968 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:15.968 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:15.968 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:15.968 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:15.968 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:15.968 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:15.968 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:45:15.968 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:45:15.968 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:15.969 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:15.969 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:15.969 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:15.969 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:15.969 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:15.974 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:15.974 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:15.974 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:15.974 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:15.974 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:15.974 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:15.974 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:15.974 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:15.974 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:15.975 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:15.975 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:15.975 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:45:15.975 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:45:15.975 c.s.s.filter.JwtAuthenticationFilter - [585c4c4b-16c2-4036-a961-1152668a4c25], token=null
+[INFO ] 00:45:16.052 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:45:16.052 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:16.052 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:16.052 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:16.052 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:16.052 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:16.052 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:16.052 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:45:16.052 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:45:16.052 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:16.052 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:16.052 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:16.052 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:16.052 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:16.052 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:16.055 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:16.055 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:16.055 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:16.055 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:16.055 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:16.055 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:16.055 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:16.056 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:16.056 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:16.056 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:16.056 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:16.056 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:45:16.056 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:45:16.056 c.s.s.filter.JwtAuthenticationFilter - [9f58dcfd-d031-471a-ae40-da368625d5b1], token=null
+[INFO ] 00:45:24.714 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:45:24.714 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:24.714 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:24.714 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:24.714 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:24.714 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:24.714 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:24.714 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:45:24.714 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:45:24.714 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:24.715 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:24.715 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:24.715 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:24.715 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:24.715 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:24.719 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:24.719 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:24.719 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:24.719 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:24.719 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:24.719 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:24.720 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:24.720 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:24.720 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:24.720 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:24.720 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:24.720 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:45:24.720 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:45:24.720 c.s.s.filter.JwtAuthenticationFilter - [03394120-d646-4b44-a0ff-7c099e202be0], token=null
+[INFO ] 00:45:24.830 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:45:24.831 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:24.831 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:24.831 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:24.831 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:24.831 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:24.831 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:24.831 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:45:24.831 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:45:24.831 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:24.831 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:24.831 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:24.831 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:24.831 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:24.831 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:24.834 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:24.834 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:24.834 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:24.834 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:24.834 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:24.834 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:24.834 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:24.834 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:24.834 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:24.834 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:24.834 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:24.834 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:45:24.835 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:45:24.835 c.s.s.filter.JwtAuthenticationFilter - [f3f95da0-5abd-4707-98ae-34af17d23753], token=null
+[INFO ] 00:45:30.035 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:45:30.036 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:30.036 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:30.036 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:30.036 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:30.036 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:30.036 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:30.036 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:45:30.036 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:45:30.036 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:30.036 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:30.036 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:30.036 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:30.036 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:30.036 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:30.042 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:30.042 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:30.042 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:30.042 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:30.042 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:30.042 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:30.042 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:30.042 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:30.042 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:30.042 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:30.042 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:30.042 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:45:30.042 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:45:30.042 c.s.s.filter.JwtAuthenticationFilter - [ee6fc507-ff3b-48fe-8e5a-f19eb084e30d], token=null
+[INFO ] 00:45:30.151 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:45:30.151 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:30.151 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:30.151 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:30.151 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:30.151 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:30.151 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:30.151 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:45:30.151 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:45:30.151 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:30.151 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:30.151 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:30.151 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:30.151 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:30.151 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:30.155 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:30.155 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:30.155 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:30.155 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:30.155 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:30.155 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:30.155 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:30.155 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:30.155 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:30.155 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:30.155 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:30.155 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:45:30.155 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:45:30.156 c.s.s.filter.JwtAuthenticationFilter - [9672b7c1-acda-4ff6-b648-f89646e8709d], token=null
+[INFO ] 00:45:44.030 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:45:44.031 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:44.031 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:44.031 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:44.031 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:44.031 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:44.031 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:44.031 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:45:44.031 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:45:44.031 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:44.031 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:44.031 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:44.031 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:44.031 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:44.031 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:44.036 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:44.036 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:44.036 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:44.036 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:44.036 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:44.036 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:44.036 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:44.036 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:44.036 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:44.036 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:44.036 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:44.036 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:45:44.036 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:45:44.036 c.s.s.filter.JwtAuthenticationFilter - [e38ef0f5-7a73-4f35-9152-9ffb81160f49], token=null
+[INFO ] 00:45:44.147 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:45:44.147 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:44.147 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:44.147 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:44.147 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:44.147 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:44.147 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:44.147 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:45:44.147 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:45:44.147 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:44.147 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:44.147 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:44.147 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:44.147 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:44.147 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:44.151 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:44.151 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:44.151 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:44.151 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:44.151 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:44.151 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:44.151 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:45:44.151 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:45:44.151 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:45:44.151 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:45:44.151 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:45:44.151 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:45:44.151 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:45:44.151 c.s.s.filter.JwtAuthenticationFilter - [b6c80c7e-b72f-4144-aebc-46ae1430a83c], token=null
+[INFO ] 00:53:54.993 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:53:54.993 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:54.993 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:54.993 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:54.993 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:54.994 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:54.994 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:54.994 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:53:54.994 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:53:54.994 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:54.994 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:54.994 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:54.994 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:54.994 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:54.994 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:54.999 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:54.999 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:54.999 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:54.999 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:54.999 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:54.999 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:54.999 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:54.999 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:54.999 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:54.999 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:54.999 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:54.999 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:53:54.999 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:53:54.999 c.s.s.filter.JwtAuthenticationFilter - [2b0d35a7-30d7-4935-ba88-0dc14971a701], token=null
+[INFO ] 00:53:55.116 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:53:55.116 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:55.116 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:55.116 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:55.116 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:55.116 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.116 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.116 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:53:55.116 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.116 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:55.116 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:55.116 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:55.116 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:55.116 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.116 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.120 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:55.120 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:55.120 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:55.120 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:55.120 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.120 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.120 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:55.120 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:55.120 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:55.120 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:55.120 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.120 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:53:55.120 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.120 c.s.s.filter.JwtAuthenticationFilter - [a93c7173-21b1-4fe8-919f-396c4a15ee67], token=null
+[INFO ] 00:53:55.780 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:53:55.781 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:55.781 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:55.781 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:55.781 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:55.781 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.781 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.781 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:53:55.781 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.781 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:55.781 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:55.781 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:55.781 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:55.781 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.781 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.786 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:55.786 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:55.786 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:55.786 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:55.786 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.786 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.786 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:55.786 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:55.786 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:55.786 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:55.786 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.786 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:53:55.786 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.786 c.s.s.filter.JwtAuthenticationFilter - [e9de4c5e-24c6-4fb0-85f1-ae1ec95d199f], token=null
+[INFO ] 00:53:55.897 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:53:55.897 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:55.897 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:55.897 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:55.897 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:55.897 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.897 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.897 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:53:55.897 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.897 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:55.897 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:55.897 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:55.897 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:55.897 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.897 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.901 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:55.901 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:55.901 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:55.901 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:55.901 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.901 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.901 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:55.901 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:55.901 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:55.901 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:55.901 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.901 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:53:55.901 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:53:55.901 c.s.s.filter.JwtAuthenticationFilter - [31d87ea9-e2e2-427a-9623-35fede302da2], token=null
+[INFO ] 00:53:56.391 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:53:56.391 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:56.391 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:56.391 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:56.391 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:56.391 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:56.391 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:56.391 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:53:56.391 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:53:56.391 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:56.391 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:56.391 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:56.391 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:56.391 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:56.391 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:56.397 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:56.397 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:56.397 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:56.397 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:56.397 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:56.397 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:56.397 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:56.397 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:56.397 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:56.397 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:56.397 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:56.397 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:53:56.397 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:53:56.397 c.s.s.filter.JwtAuthenticationFilter - [c1d14408-1e24-47a8-97af-7495c40a34f1], token=null
+[INFO ] 00:53:56.508 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:53:56.508 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:56.508 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:56.508 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:56.508 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:56.509 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:56.509 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:56.509 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:53:56.509 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:53:56.509 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:56.509 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:56.509 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:56.509 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:56.509 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:56.509 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:56.512 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:56.512 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:56.512 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:56.512 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:56.512 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:56.513 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:56.513 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:53:56.513 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:53:56.513 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:53:56.513 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:53:56.513 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:53:56.513 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:53:56.513 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:53:56.513 c.s.s.filter.JwtAuthenticationFilter - [50465cc0-fe5d-4f3f-8ae2-3b6ced6f76ce], token=null
+[INFO ] 00:56:17.156 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:56:17.156 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:56:17.156 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:56:17.156 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:56:17.156 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:56:17.156 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:56:17.156 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:56:17.156 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:56:17.156 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:56:17.156 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:56:17.156 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:56:17.156 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:56:17.156 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:56:17.156 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:56:17.156 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:56:17.162 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:56:17.162 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:56:17.162 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:56:17.162 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:56:17.162 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:56:17.162 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:56:17.162 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:56:17.162 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:56:17.162 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:56:17.162 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:56:17.162 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:56:17.162 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:56:17.163 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:56:17.163 c.s.s.filter.JwtAuthenticationFilter - [f76d2af9-d50e-4125-a9d3-d88dd3472dca], token=null
+[INFO ] 00:56:17.276 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:56:17.277 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:56:17.277 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:56:17.277 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:56:17.277 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:56:17.277 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:56:17.277 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:56:17.277 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:56:17.277 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:56:17.277 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:56:17.277 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:56:17.277 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:56:17.277 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:56:17.277 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:56:17.277 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:56:17.280 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:56:17.280 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:56:17.280 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:56:17.280 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:56:17.280 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:56:17.280 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:56:17.280 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:56:17.280 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:56:17.280 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:56:17.280 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:56:17.280 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:56:17.280 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:56:17.281 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:56:17.281 c.s.s.filter.JwtAuthenticationFilter - [ee2c3486-360a-4bab-b741-b36670c65c2d], token=null
+[INFO ] 00:57:06.882 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:57:06.882 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:06.882 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:06.882 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:06.882 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:06.882 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:06.882 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:06.883 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:57:06.883 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:57:06.883 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:06.883 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:06.883 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:06.883 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:06.883 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:06.883 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:06.888 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:06.888 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:06.888 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:06.888 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:06.888 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:06.888 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:06.888 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:06.888 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:06.888 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:06.888 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:06.888 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:06.888 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:57:06.888 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:57:06.888 c.s.s.filter.JwtAuthenticationFilter - [ff560a31-2484-450e-90df-ff668f1fb405], token=null
+[INFO ] 00:57:06.992 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:57:06.992 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:06.992 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:06.992 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:06.992 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:06.992 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:06.992 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:06.992 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:57:06.992 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:57:06.992 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:06.992 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:06.992 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:06.992 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:06.992 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:06.992 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:06.996 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:06.996 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:06.996 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:06.996 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:06.996 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:06.996 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:06.996 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:06.996 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:06.996 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:06.996 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:06.996 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:06.996 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:57:06.996 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:57:06.996 c.s.s.filter.JwtAuthenticationFilter - [15039172-fe27-440c-b84f-c17bcdd75f5b], token=null
+[INFO ] 00:57:27.099 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 00:57:27.100 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 00:57:27.108 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 00:57:30.272 o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.0.Final
+[INFO ] 00:57:30.272 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.1 on DESKTOP-LRS5KO2 with PID 40108 (C:\Users\MH\Desktop\Scope_BackEnd\out\production\classes started by MH in C:\Users\MH\Desktop\Scope_BackEnd)
+[INFO ] 00:57:30.275 c.s.scope.ScopeApplication - The following profiles are active: real1
+[INFO ] 00:57:31.005 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 00:57:31.089 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 78 ms. Found 8 JPA repository interfaces.
+[INFO ] 00:57:31.298 c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[INFO ] 00:57:31.299 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 00:57:31.299 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 00:57:31.299 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 00:57:31.300 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 00:57:31.300 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[INFO ] 00:57:31.301 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[INFO ] 00:57:31.301 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 00:57:31.301 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 00:57:31.316 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'asyncConfig' of type [com.studycollaboproject.scope.config.AsyncConfig$$EnhancerBySpringCGLIB$$4a8cb329] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 00:57:31.440 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@3850e90c' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 00:57:31.447 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 00:57:31.512 c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[INFO ] 00:57:31.518 c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[INFO ] 00:57:31.519 c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[INFO ] 00:57:31.668 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+[INFO ] 00:57:31.675 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+[INFO ] 00:57:31.675 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 00:57:31.675 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 00:57:31.777 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 00:57:31.777 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1461 ms
+[INFO ] 00:57:31.840 c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@2fd1ad8a with name: jasyptStringEncryptor
+[INFO ] 00:57:31.951 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 00:57:31.986 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 00:57:32.077 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 00:57:32.164 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 00:57:32.397 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 00:57:32.413 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 00:57:33.160 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 00:57:33.168 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 00:57:33.540 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 00:57:34.066 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 00:57:34.067 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/static/**'] with []
+[INFO ] 00:57:34.157 o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[INFO ] 00:57:34.442 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1ac30be4, org.springframework.security.web.context.SecurityContextPersistenceFilter@2d398cfb, org.springframework.security.web.header.HeaderWriterFilter@46baac0d, org.springframework.web.filter.CorsFilter@419c70f6, org.springframework.security.web.authentication.logout.LogoutFilter@7136ad9a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7d086485, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@294b045b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@190cc39e, org.springframework.security.web.session.SessionManagementFilter@77d42ed7, org.springframework.security.web.access.ExceptionTranslationFilter@6e5df971, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@a1be5cb]
+[INFO ] 00:57:34.705 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+[INFO ] 00:57:34.721 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+[INFO ] 00:57:34.723 c.u.j.c.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+[INFO ] 00:57:34.723 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
+[INFO ] 00:57:34.723 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
+[INFO ] 00:57:34.723 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
+[INFO ] 00:57:34.723 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 00:57:34.724 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 00:57:34.724 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource server.ports [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 00:57:34.724 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 00:57:34.724 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 00:57:34.724 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+[INFO ] 00:57:34.732 c.s.scope.ScopeApplication - Started ScopeApplication in 4.849 seconds (JVM running for 5.772)
+[INFO ] 00:57:34.877 c.s.scope.util.AspectTime - [null], WorkTime : 141.6774 ms
+[INFO ] 00:57:36.358 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 00:57:36.358 o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 00:57:36.359 o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[INFO ] 00:57:36.399 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:57:36.400 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:36.401 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:36.401 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:36.401 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:36.401 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:36.401 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:36.403 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:57:36.403 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:57:36.404 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:36.404 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:36.404 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:36.404 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:36.404 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:36.404 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:36.411 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:36.411 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:36.411 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:36.411 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:36.411 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:36.411 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:36.411 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:36.411 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:36.411 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:36.412 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:36.412 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:36.412 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:57:36.412 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:57:36.413 c.s.s.filter.JwtAuthenticationFilter - [8f7a598d-0d20-44ab-bd55-68ce68db7841], token=null
+[INFO ] 00:57:36.520 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:57:36.520 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:36.520 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:36.521 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:36.521 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:36.521 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:36.521 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:36.521 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:57:36.521 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:57:36.521 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:36.521 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:36.521 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:36.521 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:36.521 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:36.521 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:36.525 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:36.525 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:36.525 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:36.525 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:36.525 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:36.525 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:36.525 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:36.525 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:36.526 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:36.526 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:36.526 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:36.526 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:57:36.526 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:57:36.526 c.s.s.filter.JwtAuthenticationFilter - [fe702a09-3167-4b71-bfd6-48be767a90bd], token=null
+[INFO ] 00:57:37.055 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:57:37.056 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:37.056 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:37.056 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:37.056 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:37.056 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.056 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.056 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:57:37.056 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.056 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:37.056 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:37.056 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:37.056 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:37.056 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.056 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.061 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:37.061 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:37.061 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:37.061 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:37.061 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.061 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.061 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:37.061 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:37.061 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:37.061 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:37.061 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.061 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:57:37.061 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.062 c.s.s.filter.JwtAuthenticationFilter - [97b6bc5c-ddf9-49c7-93d3-e02a1061f8dd], token=null
+[INFO ] 00:57:37.144 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:57:37.144 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:37.144 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:37.144 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:37.144 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:37.145 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.145 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.145 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:57:37.145 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.145 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:37.145 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:37.145 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:37.145 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:37.145 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.145 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.148 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:37.148 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:37.148 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:37.148 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:37.148 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.149 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.149 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:37.149 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:37.149 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:37.149 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:37.149 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.149 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:57:37.149 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.149 c.s.s.filter.JwtAuthenticationFilter - [84491d51-09ee-41c5-97e3-8be997c0836c], token=null
+[INFO ] 00:57:37.551 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:57:37.551 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:37.551 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:37.551 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:37.551 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:37.551 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.551 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.551 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:57:37.551 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.551 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:37.551 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:37.551 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:37.551 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:37.551 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.551 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.554 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:37.554 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:37.554 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:37.554 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:37.555 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.555 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.555 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:37.555 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:37.555 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:37.555 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:37.555 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.555 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:57:37.555 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.555 c.s.s.filter.JwtAuthenticationFilter - [ea32ad5d-6e33-4aa2-a940-f308c5636556], token=null
+[INFO ] 00:57:37.635 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:57:37.635 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:37.635 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:37.635 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:37.635 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:37.635 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.635 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.635 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:57:37.635 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.635 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:37.635 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:37.635 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:37.635 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:37.635 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.635 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.638 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:37.638 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:37.638 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:37.638 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:37.638 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.638 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.638 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:37.638 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:37.639 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:37.639 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:37.639 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.639 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:57:37.639 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:57:37.639 c.s.s.filter.JwtAuthenticationFilter - [a22d1282-ca28-494b-907a-d7073219b465], token=null
+[INFO ] 00:57:38.039 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:57:38.039 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:38.039 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:38.039 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:38.039 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:38.039 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.039 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.039 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:57:38.039 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.040 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:38.040 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:38.040 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:38.040 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:38.040 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.040 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.042 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:38.042 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:38.042 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:38.042 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:38.042 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.042 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.042 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:38.042 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:38.042 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:38.042 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:38.043 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.043 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:57:38.043 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.043 c.s.s.filter.JwtAuthenticationFilter - [4a2608c6-73c6-4e05-bab9-51675fc514dd], token=null
+[INFO ] 00:57:38.122 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:57:38.122 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:38.122 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:38.122 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:38.122 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:38.122 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.122 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.122 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:57:38.122 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.122 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:38.122 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:38.122 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:38.122 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:38.122 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.123 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.125 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:38.126 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:38.126 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:38.126 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:38.126 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.126 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.126 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:38.126 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:38.126 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:38.126 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:38.126 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.126 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:57:38.126 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.126 c.s.s.filter.JwtAuthenticationFilter - [cf555025-1f23-4abf-b3e6-d9dd70121ac5], token=null
+[INFO ] 00:57:38.441 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:57:38.441 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:38.441 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:38.441 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:38.441 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:38.441 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.441 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.441 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:57:38.441 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.441 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:38.441 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:38.441 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:38.441 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:38.441 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.441 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.444 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:38.444 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:38.444 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:38.444 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:38.444 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.444 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.444 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:38.444 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:38.444 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:38.444 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:38.445 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.445 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:57:38.445 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.445 c.s.s.filter.JwtAuthenticationFilter - [eb88b312-6042-45f5-ab0a-346dfa575fa4], token=null
+[INFO ] 00:57:38.523 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:57:38.523 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:38.523 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:38.523 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:38.523 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:38.523 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.523 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.523 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:57:38.523 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.523 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:38.523 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:38.523 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:38.523 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:38.523 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.523 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.526 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:38.527 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:38.527 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:38.527 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:38.527 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.527 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.527 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:38.527 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:38.527 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:38.527 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:38.527 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.527 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:57:38.527 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:57:38.527 c.s.s.filter.JwtAuthenticationFilter - [f908528f-58dc-46e3-9ec8-c7d31ddebe0e], token=null
+[INFO ] 00:57:40.858 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:57:40.859 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:40.859 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:40.859 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:40.859 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:40.859 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:40.859 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:40.859 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:57:40.859 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:57:40.859 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:40.859 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:40.859 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:40.859 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:40.859 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:40.859 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:40.863 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:40.863 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:40.863 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:40.863 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:40.863 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:40.863 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:40.863 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:40.863 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:40.863 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:40.863 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:40.863 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:40.863 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:57:40.863 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:57:40.864 c.s.s.filter.JwtAuthenticationFilter - [503e8242-0730-481f-a399-8f1461ab16cc], token=null
+[INFO ] 00:57:40.963 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:57:40.963 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:40.963 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:40.963 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:40.963 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:40.963 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:40.963 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:40.963 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:57:40.964 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:57:40.964 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:40.964 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:40.964 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:40.964 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:40.964 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:40.964 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:40.967 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:40.967 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:40.967 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:40.967 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:40.967 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:40.967 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:40.968 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:40.968 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:40.968 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:40.968 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:40.968 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:40.968 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:57:40.968 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:57:40.968 c.s.s.filter.JwtAuthenticationFilter - [203ffa27-43ac-41dd-9d79-4df0796009c5], token=null
+[INFO ] 00:57:44.099 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:57:44.100 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:44.100 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:44.100 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:44.100 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:44.100 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.100 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.100 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:57:44.100 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.100 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:44.100 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:44.100 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:44.100 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:44.100 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.100 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.105 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:44.105 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:44.105 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:44.105 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:44.105 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.105 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.105 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:44.105 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:44.105 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:44.105 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:44.105 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.105 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:57:44.105 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.106 c.s.s.filter.JwtAuthenticationFilter - [2bc01ec1-5817-47ce-b918-8d4c601a44df], token=null
+[INFO ] 00:57:44.181 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:57:44.181 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:44.181 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:44.181 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:44.181 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:44.181 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.181 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.182 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:57:44.182 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.182 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:44.182 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:44.182 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:44.182 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:44.182 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.182 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.185 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:44.185 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:44.185 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:44.185 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:44.185 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.185 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.185 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:44.185 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:44.185 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:44.185 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:44.185 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.185 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:57:44.185 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.185 c.s.s.filter.JwtAuthenticationFilter - [3aba8d13-3e83-4a5c-a048-aff25a5fde35], token=null
+[INFO ] 00:57:44.845 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:57:44.845 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:44.845 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:44.845 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:44.845 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:44.845 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.845 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.845 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:57:44.845 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.845 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:44.845 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:44.845 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:44.845 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:44.845 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.845 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.850 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:44.850 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:44.850 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:44.850 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:44.850 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.850 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.850 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:44.850 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:44.850 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:44.850 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:44.850 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.850 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:57:44.850 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.850 c.s.s.filter.JwtAuthenticationFilter - [919a3bca-3410-42d1-94a7-09f1e046ae37], token=null
+[INFO ] 00:57:44.926 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:57:44.927 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:44.927 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:44.927 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:44.927 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:44.927 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.927 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.927 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:57:44.927 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.927 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:44.927 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:44.927 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:44.927 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:44.927 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.927 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.930 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:44.930 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:44.930 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:44.930 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:44.930 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.931 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.931 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:44.931 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:44.931 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:44.931 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:44.931 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.931 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:57:44.931 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:57:44.931 c.s.s.filter.JwtAuthenticationFilter - [a2c8e6ae-5e63-4806-888f-d50fea273276], token=null
+[INFO ] 00:57:53.238 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:57:53.238 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:53.238 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:53.238 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:53.238 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:53.238 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:53.238 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:53.238 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:57:53.238 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:57:53.238 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:53.238 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:53.238 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:53.238 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:53.238 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:53.238 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:53.244 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:53.244 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:53.244 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:53.244 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:53.244 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:53.244 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:53.244 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:53.244 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:53.244 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:53.244 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:53.244 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:53.244 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:57:53.244 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:57:53.244 c.s.s.filter.JwtAuthenticationFilter - [da35cc2d-f1c8-4010-b1db-02da6952821c], token=null
+[INFO ] 00:57:53.349 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 00:57:53.349 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:53.349 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:53.349 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:53.349 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:53.349 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:53.349 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:53.349 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 00:57:53.349 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 00:57:53.350 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:53.350 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:53.350 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:53.350 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:53.350 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:53.350 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:53.353 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:53.353 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:53.353 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:53.353 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:53.353 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:53.353 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:53.353 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 00:57:53.353 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 00:57:53.353 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 00:57:53.353 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 00:57:53.353 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 00:57:53.354 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 00:57:53.354 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 00:57:53.354 c.s.s.filter.JwtAuthenticationFilter - [570a1e34-17c1-4c1b-838a-8a9564b79143], token=null
+[INFO ] 01:00:28.593 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 01:00:28.593 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:00:28.593 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:00:28.593 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:00:28.593 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:00:28.593 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:00:28.593 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:00:28.593 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 01:00:28.593 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 01:00:28.593 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:00:28.593 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:00:28.593 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:00:28.593 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:00:28.593 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:00:28.594 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:00:28.598 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:00:28.598 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:00:28.598 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:00:28.598 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:00:28.598 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:00:28.598 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:00:28.598 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:00:28.598 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:00:28.598 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:00:28.598 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:00:28.598 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:00:28.598 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 01:00:28.598 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 01:00:28.598 c.s.s.filter.JwtAuthenticationFilter - [f6a51e1d-7b19-4ffb-892b-a52188d53649], token=null
+[INFO ] 01:00:28.700 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 01:00:28.700 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:00:28.701 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:00:28.701 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:00:28.701 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:00:28.701 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:00:28.701 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:00:28.701 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 01:00:28.701 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 01:00:28.701 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:00:28.701 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:00:28.701 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:00:28.701 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:00:28.701 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:00:28.701 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:00:28.703 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:00:28.703 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:00:28.703 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:00:28.703 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:00:28.703 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:00:28.703 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:00:28.703 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:00:28.703 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:00:28.703 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:00:28.703 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:00:28.703 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:00:28.703 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 01:00:28.703 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 01:00:28.704 c.s.s.filter.JwtAuthenticationFilter - [71b0c59a-4850-4afe-8930-18cda080a348], token=null
+[INFO ] 01:02:35.953 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 01:02:35.954 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:02:35.954 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:02:35.954 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:02:35.954 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:02:35.954 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:35.954 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:35.954 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 01:02:35.954 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 01:02:35.954 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:02:35.954 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:02:35.954 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:02:35.954 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:02:35.954 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:35.954 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:35.959 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:02:35.959 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:02:35.959 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:02:35.960 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:02:35.960 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:35.960 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:35.960 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:02:35.960 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:02:35.960 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:02:35.960 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:02:35.960 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:35.960 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 01:02:35.960 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 01:02:35.960 c.s.s.filter.JwtAuthenticationFilter - [70a8f5e2-ebd0-4f66-87cb-f3e1974120cf], token=null
+[INFO ] 01:02:36.083 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 01:02:36.083 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:02:36.083 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:02:36.083 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:02:36.083 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:02:36.083 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:36.083 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:36.083 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 01:02:36.083 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 01:02:36.083 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:02:36.083 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:02:36.083 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:02:36.083 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:02:36.083 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:36.083 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:36.086 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:02:36.086 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:02:36.086 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:02:36.086 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:02:36.087 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:36.087 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:36.087 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:02:36.087 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:02:36.087 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:02:36.087 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:02:36.087 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:36.087 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 01:02:36.087 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 01:02:36.087 c.s.s.filter.JwtAuthenticationFilter - [926ac145-f655-4ccf-86a1-1be9357bb118], token=null
+[INFO ] 01:02:39.084 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 01:02:39.084 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:02:39.084 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:02:39.084 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:02:39.084 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:02:39.085 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:39.085 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:39.085 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 01:02:39.085 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 01:02:39.085 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:02:39.085 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:02:39.085 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:02:39.085 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:02:39.085 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:39.085 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:39.090 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:02:39.090 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:02:39.090 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:02:39.090 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:02:39.090 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:39.090 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:39.090 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:02:39.090 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:02:39.090 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:02:39.090 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:02:39.090 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:39.090 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 01:02:39.090 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 01:02:39.090 c.s.s.filter.JwtAuthenticationFilter - [3d0a3a61-49d4-433c-9648-9c7e60cc1093], token=null
+[INFO ] 01:02:39.255 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 01:02:39.255 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:02:39.255 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:02:39.255 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:02:39.255 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:02:39.255 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:39.255 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:39.255 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 01:02:39.255 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 01:02:39.255 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:02:39.255 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:02:39.255 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:02:39.255 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:02:39.255 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:39.255 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:39.259 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:02:39.259 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:02:39.259 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:02:39.259 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:02:39.259 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:39.259 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:39.259 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:02:39.259 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:02:39.259 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:02:39.259 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:02:39.259 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:02:39.259 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 01:02:39.259 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 01:02:39.259 c.s.s.filter.JwtAuthenticationFilter - [7ff9ac0e-28e8-4ebf-823c-d94a09851906], token=null
+[INFO ] 01:05:15.866 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 01:05:15.866 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:05:15.866 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:05:15.866 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:05:15.866 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:05:15.866 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:05:15.866 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:05:15.866 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 01:05:15.866 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 01:05:15.866 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:05:15.866 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:05:15.866 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:05:15.866 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:05:15.866 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:05:15.866 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:05:15.871 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:05:15.871 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:05:15.871 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:05:15.871 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:05:15.871 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:05:15.871 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:05:15.871 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:05:15.871 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:05:15.871 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:05:15.871 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:05:15.871 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:05:15.871 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 01:05:15.871 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 01:05:15.871 c.s.s.filter.JwtAuthenticationFilter - [fff94761-c8f1-4008-9ac1-a49b6d278aa2], token=null
+[INFO ] 01:05:15.951 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 01:05:15.951 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:05:15.951 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:05:15.951 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:05:15.951 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:05:15.951 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:05:15.951 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:05:15.951 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 01:05:15.951 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 01:05:15.951 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:05:15.951 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:05:15.951 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:05:15.951 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:05:15.951 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:05:15.951 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:05:15.954 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:05:15.954 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:05:15.954 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:05:15.954 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:05:15.954 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:05:15.954 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 01:05:15.954 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 01:05:15.955 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 01:05:15.955 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 01:05:15.955 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 01:05:15.955 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 01:05:15.955 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[WARN ] 01:05:15.955 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
+[INFO ] 01:05:15.955 c.s.s.filter.JwtAuthenticationFilter - [4488d104-c8ca-4f9f-91cc-5fef85bbcc37], token=null
