@@ -53,6 +53,10 @@ dependencies {
     // 유효성검사
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 
+    // bucket4j
+    implementation 'com.giffing.bucket4j.spring.boot.starter:bucket4j-spring-boot-starter:0.4.0'
+
+
 }
 //querydsl 추가 시작
 def querydslDir = "$buildDir/generated/querydsl"
