@@ -1,0 +1,753 @@
+[INFO ] 05:12:15.282 o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.0.Final
+[INFO ] 05:12:15.286 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.12 on DESKTOP-KM861HJ with PID 12112 (C:\Users\9sanh\Documents\GitHub\Scope_BackEnd\build\classes\java\main started by 9sanh in C:\Users\9sanh\Documents\GitHub\Scope_BackEnd)
+[INFO ] 05:12:15.287 c.s.scope.ScopeApplication - The following profiles are active: real1
+[INFO ] 05:12:15.967 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 05:12:16.049 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 77 ms. Found 7 JPA repository interfaces.
+[INFO ] 05:12:16.261 c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[INFO ] 05:12:16.261 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 05:12:16.261 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:12:16.262 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:12:16.263 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:12:16.263 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[INFO ] 05:12:16.264 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[INFO ] 05:12:16.264 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:12:16.264 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:12:16.283 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'asyncConfig' of type [com.studycollaboproject.scope.config.AsyncConfig$$EnhancerBySpringCGLIB$$d86515e8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:12:16.419 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@6723610b' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:12:16.426 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:12:16.494 c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[INFO ] 05:12:16.499 c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[INFO ] 05:12:16.500 c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[INFO ] 05:12:16.652 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+[INFO ] 05:12:16.660 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+[INFO ] 05:12:16.660 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 05:12:16.661 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 05:12:16.755 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 05:12:16.755 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1437 ms
+[INFO ] 05:12:16.824 c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@437c4b25 with name: jasyptStringEncryptor
+[INFO ] 05:12:16.940 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 05:12:16.986 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 05:12:17.106 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 05:12:17.190 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 05:12:17.574 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 05:12:17.590 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 05:12:18.506 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 05:12:18.515 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 05:12:18.907 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 05:12:19.327 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 05:12:19.327 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/static/**'] with []
+[INFO ] 05:12:19.425 o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[INFO ] 05:12:19.661 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7c4de811, org.springframework.security.web.context.SecurityContextPersistenceFilter@57859e2c, org.springframework.security.web.header.HeaderWriterFilter@4d73d3d1, org.springframework.web.filter.CorsFilter@443b9ebb, org.springframework.security.web.authentication.logout.LogoutFilter@6ff87203, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@195888a6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@44103266, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4830c979, org.springframework.security.web.session.SessionManagementFilter@3ec6f3f1, org.springframework.security.web.access.ExceptionTranslationFilter@2bf2523f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6764201e]
+[INFO ] 05:12:19.930 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+[INFO ] 05:12:19.946 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+[INFO ] 05:12:19.947 c.u.j.c.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+[INFO ] 05:12:19.948 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
+[INFO ] 05:12:19.948 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
+[INFO ] 05:12:19.948 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
+[INFO ] 05:12:19.948 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 05:12:19.948 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 05:12:19.948 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource server.ports [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:12:19.948 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 05:12:19.948 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:12:19.949 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+[INFO ] 05:12:19.956 c.s.scope.ScopeApplication - Started ScopeApplication in 4.965 seconds (JVM running for 5.752)
+[INFO ] 05:12:20.142 c.s.scope.util.AspectTime - [null], WorkTime : 182.3542 ms
+[INFO ] 05:12:31.964 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 05:12:31.964 o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 05:12:31.966 o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+[INFO ] 05:12:32.002 c.s.s.filter.JwtAuthenticationFilter - [64681c2c-c7c7-43da-a200-785b817d789d], token=null
+[INFO ] 05:12:32.039 c.s.s.filter.JwtAuthenticationFilter - [5d3b66b2-2477-4c60-b64a-556623f58ca5], token=null
+[INFO ] 05:12:32.043 c.s.s.filter.JwtAuthenticationFilter - [54e0e980-2956-4e4e-ba9d-0867e7e2fce4], token=null
+[INFO ] 05:12:32.047 c.s.s.filter.JwtAuthenticationFilter - [acac776b-75c0-4777-a5ae-994ef6019e2b], token=null
+[INFO ] 05:12:32.167 c.s.s.filter.JwtAuthenticationFilter - [535b4711-2f06-4002-b0fb-020cf22e94e7], token=null
+[INFO ] 05:12:32.170 c.s.s.filter.JwtAuthenticationFilter - [044af0d4-bf08-48f7-90ce-41a871c9b8ca], token=null
+[INFO ] 05:12:32.470 o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 279 ms
+[INFO ] 05:12:32.497 c.s.s.filter.JwtAuthenticationFilter - [04b849d5-4bf6-420d-a514-f02c12d0af5f], token=null
+[INFO ] 05:12:32.504 c.s.s.filter.JwtAuthenticationFilter - [b0db16c0-dd6b-4a9a-8b16-668d4e6b286f], token=null
+[INFO ] 05:13:59.873 c.s.scope.util.AspectTime - [da4b6e54-5cee-40e3-b960-3bc28555bd50], WorkTime : 17.6292 ms
+[INFO ] 05:13:59.875 c.s.s.filter.JwtAuthenticationFilter - [da4b6e54-5cee-40e3-b960-3bc28555bd50], token=null
+[INFO ] 05:14:26.042 c.s.scope.security.JwtTokenProvider - [f8c88b63-8fe7-4c54-8b80-af5799ca4895], snsId=G-64877575, email=9sanha@gmail.com, nickname=자나
+[INFO ] 05:14:26.045 c.s.s.controller.UserRestController - [f8c88b63-8fe7-4c54-8b80-af5799ca4895], 닉네임 중복 확인, GET, /api/login/nickname, nickname=ss
+[INFO ] 05:14:26.067 c.s.scope.util.AspectTime - [f8c88b63-8fe7-4c54-8b80-af5799ca4895], WorkTime : 24.7219 ms
+[INFO ] 05:14:26.071 c.s.s.filter.JwtAuthenticationFilter - [f8c88b63-8fe7-4c54-8b80-af5799ca4895], token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJHLTY0ODc3NTc1IiwiaWF0IjoxNjM4MjE2ODM5LCJleHAiOjE2MzgzMDMyMzl9.FAqgHpU_qZf02HS-z3Xe7W-DBLRMo2AJIztJ0jTiAOk
+[INFO ] 05:15:58.318 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 05:15:58.319 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 05:15:58.388 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 05:16:41.779 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.12 on DESKTOP-KM861HJ with PID 14312 (C:\Users\9sanh\Documents\GitHub\Scope_BackEnd\build\classes\java\main started by 9sanh in C:\Users\9sanh\Documents\GitHub\Scope_BackEnd)
+[INFO ] 05:16:41.778 o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.0.Final
+[INFO ] 05:16:41.781 c.s.scope.ScopeApplication - The following profiles are active: real1
+[INFO ] 05:16:42.379 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 05:16:42.452 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 68 ms. Found 7 JPA repository interfaces.
+[INFO ] 05:16:42.645 c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[INFO ] 05:16:42.645 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 05:16:42.645 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:16:42.646 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:16:42.646 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:16:42.647 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[INFO ] 05:16:42.647 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[INFO ] 05:16:42.647 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:16:42.647 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:16:42.662 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'asyncConfig' of type [com.studycollaboproject.scope.config.AsyncConfig$$EnhancerBySpringCGLIB$$ea38d577] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:16:42.781 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@78ec89a6' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:16:42.788 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:16:42.847 c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[INFO ] 05:16:42.854 c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[INFO ] 05:16:42.855 c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[INFO ] 05:16:42.993 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+[INFO ] 05:16:43.000 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+[INFO ] 05:16:43.001 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 05:16:43.001 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 05:16:43.089 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 05:16:43.090 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1281 ms
+[INFO ] 05:16:43.151 c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@3c28e5b6 with name: jasyptStringEncryptor
+[INFO ] 05:16:43.248 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 05:16:43.278 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 05:16:43.371 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 05:16:43.440 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 05:16:43.708 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 05:16:43.723 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 05:16:44.602 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 05:16:44.610 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 05:16:44.973 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 05:16:45.387 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 05:16:45.387 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/static/**'] with []
+[INFO ] 05:16:45.478 o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[INFO ] 05:16:45.704 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@455cb6d9, org.springframework.security.web.context.SecurityContextPersistenceFilter@78a7fccd, org.springframework.security.web.header.HeaderWriterFilter@7c928399, org.springframework.web.filter.CorsFilter@6d7a343f, org.springframework.security.web.authentication.logout.LogoutFilter@5de14222, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@27c49f54, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1f3f0d25, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5d2bfc9f, org.springframework.security.web.session.SessionManagementFilter@48619f15, org.springframework.security.web.access.ExceptionTranslationFilter@7212b28e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@304cad3a]
+[INFO ] 05:16:45.968 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+[INFO ] 05:16:45.984 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+[INFO ] 05:16:45.986 c.u.j.c.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+[INFO ] 05:16:45.987 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
+[INFO ] 05:16:45.987 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
+[INFO ] 05:16:45.987 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
+[INFO ] 05:16:45.987 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 05:16:45.987 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 05:16:45.987 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource server.ports [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:16:45.987 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 05:16:45.987 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:16:45.988 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+[INFO ] 05:16:45.995 c.s.scope.ScopeApplication - Started ScopeApplication in 4.486 seconds (JVM running for 5.238)
+[INFO ] 05:16:46.170 c.s.scope.util.AspectTime - [null], WorkTime : 172.2732 ms
+[INFO ] 05:17:19.007 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 05:17:19.007 o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 05:17:19.008 o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[INFO ] 05:17:19.082 c.s.scope.util.AspectTime - [a29166fb-938d-4388-89ee-0bbfc03c7147], WorkTime : 42.0496 ms
+[INFO ] 05:17:19.100 c.s.s.filter.JwtAuthenticationFilter - [a29166fb-938d-4388-89ee-0bbfc03c7147], token=null
+[INFO ] 05:17:25.319 c.s.s.filter.JwtAuthenticationFilter - [8516db7d-f9b6-4be8-ab47-e0ddd7b47c9d], token=null
+[INFO ] 05:17:25.338 c.s.s.filter.JwtAuthenticationFilter - [b2926d77-72d7-4ee8-94c7-7d11d7b292c3], token=null
+[INFO ] 05:17:25.340 c.s.s.filter.JwtAuthenticationFilter - [ce685c9f-7b7c-44cd-92df-fd85481e859a], token=null
+[INFO ] 05:17:25.345 c.s.s.filter.JwtAuthenticationFilter - [40f054ba-7959-48e7-b75f-e64dd23b71ef], token=null
+[INFO ] 05:17:25.438 c.s.s.filter.JwtAuthenticationFilter - [d70a700d-dce8-4a37-9c79-12dee7ee9c8d], token=null
+[INFO ] 05:17:25.441 c.s.s.filter.JwtAuthenticationFilter - [96e78095-ac2f-41b9-bbc9-84f13d16f9eb], token=null
+[INFO ] 05:17:25.445 c.s.s.filter.JwtAuthenticationFilter - [e703e028-7a8a-4524-89f8-655a4c6cc37b], token=null
+[INFO ] 05:17:25.710 o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 254 ms
+[INFO ] 05:17:25.735 c.s.s.filter.JwtAuthenticationFilter - [96fc59d8-a24d-46a1-af3a-dd75975b15bd], token=null
+[INFO ] 05:17:25.742 c.s.s.filter.JwtAuthenticationFilter - [ec86c180-beca-4cfc-ab03-e430a1f737d3], token=null
+[INFO ] 05:17:53.707 c.s.scope.security.JwtTokenProvider - [4240bbbf-33d6-4ae3-b9f7-fe57dba898fd], snsId=G-64877575, email=9sanha@gmail.com, nickname=자나
+[INFO ] 05:17:53.711 c.s.s.controller.TeamRestController - [4240bbbf-33d6-4ae3-b9f7-fe57dba898fd], 팀원 조회, GET, /api/team/23
+[INFO ] 05:17:53.812 c.s.scope.util.AspectTime - [4240bbbf-33d6-4ae3-b9f7-fe57dba898fd], WorkTime : 102.4823 ms
+[INFO ] 05:17:53.815 c.s.s.filter.JwtAuthenticationFilter - [4240bbbf-33d6-4ae3-b9f7-fe57dba898fd], token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJHLTY0ODc3NTc1IiwiaWF0IjoxNjM4MjE3MDM5LCJleHAiOjE2MzgzMDM0Mzl9.8Lk0X1UawC0ntQLQ_vypyhBZ4AwYolw2yy6f49NktSg
+[INFO ] 05:23:26.455 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 05:23:26.456 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 05:23:26.513 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 05:23:42.260 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.12 on DESKTOP-KM861HJ with PID 19900 (C:\Users\9sanh\Documents\GitHub\Scope_BackEnd\build\classes\java\main started by 9sanh in C:\Users\9sanh\Documents\GitHub\Scope_BackEnd)
+[INFO ] 05:23:42.259 o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.0.Final
+[INFO ] 05:23:42.262 c.s.scope.ScopeApplication - The following profiles are active: real1
+[INFO ] 05:23:42.852 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 05:23:42.924 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 67 ms. Found 7 JPA repository interfaces.
+[INFO ] 05:23:43.114 c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[INFO ] 05:23:43.115 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 05:23:43.115 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:23:43.115 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:23:43.116 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:23:43.116 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[INFO ] 05:23:43.117 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[INFO ] 05:23:43.117 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:23:43.117 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:23:43.133 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'asyncConfig' of type [com.studycollaboproject.scope.config.AsyncConfig$$EnhancerBySpringCGLIB$$39c7522e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:23:43.248 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@2fb25f4c' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:23:43.254 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:23:43.314 c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[INFO ] 05:23:43.320 c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[INFO ] 05:23:43.321 c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[INFO ] 05:23:43.465 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+[INFO ] 05:23:43.471 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+[INFO ] 05:23:43.472 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 05:23:43.472 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 05:23:43.559 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 05:23:43.559 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1268 ms
+[INFO ] 05:23:43.622 c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@7558c24b with name: jasyptStringEncryptor
+[INFO ] 05:23:43.724 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 05:23:43.755 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 05:23:43.841 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 05:23:43.910 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 05:23:44.184 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 05:23:44.207 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 05:23:45.051 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 05:23:45.059 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 05:23:45.426 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 05:23:45.830 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 05:23:45.830 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/static/**'] with []
+[INFO ] 05:23:45.916 o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[INFO ] 05:23:46.147 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3b9c386d, org.springframework.security.web.context.SecurityContextPersistenceFilter@9fd5dd0, org.springframework.security.web.header.HeaderWriterFilter@762d2e4c, org.springframework.web.filter.CorsFilter@7fb28ed, org.springframework.security.web.authentication.logout.LogoutFilter@19a4cdea, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4a5c6b30, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@682482ee, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@536f389, org.springframework.security.web.session.SessionManagementFilter@410e043b, org.springframework.security.web.access.ExceptionTranslationFilter@4f3b11e6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@171b0d3]
+[INFO ] 05:23:46.416 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+[INFO ] 05:23:46.433 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+[INFO ] 05:23:46.434 c.u.j.c.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+[INFO ] 05:23:46.434 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
+[INFO ] 05:23:46.435 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
+[INFO ] 05:23:46.435 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
+[INFO ] 05:23:46.435 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 05:23:46.435 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 05:23:46.435 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource server.ports [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:23:46.435 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 05:23:46.435 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:23:46.435 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+[INFO ] 05:23:46.443 c.s.scope.ScopeApplication - Started ScopeApplication in 4.529 seconds (JVM running for 5.309)
+[INFO ] 05:23:46.633 c.s.scope.util.AspectTime - [null], WorkTime : 186.3377 ms
+[INFO ] 05:24:06.857 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 05:24:06.858 o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 05:24:06.859 o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[INFO ] 05:24:06.892 c.s.s.filter.JwtAuthenticationFilter - [3fb68f6d-2e28-4a4d-aad1-cfe73a6fd2b0], token=null
+[INFO ] 05:24:06.909 c.s.s.filter.JwtAuthenticationFilter - [f32205c7-f4fa-49d5-8080-22bfb716131e], token=null
+[INFO ] 05:24:06.912 c.s.s.filter.JwtAuthenticationFilter - [e9eabc3a-6645-4e6d-870d-b3fdd001c73b], token=null
+[INFO ] 05:24:06.916 c.s.s.filter.JwtAuthenticationFilter - [e4a4d10b-1c7f-4849-9ba0-2b8df8ebc0e7], token=null
+[INFO ] 05:24:07.009 c.s.s.filter.JwtAuthenticationFilter - [4db73eaf-0065-493b-b081-69ddfb330c9f], token=null
+[INFO ] 05:24:07.037 c.s.s.filter.JwtAuthenticationFilter - [94a73944-d8eb-4ee2-97d5-530243c31ce9], token=null
+[INFO ] 05:24:07.040 c.s.s.filter.JwtAuthenticationFilter - [02112294-7ab3-4f25-bb22-1730023efc1b], token=null
+[INFO ] 05:24:07.323 o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 261 ms
+[INFO ] 05:24:07.350 c.s.s.filter.JwtAuthenticationFilter - [ed49c266-b2bf-42d6-8158-9b7df1f2fd7a], token=null
+[INFO ] 05:24:07.357 c.s.s.filter.JwtAuthenticationFilter - [d6b9593b-8f62-433a-bf97-ce8816856017], token=null
+[INFO ] 05:24:31.967 c.s.scope.security.JwtTokenProvider - [abeb38c9-0dee-44c8-aa69-b95f46c9e791], snsId=G-64877575, email=9sanha@gmail.com, nickname=자나
+[INFO ] 05:24:31.972 c.s.s.controller.PostRestController - [abeb38c9-0dee-44c8-aa69-b95f46c9e791], 프로젝트 조회, GET, /api/post, filter=;;;;;;;;;;;;;;, sort=createdAt, bookmarkRecommend=bookmark
+[INFO ] 05:24:32.068 c.s.scope.util.AspectTime - [abeb38c9-0dee-44c8-aa69-b95f46c9e791], WorkTime : 98.6618 ms
+[INFO ] 05:24:32.074 c.s.s.filter.JwtAuthenticationFilter - [abeb38c9-0dee-44c8-aa69-b95f46c9e791], token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJHLTY0ODc3NTc1IiwiaWF0IjoxNjM4MjE3MDM5LCJleHAiOjE2MzgzMDM0Mzl9.8Lk0X1UawC0ntQLQ_vypyhBZ4AwYolw2yy6f49NktSg
+[INFO ] 05:25:30.313 c.s.s.filter.JwtAuthenticationFilter - [85788618-e638-4e44-aa48-dcae9700ef16], token=null
+[INFO ] 05:25:30.354 c.s.s.filter.JwtAuthenticationFilter - [12a06f4c-505a-4266-b176-0bdd829e0bc8], token=null
+[INFO ] 05:25:30.356 c.s.s.filter.JwtAuthenticationFilter - [eb78e530-99c5-4ca5-acb5-81e4ce43a32c], token=null
+[INFO ] 05:25:30.360 c.s.s.filter.JwtAuthenticationFilter - [beaccc1d-b218-4ec8-99a7-525bd12225d1], token=null
+[INFO ] 05:25:30.450 c.s.s.filter.JwtAuthenticationFilter - [b54017c5-85a7-4e49-9e7b-1c67c11a24f3], token=null
+[INFO ] 05:25:30.453 c.s.s.filter.JwtAuthenticationFilter - [aef60a05-4f62-4001-947d-f37ae307e5de], token=null
+[INFO ] 05:25:30.469 c.s.s.filter.JwtAuthenticationFilter - [f4a9aedc-93a8-4eea-9c9d-cfcd57110e61], token=null
+[INFO ] 05:25:30.488 c.s.s.filter.JwtAuthenticationFilter - [fdafe677-66e6-49f6-a871-8ac1838cf8b6], token=null
+[INFO ] 05:25:34.658 c.s.scope.util.AspectTime - [d0d367f6-e925-4e03-9af8-a7c5856c89da], WorkTime : 77.6836 ms
+[INFO ] 05:25:34.795 c.s.s.filter.JwtAuthenticationFilter - [d0d367f6-e925-4e03-9af8-a7c5856c89da], token=null
+[INFO ] 05:25:34.816 c.s.s.filter.JwtAuthenticationFilter - [e95e7ba1-d5f6-4c81-97bd-031a283f15d1], token=null
+[INFO ] 05:25:34.817 c.s.s.filter.JwtAuthenticationFilter - [edc46cd1-2474-4226-a2c0-fc6c60603ecd], token=null
+[INFO ] 05:25:34.817 c.s.s.filter.JwtAuthenticationFilter - [314ae7fd-7182-400c-af90-a0c20ae5ac8e], token=null
+[INFO ] 05:25:34.821 c.s.s.filter.JwtAuthenticationFilter - [3477047a-b563-4c70-b2db-49fb497f39e8], token=null
+[INFO ] 05:25:34.987 c.s.s.filter.JwtAuthenticationFilter - [91d83aef-8cbf-4851-8bf0-a3f50b88a137], token=null
+[INFO ] 05:25:34.987 c.s.s.filter.JwtAuthenticationFilter - [3407fbe9-3b74-4e01-83a7-7494844b3978], token=null
+[INFO ] 05:25:34.987 c.s.s.filter.JwtAuthenticationFilter - [b2992f2b-7909-4d58-b897-d31528d3b817], token=null
+[INFO ] 05:25:34.987 c.s.s.filter.JwtAuthenticationFilter - [eb50edb6-258a-4c51-b2d3-456aecb19a54], token=null
+[INFO ] 05:25:34.989 c.s.s.filter.JwtAuthenticationFilter - [ce2cdc6a-68e3-479d-a5f7-c02ea7408196], token=null
+[INFO ] 05:25:34.989 c.s.s.filter.JwtAuthenticationFilter - [683eff70-bce8-492e-9401-34c3febaf144], token=null
+[INFO ] 05:25:34.997 c.s.s.filter.JwtAuthenticationFilter - [8a30368e-f00e-40f5-b409-446357b57bf2], token=null
+[INFO ] 05:25:34.997 c.s.s.filter.JwtAuthenticationFilter - [1ab06f48-2026-457b-8bf7-4f14cf3ee23d], token=null
+[INFO ] 05:25:34.997 c.s.s.filter.JwtAuthenticationFilter - [be85eb0b-13ae-4b82-a063-0403d5d7b390], token=null
+[INFO ] 05:25:35.000 c.s.s.filter.JwtAuthenticationFilter - [64926190-1543-4f62-b7d7-bea84ea5b5f1], token=null
+[INFO ] 05:25:35.000 c.s.s.filter.JwtAuthenticationFilter - [301a494a-beb4-4ace-81f2-c57c169c43d8], token=null
+[INFO ] 05:25:35.000 c.s.s.filter.JwtAuthenticationFilter - [7de2f7ce-e18e-4c70-98d4-229560cdfbb2], token=null
+[INFO ] 05:25:35.005 c.s.s.filter.JwtAuthenticationFilter - [394fe8e5-c135-4acd-be4d-4859765f31ac], token=null
+[INFO ] 05:25:35.005 c.s.s.filter.JwtAuthenticationFilter - [0d9473b8-546f-41e7-abfc-9d4b87580fe5], token=null
+[INFO ] 05:25:35.005 c.s.s.filter.JwtAuthenticationFilter - [55423017-0b27-4d57-85a7-7d71016a6133], token=null
+[INFO ] 05:25:35.005 c.s.s.filter.JwtAuthenticationFilter - [4086181d-0470-4083-82b2-c657c2433e65], token=null
+[INFO ] 05:25:35.013 c.s.s.filter.JwtAuthenticationFilter - [4d50afba-7171-471d-9cbe-f26b4a32f47f], token=null
+[INFO ] 05:25:35.013 c.s.s.filter.JwtAuthenticationFilter - [c2f4f6e1-d40e-45f7-b4f2-295ba3ab02dd], token=null
+[INFO ] 05:25:35.013 c.s.s.filter.JwtAuthenticationFilter - [64150c15-88bb-4314-8f8e-ee73c85a38f6], token=null
+[INFO ] 05:25:35.015 c.s.s.filter.JwtAuthenticationFilter - [bda4d008-71eb-4d95-82aa-95a0da2d6e48], token=null
+[INFO ] 05:25:35.124 c.s.s.filter.JwtAuthenticationFilter - [77a7c5d4-50d3-4931-bf7d-45ab96bebdf1], token=null
+[INFO ] 05:25:35.130 c.s.s.filter.JwtAuthenticationFilter - [1449855b-6a11-4e92-a058-2c53eff7856e], token=null
+[INFO ] 05:25:35.130 c.s.s.filter.JwtAuthenticationFilter - [fa083589-52ef-40da-b1f6-3b9d4ac61105], token=null
+[INFO ] 05:25:44.762 c.s.s.filter.JwtAuthenticationFilter - [2d62095b-dc35-4d9f-90c8-ce1e6dd3bf66], token=null
+[INFO ] 05:25:55.383 c.s.scope.util.AspectTime - [d5a8552b-e24a-4b20-b523-b54f3b4afe38], WorkTime : 0.0107 ms
+[INFO ] 05:25:55.386 c.s.s.filter.JwtAuthenticationFilter - [d5a8552b-e24a-4b20-b523-b54f3b4afe38], token=null
+[INFO ] 05:25:55.411 c.s.s.filter.JwtAuthenticationFilter - [d9fc5209-7777-46ba-b48f-b978af857f96], token=null
+[INFO ] 05:25:55.411 c.s.s.filter.JwtAuthenticationFilter - [a047fe8c-955e-4291-a080-6aa650a994ce], token=null
+[INFO ] 05:25:55.411 c.s.s.filter.JwtAuthenticationFilter - [fb8b49de-b9fe-4c78-8f33-b35b11831007], token=null
+[INFO ] 05:25:55.411 c.s.s.filter.JwtAuthenticationFilter - [f0971d61-f169-4822-a207-67b9ff257096], token=null
+[INFO ] 05:25:55.513 c.s.s.filter.JwtAuthenticationFilter - [8c2b99c5-533b-454c-ad55-fe3443460720], token=null
+[INFO ] 05:25:55.532 c.s.s.filter.JwtAuthenticationFilter - [86444bf6-3e55-494e-affb-8fb1265344fb], token=null
+[INFO ] 05:25:55.532 c.s.s.filter.JwtAuthenticationFilter - [2491138c-5e67-418f-a980-b205a353cca1], token=null
+[INFO ] 05:25:55.532 c.s.s.filter.JwtAuthenticationFilter - [0f84543f-3902-4c76-9222-f790cb89e957], token=null
+[INFO ] 05:25:55.532 c.s.s.filter.JwtAuthenticationFilter - [61f7ee81-9230-4550-aac2-68073b429f31], token=null
+[INFO ] 05:25:55.532 c.s.s.filter.JwtAuthenticationFilter - [a7ab2e87-52e7-4bb1-b36a-d04be9912adb], token=null
+[INFO ] 05:25:55.532 c.s.s.filter.JwtAuthenticationFilter - [a70aa4c5-b2dd-443d-9024-467526f3fcee], token=null
+[INFO ] 05:25:55.539 c.s.s.filter.JwtAuthenticationFilter - [3574b4dd-9985-49e7-a2bf-a7d549c3203e], token=null
+[INFO ] 05:25:55.539 c.s.s.filter.JwtAuthenticationFilter - [6719e6dc-8f6b-43d5-a450-db86c2666464], token=null
+[INFO ] 05:25:55.539 c.s.s.filter.JwtAuthenticationFilter - [1dd4a71f-16e4-48a4-b59b-08598872fedf], token=null
+[INFO ] 05:25:55.539 c.s.s.filter.JwtAuthenticationFilter - [6453a31c-ca7d-426e-9f3c-d8ed49a7f5dd], token=null
+[INFO ] 05:25:55.539 c.s.s.filter.JwtAuthenticationFilter - [3066e501-f052-4c85-ad09-d347a7934353], token=null
+[INFO ] 05:25:55.539 c.s.s.filter.JwtAuthenticationFilter - [95bc4ff1-8f3b-4ef4-a6b1-e1425547be1f], token=null
+[INFO ] 05:25:55.545 c.s.s.filter.JwtAuthenticationFilter - [7ddafcfe-504c-4b5c-a259-5364330c1aec], token=null
+[INFO ] 05:25:55.545 c.s.s.filter.JwtAuthenticationFilter - [5d878c43-863b-4bd5-84e2-4643dc8ee3b3], token=null
+[INFO ] 05:25:55.545 c.s.s.filter.JwtAuthenticationFilter - [78a753c5-c3ee-4a12-86b8-825928c3aa34], token=null
+[INFO ] 05:25:55.545 c.s.s.filter.JwtAuthenticationFilter - [967cc275-3aac-4d55-85fb-d099babb1271], token=null
+[INFO ] 05:25:55.545 c.s.s.filter.JwtAuthenticationFilter - [931453d6-baad-4e52-a6fb-a269bcbed05a], token=null
+[INFO ] 05:25:55.546 c.s.s.filter.JwtAuthenticationFilter - [46155aa1-d7b7-41f6-8ff7-3396160732a9], token=null
+[INFO ] 05:25:55.555 c.s.s.filter.JwtAuthenticationFilter - [8e98a947-f4d2-4e1d-99b3-258436a6c8ec], token=null
+[INFO ] 05:25:55.571 c.s.s.filter.JwtAuthenticationFilter - [7d86f746-2b25-4227-bced-82d9668e6711], token=null
+[INFO ] 05:25:55.571 c.s.s.filter.JwtAuthenticationFilter - [e6aec328-e5d9-464a-baff-2d567e8ec12b], token=null
+[INFO ] 05:25:55.627 c.s.s.filter.JwtAuthenticationFilter - [ea334735-dc1e-45d1-9288-88fd03d6024d], token=null
+[INFO ] 05:25:59.727 c.s.scope.util.AspectTime - [7e58780c-263a-40cc-a72e-64100085ed7d], WorkTime : 0.0113 ms
+[INFO ] 05:25:59.729 c.s.s.filter.JwtAuthenticationFilter - [7e58780c-263a-40cc-a72e-64100085ed7d], token=null
+[INFO ] 05:25:59.791 c.s.s.filter.JwtAuthenticationFilter - [b0ba0f22-3228-4e7f-844a-6ff544a8b790], token=null
+[INFO ] 05:25:59.791 c.s.s.filter.JwtAuthenticationFilter - [19324fed-5b5c-4e61-b614-9eb267a463e8], token=null
+[INFO ] 05:25:59.791 c.s.s.filter.JwtAuthenticationFilter - [ed239ea8-4cf9-435d-aed0-fe7c3153b2d3], token=null
+[INFO ] 05:25:59.792 c.s.s.filter.JwtAuthenticationFilter - [f551b99a-52e0-403e-903d-07822a289437], token=null
+[INFO ] 05:25:59.792 c.s.s.filter.JwtAuthenticationFilter - [6e9154ac-e9e0-4d13-a99c-fdc7e6e151fe], token=null
+[INFO ] 05:25:59.792 c.s.s.filter.JwtAuthenticationFilter - [b53167bf-5303-4659-a30a-2f74490ec47c], token=null
+[INFO ] 05:25:59.798 c.s.s.filter.JwtAuthenticationFilter - [12ae7429-a913-4ccd-ac18-a6c74e6c0034], token=null
+[INFO ] 05:25:59.798 c.s.s.filter.JwtAuthenticationFilter - [d0416558-4543-42a4-86f1-f7a8c76df6ee], token=null
+[INFO ] 05:25:59.798 c.s.s.filter.JwtAuthenticationFilter - [a2c9e78f-1b23-4a1a-9c29-3a053a7e37d9], token=null
+[INFO ] 05:25:59.798 c.s.s.filter.JwtAuthenticationFilter - [bddb91b1-b04b-487b-90d7-602db2020b05], token=null
+[INFO ] 05:25:59.798 c.s.s.filter.JwtAuthenticationFilter - [84f3a4cb-cc93-4338-94d4-617c870bdab6], token=null
+[INFO ] 05:25:59.798 c.s.s.filter.JwtAuthenticationFilter - [add86a55-40e5-48ed-8adc-33bc179aca12], token=null
+[INFO ] 05:25:59.804 c.s.s.filter.JwtAuthenticationFilter - [1dab380e-7a26-46af-a292-8b66294f79f6], token=null
+[INFO ] 05:25:59.804 c.s.s.filter.JwtAuthenticationFilter - [6dd3906c-a27e-4a94-adb5-a6fd78514379], token=null
+[INFO ] 05:25:59.804 c.s.s.filter.JwtAuthenticationFilter - [9fa416a1-6a96-4490-b657-0ca695dc32f0], token=null
+[INFO ] 05:25:59.806 c.s.s.filter.JwtAuthenticationFilter - [61fcb6e2-d275-4a0a-bcba-de0c65c87b0f], token=null
+[INFO ] 05:25:59.867 c.s.s.filter.JwtAuthenticationFilter - [1abe3405-c5f5-4df0-8cf9-7a112d960929], token=null
+[INFO ] 05:25:59.867 c.s.s.filter.JwtAuthenticationFilter - [45d88501-4d2b-4a84-b3e7-c81c0a02df95], token=null
+[INFO ] 05:25:59.876 c.s.s.filter.JwtAuthenticationFilter - [b568b036-73dd-473a-822e-31270522a702], token=null
+[INFO ] 05:26:05.400 c.s.s.filter.JwtAuthenticationFilter - [5ee76fc5-69e9-413c-b667-29dbf4fbddfb], token=null
+[INFO ] 05:32:43.233 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 05:32:43.234 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 05:32:43.293 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 05:33:00.810 o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.0.Final
+[INFO ] 05:33:00.810 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.12 on DESKTOP-KM861HJ with PID 17040 (C:\Users\9sanh\Documents\GitHub\Scope_BackEnd\build\classes\java\main started by 9sanh in C:\Users\9sanh\Documents\GitHub\Scope_BackEnd)
+[INFO ] 05:33:00.812 c.s.scope.ScopeApplication - The following profiles are active: real1
+[INFO ] 05:33:01.419 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 05:33:01.496 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 71 ms. Found 7 JPA repository interfaces.
+[INFO ] 05:33:01.710 c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[INFO ] 05:33:01.711 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 05:33:01.711 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:33:01.711 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:33:01.712 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:33:01.712 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[INFO ] 05:33:01.713 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[INFO ] 05:33:01.713 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:33:01.713 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:33:01.732 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'asyncConfig' of type [com.studycollaboproject.scope.config.AsyncConfig$$EnhancerBySpringCGLIB$$cce54c60] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:33:01.856 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@2dbc408c' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:33:01.864 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:33:01.932 c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[INFO ] 05:33:01.938 c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[INFO ] 05:33:01.939 c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[INFO ] 05:33:02.104 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+[INFO ] 05:33:02.112 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+[INFO ] 05:33:02.113 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 05:33:02.113 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 05:33:02.219 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 05:33:02.220 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1379 ms
+[INFO ] 05:33:02.292 c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@4a642e4b with name: jasyptStringEncryptor
+[INFO ] 05:33:02.411 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 05:33:02.444 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 05:33:02.535 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 05:33:02.607 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 05:33:03.346 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 05:33:03.362 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 05:33:04.444 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 05:33:04.452 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 05:33:04.864 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[WARN ] 05:33:05.028 o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'apiTestRestController' defined in file [C:\Users\9sanh\Documents\GitHub\Scope_BackEnd\build\classes\java\main\com\studycollaboproject\scope\controller\ApiTestRestController.class]: Unsatisfied dependency expressed through constructor parameter 3; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.studycollaboproject.scope.listener.SessionUserCounter' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+[INFO ] 05:33:05.029 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 05:33:05.030 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 05:33:05.097 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 05:33:05.100 o.a.catalina.core.StandardService - Stopping service [Tomcat]
+[INFO ] 05:33:05.109 o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+[ERROR] 05:33:05.138 o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 3 of constructor in com.studycollaboproject.scope.controller.ApiTestRestController required a bean of type 'com.studycollaboproject.scope.listener.SessionUserCounter' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.studycollaboproject.scope.listener.SessionUserCounter' in your configuration.
+
+[INFO ] 05:33:48.406 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.12 on DESKTOP-KM861HJ with PID 1420 (C:\Users\9sanh\Documents\GitHub\Scope_BackEnd\build\classes\java\main started by 9sanh in C:\Users\9sanh\Documents\GitHub\Scope_BackEnd)
+[INFO ] 05:33:48.408 o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.0.Final
+[INFO ] 05:33:48.408 c.s.scope.ScopeApplication - The following profiles are active: real1
+[INFO ] 05:33:49.032 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 05:33:49.108 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 70 ms. Found 7 JPA repository interfaces.
+[INFO ] 05:33:49.310 c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[INFO ] 05:33:49.311 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 05:33:49.311 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:33:49.312 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:33:49.312 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:33:49.313 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[INFO ] 05:33:49.313 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[INFO ] 05:33:49.313 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:33:49.313 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:33:49.329 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'asyncConfig' of type [com.studycollaboproject.scope.config.AsyncConfig$$EnhancerBySpringCGLIB$$8d27cf51] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:33:49.445 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@991cbde' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:33:49.451 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:33:49.509 c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[INFO ] 05:33:49.515 c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[INFO ] 05:33:49.516 c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[INFO ] 05:33:49.659 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+[INFO ] 05:33:49.665 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+[INFO ] 05:33:49.666 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 05:33:49.666 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 05:33:49.761 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 05:33:49.761 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1323 ms
+[INFO ] 05:33:49.831 c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@6b162ecc with name: jasyptStringEncryptor
+[INFO ] 05:33:49.947 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 05:33:49.981 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 05:33:50.064 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 05:33:50.132 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 05:33:50.476 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 05:33:50.492 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 05:33:51.345 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 05:33:51.354 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 05:33:51.734 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 05:33:52.152 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 05:33:52.153 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/static/**'] with []
+[INFO ] 05:33:52.242 o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[INFO ] 05:33:52.469 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@628cb8e0, org.springframework.security.web.context.SecurityContextPersistenceFilter@7be85f15, org.springframework.security.web.header.HeaderWriterFilter@87df88d, org.springframework.web.filter.CorsFilter@19f9404d, org.springframework.security.web.authentication.logout.LogoutFilter@26b150cd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@16eb01d4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4fce655d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5481f204, org.springframework.security.web.session.SessionManagementFilter@3cf1b5fb, org.springframework.security.web.access.ExceptionTranslationFilter@308e465b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@54c697c]
+[INFO ] 05:33:52.742 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+[INFO ] 05:33:52.759 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+[INFO ] 05:33:52.760 c.u.j.c.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+[INFO ] 05:33:52.761 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
+[INFO ] 05:33:52.761 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
+[INFO ] 05:33:52.761 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
+[INFO ] 05:33:52.761 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 05:33:52.761 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 05:33:52.761 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource server.ports [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:33:52.762 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 05:33:52.762 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:33:52.762 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+[INFO ] 05:33:52.769 c.s.scope.ScopeApplication - Started ScopeApplication in 4.736 seconds (JVM running for 5.639)
+[INFO ] 05:33:52.953 c.s.scope.util.AspectTime - [null], WorkTime : 179.6099 ms
+[INFO ] 05:34:18.738 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 05:34:18.738 o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 05:34:18.739 o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[INFO ] 05:34:18.775 c.s.s.filter.JwtAuthenticationFilter - [ca3d85be-d741-4343-920f-04a5116f992e], token=null
+[INFO ] 05:34:18.805 c.s.s.filter.JwtAuthenticationFilter - [c36a306f-45a7-47cd-a68f-7e948d3c570b], token=null
+[INFO ] 05:34:18.806 c.s.s.filter.JwtAuthenticationFilter - [78610ccf-8775-4ddf-9604-b47a7de1f6ad], token=null
+[INFO ] 05:34:18.811 c.s.s.filter.JwtAuthenticationFilter - [43544cb0-2920-4acf-9b4d-a528fd07a8be], token=null
+[INFO ] 05:34:18.938 c.s.s.filter.JwtAuthenticationFilter - [70d3b288-1ccd-4386-bbee-409aa63ed88c], token=null
+[INFO ] 05:34:18.941 c.s.s.filter.JwtAuthenticationFilter - [91550011-8a8f-4b28-be04-96214f77e134], token=null
+[INFO ] 05:34:19.243 o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 282 ms
+[INFO ] 05:34:19.271 c.s.s.filter.JwtAuthenticationFilter - [9d7af425-e6e4-4abb-beb4-bb9682a74ed5], token=null
+[INFO ] 05:34:19.279 c.s.s.filter.JwtAuthenticationFilter - [5f158071-5418-4ba5-afb7-051f47bb0b41], token=null
+[INFO ] 05:34:34.534 c.s.scope.util.AspectTime - [7fc90950-3ee4-455d-8c5c-1c811ad7c8dc], WorkTime : 2.0991 ms
+[INFO ] 05:34:34.536 c.s.s.filter.JwtAuthenticationFilter - [7fc90950-3ee4-455d-8c5c-1c811ad7c8dc], token=null
+[INFO ] 05:34:43.581 c.s.scope.util.AspectTime - [ae5f2d9d-6fd2-4ed1-9c9b-c16dfa608b8c], WorkTime : 0.0574 ms
+[INFO ] 05:34:43.582 c.s.s.filter.JwtAuthenticationFilter - [ae5f2d9d-6fd2-4ed1-9c9b-c16dfa608b8c], token=null
+[INFO ] 05:34:48.472 c.s.scope.util.AspectTime - [cebc3375-786f-4bea-b27c-cee7c471b1ef], WorkTime : 0.0565 ms
+[INFO ] 05:34:48.473 c.s.s.filter.JwtAuthenticationFilter - [cebc3375-786f-4bea-b27c-cee7c471b1ef], token=null
+[INFO ] 05:36:41.357 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 05:36:41.359 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 05:36:41.417 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 05:36:53.628 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.12 on DESKTOP-KM861HJ with PID 7408 (C:\Users\9sanh\Documents\GitHub\Scope_BackEnd\build\classes\java\main started by 9sanh in C:\Users\9sanh\Documents\GitHub\Scope_BackEnd)
+[INFO ] 05:36:53.627 o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.0.Final
+[INFO ] 05:36:53.631 c.s.scope.ScopeApplication - The following profiles are active: real1
+[INFO ] 05:36:54.263 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 05:36:54.337 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 68 ms. Found 7 JPA repository interfaces.
+[INFO ] 05:36:54.545 c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[INFO ] 05:36:54.545 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 05:36:54.546 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:36:54.546 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:36:54.547 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:36:54.547 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[INFO ] 05:36:54.547 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[INFO ] 05:36:54.547 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:36:54.547 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:36:54.564 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'asyncConfig' of type [com.studycollaboproject.scope.config.AsyncConfig$$EnhancerBySpringCGLIB$$dc626fd7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:36:54.680 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@5e13f156' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:36:54.686 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:36:54.748 c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[INFO ] 05:36:54.754 c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[INFO ] 05:36:54.756 c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[INFO ] 05:36:54.903 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+[INFO ] 05:36:54.910 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+[INFO ] 05:36:54.910 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 05:36:54.910 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 05:36:54.998 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 05:36:54.998 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1328 ms
+[INFO ] 05:36:55.063 c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@5d71b500 with name: jasyptStringEncryptor
+[INFO ] 05:36:55.168 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 05:36:55.198 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 05:36:55.291 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 05:36:55.363 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 05:36:55.665 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 05:36:55.680 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 05:36:56.513 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 05:36:56.522 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 05:36:56.886 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 05:36:57.291 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 05:36:57.291 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/static/**'] with []
+[INFO ] 05:36:57.375 o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[INFO ] 05:36:57.596 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@506654fa, org.springframework.security.web.context.SecurityContextPersistenceFilter@1fa77770, org.springframework.security.web.header.HeaderWriterFilter@48590849, org.springframework.web.filter.CorsFilter@4468ced2, org.springframework.security.web.authentication.logout.LogoutFilter@16eb01d4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@308e465b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@cef23a8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@21f421b8, org.springframework.security.web.session.SessionManagementFilter@43a72f0f, org.springframework.security.web.access.ExceptionTranslationFilter@5390862e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@af04d6d]
+[INFO ] 05:36:57.839 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+[INFO ] 05:36:57.854 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+[INFO ] 05:36:57.855 c.u.j.c.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+[INFO ] 05:36:57.856 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
+[INFO ] 05:36:57.856 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
+[INFO ] 05:36:57.856 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
+[INFO ] 05:36:57.856 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 05:36:57.856 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 05:36:57.856 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource server.ports [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:36:57.856 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 05:36:57.856 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:36:57.856 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+[INFO ] 05:36:57.865 c.s.scope.ScopeApplication - Started ScopeApplication in 4.783 seconds (JVM running for 5.556)
+[INFO ] 05:36:58.032 c.s.scope.util.AspectTime - [null], WorkTime : 164.625 ms
+[INFO ] 05:37:07.384 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 05:37:07.385 o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 05:37:07.386 o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[INFO ] 05:37:07.422 c.s.s.filter.JwtAuthenticationFilter - [768d61e7-16ca-4e1a-8e53-1acffbf4a732], token=null
+[INFO ] 05:37:07.440 c.s.s.filter.JwtAuthenticationFilter - [081a157e-73cd-4f94-8f56-aacc6ebbd269], token=null
+[INFO ] 05:37:07.441 c.s.s.filter.JwtAuthenticationFilter - [440d91a1-0b05-4d7d-b46a-8a411f0cb76c], token=null
+[INFO ] 05:37:07.446 c.s.s.filter.JwtAuthenticationFilter - [f9e8ead1-5c9b-4f6f-a836-6c2da90dd500], token=null
+[INFO ] 05:37:07.540 c.s.s.filter.JwtAuthenticationFilter - [9cf843ec-99ef-4ddc-9ee3-2f1a5e266377], token=null
+[INFO ] 05:37:07.567 c.s.s.filter.JwtAuthenticationFilter - [ddd4b689-3702-4f22-90f5-f73a0c84214b], token=null
+[INFO ] 05:37:07.570 c.s.s.filter.JwtAuthenticationFilter - [7b6e1310-5919-461a-8135-5e6b254bdecf], token=null
+[INFO ] 05:37:07.862 o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 271 ms
+[INFO ] 05:37:07.888 c.s.s.filter.JwtAuthenticationFilter - [e0d319ad-e9d8-4da4-a1b8-0768315ade3f], token=null
+[INFO ] 05:37:07.895 c.s.s.filter.JwtAuthenticationFilter - [4ba8324d-3da0-41df-ac57-9fd547a570d9], token=null
+[INFO ] 05:37:12.616 c.s.s.listener.SessionUserCounter - 세션 생성 : B2455304792BFADDD59BCD056283BCDD, 동시 접속자 : 1명
+[INFO ] 05:37:12.618 c.s.scope.util.AspectTime - [8df90bb3-3aee-4a8b-866b-3221de0876dc], WorkTime : 65.8454 ms
+[INFO ] 05:37:12.620 c.s.s.filter.JwtAuthenticationFilter - [8df90bb3-3aee-4a8b-866b-3221de0876dc], token=null
+[INFO ] 05:37:16.114 c.s.scope.util.AspectTime - [cd9c2310-1663-4672-b45f-ade1d3ea0981], WorkTime : 0.0588 ms
+[INFO ] 05:37:16.115 c.s.s.filter.JwtAuthenticationFilter - [cd9c2310-1663-4672-b45f-ade1d3ea0981], token=null
+[INFO ] 05:37:17.917 c.s.scope.util.AspectTime - [27e3345e-17bb-4633-8c0a-67c18cce0a97], WorkTime : 0.0619 ms
+[INFO ] 05:37:17.918 c.s.s.filter.JwtAuthenticationFilter - [27e3345e-17bb-4633-8c0a-67c18cce0a97], token=null
+[INFO ] 05:37:18.801 c.s.scope.util.AspectTime - [cb8da224-64f0-4891-9efb-a2beeda9edd7], WorkTime : 0.0608 ms
+[INFO ] 05:37:18.802 c.s.s.filter.JwtAuthenticationFilter - [cb8da224-64f0-4891-9efb-a2beeda9edd7], token=null
+[INFO ] 05:37:19.555 c.s.scope.util.AspectTime - [5af1d395-0b6d-4e45-a26e-3ad713b1b2fb], WorkTime : 0.0634 ms
+[INFO ] 05:37:19.556 c.s.s.filter.JwtAuthenticationFilter - [5af1d395-0b6d-4e45-a26e-3ad713b1b2fb], token=null
+[INFO ] 05:37:20.268 c.s.scope.util.AspectTime - [2a62d8e4-eff3-479d-891c-51833676791a], WorkTime : 0.0583 ms
+[INFO ] 05:37:20.269 c.s.s.filter.JwtAuthenticationFilter - [2a62d8e4-eff3-479d-891c-51833676791a], token=null
+[INFO ] 05:37:21.032 c.s.scope.util.AspectTime - [dcf3454d-e0dd-462d-8f9f-01810c7d1d0a], WorkTime : 0.0583 ms
+[INFO ] 05:37:21.033 c.s.s.filter.JwtAuthenticationFilter - [dcf3454d-e0dd-462d-8f9f-01810c7d1d0a], token=null
+[INFO ] 05:37:21.933 c.s.scope.util.AspectTime - [66a8a62d-5436-4bb5-9f42-b0700d5ea55f], WorkTime : 0.0689 ms
+[INFO ] 05:37:21.934 c.s.s.filter.JwtAuthenticationFilter - [66a8a62d-5436-4bb5-9f42-b0700d5ea55f], token=null
+[INFO ] 05:37:23.922 c.s.s.filter.JwtAuthenticationFilter - [4da592f7-980e-45a7-844c-fa487276e941], token=null
+[INFO ] 05:37:23.951 c.s.s.filter.JwtAuthenticationFilter - [123585be-aa99-44ab-9bd7-b2f2d91fbb8b], token=null
+[INFO ] 05:37:23.952 c.s.s.filter.JwtAuthenticationFilter - [51190d35-4e90-4f09-a4ad-092c16d795a4], token=null
+[INFO ] 05:37:23.956 c.s.s.filter.JwtAuthenticationFilter - [4e383f98-8cbb-46db-b531-497eb5c49f0a], token=null
+[INFO ] 05:37:24.014 c.s.s.filter.JwtAuthenticationFilter - [611a37da-dbdc-44a3-9fe8-b9330433997c], token=null
+[INFO ] 05:37:24.016 c.s.s.filter.JwtAuthenticationFilter - [41c55441-7e1c-4ba5-a855-324524bab1ae], token=null
+[INFO ] 05:37:24.016 c.s.s.filter.JwtAuthenticationFilter - [d3716870-875e-475d-bcce-1f5b05c45fe8], token=null
+[INFO ] 05:37:24.033 c.s.s.filter.JwtAuthenticationFilter - [9e41817f-3446-4331-8865-0dd7d1dffe5e], token=null
+[INFO ] 05:37:24.043 c.s.s.filter.JwtAuthenticationFilter - [5dddfe04-f99f-4c6d-86eb-29d0cdee2de0], token=null
+[INFO ] 05:37:24.044 c.s.s.filter.JwtAuthenticationFilter - [7583fb8f-3993-495d-8935-3166f729bbdd], token=null
+[INFO ] 05:37:24.047 c.s.s.filter.JwtAuthenticationFilter - [42c020ae-31bd-4a0d-8eaf-8667dbbd90f7], token=null
+[INFO ] 05:37:29.024 c.s.scope.util.AspectTime - [8122a7d6-6dd0-42cd-aa8a-cb20aa7d2920], WorkTime : 0.0641 ms
+[INFO ] 05:37:29.025 c.s.s.filter.JwtAuthenticationFilter - [8122a7d6-6dd0-42cd-aa8a-cb20aa7d2920], token=null
+[INFO ] 05:37:30.870 c.s.scope.util.AspectTime - [470dc0d3-aac4-4931-b9dd-72e5d903c0f8], WorkTime : 0.0754 ms
+[INFO ] 05:37:30.872 c.s.s.filter.JwtAuthenticationFilter - [470dc0d3-aac4-4931-b9dd-72e5d903c0f8], token=null
+[INFO ] 05:37:40.387 c.s.s.listener.SessionUserCounter - 세션 소멸 : B2455304792BFADDD59BCD056283BCDD 동시 접속자 : 0명
+[INFO ] 05:37:40.396 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 05:37:40.397 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 05:37:40.464 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 05:39:47.613 o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.0.Final
+[INFO ] 05:39:47.613 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.12 on DESKTOP-KM861HJ with PID 11412 (C:\Users\9sanh\Documents\GitHub\Scope_BackEnd\build\classes\java\main started by 9sanh in C:\Users\9sanh\Documents\GitHub\Scope_BackEnd)
+[INFO ] 05:39:47.615 c.s.scope.ScopeApplication - The following profiles are active: real1
+[INFO ] 05:39:48.227 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 05:39:48.297 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 66 ms. Found 7 JPA repository interfaces.
+[INFO ] 05:39:48.485 c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[INFO ] 05:39:48.486 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 05:39:48.486 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:39:48.486 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:39:48.487 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:39:48.487 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[INFO ] 05:39:48.487 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[INFO ] 05:39:48.487 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:39:48.487 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:39:48.502 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'asyncConfig' of type [com.studycollaboproject.scope.config.AsyncConfig$$EnhancerBySpringCGLIB$$d6285114] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:39:48.611 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@10b687f2' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:39:48.617 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:39:48.671 c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[INFO ] 05:39:48.677 c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[INFO ] 05:39:48.678 c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[INFO ] 05:39:48.812 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+[INFO ] 05:39:48.818 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+[INFO ] 05:39:48.819 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 05:39:48.819 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 05:39:48.915 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 05:39:48.915 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1268 ms
+[INFO ] 05:39:48.981 c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@3b435211 with name: jasyptStringEncryptor
+[INFO ] 05:39:49.088 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 05:39:49.120 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 05:39:49.211 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 05:39:49.277 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 05:39:49.545 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 05:39:49.560 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 05:39:50.402 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 05:39:50.410 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 05:39:50.758 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 05:39:51.147 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 05:39:51.147 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/static/**'] with []
+[INFO ] 05:39:51.230 o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[INFO ] 05:39:51.448 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@55159007, org.springframework.security.web.context.SecurityContextPersistenceFilter@5d3a238, org.springframework.security.web.header.HeaderWriterFilter@2b0d818d, org.springframework.web.filter.CorsFilter@edf4973, org.springframework.security.web.authentication.logout.LogoutFilter@684eb4a0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1c149539, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@487ee2a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2a49753, org.springframework.security.web.session.SessionManagementFilter@78a7fccd, org.springframework.security.web.access.ExceptionTranslationFilter@7f6936cc, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7bb888b7]
+[INFO ] 05:39:51.690 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+[INFO ] 05:39:51.705 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+[INFO ] 05:39:51.706 c.u.j.c.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+[INFO ] 05:39:51.707 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
+[INFO ] 05:39:51.707 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
+[INFO ] 05:39:51.707 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
+[INFO ] 05:39:51.707 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 05:39:51.707 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 05:39:51.707 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource server.ports [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:39:51.707 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 05:39:51.707 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:39:51.707 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+[INFO ] 05:39:51.714 c.s.scope.ScopeApplication - Started ScopeApplication in 4.611 seconds (JVM running for 5.477)
+[INFO ] 05:39:51.882 c.s.scope.util.AspectTime - [null], WorkTime : 164.5279 ms
+[INFO ] 05:39:59.178 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 05:39:59.178 o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 05:39:59.179 o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[INFO ] 05:39:59.212 c.s.s.filter.JwtAuthenticationFilter - [d0844b9c-9c44-47f8-be65-e7b283d2910e], token=null
+[INFO ] 05:39:59.242 c.s.s.filter.JwtAuthenticationFilter - [32f9b93b-49ff-4a76-841b-2e6d03e7ab60], token=null
+[INFO ] 05:39:59.244 c.s.s.filter.JwtAuthenticationFilter - [c28e0c47-5b18-44a1-bdd5-3077cb32dd31], token=null
+[INFO ] 05:39:59.249 c.s.s.filter.JwtAuthenticationFilter - [cf6194ab-5f10-4d3e-8b34-73719ebd1903], token=null
+[INFO ] 05:39:59.344 c.s.s.filter.JwtAuthenticationFilter - [38acf8c6-4a31-454b-a5e8-f4c45d401025], token=null
+[INFO ] 05:39:59.371 c.s.s.filter.JwtAuthenticationFilter - [8a731991-682b-4c89-903e-e7322de54a07], token=null
+[INFO ] 05:39:59.375 c.s.s.filter.JwtAuthenticationFilter - [6c26934f-6319-4026-aaa1-a4fff7cedb69], token=null
+[INFO ] 05:39:59.685 o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 288 ms
+[INFO ] 05:39:59.712 c.s.s.filter.JwtAuthenticationFilter - [f5fb7e7c-89a0-43da-a61c-f76a2b3c6fa4], token=null
+[INFO ] 05:39:59.719 c.s.s.filter.JwtAuthenticationFilter - [71140f85-7ca3-41d6-9556-ad49c6ca8573], token=null
+[INFO ] 05:40:14.443 c.s.s.controller.PostRestController - [57e59347-01de-4325-bfc9-0b28c04fb4cf], 프로젝트 조회, GET, /api/post, filter=;;;;;;;;;;;;;;, sort=createdAt, bookmarkRecommend=bookmark
+[INFO ] 05:40:14.447 c.s.s.e.RestApiExceptionHandler - !!!UnAuth Error, [57e59347-01de-4325-bfc9-0b28c04fb4cf], message=로그인 사용자만 사용할 수 있습니다.
+[INFO ] 05:40:14.449 c.s.s.filter.JwtAuthenticationFilter - [57e59347-01de-4325-bfc9-0b28c04fb4cf], token=null
+[INFO ] 05:40:15.996 c.s.s.controller.PostRestController - [f508e4ff-27c8-4829-9efc-efad0cf6ada3], 프로젝트 조회, GET, /api/post, filter=;;;;;;;;;;;;;;, sort=createdAt, bookmarkRecommend=bookmark
+[INFO ] 05:40:15.997 c.s.s.e.RestApiExceptionHandler - !!!UnAuth Error, [f508e4ff-27c8-4829-9efc-efad0cf6ada3], message=로그인 사용자만 사용할 수 있습니다.
+[INFO ] 05:40:15.998 c.s.s.filter.JwtAuthenticationFilter - [f508e4ff-27c8-4829-9efc-efad0cf6ada3], token=null
+[INFO ] 05:40:28.154 c.s.s.controller.PostRestController - [58be2b06-ccc7-42f5-8622-711ab6ddf52e], 프로젝트 조회, GET, /api/post, filter=;;;;;;;;;;;;;;, sort=createdAt, bookmarkRecommend=bookmark
+[INFO ] 05:40:28.154 c.s.s.e.RestApiExceptionHandler - !!!UnAuth Error, [58be2b06-ccc7-42f5-8622-711ab6ddf52e], message=로그인 사용자만 사용할 수 있습니다.
+[INFO ] 05:40:28.155 c.s.s.filter.JwtAuthenticationFilter - [58be2b06-ccc7-42f5-8622-711ab6ddf52e], token=null
+[INFO ] 05:40:54.636 c.s.s.controller.UserRestController - [a3239ea8-366b-4b80-8395-b21b571ff05d], 마이 페이지, GET, /api/user
+[INFO ] 05:40:54.689 c.s.s.e.RestApiExceptionHandler - !!!Bad Request Error, [a3239ea8-366b-4b80-8395-b21b571ff05d], message=해당 유저를 찾을 수 없습니다.
+[INFO ] 05:40:54.690 c.s.s.filter.JwtAuthenticationFilter - [a3239ea8-366b-4b80-8395-b21b571ff05d], token=null
+[INFO ] 05:40:59.455 c.s.s.controller.UserRestController - [d999cbcc-4903-419d-a44e-18937d10c876], 마이 페이지, GET, /api/user
+[INFO ] 05:40:59.496 c.s.s.e.RestApiExceptionHandler - !!!Bad Request Error, [d999cbcc-4903-419d-a44e-18937d10c876], message=해당 유저를 찾을 수 없습니다.
+[INFO ] 05:40:59.498 c.s.s.filter.JwtAuthenticationFilter - [d999cbcc-4903-419d-a44e-18937d10c876], token=null
+[INFO ] 05:41:12.577 c.s.s.controller.UserRestController - [7c1149e3-156d-456d-ab88-5e59c36778a2], 마이 페이지, GET, /api/user
+[INFO ] 05:41:12.754 c.s.scope.util.AspectTime - [7c1149e3-156d-456d-ab88-5e59c36778a2], WorkTime : 177.178 ms
+[INFO ] 05:41:12.760 c.s.s.filter.JwtAuthenticationFilter - [7c1149e3-156d-456d-ab88-5e59c36778a2], token=null
+[INFO ] 05:41:28.680 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 05:41:28.682 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 05:41:28.741 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 05:44:55.164 o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.0.Final
+[INFO ] 05:44:55.164 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.12 on DESKTOP-KM861HJ with PID 20548 (C:\Users\9sanh\Documents\GitHub\Scope_BackEnd\build\classes\java\main started by 9sanh in C:\Users\9sanh\Documents\GitHub\Scope_BackEnd)
+[INFO ] 05:44:55.167 c.s.scope.ScopeApplication - The following profiles are active: real1
+[INFO ] 05:44:55.833 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 05:44:55.913 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 74 ms. Found 7 JPA repository interfaces.
+[INFO ] 05:44:56.135 c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[INFO ] 05:44:56.135 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 05:44:56.136 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:44:56.136 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:44:56.137 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:44:56.137 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[INFO ] 05:44:56.137 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[INFO ] 05:44:56.137 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:44:56.137 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:44:56.157 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'asyncConfig' of type [com.studycollaboproject.scope.config.AsyncConfig$$EnhancerBySpringCGLIB$$68e647d1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:44:56.285 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@3520963d' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:44:56.294 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 05:44:56.358 c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[INFO ] 05:44:56.364 c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[INFO ] 05:44:56.367 c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[INFO ] 05:44:56.525 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+[INFO ] 05:44:56.535 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+[INFO ] 05:44:56.535 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 05:44:56.535 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 05:44:56.629 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 05:44:56.630 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1428 ms
+[INFO ] 05:44:56.711 c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@47044f7d with name: jasyptStringEncryptor
+[INFO ] 05:44:56.820 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 05:44:56.855 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 05:44:56.958 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 05:44:57.032 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 05:44:57.323 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 05:44:57.337 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 05:44:58.247 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 05:44:58.254 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 05:44:58.678 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 05:44:59.121 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 05:44:59.121 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/static/**'] with []
+[INFO ] 05:44:59.217 o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[INFO ] 05:44:59.464 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@287dde94, org.springframework.security.web.context.SecurityContextPersistenceFilter@3545c913, org.springframework.security.web.header.HeaderWriterFilter@8cd2bb5, org.springframework.web.filter.CorsFilter@2f650dae, org.springframework.security.web.authentication.logout.LogoutFilter@6e6bd43b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4d204b30, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@22c0c0bc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4df8443f, org.springframework.security.web.session.SessionManagementFilter@32da6cef, org.springframework.security.web.access.ExceptionTranslationFilter@6f076c53, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3f31cf8f]
+[INFO ] 05:44:59.746 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+[INFO ] 05:44:59.762 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+[INFO ] 05:44:59.764 c.u.j.c.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+[INFO ] 05:44:59.765 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
+[INFO ] 05:44:59.765 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
+[INFO ] 05:44:59.765 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
+[INFO ] 05:44:59.765 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 05:44:59.765 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 05:44:59.766 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource server.ports [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 05:44:59.766 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 05:44:59.766 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 05:44:59.766 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+[INFO ] 05:44:59.773 c.s.scope.ScopeApplication - Started ScopeApplication in 5.02 seconds (JVM running for 6.0)
+[INFO ] 05:44:59.960 c.s.scope.util.AspectTime - [null], WorkTime : 183.3601 ms
+[INFO ] 05:58:05.866 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 05:58:05.876 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 05:58:05.939 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 06:02:54.570 o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.0.Final
+[INFO ] 06:02:54.570 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.12 on DESKTOP-KM861HJ with PID 17000 (C:\Users\9sanh\Documents\GitHub\Scope_BackEnd\build\classes\java\main started by 9sanh in C:\Users\9sanh\Documents\GitHub\Scope_BackEnd)
+[INFO ] 06:02:54.572 c.s.scope.ScopeApplication - The following profiles are active: real1
+[INFO ] 06:02:55.242 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 06:02:55.323 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 75 ms. Found 7 JPA repository interfaces.
+[INFO ] 06:02:55.571 c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[INFO ] 06:02:55.573 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 06:02:55.573 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 06:02:55.573 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 06:02:55.574 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 06:02:55.574 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[INFO ] 06:02:55.575 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[INFO ] 06:02:55.575 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 06:02:55.575 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 06:02:55.598 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'asyncConfig' of type [com.studycollaboproject.scope.config.AsyncConfig$$EnhancerBySpringCGLIB$$fe73b399] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 06:02:55.745 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@3b332962' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 06:02:55.751 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 06:02:55.814 c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[INFO ] 06:02:55.820 c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[INFO ] 06:02:55.821 c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[INFO ] 06:02:55.958 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+[INFO ] 06:02:55.965 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+[INFO ] 06:02:55.965 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 06:02:55.965 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 06:02:56.061 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 06:02:56.061 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1460 ms
+[INFO ] 06:02:56.132 c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@269222ae with name: jasyptStringEncryptor
+[INFO ] 06:02:56.240 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 06:02:56.271 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 06:02:56.354 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 06:02:56.430 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 06:02:56.746 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 06:02:56.763 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 06:02:57.676 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 06:02:57.684 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 06:02:58.054 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 06:02:58.507 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 06:02:58.507 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/static/**'] with []
+[INFO ] 06:02:58.602 o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[INFO ] 06:02:58.834 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@342a5b57, org.springframework.security.web.context.SecurityContextPersistenceFilter@6bf34912, org.springframework.security.web.header.HeaderWriterFilter@41d8ac75, org.springframework.web.filter.CorsFilter@5e781b4f, org.springframework.security.web.authentication.logout.LogoutFilter@679886ad, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@82382d1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@23169374, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1b89debc, org.springframework.security.web.session.SessionManagementFilter@7151dd9d, org.springframework.security.web.access.ExceptionTranslationFilter@491f3fb0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@65a01901]
+[INFO ] 06:02:59.086 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+[INFO ] 06:02:59.101 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+[INFO ] 06:02:59.102 c.u.j.c.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+[INFO ] 06:02:59.103 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
+[INFO ] 06:02:59.104 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
+[INFO ] 06:02:59.104 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
+[INFO ] 06:02:59.104 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 06:02:59.104 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 06:02:59.104 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource server.ports [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 06:02:59.104 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 06:02:59.104 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 06:02:59.104 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+[INFO ] 06:02:59.111 c.s.scope.ScopeApplication - Started ScopeApplication in 5.148 seconds (JVM running for 6.257)
+[INFO ] 06:02:59.283 c.s.scope.util.AspectTime - [null], WorkTime : 169.3035 ms
+[INFO ] 06:03:07.674 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 06:03:07.676 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 06:03:07.745 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
