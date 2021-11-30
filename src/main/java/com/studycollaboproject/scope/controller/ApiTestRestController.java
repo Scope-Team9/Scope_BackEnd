@@ -2,6 +2,7 @@ package com.studycollaboproject.scope.controller;
 
 import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.dto.SignupTestDto;
+import com.studycollaboproject.scope.listener.SessionUserCounter;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.UserRepository;
 import com.studycollaboproject.scope.security.JwtTokenProvider;
@@ -14,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,6 +28,7 @@ public class ApiTestRestController {
     private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
     private final AssessmentService assessmentService;
+    private final SessionUserCounter userCounter;
 
     @Operation(summary = "TEST용 회원가입")
     @PostMapping("/api-test")
@@ -54,8 +57,6 @@ public class ApiTestRestController {
     public ResponseDto saveAssessment(@RequestBody String rater, @RequestBody String memberType, @RequestBody Long count) {
         assessmentService.testAssessmentResult(rater, memberType, count);
         return new ResponseDto("성공적으로 저장","");
-
-
     }
 
 }

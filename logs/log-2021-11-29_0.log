@@ -39,10 +39,10 @@
 [INFO ] 22:49:38.826 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 [INFO ] 22:49:38.833 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
 [INFO ] 22:49:38.835 o.a.catalina.core.StandardService - Stopping service [Tomcat]
-[INFO ] 22:49:38.843 o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+[INFO ] 22:49:38.843 o.s.b.a.l.ConditionEvaluationReportLoggingListener -
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-[ERROR] 22:49:38.859 o.s.b.d.LoggingFailureAnalysisReporter - 
+[ERROR] 22:49:38.859 o.s.b.d.LoggingFailureAnalysisReporter -
 
 ***************************
 APPLICATION FAILED TO START
