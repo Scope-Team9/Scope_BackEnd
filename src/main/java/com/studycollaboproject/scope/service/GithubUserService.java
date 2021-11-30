@@ -82,8 +82,7 @@ public class GithubUserService {
         JsonNode jsonNode = objectMapper.readTree(responseBody);
         log.info("getGithubUserInfo responseBody = {}", responseBody);
         String id = jsonNode.get("id").asText();
-        String email = jsonNode.get("html_url").asText();
-        return new SnsInfoDto(email, id);
+        return new SnsInfoDto(id);
 
     }
 }
