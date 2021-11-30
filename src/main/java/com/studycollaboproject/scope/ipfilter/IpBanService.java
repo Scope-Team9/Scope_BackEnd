@@ -16,7 +16,7 @@ public class IpBanService {
     private final IpBanRepository ipBanRepository;
 
     public String getIpAdress(HttpServletRequest request){
-        String ip = request.getHeader("X-Fowarded-For");
+        String ip = request.getHeader("X-Forwarded-For");
 
 
         if (ip == null) {

@@ -21,10 +21,6 @@ public class SignupRequestDto {
     private String snsId;
 
     @NotNull
-    @Schema(description = "Email")
-    private String email;
-
-    @NotNull
     @Length(min = 2, max =5 )
     @Schema(description = "닉네임")
     private String nickname;

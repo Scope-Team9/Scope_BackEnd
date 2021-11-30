@@ -43,7 +43,7 @@ public class SnsLoginRestController {
 
 
         return new ResponseEntity<>(
-                userService.SignupEmailCheck(snsInfoDto.getEmail(), snsInfoDto.getId(), "K-"),
+                userService.SignupUserCheck(snsInfoDto.getId(), "K-"),
                 HttpStatus.OK
         );
     }
@@ -57,9 +57,8 @@ public class SnsLoginRestController {
         int count = userCounter.getCount();
         System.out.println("count = " + count);
 
-
         return new ResponseEntity<>(
-                userService.SignupEmailCheck(snsInfoDto.getEmail(), snsInfoDto.getId(), "G-"),
+                userService.SignupUserCheck(snsInfoDto.getId(), "G-"),
                 HttpStatus.OK
         );
     }
