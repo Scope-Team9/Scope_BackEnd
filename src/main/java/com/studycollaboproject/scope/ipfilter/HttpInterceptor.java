@@ -26,7 +26,7 @@ public class HttpInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         Bucket bucket = pricingPlanService.resolveBucket(request);
         log.info("================ Before Method");
-        log.info("접속 ip 주소 '{}'", request.getRemoteAddr());
+        log.info("접속 ip 주소 '{}'", ipBanService.getIpAdress(request));
         log.info(request.getRemoteAddr());
 
         if (ipBanService.isIpBanned(request)){
