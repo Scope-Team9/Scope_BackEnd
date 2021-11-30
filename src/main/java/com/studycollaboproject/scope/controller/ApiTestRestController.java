@@ -15,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,7 +55,7 @@ public class ApiTestRestController {
     @PostMapping("/api-test/assessment")
     public ResponseDto saveAssessment(@RequestBody String rater, @RequestBody String memberType, @RequestBody Long count) {
         assessmentService.testAssessmentResult(rater, memberType, count);
-        return new ResponseDto("성공적으로 저장","");
+        return new ResponseDto("성공적으로 저장", "");
     }
 
 }
