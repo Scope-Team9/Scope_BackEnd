@@ -9,7 +9,6 @@ import com.studycollaboproject.scope.repository.*;
 import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +30,6 @@ public class PostService {
     private final UserRepository userRepository;
     private final TotalResultRepository totalResultRepository;
 
-    @CacheEvict(cacheNames="Post")
     @Transactional
     public PostResponseDto writePost(PostRequestDto postRequestDto, String snsId) {
         User user = userRepository.findBySnsId(snsId).orElseThrow(() ->
@@ -53,7 +51,6 @@ public class PostService {
         }
 
     }
-    @CacheEvict(cacheNames="Post")
     @Transactional
     public PostResponseDto editPost(Long postId, PostRequestDto postRequestDto, String snsId) {
         Post post = loadPostByPostId(postId);
@@ -70,7 +67,7 @@ public class PostService {
             throw new ForbiddenException(ErrorCode.NO_AUTHORIZATION_ERROR);
         }
     }
-    @CacheEvict(cacheNames="Post")
+
     @Transactional
     public Long deletePost(Long postId, String snsId) {
 
