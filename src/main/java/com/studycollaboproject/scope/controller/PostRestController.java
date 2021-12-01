@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -41,7 +42,7 @@ public class PostRestController {
 
     @Operation(summary = "프로젝트 작성")
     @PostMapping("/api/post")
-    @CacheEvict(cacheNames="Post")
+    @CacheEvict(value = "Post", allEntries=true)
     public ResponseEntity<Object> writePost(@Valid @RequestBody PostRequestDto postRequestDto,
                                             @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("[{}], 프로젝트 작성, POST, /api/post, requestDto={}", MDC.get("UUID"), postRequestDto.toString());
@@ -60,6 +61,7 @@ public class PostRestController {
 
     @Operation(summary = "프로젝트 조회")
     @GetMapping("/api/post")
+    @Cacheable(cacheNames="Post")
     public ResponseEntity<Object> readPost(@Parameter(description = "필터", in = ParameterIn.QUERY, example = ";;;;;;;;;;;;;;") @RequestParam String filter,
                                            @Parameter(description = "정렬 기준", in = ParameterIn.QUERY, example = "createdAt") @RequestParam String sort,
                                            @Parameter(description = "북마크 / 추천", in = ParameterIn.QUERY, example = "bookmark", allowEmptyValue = true) @RequestParam String bookmarkRecommend,
@@ -83,7 +85,7 @@ public class PostRestController {
 
     @Operation(summary = "프로젝트 수정")
     @PostMapping("/api/post/{postId}")
-    @CacheEvict(cacheNames="Post")
+    @CacheEvict(value = "Post", allEntries=true)
     public ResponseEntity<Object> editPost(
             @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
             @RequestBody PostRequestDto postRequestDto,
@@ -104,7 +106,7 @@ public class PostRestController {
 
     @Operation(summary = "프로젝트 삭제")
     @DeleteMapping("/api/post/{postId}")
-    @CacheEvict(cacheNames="Post")
+    @CacheEvict(value = "Post", allEntries=true)
     public ResponseEntity<Object> deletePost(
             @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
             @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails

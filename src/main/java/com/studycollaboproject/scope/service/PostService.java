@@ -88,7 +88,6 @@ public class PostService {
     }
 
 
-    @Cacheable(cacheNames="Post")
     public List<PostResponseDto> readPost(String filter,
                                           String sort,
                                           String snsId,
