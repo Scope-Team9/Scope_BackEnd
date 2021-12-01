@@ -63,7 +63,7 @@ public class User extends Timestamped {
     private List<Applicant> applicantList = new ArrayList<>();
 
     public User(SignupRequestDto signupRequestDto, String userTestResult, String memberTestResult) {
-        this.email = signupRequestDto.getEmail();
+        this.email = UUID.randomUUID().toString().substring(0,18);
         this.snsId = signupRequestDto.getSnsId();
         this.nickname = signupRequestDto.getNickname();
         this.userPropensityType = userTestResult;

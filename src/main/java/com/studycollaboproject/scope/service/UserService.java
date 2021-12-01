@@ -79,14 +79,14 @@ public class UserService {
     }
 
     //sns 로그인 시 기존 회원 여부 판단
-    public ResponseDto SignupEmailCheck(String email, String snsId, String sns) {
+    public ResponseDto SignupUserCheck(String snsId, String sns) {
         String id = sns + snsId;
         User user = userRepository.findBySnsId(id).orElse(null);
 
         if (user == null) {
-            return new ResponseDto("추가 정보 작성이 필요한 사용자입니다.", new SnsInfoDto(email, id));
+            return new ResponseDto("추가 정보 작성이 필요한 사용자입니다.", new SnsInfoDto(id));
         } else {
-            LoginReponseDto loginReponseDto = new LoginReponseDto(jwtTokenProvider.createToken(id), user.getEmail(), user.getNickname(), user.getId());
+            LoginReponseDto loginReponseDto = new LoginReponseDto(jwtTokenProvider.createToken(id),  user.getNickname(), user.getId());
             return new ResponseDto("로그인이 완료되었습니다", loginReponseDto);
         }
     }
