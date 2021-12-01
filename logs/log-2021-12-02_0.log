@@ -2039,3 +2039,1819 @@ Using cache manager: org.springframework.cache.jcache.JCacheCacheManager
 [INFO ] 04:44:04.262 c.s.s.e.RestApiExceptionHandler - !!!Runtime Error, [402ffbe4-7b93-40ea-9fee-daf48fcca96a], message=Cannot find cache named 'Post' for Builder[public java.util.List com.studycollaboproject.scope.service.PostService.readPost(java.lang.String,java.lang.String,java.lang.String,java.lang.String)] caches=[Post] | key='' | keyGenerator='' | cacheManager='' | cacheResolver='' | condition='' | unless='' | sync='false'
 [INFO ] 04:44:04.263 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
 [INFO ] 04:44:04.263 c.s.s.filter.JwtAuthenticationFilter - [402ffbe4-7b93-40ea-9fee-daf48fcca96a], token=null
+[INFO ] 06:31:23.468 o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.0.Final
+[INFO ] 06:31:23.468 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.1 on DESKTOP-LRS5KO2 with PID 29712 (C:\Users\MH\Desktop\Scope_BackEnd\out\production\classes started by MH in C:\Users\MH\Desktop\Scope_BackEnd)
+[INFO ] 06:31:23.470 c.s.scope.ScopeApplication - The following profiles are active: real1
+[INFO ] 06:31:24.154 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 06:31:24.239 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 80 ms. Found 8 JPA repository interfaces.
+[INFO ] 06:31:24.461 c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[INFO ] 06:31:24.461 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 06:31:24.461 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 06:31:24.461 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 06:31:24.462 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 06:31:24.463 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[INFO ] 06:31:24.463 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[INFO ] 06:31:24.463 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 06:31:24.463 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 06:31:24.479 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'asyncConfig' of type [com.studycollaboproject.scope.config.AsyncConfig$$EnhancerBySpringCGLIB$$cef0fa76] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 06:31:24.589 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'cacheConfig' of type [com.studycollaboproject.scope.ehcache.CacheConfig$$EnhancerBySpringCGLIB$$1713e8cf] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 06:31:24.635 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@6b9fdbc6' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 06:31:24.641 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 06:31:24.706 c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[INFO ] 06:31:24.712 c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[INFO ] 06:31:24.713 c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[INFO ] 06:31:24.842 o.e.s.o.t.o.p.UpfrontAllocatingPageSource - Allocating 25.0MB in chunks
+[INFO ] 06:31:24.872 org.ehcache.core.EhcacheManager - Cache 'productCatalogConfig' created in EhcacheManager.
+[INFO ] 06:31:24.880 org.ehcache.jsr107.Eh107CacheManager - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=urn.X-ehcache.jsr107-default-config,Cache=productCatalogConfig
+[INFO ] 06:31:25.021 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+[INFO ] 06:31:25.028 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+[INFO ] 06:31:25.028 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 06:31:25.028 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 06:31:25.132 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 06:31:25.133 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1627 ms
+[INFO ] 06:31:25.186 org.ehcache.jsr107.Eh107CacheManager - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=urn.X-ehcache.jsr107-default-config,Cache=productCatalogConfig
+[INFO ] 06:31:25.213 c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@2bdb5e0f with name: jasyptStringEncryptor
+[INFO ] 06:31:25.333 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 06:31:25.370 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 06:31:25.462 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 06:31:25.539 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 06:31:25.738 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 06:31:25.754 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 06:31:26.483 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 06:31:26.491 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 06:31:26.866 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 06:31:27.439 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 06:31:27.439 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/static/**'] with []
+[INFO ] 06:31:27.531 o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[INFO ] 06:31:27.825 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@420c9959, org.springframework.security.web.context.SecurityContextPersistenceFilter@5562f297, org.springframework.security.web.header.HeaderWriterFilter@6c4eccd2, org.springframework.web.filter.CorsFilter@7e584f3c, org.springframework.security.web.authentication.logout.LogoutFilter@52539624, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@951053f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4f3672eb, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5f113867, org.springframework.security.web.session.SessionManagementFilter@7b23aea2, org.springframework.security.web.access.ExceptionTranslationFilter@628e0403, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@50cadbae]
+[INFO ] 06:31:28.112 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+[INFO ] 06:31:28.129 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+[INFO ] 06:31:28.130 c.u.j.c.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+[INFO ] 06:31:28.131 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
+[INFO ] 06:31:28.131 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
+[INFO ] 06:31:28.131 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
+[INFO ] 06:31:28.131 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 06:31:28.131 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 06:31:28.131 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource server.ports [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 06:31:28.131 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 06:31:28.131 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 06:31:28.132 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+[INFO ] 06:31:28.139 c.s.scope.ScopeApplication - Started ScopeApplication in 4.967 seconds (JVM running for 5.765)
+[INFO ] 06:31:28.294 c.s.scope.util.AspectTime - [null], WorkTime : 152.7842 ms
+[INFO ] 06:31:28.295 c.s.scope.ehcache.CacheManagerCheck - 
+
+=========================================================
+Using cache manager: org.springframework.cache.jcache.JCacheCacheManager
+=========================================================
+
+
+[INFO ] 06:31:37.254 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 06:31:37.255 o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 06:31:37.256 o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[INFO ] 06:31:37.303 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:31:37.305 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:37.305 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:37.305 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:37.305 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:37.305 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:37.305 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:37.307 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:31:37.308 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:31:37.308 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:37.308 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:37.308 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:37.308 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:37.308 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:37.308 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:37.315 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:31:37.318 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:31:37.318 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:31:37.319 c.s.s.filter.JwtAuthenticationFilter - [82810015-51ee-4ca3-869a-8218e0aa8336], token=null
+[INFO ] 06:31:37.323 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:31:37.323 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:37.323 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:37.323 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:37.323 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:37.323 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:37.323 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:37.323 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:31:37.323 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:31:37.323 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:37.323 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:37.323 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:37.323 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:37.323 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:37.324 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:37.326 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:31:37.348 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[ERROR] 06:31:37.450 org.thymeleaf.TemplateEngine - [THYMELEAF][http-nio-8081-exec-1] Exception processing template "error": Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072)
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:366)
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:190)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1400)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1145)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1084)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:67)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:106)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:121)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:115)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:87)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:711)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:461)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:385)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:313)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:403)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:249)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+[INFO ] 06:31:37.450 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[ERROR] 06:31:37.452 o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] threw exception
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072)
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:366)
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:190)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1400)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1145)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1084)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:67)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:106)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:121)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:115)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:87)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:711)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:461)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:385)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:313)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:403)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:249)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+[ERROR] 06:31:37.453 o.a.c.c.C.[Tomcat].[localhost] - Exception Processing ErrorPage[errorCode=0, location=/error]
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:67)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:106)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:121)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:115)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:87)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:711)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:461)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:385)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:313)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:403)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:249)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.thymeleaf.exceptions.TemplateInputException: Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072)
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:366)
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:190)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1400)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1145)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1084)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	... 75 common frames omitted
+[INFO ] 06:31:43.215 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:31:43.215 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:43.216 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:43.216 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:43.216 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:43.216 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.216 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.216 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:31:43.216 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.216 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:43.216 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:43.216 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:43.216 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:43.216 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.216 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.221 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:31:43.231 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:31:43.231 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:31:43.231 c.s.s.filter.JwtAuthenticationFilter - [5927800a-2d43-48a4-9cc9-320d33d6ad64], token=null
+[INFO ] 06:31:43.268 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:31:43.268 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:31:43.268 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:43.268 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:43.268 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:31:43.268 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:43.268 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:43.268 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:43.268 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:43.268 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:43.268 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:43.268 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:43.268 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.268 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.269 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.273 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:31:43.275 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:31:43.275 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:31:43.281 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:31:43.281 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:31:43.281 c.s.s.filter.JwtAuthenticationFilter - [39256884-2501-4cc2-90b1-f8cf07e4fd9f], token=null
+[INFO ] 06:31:43.282 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:31:43.282 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:31:43.282 c.s.s.filter.JwtAuthenticationFilter - [aa380a57-296d-4fa0-ba40-ac5454c6909f], token=null
+[INFO ] 06:31:43.291 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:31:43.292 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:31:43.292 c.s.s.filter.JwtAuthenticationFilter - [6bc85254-43f4-403f-a700-161d63569f2b], token=null
+[INFO ] 06:31:43.408 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:31:43.408 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:43.408 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:43.409 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:43.409 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:43.409 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.409 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.409 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:31:43.409 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.409 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:43.409 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:43.409 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:43.409 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:43.409 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.409 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.413 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:31:43.415 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:31:43.416 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:31:43.416 c.s.s.filter.JwtAuthenticationFilter - [278382e6-0f40-4231-999a-8de4accd39ca], token=null
+[INFO ] 06:31:43.433 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:31:43.433 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:43.433 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:43.433 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:43.433 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:43.433 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.433 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.433 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:31:43.433 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.433 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:43.433 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:43.433 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:43.433 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:43.433 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.433 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.437 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:31:43.464 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:31:43.465 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:31:43.465 c.s.s.filter.JwtAuthenticationFilter - [b056499f-7217-40c5-b3f3-7a89fedba51e], token=null
+[INFO ] 06:31:43.466 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:31:43.466 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:43.467 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:43.467 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:43.467 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:43.467 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.467 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.467 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:31:43.467 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.467 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:43.467 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:43.467 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:43.467 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:43.467 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.467 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.470 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:31:43.471 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:31:43.472 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:31:43.472 c.s.s.filter.JwtAuthenticationFilter - [fb78a8cb-65a3-4e22-a373-a758b9de5da5], token=null
+[INFO ] 06:31:43.491 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:31:43.491 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:43.491 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:43.491 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:43.492 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:43.492 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.492 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.492 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:31:43.492 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.492 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:43.492 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:43.492 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:43.492 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:43.492 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.492 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.495 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:31:43.773 o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 266 ms
+[INFO ] 06:31:43.800 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:31:43.800 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:31:43.800 c.s.s.filter.JwtAuthenticationFilter - [8665a7da-a908-4506-bba2-9a7f7c5f1e96], token=null
+[INFO ] 06:31:43.802 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:31:43.802 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:43.803 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:43.803 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:43.803 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:43.803 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.803 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.803 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:31:43.803 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.803 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:43.803 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:43.803 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:43.803 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:43.803 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.803 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:43.806 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:31:43.812 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:31:43.812 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:31:43.812 c.s.s.filter.JwtAuthenticationFilter - [08959f7f-a96f-4cd7-8d7b-b6d16b7b9017], token=null
+[INFO ] 06:31:49.593 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:31:49.593 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:49.594 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:49.594 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:49.594 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:49.594 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:49.594 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:49.594 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:31:49.594 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:31:49.594 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:49.594 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:49.594 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:49.594 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:49.594 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:49.594 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:49.599 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:31:49.604 c.s.s.controller.PostRestController - [837d455b-d1e5-4a86-9259-cc8c17d65a9a], 프로젝트 조회, GET, /api/post, filter=;;;;;;;;;;;;;;, sort=createdAt, bookmarkRecommend=bookmark
+[INFO ] 06:31:49.607 c.s.s.e.RestApiExceptionHandler - !!!UnAuth Error, [837d455b-d1e5-4a86-9259-cc8c17d65a9a], message=로그인 사용자만 사용할 수 있습니다.
+[INFO ] 06:31:49.608 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:31:49.608 c.s.s.filter.JwtAuthenticationFilter - [837d455b-d1e5-4a86-9259-cc8c17d65a9a], token=null
+[INFO ] 06:31:58.067 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:31:58.067 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:58.067 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:58.067 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:58.067 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:58.067 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:58.067 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:58.067 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:31:58.067 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:31:58.067 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:31:58.067 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:31:58.067 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:31:58.067 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:31:58.067 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:58.067 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:31:58.072 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:31:58.073 c.s.s.controller.PostRestController - [7f2b1d0e-28c1-40dd-ad14-269e000dee6d], 프로젝트 조회, GET, /api/post, filter=;;;;;;;;;;;;;;, sort=createdAt, bookmarkRecommend=undefined
+[INFO ] 06:31:58.075 c.s.s.e.RestApiExceptionHandler - !!!Runtime Error, [7f2b1d0e-28c1-40dd-ad14-269e000dee6d], message=Cannot find cache named 'Post' for Builder[public java.util.List com.studycollaboproject.scope.service.PostService.readPost(java.lang.String,java.lang.String,java.lang.String,java.lang.String)] caches=[Post] | key='' | keyGenerator='' | cacheManager='' | cacheResolver='' | condition='' | unless='' | sync='false'
+[INFO ] 06:31:58.076 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:31:58.076 c.s.s.filter.JwtAuthenticationFilter - [7f2b1d0e-28c1-40dd-ad14-269e000dee6d], token=null
+[INFO ] 06:46:00.050 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 06:46:00.051 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 06:46:00.058 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 06:46:00.062 org.ehcache.core.EhcacheManager - Cache 'productCatalogConfig' removed from EhcacheManager.
+[INFO ] 06:56:55.961 o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.0.Final
+[INFO ] 06:56:55.962 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.1 on DESKTOP-LRS5KO2 with PID 44248 (C:\Users\MH\Desktop\Scope_BackEnd\out\production\classes started by MH in C:\Users\MH\Desktop\Scope_BackEnd)
+[INFO ] 06:56:55.964 c.s.scope.ScopeApplication - The following profiles are active: real1
+[INFO ] 06:56:56.733 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 06:56:56.815 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 77 ms. Found 8 JPA repository interfaces.
+[INFO ] 06:56:57.023 c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[INFO ] 06:56:57.023 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 06:56:57.023 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 06:56:57.023 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 06:56:57.024 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 06:56:57.025 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+[INFO ] 06:56:57.025 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[INFO ] 06:56:57.025 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 06:56:57.025 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 06:56:57.042 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'asyncConfig' of type [com.studycollaboproject.scope.config.AsyncConfig$$EnhancerBySpringCGLIB$$58f03bc3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 06:56:57.193 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@17043b04' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 06:56:57.200 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 06:56:57.265 c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[INFO ] 06:56:57.271 c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[INFO ] 06:56:57.272 c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[INFO ] 06:56:57.420 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+[INFO ] 06:56:57.426 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+[INFO ] 06:56:57.427 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 06:56:57.427 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 06:56:57.548 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 06:56:57.549 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1548 ms
+[INFO ] 06:56:57.644 c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@22791b75 with name: jasyptStringEncryptor
+[INFO ] 06:56:57.780 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 06:56:57.815 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 06:56:57.904 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 06:56:57.980 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 06:56:58.179 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 06:56:58.194 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 06:56:58.928 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 06:56:58.936 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 06:56:59.345 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 06:56:59.961 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 06:56:59.962 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/static/**'] with []
+[INFO ] 06:57:00.082 o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+[INFO ] 06:57:00.387 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@31d791c0, org.springframework.security.web.context.SecurityContextPersistenceFilter@5e572b08, org.springframework.security.web.header.HeaderWriterFilter@5cfde2a4, org.springframework.web.filter.CorsFilter@623c9988, org.springframework.security.web.authentication.logout.LogoutFilter@e5d9fa7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@62aefc75, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7b1b1784, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@66ab3716, org.springframework.security.web.session.SessionManagementFilter@6421bc7e, org.springframework.security.web.access.ExceptionTranslationFilter@2bb118ae, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3ede428e]
+[INFO ] 06:57:00.693 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+[INFO ] 06:57:00.709 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+[INFO ] 06:57:00.711 c.u.j.c.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+[INFO ] 06:57:00.711 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
+[INFO ] 06:57:00.711 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
+[INFO ] 06:57:00.711 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
+[INFO ] 06:57:00.711 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-real1.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 06:57:00.711 c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
+[INFO ] 06:57:00.712 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource server.ports [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+[INFO ] 06:57:00.712 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+[INFO ] 06:57:00.712 c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+[INFO ] 06:57:00.712 c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+[INFO ] 06:57:00.719 c.s.scope.ScopeApplication - Started ScopeApplication in 5.097 seconds (JVM running for 6.02)
+[INFO ] 06:57:01.028 c.s.scope.util.AspectTime - [null], WorkTime : 305.4359 ms
+[INFO ] 06:57:05.724 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 06:57:05.724 o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 06:57:05.726 o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[INFO ] 06:57:05.768 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:57:05.770 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:05.771 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:05.771 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:05.771 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:05.771 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.771 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.773 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:57:05.773 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.773 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:05.773 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:05.774 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:05.774 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:05.774 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.774 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.781 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:57:05.791 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:57:05.791 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:57:05.792 c.s.s.filter.JwtAuthenticationFilter - [34322054-c015-4e1f-9b50-60f19d4c31e4], token=null
+[INFO ] 06:57:05.828 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:57:05.828 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:05.828 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:57:05.828 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:57:05.828 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:05.828 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.829 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:05.830 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.830 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.830 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:05.830 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.830 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:05.830 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.830 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.833 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:57:05.835 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:57:05.837 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:57:05.840 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:57:05.840 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:57:05.841 c.s.s.filter.JwtAuthenticationFilter - [704f623d-b194-4a2e-aba3-d0b270d8386d], token=null
+[INFO ] 06:57:05.842 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:57:05.842 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:57:05.842 c.s.s.filter.JwtAuthenticationFilter - [9b17a4d0-303e-4fdb-ae0f-3688546a9f06], token=null
+[INFO ] 06:57:05.852 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:57:05.853 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:57:05.853 c.s.s.filter.JwtAuthenticationFilter - [56cf2e22-c2d9-478b-967c-ee0be5310e45], token=null
+[INFO ] 06:57:05.996 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:57:05.996 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:05.996 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:05.996 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:05.996 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:05.996 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.996 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.996 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:57:05.996 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.996 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:05.996 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:05.996 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:05.996 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:05.996 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.996 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:05.999 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:57:06.002 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:57:06.002 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:57:06.002 c.s.s.filter.JwtAuthenticationFilter - [59d34db2-feb4-4427-8d08-1f79aefa40bb], token=null
+[INFO ] 06:57:06.026 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:57:06.026 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:06.026 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:06.026 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:06.026 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:06.026 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:06.027 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:06.027 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:57:06.027 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:57:06.027 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:06.027 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:06.027 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:06.027 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:06.027 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:06.027 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:06.030 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:57:06.075 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:57:06.075 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:57:06.076 c.s.s.filter.JwtAuthenticationFilter - [44fd4885-7b7f-4463-9ac4-0c366cb60791], token=null
+[INFO ] 06:57:06.077 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:57:06.077 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:06.077 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:06.077 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:06.077 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:06.077 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:06.077 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:06.078 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:57:06.078 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:57:06.078 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:06.078 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:06.078 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:06.078 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:06.078 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:06.078 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:06.081 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:57:06.083 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:57:06.083 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:57:06.083 c.s.s.filter.JwtAuthenticationFilter - [abed9444-f302-4887-bde1-995d7598c849], token=null
+[INFO ] 06:57:06.102 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:57:06.102 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:06.102 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:06.102 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:06.102 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:06.102 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:06.102 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:06.102 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:57:06.103 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:57:06.103 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:06.103 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:06.103 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:06.103 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:06.103 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:06.103 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:06.106 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:57:06.376 o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 260 ms
+[INFO ] 06:57:06.402 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:57:06.402 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:57:06.402 c.s.s.filter.JwtAuthenticationFilter - [b53ed2f8-0e8a-476e-8654-e2e59ab7436a], token=null
+[INFO ] 06:57:06.403 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:57:06.404 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:06.404 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:06.404 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:06.404 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:06.404 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:06.404 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:06.404 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:57:06.404 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:57:06.404 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:06.404 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:06.404 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:06.404 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:06.404 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:06.404 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:06.407 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:57:06.413 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:57:06.413 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:57:06.413 c.s.s.filter.JwtAuthenticationFilter - [561f9603-8b83-42b9-8aa3-ab500e88d8be], token=null
+[INFO ] 06:57:18.519 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:57:18.519 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:18.519 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:18.519 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:18.519 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:18.519 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:18.519 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:18.519 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:57:18.519 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:57:18.519 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:18.519 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:18.519 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:18.519 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:18.519 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:18.519 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:18.524 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:57:18.529 c.s.s.controller.PostRestController - [1e00fbcb-d202-4570-9f03-c7350f0e5e8f], 프로젝트 조회, GET, /api/post, filter=;;;;;;;;;;;;;;, sort=createdAt, bookmarkRecommend=undefined
+[INFO ] 06:57:18.631 c.s.scope.service.PostService - read의 Cache 수행시간 : 98
+[INFO ] 06:57:18.632 c.s.scope.util.AspectTime - [1e00fbcb-d202-4570-9f03-c7350f0e5e8f], WorkTime : 104.1175 ms
+[INFO ] 06:57:18.637 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:57:18.637 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:57:18.637 c.s.s.filter.JwtAuthenticationFilter - [1e00fbcb-d202-4570-9f03-c7350f0e5e8f], token=null
+[INFO ] 06:57:40.524 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:57:40.525 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:40.525 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:40.525 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:40.525 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:40.525 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:40.525 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:40.525 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:57:40.525 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:57:40.525 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:40.525 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:40.525 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:40.525 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:40.525 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:40.525 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:40.530 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:57:40.531 c.s.s.controller.PostRestController - [df43384d-0238-4f18-b673-e3554b5520d2], 프로젝트 조회, GET, /api/post, filter=;;;;;;;;;;;;;;, sort=createdAt, bookmarkRecommend=undefined
+[INFO ] 06:57:40.532 c.s.scope.util.AspectTime - [df43384d-0238-4f18-b673-e3554b5520d2], WorkTime : 0.8922 ms
+[INFO ] 06:57:40.533 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:57:40.533 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:57:40.533 c.s.s.filter.JwtAuthenticationFilter - [df43384d-0238-4f18-b673-e3554b5520d2], token=null
+[INFO ] 06:57:57.966 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:57:57.966 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:57.966 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:57.966 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:57.966 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:57.966 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:57.966 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:57.966 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:57:57.966 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:57:57.966 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:57:57.966 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:57:57.966 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:57:57.966 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:57:57.966 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:57.966 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:57:57.972 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:57:57.973 c.s.s.controller.PostRestController - [c1d52fea-5386-40f4-b8aa-7f9bba131816], 프로젝트 조회, GET, /api/post, filter=;;;;;;;;;;;;;;, sort=createdAt, bookmarkRecommend=undefined
+[INFO ] 06:57:57.973 c.s.scope.util.AspectTime - [c1d52fea-5386-40f4-b8aa-7f9bba131816], WorkTime : 0.1663 ms
+[INFO ] 06:57:57.975 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:57:57.975 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:57:57.975 c.s.s.filter.JwtAuthenticationFilter - [c1d52fea-5386-40f4-b8aa-7f9bba131816], token=null
+[INFO ] 06:58:31.000 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:31.000 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:31.000 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:31.001 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:31.001 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:31.001 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:31.001 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:31.001 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:31.001 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:31.001 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:31.001 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:31.001 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:31.001 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:31.001 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:31.001 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:31.008 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:31.009 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:31.009 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:31.009 c.s.s.filter.JwtAuthenticationFilter - [6cc953b0-2bd4-4816-b81c-bed118f13591], token=null
+[INFO ] 06:58:31.012 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:31.012 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:31.012 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:31.012 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:31.012 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:31.012 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:31.012 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:31.012 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:31.012 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:31.012 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:31.012 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:31.012 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:31.012 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:31.013 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:31.013 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:31.016 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:31.029 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[ERROR] 06:58:31.126 org.thymeleaf.TemplateEngine - [THYMELEAF][http-nio-8081-exec-3] Exception processing template "error": Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072)
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:366)
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:190)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1400)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1145)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1084)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:67)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:106)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:121)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:115)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:87)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:711)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:461)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:385)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:313)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:403)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:249)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+[INFO ] 06:58:31.126 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[ERROR] 06:58:31.128 o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] threw exception
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072)
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:366)
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:190)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1400)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1145)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1084)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:67)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:106)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:121)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:115)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:87)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:711)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:461)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:385)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:313)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:403)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:249)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+[ERROR] 06:58:31.128 o.a.c.c.C.[Tomcat].[localhost] - Exception Processing ErrorPage[errorCode=0, location=/error]
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:67)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:106)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:121)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:115)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:87)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:103)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:711)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:461)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:385)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:313)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:403)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:249)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.thymeleaf.exceptions.TemplateInputException: Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072)
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:366)
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:190)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1400)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1145)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1084)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	... 75 common frames omitted
+[INFO ] 06:58:32.296 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:32.296 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:32.296 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:32.296 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:32.296 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:32.296 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.296 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.297 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:32.297 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.297 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:32.297 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:32.297 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:32.297 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:32.297 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.297 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.302 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:32.303 c.s.scope.util.AspectTime - [111fa647-bd06-4d82-b53f-6b824716c50b], WorkTime : 1.2389 ms
+[INFO ] 06:58:32.304 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:32.345 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:32.345 c.s.s.filter.JwtAuthenticationFilter - [111fa647-bd06-4d82-b53f-6b824716c50b], token=null
+[INFO ] 06:58:32.385 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:32.386 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:32.386 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:32.386 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:32.386 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:32.386 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.386 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.386 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:32.386 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.386 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:32.386 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:32.386 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:32.386 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:32.386 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.386 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.386 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:32.386 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:32.386 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:32.387 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:32.388 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.388 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:32.388 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:32.388 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:32.388 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:32.388 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:32.388 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:32.388 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:32.388 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:32.388 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:32.388 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:32.388 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.388 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:32.388 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.388 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.388 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.388 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.388 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:32.391 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:32.393 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:32.394 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:32.395 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.672 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.673 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.673 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.673 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.673 c.s.s.filter.JwtAuthenticationFilter - [94b90926-82c3-47fe-9eef-a04903953dbc], token=null
+[INFO ] 06:58:34.673 c.s.s.filter.JwtAuthenticationFilter - [8ad1e64e-60a4-4ccb-bdcc-bd8e9df5cbdd], token=null
+[INFO ] 06:58:34.675 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.676 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.676 c.s.s.filter.JwtAuthenticationFilter - [dc020ff7-fa45-4766-b182-2c5229985ca2], token=null
+[INFO ] 06:58:34.685 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.686 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.686 c.s.s.filter.JwtAuthenticationFilter - [9e4a159e-a7aa-4ffa-b47e-d283a994486d], token=null
+[INFO ] 06:58:34.852 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.852 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.852 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.852 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.852 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.852 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.852 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.852 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.852 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.852 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.852 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.852 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.852 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.852 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.852 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.853 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.853 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.853 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.853 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.853 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.853 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.853 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.853 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.853 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.853 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.853 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.853 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.853 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.853 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.853 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.856 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.856 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.857 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.857 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.857 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.857 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.857 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.857 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.857 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.857 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.857 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.857 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.857 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.857 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.857 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.857 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.858 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.858 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.858 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.858 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.858 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.858 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.858 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.858 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.858 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.858 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.858 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.858 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.858 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.859 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.859 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.859 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.859 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.859 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.860 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.860 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.860 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.860 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.860 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.860 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.860 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.860 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.860 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.860 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.860 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.860 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.860 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.860 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.860 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.860 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.861 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.861 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.861 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.861 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.861 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.861 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.861 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.861 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.861 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.861 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.861 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.861 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.862 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.863 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.863 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.864 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.864 c.s.s.filter.JwtAuthenticationFilter - [0385598d-1366-46dc-82e1-778d6c2ddea6], token=null
+[INFO ] 06:58:34.865 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.865 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.865 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.866 c.s.s.filter.JwtAuthenticationFilter - [07fa6385-3486-473b-84f6-ed9aacac02ed], token=null
+[INFO ] 06:58:34.867 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.867 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.867 c.s.s.filter.JwtAuthenticationFilter - [32c3c0b3-39fd-4f94-9a87-3631bf0e90a6], token=null
+[INFO ] 06:58:34.868 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.868 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.868 c.s.s.filter.JwtAuthenticationFilter - [8475f2f4-bbde-436a-b8f9-4a78b3a8ebcd], token=null
+[INFO ] 06:58:34.868 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.868 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.868 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.868 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.868 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.868 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.868 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.868 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.868 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.868 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.868 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.869 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.869 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.869 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.869 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.869 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.869 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.869 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.869 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.869 c.s.s.filter.JwtAuthenticationFilter - [5df2ccf0-96d0-453e-bfc7-9bb88e30e228], token=null
+[INFO ] 06:58:34.869 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.869 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.869 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.869 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.870 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.870 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.871 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.871 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.871 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.871 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.871 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.871 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.872 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.872 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.872 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.872 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.872 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.872 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.872 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.872 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.872 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.872 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.872 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.872 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.872 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.872 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.872 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.872 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.872 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.872 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.874 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.874 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.874 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.873 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.874 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.874 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.874 c.s.s.filter.JwtAuthenticationFilter - [01530093-5271-456c-af96-2ebc142bc284], token=null
+[INFO ] 06:58:34.874 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.874 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.874 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.876 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.876 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.876 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.877 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.877 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.877 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.877 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.877 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.877 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.877 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.877 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.877 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.877 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.877 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.877 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.877 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.877 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.877 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.878 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.879 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.879 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.879 c.s.s.filter.JwtAuthenticationFilter - [4185e018-ff79-49f1-9eb4-1accefb12b2f], token=null
+[INFO ] 06:58:34.879 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.879 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.880 c.s.s.filter.JwtAuthenticationFilter - [1e222bd8-3c59-4403-8cd8-1089dcd56ae1], token=null
+[INFO ] 06:58:34.880 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.881 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.883 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.884 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.884 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.884 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.884 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.884 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.884 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.884 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.884 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.884 c.s.s.filter.JwtAuthenticationFilter - [b7b1afdd-8fce-4005-ba7c-90a2503ca799], token=null
+[INFO ] 06:58:34.884 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.884 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.884 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.884 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.884 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.884 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.884 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.884 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.884 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.884 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.884 c.s.s.filter.JwtAuthenticationFilter - [2a98b6d3-e833-43a8-bdb3-6bc02e6a67fa], token=null
+[INFO ] 06:58:34.885 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.885 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.885 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.885 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.885 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.885 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.885 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.885 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.885 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.885 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.886 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.886 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.886 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.886 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.886 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.888 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.889 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.889 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.889 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.890 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.890 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.890 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.890 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.890 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.891 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.892 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.892 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.892 c.s.s.filter.JwtAuthenticationFilter - [3aa30277-cdfb-4d4e-bf08-16f323b4cc3d], token=null
+[INFO ] 06:58:34.892 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.893 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.893 c.s.s.filter.JwtAuthenticationFilter - [66438f84-2c87-44cb-bb1a-8396772d079a], token=null
+[INFO ] 06:58:34.893 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.893 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.893 c.s.s.filter.JwtAuthenticationFilter - [20052a74-ba99-42c9-99ff-e20a7195a0b5], token=null
+[INFO ] 06:58:34.893 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.893 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.893 c.s.s.filter.JwtAuthenticationFilter - [8c476780-7c47-461e-aef6-15755d605180], token=null
+[INFO ] 06:58:34.894 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.895 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.895 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.895 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.895 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.895 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.895 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.895 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.895 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.895 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.895 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.895 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.896 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.896 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.896 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.896 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.896 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.896 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.896 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.896 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.896 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.896 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.896 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.896 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.896 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.896 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.896 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.896 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.896 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.896 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.896 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.896 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.897 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.897 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.897 c.s.s.filter.JwtAuthenticationFilter - [ba289fa7-a86e-4317-b47a-3d63eb5bdec9], token=null
+[INFO ] 06:58:34.898 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.899 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.899 c.s.s.filter.JwtAuthenticationFilter - [fcd81542-4483-494e-9498-c4f6b25d1ae8], token=null
+[INFO ] 06:58:34.899 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.899 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.901 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.901 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.901 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.901 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.901 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.901 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.901 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.901 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.901 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.901 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.901 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.901 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.901 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.901 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.901 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.901 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.901 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.901 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.902 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.902 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.902 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.902 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.902 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.902 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.902 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.902 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.902 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.902 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.902 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.902 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.902 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.902 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.902 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.902 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.902 c.s.s.filter.JwtAuthenticationFilter - [c90f8cb5-aae8-4cd6-ae69-19afe4365f65], token=null
+[INFO ] 06:58:34.903 c.s.s.filter.JwtAuthenticationFilter - [f2c45060-4ecc-4bba-9557-6b02eb290b6e], token=null
+[INFO ] 06:58:34.905 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.906 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.906 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.906 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:34.906 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.906 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.906 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.906 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.906 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.906 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.906 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.906 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.906 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.906 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.906 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.906 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.906 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.906 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:34.907 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.907 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.907 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.907 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:34.907 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.907 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:34.907 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.907 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:34.907 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.907 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:34.907 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.907 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.907 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.907 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:34.908 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.909 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.909 c.s.s.filter.JwtAuthenticationFilter - [64688da5-b2db-4023-98c7-dae5c169bc99], token=null
+[INFO ] 06:58:34.910 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.911 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:34.917 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.917 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.917 c.s.s.filter.JwtAuthenticationFilter - [b321380b-e8e1-4512-a7c6-3cebaaaf6af0], token=null
+[INFO ] 06:58:34.918 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.919 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.919 c.s.s.filter.JwtAuthenticationFilter - [8a172184-6629-499c-a1e0-e452832f4385], token=null
+[INFO ] 06:58:34.923 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:34.923 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:34.923 c.s.s.filter.JwtAuthenticationFilter - [3c40cb0e-09de-43e9-98e6-2423d3457eba], token=null
+[INFO ] 06:58:35.253 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:35.253 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:35.253 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:35.253 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:35.253 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:35.253 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:35.253 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:35.253 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:35.253 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:35.253 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:35.253 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:35.253 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:35.253 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:35.253 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:35.253 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:35.256 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:35.259 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:35.259 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:35.260 c.s.s.filter.JwtAuthenticationFilter - [ae29d704-3b0f-4395-b9f8-9936980fa8af], token=null
+[INFO ] 06:58:35.265 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:35.265 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:35.265 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:35.265 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:35.265 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:35.265 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:35.265 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:35.265 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:35.265 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:35.265 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:35.265 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:35.265 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:35.265 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:35.265 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:35.265 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:35.270 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:35.271 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:35.272 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:35.272 c.s.s.filter.JwtAuthenticationFilter - [4a8a4b2a-7365-411c-b637-a91c5194dcee], token=null
+[INFO ] 06:58:41.913 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:41.913 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:41.913 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:41.913 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:41.913 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:41.913 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:41.913 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:41.913 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:41.913 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:41.913 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:41.913 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:41.914 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:41.914 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:41.914 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:41.914 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:41.918 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:41.923 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:41.923 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:41.924 c.s.s.filter.JwtAuthenticationFilter - [17fd0c8b-d3d8-431e-a203-8478dd29e18a], token=null
+[INFO ] 06:58:47.448 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:47.448 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:47.448 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:47.448 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:47.448 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:47.448 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:47.448 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:47.448 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:47.448 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:47.448 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:47.448 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:47.448 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:47.448 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:47.448 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:47.448 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:47.455 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:47.459 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:47.459 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:47.459 c.s.s.filter.JwtAuthenticationFilter - [98ccb170-8896-41ae-b2af-501188b98716], token=null
+[INFO ] 06:58:52.978 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:52.978 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:52.978 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:52.978 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:52.978 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:52.979 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:52.979 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:52.979 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:52.979 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:52.979 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:52.979 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:52.979 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:52.979 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:52.979 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:52.979 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:52.983 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:52.986 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:52.986 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:52.986 c.s.s.filter.JwtAuthenticationFilter - [0a7dd856-82d4-4e19-8338-bdbac3edc987], token=null
+[INFO ] 06:58:54.992 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 06:58:54.993 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:54.993 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:54.993 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:54.993 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:54.993 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:54.993 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:54.993 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '0:0:0:0:0:0:0:1'
+[INFO ] 06:58:54.993 c.s.scope.ipfilter.HttpInterceptor - 0:0:0:0:0:0:0:1
+[INFO ] 06:58:54.993 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 06:58:54.993 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 06:58:54.993 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 06:58:54.993 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 06:58:54.993 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:54.993 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 0:0:0:0:0:0:0:1
+[INFO ] 06:58:54.999 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 06:58:54.999 c.s.s.controller.PostRestController - [4ca9885a-e6ef-4d97-8cb2-d4682c225b66], 프로젝트 조회, GET, /api/post, filter=;;;;;;;;;;;;;;, sort=createdAt, bookmarkRecommend=undefined
+[INFO ] 06:58:54.999 c.s.scope.util.AspectTime - [4ca9885a-e6ef-4d97-8cb2-d4682c225b66], WorkTime : 0.121 ms
+[INFO ] 06:58:55.001 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 06:58:55.001 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 06:58:55.001 c.s.s.filter.JwtAuthenticationFilter - [4ca9885a-e6ef-4d97-8cb2-d4682c225b66], token=null
