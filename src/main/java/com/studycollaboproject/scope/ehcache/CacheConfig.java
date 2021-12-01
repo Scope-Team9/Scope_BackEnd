@@ -15,6 +15,7 @@ import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.cache.Cache;
 import javax.cache.CacheManager;
 import javax.cache.Caching;
 import javax.cache.spi.CachingProvider;
@@ -33,16 +34,16 @@ public class CacheConfig implements CachingConfigurer {
         CacheConfigurationBuilder<String, String> configurationBuilder =
                 CacheConfigurationBuilder.newCacheConfigurationBuilder(
                                 String.class, String.class,
-                                ResourcePoolsBuilder.heap(1000)
-                                        .offheap(25, MemoryUnit.MB))
-                        .withExpiry(ExpiryPolicyBuilder.timeToLiveExpiration(Duration.ofHours(3)));
+                                ResourcePoolsBuilder.heap(50)
+                                        .offheap(10, MemoryUnit.MB))
+                        .withExpiry(ExpiryPolicyBuilder.timeToLiveExpiration(Duration.ofHours(1)));
 
         CacheEventListenerConfigurationBuilder asynchronousListener = CacheEventListenerConfigurationBuilder
                 .newEventListenerConfiguration(new CacheEventLogger()
                         , EventType.CREATED, EventType.EXPIRED).unordered().asynchronous();
 
         //create caches we need
-        cacheManager.createCache("productCatalogConfig",
+        cacheManager.createCache("Post",
                 Eh107Configuration.fromEhcacheCacheConfiguration(configurationBuilder.withService(asynchronousListener)));
 
         return cacheManager;
