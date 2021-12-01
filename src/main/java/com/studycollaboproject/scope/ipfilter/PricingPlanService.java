@@ -24,7 +24,7 @@ public class PricingPlanService {
         System.out.println("여기는" + apiKey);
         return Bucket4j.builder()
                 // 10개의 클라이언트가 1초에 1000개씩 보낼 수 있는 대역폭
-                .addLimit(Bandwidth.simple(100, Duration.ofMinutes(1)))
+                .addLimit(Bandwidth.simple(300, Duration.ofMinutes(1)))
                 .addLimit(Bandwidth.simple(20, Duration.ofSeconds(1)))
                 .build();
     }
