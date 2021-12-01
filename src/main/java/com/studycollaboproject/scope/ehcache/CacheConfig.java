@@ -1,12 +1,14 @@
 package com.studycollaboproject.scope.ehcache;
 
+import org.ehcache.Cache;
+import org.ehcache.CacheManager;
 import org.ehcache.config.builders.CacheConfigurationBuilder;
 import org.ehcache.config.builders.CacheEventListenerConfigurationBuilder;
 import org.ehcache.config.builders.ExpiryPolicyBuilder;
 import org.ehcache.config.builders.ResourcePoolsBuilder;
 import org.ehcache.config.units.MemoryUnit;
 import org.ehcache.event.EventType;
-import org.ehcache.jsr107.Eh107Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachingConfigurer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.CacheErrorHandler;
@@ -16,35 +18,31 @@ import org.springframework.cache.interceptor.SimpleKeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.cache.CacheManager;
-import javax.cache.Caching;
-import javax.cache.spi.CachingProvider;
 import java.time.Duration;
 
 @Configuration
 @EnableCaching
 public class CacheConfig implements CachingConfigurer {
+    @Autowired
+    private CacheManager cacheManager;
 
     @Bean
-    CacheManager getCacheManager() {
+    CacheManager CacheManager() {
 
-        CachingProvider provider = Caching.getCachingProvider();
-        CacheManager cacheManager = provider.getCacheManager();
-
-        CacheConfigurationBuilder<String, String> configurationBuilder =
+        CacheConfigurationBuilder<Object, Object> configurationBuilder =
                 CacheConfigurationBuilder.newCacheConfigurationBuilder(
-                                String.class, String.class,
+                                Object.class, Object.class,
                                 ResourcePoolsBuilder.heap(50)
                                         .offheap(10, MemoryUnit.MB))
-                        .withExpiry(ExpiryPolicyBuilder.timeToLiveExpiration(Duration.ofHours(1)));
+                        .withExpiry(ExpiryPolicyBuilder.timeToLiveExpiration(Duration.ofHours(1)))
+                ;
 
         CacheEventListenerConfigurationBuilder asynchronousListener = CacheEventListenerConfigurationBuilder
                 .newEventListenerConfiguration(new CacheEventLogger()
                         , EventType.CREATED, EventType.EXPIRED).unordered().asynchronous();
 
         //create caches we need
-        cacheManager.createCache("Post",
-                Eh107Configuration.fromEhcacheCacheConfiguration(configurationBuilder.withService(asynchronousListener)));
+        cacheManager.createCache("Post",configurationBuilder);
 
         return cacheManager;
     }
