@@ -1453,3 +1453,60 @@
 [WARN ] 01:05:15.955 c.s.scope.ipfilter.HttpInterceptor - Forbidden access. request uri=0:0:0:0:0:0:0:1, client ip=0:0:0:0:0:0:0:1
 [INFO ] 01:05:15.955 c.s.s.filter.JwtAuthenticationFilter - [4488d104-c8ca-4f9f-91cc-5fef85bbcc37], token=null
 [WARN ] 14:41:26.292 com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=7h56m48s690ms806µs400ns).
+[INFO ] 18:01:15.508 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 18:01:15.511 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 18:01:15.511 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 18:01:15.511 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 18:01:15.511 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 18:01:15.511 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 192.168.35.229
+[INFO ] 18:01:15.511 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 192.168.35.229
+[INFO ] 18:01:15.511 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '192.168.35.229'
+[INFO ] 18:01:15.511 c.s.scope.ipfilter.HttpInterceptor - 192.168.35.229
+[INFO ] 18:01:15.511 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 18:01:15.511 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 18:01:15.511 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 18:01:15.511 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 18:01:15.511 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 192.168.35.229
+[INFO ] 18:01:15.511 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 192.168.35.229
+[INFO ] 18:01:15.542 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 18:01:15.585 c.s.scope.util.AspectTime - [c09ffde8-e8cc-4f0f-8d9e-2a435ba342f9], WorkTime : 5.2617 ms
+[INFO ] 18:01:15.593 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 18:01:15.779 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 18:01:15.780 c.s.s.filter.JwtAuthenticationFilter - [c09ffde8-e8cc-4f0f-8d9e-2a435ba342f9], token=null
+[INFO ] 18:01:21.833 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 18:01:21.833 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 18:01:21.833 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 18:01:21.833 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 18:01:21.833 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 18:01:21.833 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 192.168.35.229
+[INFO ] 18:01:21.833 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 192.168.35.229
+[INFO ] 18:01:21.834 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '192.168.35.229'
+[INFO ] 18:01:21.834 c.s.scope.ipfilter.HttpInterceptor - 192.168.35.229
+[INFO ] 18:01:21.834 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 18:01:21.834 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 18:01:21.834 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 18:01:21.834 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 18:01:21.834 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 192.168.35.229
+[INFO ] 18:01:21.834 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 192.168.35.229
+[INFO ] 18:01:21.840 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 18:01:24.126 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 18:01:24.126 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
+[INFO ] 18:01:24.126 c.s.s.filter.JwtAuthenticationFilter - [6d846bdd-d5c0-4268-86ef-eb8c18232364], token=null
+[INFO ] 18:01:24.129 c.s.scope.ipfilter.HttpInterceptor - ================ Before Method
+[INFO ] 18:01:24.130 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 18:01:24.130 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 18:01:24.130 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 18:01:24.130 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 18:01:24.130 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 192.168.35.229
+[INFO ] 18:01:24.130 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 192.168.35.229
+[INFO ] 18:01:24.130 c.s.scope.ipfilter.HttpInterceptor - 접속 ip 주소 '192.168.35.229'
+[INFO ] 18:01:24.130 c.s.scope.ipfilter.HttpInterceptor - 192.168.35.229
+[INFO ] 18:01:24.130 c.s.scope.ipfilter.IpBanService - > Proxy-Client-IP : null
+[INFO ] 18:01:24.130 c.s.scope.ipfilter.IpBanService - >  WL-Proxy-Client-IP : null
+[INFO ] 18:01:24.130 c.s.scope.ipfilter.IpBanService - > HTTP_CLIENT_IP : null
+[INFO ] 18:01:24.130 c.s.scope.ipfilter.IpBanService - > HTTP_X_FORWARDED_FOR : null
+[INFO ] 18:01:24.130 c.s.scope.ipfilter.IpBanService - > getRemoteAddr : 192.168.35.229
+[INFO ] 18:01:24.130 c.s.scope.ipfilter.IpBanService - > Result : IP Address : 192.168.35.229
+[INFO ] 18:01:24.137 c.s.scope.ipfilter.HttpInterceptor - 초과 안함
+[INFO ] 18:01:24.199 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
+[INFO ] 18:01:24.199 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
