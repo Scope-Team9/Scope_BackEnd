@@ -17062,10 +17062,10 @@ java.lang.NullPointerException: null
 [INFO ] 07:27:25.847 o.a.catalina.core.StandardService - Stopping service [Tomcat]
 [INFO ] 07:27:25.850 o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8081"]
 [INFO ] 07:27:25.850 o.a.coyote.http11.Http11NioProtocol - Destroying ProtocolHandler ["http-nio-8081"]
-[INFO ] 07:27:25.857 o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+[INFO ] 07:27:25.857 o.s.b.a.l.ConditionEvaluationReportLoggingListener -
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-[ERROR] 07:27:25.873 o.s.b.d.LoggingFailureAnalysisReporter - 
+[ERROR] 07:27:25.873 o.s.b.d.LoggingFailureAnalysisReporter -
 
 ***************************
 APPLICATION FAILED TO START
