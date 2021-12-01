@@ -12,10 +12,10 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.CacheErrorHandler;
 import org.springframework.cache.interceptor.CacheResolver;
 import org.springframework.cache.interceptor.KeyGenerator;
+import org.springframework.cache.interceptor.SimpleKeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.cache.Cache;
 import javax.cache.CacheManager;
 import javax.cache.Caching;
 import javax.cache.spi.CachingProvider;
@@ -54,15 +54,17 @@ public class CacheConfig implements CachingConfigurer {
         return null;
     }
 
+    @Bean
+    @Override
+    public KeyGenerator keyGenerator() {
+        return new SimpleKeyGenerator();
+    }
+
     @Override
     public CacheResolver cacheResolver() {
         return null;
     }
 
-    @Override
-    public KeyGenerator keyGenerator() {
-        return null;
-    }
 
     @Override
     public CacheErrorHandler errorHandler() {
