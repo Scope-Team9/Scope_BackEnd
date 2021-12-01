@@ -9,8 +9,6 @@ import lombok.Getter;
 public class LoginReponseDto {
     @Schema(description = "토큰 값")
     private String token;
-    @Schema(description = "Email")
-    private String email;
     @Schema(description = "닉네임")
     private String nickname;
     @Schema(description = "아이디")

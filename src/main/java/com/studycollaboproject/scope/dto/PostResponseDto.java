@@ -58,6 +58,7 @@ public class PostResponseDto {
         this.contents = post.getContents();
         this.techStack = new ArrayList<>();
         List<TechStack> techStackList = new ArrayList<>(post.getTechStackList());
+        techStackList.sort(Comparator.comparing(TechStack::getTech));
         for (TechStack stack : techStackList) {
             this.techStack.add(stack.getTech().getTech());
         }
@@ -81,6 +82,7 @@ public class PostResponseDto {
         this.contents = post.getContents();
         this.techStack = new ArrayList<>();
         List<TechStack> techStackList = new ArrayList<>(post.getTechStackList());
+        techStackList.sort(Comparator.comparing(TechStack::getTech));
         for (TechStack stack : techStackList) {
                 this.techStack.add(stack.getTech().getTech());
         }
@@ -104,6 +106,7 @@ public class PostResponseDto {
         this.contents = post.getContents();
         this.techStack = new ArrayList<>();
         List<TechStack> techStackList = new ArrayList<>(post.getTechStackList());
+        techStackList.sort(Comparator.comparing(TechStack::getTech));
         for (TechStack stack : techStackList) {
             this.techStack.add(stack.getTech().getTech());
         }
