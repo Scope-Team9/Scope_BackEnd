@@ -1,0 +1,314 @@
+[INFO ] 00:55:21.497 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.12 on DESKTOP-KM861HJ with PID 17524 (C:\Users\9sanh\Documents\GitHub\Scope_BackEnd\build\classes\java\main started by 9sanh in C:\Users\9sanh\Documents\GitHub\Scope_BackEnd)
+[INFO ] 00:55:21.498 c.s.scope.ScopeApplication - No active profile set, falling back to default profiles: default
+[INFO ] 00:55:22.084 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 00:55:22.146 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 57 ms. Found 7 JPA repository interfaces.
+[INFO ] 00:55:22.362 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@3a8d467e' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 00:55:22.367 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 00:55:22.559 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[INFO ] 00:55:22.568 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO ] 00:55:22.569 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 00:55:22.569 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 00:55:22.687 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 00:55:22.688 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1159 ms
+[INFO ] 00:55:22.827 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 00:55:22.859 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 00:55:22.941 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 00:55:23.006 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 00:55:23.316 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 00:55:23.330 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 00:55:24.363 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 00:55:24.371 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 00:55:24.692 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 00:55:24.937 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 00:55:25.220 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5f346355, org.springframework.security.web.context.SecurityContextPersistenceFilter@5a079446, org.springframework.security.web.header.HeaderWriterFilter@5a941fb4, org.springframework.web.filter.CorsFilter@66e62e19, org.springframework.security.web.authentication.logout.LogoutFilter@1185b0b7, com.studycollaboproject.scope.security.ExceptionHandlerFilter@1cc8416a, com.studycollaboproject.scope.security.JwtAuthenticationFilter@3b0c38f2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@118f2486, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@37c762aa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@50fe5df2, org.springframework.security.web.session.SessionManagementFilter@3cd89c72, org.springframework.security.web.access.ExceptionTranslationFilter@220e1b7b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5478597]
+[INFO ] 00:55:25.400 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[INFO ] 00:55:25.417 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO ] 00:55:25.424 c.s.scope.ScopeApplication - Started ScopeApplication in 4.187 seconds (JVM running for 4.786)
+[INFO ] 00:55:55.877 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 00:55:55.879 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 00:55:55.934 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 00:56:14.809 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.12 on DESKTOP-KM861HJ with PID 6292 (C:\Users\9sanh\Documents\GitHub\Scope_BackEnd\build\classes\java\main started by 9sanh in C:\Users\9sanh\Documents\GitHub\Scope_BackEnd)
+[INFO ] 00:56:14.811 c.s.scope.ScopeApplication - No active profile set, falling back to default profiles: default
+[INFO ] 00:56:15.428 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 00:56:15.494 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 61 ms. Found 7 JPA repository interfaces.
+[INFO ] 00:56:15.715 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@4a8e6e89' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 00:56:15.720 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 00:56:15.890 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[INFO ] 00:56:15.897 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO ] 00:56:15.897 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 00:56:15.897 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 00:56:15.981 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 00:56:15.981 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1140 ms
+[INFO ] 00:56:16.127 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 00:56:16.163 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 00:56:16.258 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 00:56:16.329 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 00:56:16.651 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 00:56:16.666 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 00:56:17.528 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 00:56:17.536 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 00:56:17.872 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 00:56:18.106 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 00:56:18.388 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6a0aa5e2, org.springframework.security.web.context.SecurityContextPersistenceFilter@6a6e410c, org.springframework.security.web.header.HeaderWriterFilter@3a5ffea, org.springframework.web.filter.CorsFilter@630bd5e7, org.springframework.security.web.authentication.logout.LogoutFilter@4ee19768, com.studycollaboproject.scope.security.ExceptionHandlerFilter@5974b233, com.studycollaboproject.scope.security.JwtAuthenticationFilter@3897f9ae, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@41120e48, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@61ec2cb5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2389f546, org.springframework.security.web.session.SessionManagementFilter@7402bfe7, org.springframework.security.web.access.ExceptionTranslationFilter@445b4594, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@22657db1]
+[INFO ] 00:56:18.561 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[INFO ] 00:56:18.576 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO ] 00:56:18.584 c.s.scope.ScopeApplication - Started ScopeApplication in 4.022 seconds (JVM running for 4.618)
+[INFO ] 00:58:55.156 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 00:58:55.157 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 00:58:55.225 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 00:58:57.729 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.12 on DESKTOP-KM861HJ with PID 1208 (C:\Users\9sanh\Documents\GitHub\Scope_BackEnd\build\classes\java\main started by 9sanh in C:\Users\9sanh\Documents\GitHub\Scope_BackEnd)
+[INFO ] 00:58:57.731 c.s.scope.ScopeApplication - No active profile set, falling back to default profiles: default
+[INFO ] 00:58:58.309 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 00:58:58.370 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 56 ms. Found 7 JPA repository interfaces.
+[INFO ] 00:58:58.582 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@6ca372ef' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 00:58:58.586 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 00:58:58.754 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[INFO ] 00:58:58.760 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO ] 00:58:58.761 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 00:58:58.761 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 00:58:58.847 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 00:58:58.847 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1088 ms
+[INFO ] 00:58:59.000 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 00:58:59.032 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 00:58:59.116 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 00:58:59.184 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 00:58:59.473 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 00:58:59.489 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 00:59:00.282 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 00:59:00.290 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 00:59:00.629 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 00:59:00.878 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 00:59:01.168 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@28f6a008, org.springframework.security.web.context.SecurityContextPersistenceFilter@5192b301, org.springframework.security.web.header.HeaderWriterFilter@44f338ec, org.springframework.web.filter.CorsFilter@71dfca65, org.springframework.security.web.authentication.logout.LogoutFilter@1e9f48d4, com.studycollaboproject.scope.security.ExceptionHandlerFilter@2e5e6fc4, com.studycollaboproject.scope.security.JwtAuthenticationFilter@248b2091, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2a0881f1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@54fffa5a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7fa86ddd, org.springframework.security.web.session.SessionManagementFilter@da4c5cb, org.springframework.security.web.access.ExceptionTranslationFilter@8113ea7, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@260fffec]
+[INFO ] 00:59:01.366 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[INFO ] 00:59:01.383 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO ] 00:59:01.391 c.s.scope.ScopeApplication - Started ScopeApplication in 3.906 seconds (JVM running for 4.523)
+[INFO ] 01:08:04.625 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 01:08:04.627 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 01:08:04.689 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 01:08:08.298 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.12 on DESKTOP-KM861HJ with PID 5976 (C:\Users\9sanh\Documents\GitHub\Scope_BackEnd\build\classes\java\main started by 9sanh in C:\Users\9sanh\Documents\GitHub\Scope_BackEnd)
+[INFO ] 01:08:08.300 c.s.scope.ScopeApplication - No active profile set, falling back to default profiles: default
+[INFO ] 01:08:08.883 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 01:08:08.944 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 57 ms. Found 7 JPA repository interfaces.
+[INFO ] 01:08:09.162 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@59fbb34' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 01:08:09.167 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 01:08:09.331 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[INFO ] 01:08:09.337 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO ] 01:08:09.337 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 01:08:09.338 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 01:08:09.422 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 01:08:09.423 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1092 ms
+[INFO ] 01:08:09.560 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 01:08:09.590 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 01:08:09.672 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 01:08:09.737 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 01:08:10.007 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 01:08:10.023 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 01:08:10.816 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 01:08:10.825 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 01:08:11.136 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 01:08:11.373 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 01:08:11.655 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@74ed7111, org.springframework.security.web.context.SecurityContextPersistenceFilter@3cd89c72, org.springframework.security.web.header.HeaderWriterFilter@50e4d8cd, org.springframework.web.filter.CorsFilter@74691677, org.springframework.security.web.authentication.logout.LogoutFilter@1387bd84, com.studycollaboproject.scope.security.ExceptionHandlerFilter@6cae2e4d, com.studycollaboproject.scope.security.JwtAuthenticationFilter@4b86a656, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5a079446, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@41a3c6f5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3314f179, org.springframework.security.web.session.SessionManagementFilter@6258f9d1, org.springframework.security.web.access.ExceptionTranslationFilter@22561412, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@42684d86]
+[INFO ] 01:08:11.834 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[INFO ] 01:08:11.850 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO ] 01:08:11.858 c.s.scope.ScopeApplication - Started ScopeApplication in 3.809 seconds (JVM running for 4.395)
+[INFO ] 01:20:53.800 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 01:20:53.802 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 01:20:53.849 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 01:21:30.083 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.12 on DESKTOP-KM861HJ with PID 7988 (C:\Users\9sanh\Documents\GitHub\Scope_BackEnd\build\classes\java\main started by 9sanh in C:\Users\9sanh\Documents\GitHub\Scope_BackEnd)
+[INFO ] 01:21:30.085 c.s.scope.ScopeApplication - No active profile set, falling back to default profiles: default
+[INFO ] 01:21:30.665 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 01:21:30.727 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 57 ms. Found 7 JPA repository interfaces.
+[INFO ] 01:21:30.945 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@4483d35' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 01:21:30.950 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 01:21:31.118 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[INFO ] 01:21:31.126 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO ] 01:21:31.126 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 01:21:31.126 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 01:21:31.214 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 01:21:31.214 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1097 ms
+[INFO ] 01:21:31.347 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 01:21:31.377 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 01:21:31.458 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 01:21:31.524 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 01:21:31.794 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 01:21:31.808 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 01:21:32.602 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 01:21:32.611 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 01:21:32.964 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 01:21:33.214 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 01:21:33.498 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@e21d73, org.springframework.security.web.context.SecurityContextPersistenceFilter@73c6ae15, org.springframework.security.web.header.HeaderWriterFilter@136cad3e, org.springframework.web.filter.CorsFilter@7a482b3a, org.springframework.security.web.authentication.logout.LogoutFilter@a319a2e, com.studycollaboproject.scope.security.ExceptionHandlerFilter@667dcaad, com.studycollaboproject.scope.security.JwtAuthenticationFilter@394331a8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@112a50a1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@22f7bf36, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@600b3bee, org.springframework.security.web.session.SessionManagementFilter@4b37d1a4, org.springframework.security.web.access.ExceptionTranslationFilter@16f62062, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@55a5eea3]
+[INFO ] 01:21:33.677 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[INFO ] 01:21:33.693 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO ] 01:21:33.701 c.s.scope.ScopeApplication - Started ScopeApplication in 3.871 seconds (JVM running for 4.472)
+[INFO ] 01:21:52.985 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 01:21:52.987 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 01:21:53.036 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 01:26:01.962 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.12 on DESKTOP-KM861HJ with PID 15560 (C:\Users\9sanh\Documents\GitHub\Scope_BackEnd\build\classes\java\main started by 9sanh in C:\Users\9sanh\Documents\GitHub\Scope_BackEnd)
+[INFO ] 01:26:01.964 c.s.scope.ScopeApplication - No active profile set, falling back to default profiles: default
+[INFO ] 01:26:02.561 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 01:26:02.626 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 60 ms. Found 7 JPA repository interfaces.
+[INFO ] 01:26:02.867 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@3762c4fc' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 01:26:02.872 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 01:26:03.050 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[INFO ] 01:26:03.058 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO ] 01:26:03.059 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 01:26:03.059 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 01:26:03.154 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 01:26:03.154 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1153 ms
+[INFO ] 01:26:03.287 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 01:26:03.318 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 01:26:03.398 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 01:26:03.462 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 01:26:03.765 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 01:26:03.781 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 01:26:04.546 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 01:26:04.553 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 01:26:04.862 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 01:26:05.099 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 01:26:05.380 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@43c3354, org.springframework.security.web.context.SecurityContextPersistenceFilter@5b78a946, org.springframework.security.web.header.HeaderWriterFilter@112a50a1, org.springframework.web.filter.CorsFilter@260fffec, org.springframework.security.web.authentication.logout.LogoutFilter@16eb93af, com.studycollaboproject.scope.security.ExceptionHandlerFilter@7741771e, com.studycollaboproject.scope.security.JwtAuthenticationFilter@642d34f1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4c438f66, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1df2e767, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@743f58c3, org.springframework.security.web.session.SessionManagementFilter@2b5a04b0, org.springframework.security.web.access.ExceptionTranslationFilter@78e4fa1, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@50fe5df2]
+[INFO ] 01:26:05.552 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[INFO ] 01:26:05.567 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO ] 01:26:05.574 c.s.scope.ScopeApplication - Started ScopeApplication in 3.949 seconds (JVM running for 4.579)
+[INFO ] 01:41:28.444 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 01:41:28.446 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 01:41:28.495 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 01:41:31.662 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.12 on DESKTOP-KM861HJ with PID 1428 (C:\Users\9sanh\Documents\GitHub\Scope_BackEnd\build\classes\java\main started by 9sanh in C:\Users\9sanh\Documents\GitHub\Scope_BackEnd)
+[INFO ] 01:41:31.664 c.s.scope.ScopeApplication - No active profile set, falling back to default profiles: default
+[INFO ] 01:41:32.238 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 01:41:32.298 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 55 ms. Found 7 JPA repository interfaces.
+[INFO ] 01:41:32.507 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@6c0905f6' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 01:41:32.511 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 01:41:32.680 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[INFO ] 01:41:32.687 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO ] 01:41:32.687 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 01:41:32.687 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 01:41:32.781 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 01:41:32.781 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1089 ms
+[INFO ] 01:41:32.914 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 01:41:32.944 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 01:41:33.022 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 01:41:33.085 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 01:41:33.366 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 01:41:33.380 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 01:41:34.132 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 01:41:34.139 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 01:41:34.444 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 01:41:34.679 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 01:41:34.962 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3314f179, org.springframework.security.web.context.SecurityContextPersistenceFilter@2b441609, org.springframework.security.web.header.HeaderWriterFilter@4ee19768, org.springframework.web.filter.CorsFilter@1abd1a28, org.springframework.security.web.authentication.logout.LogoutFilter@29ce33e9, com.studycollaboproject.scope.security.ExceptionHandlerFilter@4fc165f6, com.studycollaboproject.scope.security.JwtAuthenticationFilter@3321fb65, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4a3404fa, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1fa24e7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5478597, org.springframework.security.web.session.SessionManagementFilter@118f2486, org.springframework.security.web.access.ExceptionTranslationFilter@34114276, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7d6a9d5e]
+[INFO ] 01:41:35.146 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[INFO ] 01:41:35.162 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO ] 01:41:35.170 c.s.scope.ScopeApplication - Started ScopeApplication in 3.75 seconds (JVM running for 4.316)
+[INFO ] 01:44:51.073 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 01:44:51.075 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 01:44:51.127 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 15:31:58.614 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.12 on DESKTOP-KM861HJ with PID 17100 (C:\Users\9sanh\Documents\GitHub\Scope_BackEnd\build\classes\java\main started by 9sanh in C:\Users\9sanh\Documents\GitHub\Scope_BackEnd)
+[INFO ] 15:31:58.624 c.s.scope.ScopeApplication - No active profile set, falling back to default profiles: default
+[INFO ] 15:31:59.695 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 15:31:59.806 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 101 ms. Found 7 JPA repository interfaces.
+[INFO ] 15:32:00.219 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@280d4882' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 15:32:00.226 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 15:32:00.517 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[INFO ] 15:32:00.530 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO ] 15:32:00.531 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 15:32:00.531 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 15:32:00.671 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 15:32:00.671 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1998 ms
+[INFO ] 15:32:00.871 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 15:32:00.933 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 15:32:01.086 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 15:32:01.193 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 15:32:01.659 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 15:32:01.681 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 15:32:02.914 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 15:32:02.935 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 15:32:03.485 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 15:32:03.919 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 15:32:04.410 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@308d4981, org.springframework.security.web.context.SecurityContextPersistenceFilter@461b38ca, org.springframework.security.web.header.HeaderWriterFilter@da4c5cb, org.springframework.web.filter.CorsFilter@55731ccd, org.springframework.security.web.authentication.logout.LogoutFilter@4adc3951, com.studycollaboproject.scope.security.ExceptionHandlerFilter@61ffd148, com.studycollaboproject.scope.security.JwtAuthenticationFilter@21948bd1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3881b884, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5c945ee7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@750adad8, org.springframework.security.web.session.SessionManagementFilter@54fffa5a, org.springframework.security.web.access.ExceptionTranslationFilter@4d071e4b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1e9f6095]
+[INFO ] 15:32:04.728 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[INFO ] 15:32:04.751 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO ] 15:32:04.767 c.s.scope.ScopeApplication - Started ScopeApplication in 6.473 seconds (JVM running for 7.265)
+[INFO ] 15:33:13.197 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 15:33:13.200 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 15:33:13.629 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 15:33:18.856 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.12 on DESKTOP-KM861HJ with PID 12780 (C:\Users\9sanh\Documents\GitHub\Scope_BackEnd\build\classes\java\main started by 9sanh in C:\Users\9sanh\Documents\GitHub\Scope_BackEnd)
+[INFO ] 15:33:18.859 c.s.scope.ScopeApplication - No active profile set, falling back to default profiles: default
+[INFO ] 15:33:19.699 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 15:33:19.803 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 96 ms. Found 7 JPA repository interfaces.
+[INFO ] 15:33:20.162 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@4f3faa70' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 15:33:20.169 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 15:33:20.448 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[INFO ] 15:33:20.459 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO ] 15:33:20.460 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 15:33:20.460 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 15:33:20.609 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 15:33:20.609 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1702 ms
+[INFO ] 15:33:20.832 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 15:33:20.885 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 15:33:21.018 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 15:33:21.135 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 15:33:21.667 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 15:33:21.691 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 15:33:22.791 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 15:33:22.802 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 15:33:23.383 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 15:33:23.789 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 15:33:24.274 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5325674a, org.springframework.security.web.context.SecurityContextPersistenceFilter@5d782a4a, org.springframework.security.web.header.HeaderWriterFilter@2d399e88, org.springframework.web.filter.CorsFilter@6a0aa5e2, org.springframework.security.web.authentication.logout.LogoutFilter@44f338ec, com.studycollaboproject.scope.security.ExceptionHandlerFilter@773014d3, com.studycollaboproject.scope.security.JwtAuthenticationFilter@4a7e469d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@481c1e92, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6500e886, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@630bd5e7, org.springframework.security.web.session.SessionManagementFilter@165a5979, org.springframework.security.web.access.ExceptionTranslationFilter@1d126f07, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2b625e82]
+[INFO ] 15:33:24.555 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[INFO ] 15:33:24.579 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO ] 15:33:24.592 c.s.scope.ScopeApplication - Started ScopeApplication in 6.145 seconds (JVM running for 7.16)
+[INFO ] 15:33:24.876 o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+[ERROR] 15:33:24.909 o.s.boot.SpringApplication - Application run failed
+java.lang.IllegalStateException: Failed to execute ApplicationRunner
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:785)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:772)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:345)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332)
+	at com.studycollaboproject.scope.ScopeApplication.main(ScopeApplication.java:15)
+Caused by: org.springframework.mail.MailAuthenticationException: Authentication failed; nested exception is javax.mail.AuthenticationFailedException: failed to connect, no password specified?
+	at org.springframework.mail.javamail.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:440)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.send(JavaMailSenderImpl.java:361)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.send(JavaMailSenderImpl.java:356)
+	at com.studycollaboproject.scope.service.MailService.sendMail(MailService.java:59)
+	at com.studycollaboproject.scope.controller.TestDataRunner.run(TestDataRunner.java:43)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:782)
+	... 5 common frames omitted
+Caused by: javax.mail.AuthenticationFailedException: failed to connect, no password specified?
+	at javax.mail.Service.connect(Service.java:376)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.connectTransport(JavaMailSenderImpl.java:518)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:437)
+	... 10 common frames omitted
+[INFO ] 15:33:25.043 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 15:33:25.045 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 15:33:25.125 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 15:33:43.956 c.s.scope.ScopeApplication - Starting ScopeApplication using Java 11.0.12 on DESKTOP-KM861HJ with PID 6520 (C:\Users\9sanh\Documents\GitHub\Scope_BackEnd\build\classes\java\main started by 9sanh in C:\Users\9sanh\Documents\GitHub\Scope_BackEnd)
+[INFO ] 15:33:43.959 c.s.scope.ScopeApplication - No active profile set, falling back to default profiles: default
+[INFO ] 15:33:44.888 o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 15:33:44.997 o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 100 ms. Found 7 JPA repository interfaces.
+[INFO ] 15:33:45.358 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@3a790e40' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 15:33:45.364 o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO ] 15:33:45.655 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[INFO ] 15:33:45.665 o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO ] 15:33:45.666 o.a.catalina.core.StandardService - Starting service [Tomcat]
+[INFO ] 15:33:45.666 o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+[INFO ] 15:33:45.806 o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 15:33:45.807 o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1801 ms
+[INFO ] 15:33:46.026 o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 15:33:46.079 org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+[INFO ] 15:33:46.214 o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 15:33:46.343 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 15:33:46.789 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 15:33:46.812 org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO ] 15:33:47.962 o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 15:33:47.972 o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 15:33:48.521 o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 15:33:48.941 o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/h2-console/**'] with []
+[INFO ] 15:33:49.440 o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@64245ca9, org.springframework.security.web.context.SecurityContextPersistenceFilter@6a358906, org.springframework.security.web.header.HeaderWriterFilter@ea40c9f, org.springframework.web.filter.CorsFilter@66cb9a63, org.springframework.security.web.authentication.logout.LogoutFilter@34cb1310, com.studycollaboproject.scope.security.ExceptionHandlerFilter@5ff00507, com.studycollaboproject.scope.security.JwtAuthenticationFilter@624be1d4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5a941fb4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5923210, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@256d8f17, org.springframework.security.web.session.SessionManagementFilter@220e1b7b, org.springframework.security.web.access.ExceptionTranslationFilter@6a6e410c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1512efe9]
+[INFO ] 15:33:49.715 o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[INFO ] 15:33:49.739 o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO ] 15:33:49.750 c.s.scope.ScopeApplication - Started ScopeApplication in 6.207 seconds (JVM running for 7.206)
+[INFO ] 15:33:58.411 o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 15:33:58.414 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 15:33:58.483 com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
