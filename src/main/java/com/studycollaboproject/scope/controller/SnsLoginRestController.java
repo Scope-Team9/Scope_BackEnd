@@ -34,7 +34,7 @@ public class SnsLoginRestController {
 
     @Operation(summary = "카카오 로그인")
     @GetMapping("/api/login/kakao")
-    public ResponseEntity<Object> kakaoLogin(@Parameter(description = "코드 값", in = ParameterIn.QUERY) @RequestParam String code,HttpServletRequest servletRequest) throws JsonProcessingException {
+    public ResponseEntity<Object> kakaoLogin(@Parameter(description = "코드 값", in = ParameterIn.QUERY) @RequestParam String code, HttpServletRequest servletRequest) throws JsonProcessingException {
         log.info("[{}], 카카오 로그인, GET, /api/login/kakao, code={}", MDC.get("UUID"), code);
         SnsInfoDto snsInfoDto = kakaoUserService.kakaoLogin(code);
         servletRequest.getSession();
@@ -43,7 +43,7 @@ public class SnsLoginRestController {
 
 
         return new ResponseEntity<>(
-                userService.SignupEmailCheck(snsInfoDto.getEmail(), snsInfoDto.getId(), "K-"),
+                userService.SignupUserCheck(snsInfoDto.getId(), "K-"),
                 HttpStatus.OK
         );
     }
@@ -57,9 +57,8 @@ public class SnsLoginRestController {
         int count = userCounter.getCount();
         System.out.println("count = " + count);
 
-
         return new ResponseEntity<>(
-                userService.SignupEmailCheck(snsInfoDto.getEmail(), snsInfoDto.getId(), "G-"),
+                userService.SignupUserCheck(snsInfoDto.getId(), "G-"),
                 HttpStatus.OK
         );
     }
