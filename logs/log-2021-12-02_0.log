@@ -11308,3 +11308,5 @@ Caused by: org.thymeleaf.exceptions.TemplateInputException: Error resolving temp
 [INFO ] 07:17:13.959 c.s.scope.ipfilter.HttpInterceptor - ================ Method Executed
 [INFO ] 07:17:13.959 c.s.scope.ipfilter.HttpInterceptor - ================ Method Completed
 [INFO ] 07:17:13.959 c.s.s.filter.JwtAuthenticationFilter - [51fd9251-dd49-4ed8-8334-3877f4b68fa4], token=null
+[WARN ] 08:45:16.476 com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=50m17s528ms78µs200ns).
+[WARN ] 11:04:31.099 com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h5m43s685ms117µs600ns).
