@@ -48,17 +48,28 @@
 - 이승민 ([https://github.com/seungmai](https://github.com/seungmai))
 
 ## 기술 스택
-- Spring Boot
-- AWS
-- Git Action
-- MySQL
+
+프레임워크
+
+<img alt="Spring-Boot" src="https://img.shields.io/badge/Spring Boot-6DB33F?style=flat-square&logo=Spring&logoColor=white"/>
+
+DevOps
+
+<img alt="Amazon AWS" src="https://img.shields.io/badge/Amazon AWS-232F3E?style=flat-square&logo=Amazon AWS&logoColor=white"/> <img alt="Nginx" src="https://img.shields.io/badge/Nginx-009639?style=flat-square&logo=Nginx&logoColor=white"/> <img alt="Docker" src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white"/> <img alt="GitHub Actions" src="https://img.shields.io/badge/GitHub Actions-2088FF?style=flat-square&logo=GitHub Actions&logoColor=white"/> <img alt="GNU Bash" src="https://img.shields.io/badge/GNU Bash-1D2D35?style=flat-square&logo=GNU Bash&logoColor=white"/> <img alt="Amazon S3" src="https://img.shields.io/badge/Amazon S3-CB333B?style=flat-square&logo=Amazon S3&logoColor=white"/>
+
+데이터베이스
+
+<img alt="MySql" src="https://img.shields.io/badge/MySql-232F3E?style=flat-square&logo=Amazon AWS&logoColor=white"/>
+
+주요 라이브러리
 - JPA
 - Querydsl
 - Spring Security
 - Jasypt
-- NGINX
-- Docker
 - EhCache
+- Bucket4j
+- Swagger
+- Slf4j
 ---
 
 ## Api
