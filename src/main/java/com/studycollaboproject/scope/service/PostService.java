@@ -124,7 +124,7 @@ public class PostService {
             //            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
 //            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
             long end = System.currentTimeMillis();
-            log.info( "[{}], read의 Cache 수행시간 : {} ", MDC.get("UUID"),start-end);
+            log.info( "[{}], read의 Cache 수행시간 : {} ", MDC.get("UUID"),end-start);
             return filterPosts.stream().map(o -> new PostResponseDto(o, hasPostFromPostList(o.getId(), bookmarkList))).collect(Collectors.toList());
         }
 
@@ -139,7 +139,7 @@ public class PostService {
 //                filterPosts = postRepository.findAllByBookmarkList_User_SnsIdOrderByCreatedAtDesc(snsId);
             }
             long end = System.currentTimeMillis();
-            log.info( "[{}], read의 Cache 수행시간 : {} ", MDC.get("UUID"),start-end);
+            log.info( "[{}], read의 Cache 수행시간 : {} ", MDC.get("UUID"),end-start);
 
             return filterPosts.stream().map(o -> new PostResponseDto(o, true)).collect(Collectors.toList());
         }
@@ -154,13 +154,13 @@ public class PostService {
             }
             if (snsId.equals("")) {
                 long end = System.currentTimeMillis();
-                log.info( "[{}], read의 Cache 수행시간 : {} ", MDC.get("UUID"),start-end);
+                log.info( "[{}], read의 Cache 수행시간 : {} ", MDC.get("UUID"),end-start);
                 return filterPosts.stream().map(o -> new PostResponseDto(o, false)).collect(Collectors.toList());
             }
 
             List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
             long end = System.currentTimeMillis();
-            log.info( "[{}], read의 Cache 수행시간 : {} ", MDC.get("UUID"),start-end);
+            log.info( "[{}], read의 Cache 수행시간 : {} ", MDC.get("UUID"),end-start);
             //            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
             return filterPosts.stream().map(o -> new PostResponseDto(o, hasPostFromPostList(o.getId(), bookmarkList))).collect(Collectors.toList());
         }
