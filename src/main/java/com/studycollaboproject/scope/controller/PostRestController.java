@@ -61,7 +61,6 @@ public class PostRestController {
 
     @Operation(summary = "프로젝트 조회")
     @GetMapping("/api/post")
-    @Cacheable(cacheNames="Post")
     public ResponseEntity<Object> readPost(@Parameter(description = "필터", in = ParameterIn.QUERY, example = ";;;;;;;;;;;;;;") @RequestParam String filter,
                                            @Parameter(description = "정렬 기준", in = ParameterIn.QUERY, example = "createdAt") @RequestParam String sort,
                                            @Parameter(description = "북마크 / 추천", in = ParameterIn.QUERY, example = "bookmark", allowEmptyValue = true) @RequestParam String bookmarkRecommend,

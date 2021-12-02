@@ -9,6 +9,8 @@ import com.studycollaboproject.scope.repository.*;
 import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -86,7 +88,7 @@ public class PostService {
 
     }
 
-
+    @Cacheable(cacheNames="Post")
     public List<PostResponseDto> readPost(String filter,
                                           String sort,
                                           String snsId,
@@ -122,7 +124,7 @@ public class PostService {
             //            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
 //            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
             long end = System.currentTimeMillis();
-            log.info( "read의 Cache 수행시간 : "+ (end - start));
+            log.info( "[{}], read의 Cache 수행시간 : {} ", MDC.get("UUID"),start-end);
             return filterPosts.stream().map(o -> new PostResponseDto(o, hasPostFromPostList(o.getId(), bookmarkList))).collect(Collectors.toList());
         }
 
@@ -137,7 +139,7 @@ public class PostService {
 //                filterPosts = postRepository.findAllByBookmarkList_User_SnsIdOrderByCreatedAtDesc(snsId);
             }
             long end = System.currentTimeMillis();
-            log.info( "read의 Cache 수행시간 : "+ (end - start));
+            log.info( "[{}], read의 Cache 수행시간 : {} ", MDC.get("UUID"),start-end);
 
             return filterPosts.stream().map(o -> new PostResponseDto(o, true)).collect(Collectors.toList());
         }
@@ -152,13 +154,13 @@ public class PostService {
             }
             if (snsId.equals("")) {
                 long end = System.currentTimeMillis();
-                log.info( "read의 Cache 수행시간 : "+ (end - start));
+                log.info( "[{}], read의 Cache 수행시간 : {} ", MDC.get("UUID"),start-end);
                 return filterPosts.stream().map(o -> new PostResponseDto(o, false)).collect(Collectors.toList());
             }
 
             List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
             long end = System.currentTimeMillis();
-            log.info( "read의 Cache 수행시간 : "+ (end - start));
+            log.info( "[{}], read의 Cache 수행시간 : {} ", MDC.get("UUID"),start-end);
             //            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
             return filterPosts.stream().map(o -> new PostResponseDto(o, hasPostFromPostList(o.getId(), bookmarkList))).collect(Collectors.toList());
         }
