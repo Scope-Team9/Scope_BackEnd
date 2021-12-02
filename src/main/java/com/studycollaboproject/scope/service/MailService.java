@@ -5,6 +5,7 @@ import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.BadRequestException;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.UserRepository;
+import com.studycollaboproject.scope.util.EmailValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -82,6 +83,7 @@ public class MailService {
         log.info("==================================================");
         log.info("지원 알림 메일 발송");
         String email = mailDto.getToEmail();
+        if(!EmailValidator.emailValidator(email)) throw new BadRequestException(ErrorCode.NO_EMAIL_PATTERN);
         Context context = new Context();
         context.setVariable("logo", url + "/img/logo.png");
         context.setVariable("comment", mailDto.getComment());
@@ -107,6 +109,7 @@ public class MailService {
         log.info("프로젝트 매칭 알림 메일 발송");
 
         String email = mailDto.getToEmail();
+        if(!EmailValidator.emailValidator(email)) throw new BadRequestException(ErrorCode.NO_EMAIL_PATTERN);
         Context context = new Context();
         context.setVariable("logo", url + "/img/logo.png");
         context.setVariable("title", mailDto.getPostTitle());
@@ -128,6 +131,7 @@ public class MailService {
 
 
         for (User user : mailDto.getToUserList()) {
+            if(!user.getIsVerifiedEmail()) continue;
             Context context = new Context();
             context.setVariable("logo", url + "/img/logo.png");
             context.setVariable("title", mailDto.getPostTitle());
@@ -144,6 +148,7 @@ public class MailService {
     public void authMailSender(String email, User user) throws MessagingException {
         log.info("==================================================");
         log.info("이메일 인증 메일 발송");
+        if(!EmailValidator.emailValidator(email)) throw new BadRequestException(ErrorCode.NO_EMAIL_PATTERN);
         Context context = new Context();
         context.setVariable("logo", url + "/img/logo.png");
         context.setVariable("propensityType", url + "/img/" + propensityMatching.get(user.getUserPropensityType()) + ".png");

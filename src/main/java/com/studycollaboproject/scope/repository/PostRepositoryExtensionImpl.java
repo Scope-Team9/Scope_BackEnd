@@ -21,11 +21,11 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
     @Override
     public List<Post> findAllOrderByModifiedAt() {
         return queryFactory.selectFrom(post)
-                .where(post.projectStatus.in(ProjectStatus.PROJECT_STATUS_RECRUITMENT, ProjectStatus.PROJECT_STATUS_INPROGRESS))
+//                .where(post.projectStatus.in(ProjectStatus.PROJECT_STATUS_RECRUITMENT, ProjectStatus.PROJECT_STATUS_INPROGRESS))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.modifiedAt.desc())
                 .orderBy(post.projectStatus.desc())
+                .orderBy(post.modifiedAt.desc())
                 .distinct()
                 .fetch();
     }
@@ -33,12 +33,12 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
     @Override
     public List<Post> findAllOrderByStartDate() {
         return queryFactory.selectFrom(post)
-                .where(post.startDate.goe(LocalDate.now().atStartOfDay())
-                        .and(post.projectStatus.in(ProjectStatus.PROJECT_STATUS_RECRUITMENT, ProjectStatus.PROJECT_STATUS_INPROGRESS)))
+                .where(post.startDate.goe(LocalDate.now().atStartOfDay()))
+//                        .and(post.projectStatus.in(ProjectStatus.PROJECT_STATUS_RECRUITMENT, ProjectStatus.PROJECT_STATUS_INPROGRESS)))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.startDate.asc())
                 .orderBy(post.projectStatus.desc())
+                .orderBy(post.startDate.asc())
                 .distinct()
                 .fetch();
     }
@@ -46,12 +46,12 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
     @Override
     public List<Post> findAllByTechInOrderByModifiedAt(List<Tech> techList) {
         return queryFactory.selectFrom(post)
-                .where(post.techStackList.any().tech.in(techList)
-                        .and(post.projectStatus.in(ProjectStatus.PROJECT_STATUS_RECRUITMENT, ProjectStatus.PROJECT_STATUS_INPROGRESS)))
+                .where(post.techStackList.any().tech.in(techList))
+//                        .and(post.projectStatus.in(ProjectStatus.PROJECT_STATUS_RECRUITMENT, ProjectStatus.PROJECT_STATUS_INPROGRESS)))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.modifiedAt.desc())
                 .orderBy(post.projectStatus.desc())
+                .orderBy(post.modifiedAt.desc())
                 .distinct()
                 .fetch();
     }
@@ -60,12 +60,12 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
     public List<Post> findAllByTechInOrderByStartDate(List<Tech> techList) {
         return queryFactory.selectFrom(post)
                 .where(post.techStackList.any().tech.in(techList)
-                        .and(post.startDate.goe(LocalDate.now().atStartOfDay()))
-                        .and(post.projectStatus.in(ProjectStatus.PROJECT_STATUS_RECRUITMENT, ProjectStatus.PROJECT_STATUS_INPROGRESS)))
+                        .and(post.startDate.goe(LocalDate.now().atStartOfDay())))
+//                        .and(post.projectStatus.in(ProjectStatus.PROJECT_STATUS_RECRUITMENT, ProjectStatus.PROJECT_STATUS_INPROGRESS)))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.startDate.asc())
                 .orderBy(post.projectStatus.desc())
+                .orderBy(post.startDate.asc())
                 .distinct()
                 .fetch();
     }
@@ -77,8 +77,8 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
                         .and(post.startDate.goe(LocalDateTime.now())))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.startDate.asc())
                 .orderBy(post.projectStatus.desc())
+                .orderBy(post.startDate.asc())
                 .distinct()
                 .fetch();
     }
@@ -89,8 +89,8 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
                 .where(post.bookmarkList.any().user.snsId.equalsIgnoreCase(snsId))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
-                .orderBy(post.modifiedAt.desc())
                 .orderBy(post.projectStatus.desc())
+                .orderBy(post.modifiedAt.desc())
                 .distinct()
                 .fetch();
     }
