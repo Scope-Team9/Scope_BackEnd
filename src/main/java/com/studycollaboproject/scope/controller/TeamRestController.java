@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -41,6 +42,7 @@ public class TeamRestController {
     private final PostService postService;
     private final MailService mailService;
 
+    @CacheEvict(value = "Post", allEntries=true)
     @Operation(summary = "팀원 승인/거절")
     @PostMapping("/api/team/{postId}")
     public ResponseEntity<Object> acceptMember(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
@@ -82,6 +84,7 @@ public class TeamRestController {
         );
     }
 
+    @CacheEvict(value = "Post", allEntries=true)
     @Operation(summary = "팀원 강퇴")
     @DeleteMapping("/api/team/resignation/{postId}")
     public ResponseEntity<Object> memberResignation(@Parameter(description = "유저 ID", in = ParameterIn.QUERY) @RequestParam Long userId,
@@ -104,6 +107,7 @@ public class TeamRestController {
         } else throw new ForbiddenException(ErrorCode.NO_AUTHORIZATION_ERROR);
     }
 
+    @CacheEvict(value = "Post", allEntries=true)
     @Operation(summary = "팀 탈퇴")
     @DeleteMapping("/api/team/secession/{postId}")
     public ResponseEntity<Object> memberSecession(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,

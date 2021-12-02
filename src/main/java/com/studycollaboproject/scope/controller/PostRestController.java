@@ -17,6 +17,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -40,6 +42,7 @@ public class PostRestController {
 
     @Operation(summary = "프로젝트 작성")
     @PostMapping("/api/post")
+    @CacheEvict(value = "Post", allEntries=true)
     public ResponseEntity<Object> writePost(@Valid @RequestBody PostRequestDto postRequestDto,
                                             @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
         log.info("[{}], 프로젝트 작성, POST, /api/post, requestDto={}", MDC.get("UUID"), postRequestDto.toString());
@@ -81,6 +84,7 @@ public class PostRestController {
 
     @Operation(summary = "프로젝트 수정")
     @PostMapping("/api/post/{postId}")
+    @CacheEvict(value = "Post", allEntries=true)
     public ResponseEntity<Object> editPost(
             @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
             @RequestBody PostRequestDto postRequestDto,
@@ -101,6 +105,7 @@ public class PostRestController {
 
     @Operation(summary = "프로젝트 삭제")
     @DeleteMapping("/api/post/{postId}")
+    @CacheEvict(value = "Post", allEntries=true)
     public ResponseEntity<Object> deletePost(
             @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
             @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails

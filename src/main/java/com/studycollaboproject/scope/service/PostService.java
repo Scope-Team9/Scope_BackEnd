@@ -8,6 +8,9 @@ import com.studycollaboproject.scope.model.*;
 import com.studycollaboproject.scope.repository.*;
 import com.studycollaboproject.scope.util.TechStackConverter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -15,6 +18,7 @@ import java.sql.Timestamp;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class PostService {
@@ -26,7 +30,6 @@ public class PostService {
     private final ApplicantRepository applicantRepository;
     private final UserRepository userRepository;
     private final TotalResultRepository totalResultRepository;
-
 
     @Transactional
     public PostResponseDto writePost(PostRequestDto postRequestDto, String snsId) {
@@ -49,7 +52,6 @@ public class PostService {
         }
 
     }
-
     @Transactional
     public PostResponseDto editPost(Long postId, PostRequestDto postRequestDto, String snsId) {
         Post post = loadPostByPostId(postId);
@@ -86,13 +88,13 @@ public class PostService {
 
     }
 
-
+    @Cacheable(cacheNames="Post")
     public List<PostResponseDto> readPost(String filter,
                                           String sort,
                                           String snsId,
                                           String bookmarkRecommend) {
 
-
+        long start = System.currentTimeMillis(); // 수행시간 측정
         // 필터링 될 포스트배열
         List<Post> filterPosts = new ArrayList<>();
         // String으로 받아온 filter 값을 세미콜론으로 스플릿
@@ -121,6 +123,8 @@ public class PostService {
             List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
             //            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
 //            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
+            long end = System.currentTimeMillis();
+            log.info( "[{}], read의 Cache 수행시간 : {} ", MDC.get("UUID"),start-end);
             return filterPosts.stream().map(o -> new PostResponseDto(o, hasPostFromPostList(o.getId(), bookmarkList))).collect(Collectors.toList());
         }
 
@@ -134,6 +138,8 @@ public class PostService {
                 filterPosts = postRepository.findAllByBookmarkOrderByModifiedAt(snsId);
 //                filterPosts = postRepository.findAllByBookmarkList_User_SnsIdOrderByCreatedAtDesc(snsId);
             }
+            long end = System.currentTimeMillis();
+            log.info( "[{}], read의 Cache 수행시간 : {} ", MDC.get("UUID"),start-end);
 
             return filterPosts.stream().map(o -> new PostResponseDto(o, true)).collect(Collectors.toList());
         }
@@ -147,10 +153,14 @@ public class PostService {
 //                filterPosts = postRepository.findDistinctByTechStackList_TechInOrderByCreatedAtDesc(techList);
             }
             if (snsId.equals("")) {
+                long end = System.currentTimeMillis();
+                log.info( "[{}], read의 Cache 수행시간 : {} ", MDC.get("UUID"),start-end);
                 return filterPosts.stream().map(o -> new PostResponseDto(o, false)).collect(Collectors.toList());
             }
 
             List<Post> bookmarkList = postRepository.findAllBookmarkByUserSnsId(snsId);
+            long end = System.currentTimeMillis();
+            log.info( "[{}], read의 Cache 수행시간 : {} ", MDC.get("UUID"),start-end);
             //            List<Post> bookmarkList = postRepository.findAllByBookmarkList_User_SnsIdOrderByStartDate(snsId);
             return filterPosts.stream().map(o -> new PostResponseDto(o, hasPostFromPostList(o.getId(), bookmarkList))).collect(Collectors.toList());
         }
