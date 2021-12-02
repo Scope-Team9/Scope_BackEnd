@@ -56,6 +56,9 @@
 - Querydsl
 - Spring Security
 - Jasypt
+- NGINX
+- Docker
+- EhCache
 ---
 
 ## Api
