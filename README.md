@@ -3,10 +3,10 @@
 # Scope
 
 ## 프로젝트 소개
-### 팀원 중심의 사이드 프로젝트 구인 플렛폼
+### 팀원 중심의 사이드 프로젝트 구인 플랫폼
 
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖    
-🙋‍️저희는 이런 질문에 답하는 플렛폼을 만들고자 했습니다!🙋‍   
+🙋‍️저희는 이런 질문에 답하는 플랫폼을 만들고자 했습니다!🙋‍   
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
 
 - 회사에서 혼자 일하는게 아닌데 왜 혼자서만 프로젝트를 할까?
@@ -30,7 +30,7 @@
 ![step9](https://user-images.githubusercontent.com/70922665/144248469-03f41525-4e68-4a17-a777-64b45ac91771.png)
 
 
-시연 영상 : 
+시연 영상 : [유튜브 링크](https://www.youtube.com/watch?v=19sdEI9sENU)
 
 서비스 주소 : [https://scopewith.com/](https://scopewith.com/)
 
@@ -42,20 +42,34 @@
 - 권민혁 ([https://github.com/15011106](https://github.com/15011106))
 - 하원빈 ([https://github.com/woodimora](https://github.com/woodimora))
 
-### 프론트엔드
+### 프론트엔드 ([Github](https://github.com/Scope-Team9/Scope_FrontEnd))
 - 강지훈 ([https://github.com/kzhxxn](https://github.com/kzhxxn))
 - 김범수 ([https://github.com/kimbumsoo0820](https://github.com/kimbumsoo0820))
 - 이승민 ([https://github.com/seungmai](https://github.com/seungmai))
 
 ## 기술 스택
-- Spring Boot
-- AWS
-- Git Action
-- MySQL
+
+프레임워크
+
+<img alt="Spring-Boot" src="https://img.shields.io/badge/Spring Boot-6DB33F?style=flat-square&logo=Spring&logoColor=white"/>
+
+DevOps
+
+<img alt="Amazon AWS" src="https://img.shields.io/badge/Amazon AWS-232F3E?style=flat-square&logo=Amazon AWS&logoColor=white"/> <img alt="Nginx" src="https://img.shields.io/badge/Nginx-009639?style=flat-square&logo=Nginx&logoColor=white"/> <img alt="Docker" src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white"/> <img alt="GitHub Actions" src="https://img.shields.io/badge/GitHub Actions-2088FF?style=flat-square&logo=GitHub Actions&logoColor=white"/> <img alt="GNU Bash" src="https://img.shields.io/badge/GNU Bash-1D2D35?style=flat-square&logo=GNU Bash&logoColor=white"/> <img alt="Amazon S3" src="https://img.shields.io/badge/Amazon S3-CB333B?style=flat-square&logo=Amazon S3&logoColor=white"/>
+
+데이터베이스
+
+<img alt="MySql" src="https://img.shields.io/badge/MySql-232F3E?style=flat-square&logo=Amazon AWS&logoColor=white"/>
+
+주요 라이브러리
 - JPA
 - Querydsl
 - Spring Security
 - Jasypt
+- EhCache
+- Bucket4j
+- Swagger
+- Slf4j
 ---
 
 ## Api
@@ -63,7 +77,7 @@
 
 ---
 # 백엔드 개발 목표 및 신경쓴 부분
-백엔드 이슈 노션 링크 : [Team-Scope](https://scopewith.notion.site/Backend-154d91cdfead44f0b7048546ec2d4d60)
+백엔드 이슈 노션 링크 : [Team-Scope/backend](https://scopewith.notion.site/Backend-154d91cdfead44f0b7048546ec2d4d60)
 
 ---
 # 차후 계획

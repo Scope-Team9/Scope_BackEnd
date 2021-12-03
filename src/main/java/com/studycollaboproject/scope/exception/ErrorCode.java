@@ -27,7 +27,8 @@ public enum ErrorCode {
     NO_EXCEED_MEMBER_ERROR("이미 모집 정원이 가득 찼습니다."),
     NOT_AVAILABLE_ACCESS("불가능한 접근입니다."),
     ALREADY_TEAM_ERROR("이미 팀원인 프로젝트입니다."),
-    NO_IPBANLIST_ERROR("IP 밴 리스트에 없는 아이피입니다.")
+    NO_IPBANLIST_ERROR("IP 밴 리스트에 없는 아이피입니다."),
+    NO_EMAIL_PATTERN("이메일 형식이 맞지 않습니다.")
     ;
     private String message;
 }

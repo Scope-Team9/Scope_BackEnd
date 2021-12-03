@@ -1,8 +1,6 @@
 package com.studycollaboproject.scope.controller;
 
-import com.studycollaboproject.scope.dto.ResponseDto;
 import com.studycollaboproject.scope.service.MailService;
-import com.studycollaboproject.scope.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -28,8 +26,8 @@ public class AuthenticationController {
                                @Parameter(description = "이메일", in = ParameterIn.QUERY) @RequestParam String email,
                                @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long userId, Model model) {
         log.info("[{}], 이메일 인증 코드 확인, GET, api/user/email/auth/{}, code={}, email={}", MDC.get("UUID"), userId, code, email);
-        String msg = mailService.emailAuthCodeCheck(code, userId,email);
-        model.addAttribute("msg",msg);
+        String msg = mailService.emailAuthCodeCheck(code, userId, email);
+        model.addAttribute("msg", msg);
         return "responsePage";
     }
 }
