@@ -30,7 +30,7 @@
 ![step9](https://user-images.githubusercontent.com/70922665/144248469-03f41525-4e68-4a17-a777-64b45ac91771.png)
 
 
-시연 영상 : 
+시연 영상 : [유튜브 링크](https://www.youtube.com/watch?v=19sdEI9sENU)
 
 서비스 주소 : [https://scopewith.com/](https://scopewith.com/)
 
@@ -42,7 +42,7 @@
 - 권민혁 ([https://github.com/15011106](https://github.com/15011106))
 - 하원빈 ([https://github.com/woodimora](https://github.com/woodimora))
 
-### 프론트엔드
+### 프론트엔드 ([Github](https://github.com/Scope-Team9/Scope_FrontEnd))
 - 강지훈 ([https://github.com/kzhxxn](https://github.com/kzhxxn))
 - 김범수 ([https://github.com/kimbumsoo0820](https://github.com/kimbumsoo0820))
 - 이승민 ([https://github.com/seungmai](https://github.com/seungmai))
@@ -77,7 +77,7 @@ DevOps
 
 ---
 # 백엔드 개발 목표 및 신경쓴 부분
-백엔드 이슈 노션 링크 : [Team-Scope](https://scopewith.notion.site/Backend-154d91cdfead44f0b7048546ec2d4d60)
+백엔드 이슈 노션 링크 : [Team-Scope/backend](https://scopewith.notion.site/Backend-154d91cdfead44f0b7048546ec2d4d60)
 
 ---
 # 차후 계획
