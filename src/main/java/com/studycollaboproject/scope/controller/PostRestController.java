@@ -127,6 +127,7 @@ public class PostRestController {
 
     @Operation(summary = "프로젝트 상태 변경")
     @PostMapping("/api/post/{postId}/status")
+    @CacheEvict(value = "Post", allEntries=true)
     public ResponseEntity<Object> updatePostStatus(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
                                                    @RequestBody ProjectStatusRequestDto requestDto,
                                                    @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
@@ -179,6 +180,7 @@ public class PostRestController {
 
     @Operation(summary = "프로젝트 Github URL 업데이트")
     @PostMapping("/api/post/{postId}/url")
+    @CacheEvict(value = "Post", allEntries=true)
     public ResponseEntity<Object> updateUrl(@Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails,
                                             @RequestBody UrlUpdateRequestDto requestDto,
                                             @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId) {
