@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class OpenApiConfig {
     @Bean
-    public OpenAPI springShopOpenAPI() {
+    public OpenAPI springOpenAPI() {
         Info info = new Info()
                 .title("Scope")
                 .version("V1.0")

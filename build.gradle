@@ -42,8 +42,14 @@ dependencies {
     // 타임리프
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     //log
-    implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2:1.16'
-
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2:2.6.1'
+    // 추가
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.15.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.15.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-jul', version: '2.15.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.15.0'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.32'
+    implementation group: 'org.slf4j', name: 'jul-to-slf4j', version: '1.7.32'
     // swagger
     implementation 'org.springdoc:spring-boot-springdoc:3.1.2'
 
