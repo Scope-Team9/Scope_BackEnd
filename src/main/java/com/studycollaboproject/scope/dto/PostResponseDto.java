@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.*;
 
 @Getter
@@ -32,6 +33,8 @@ public class PostResponseDto {
     private LocalDate startDate;
     @Schema(description = "수정일")
     private LocalDate endDate;
+    @Schema(description = "기간")
+    private String period;
     @Schema(description = "북마크 체크여부")
     private boolean bookmarkChecked;
     @Schema(description = "프로젝트 프론트앤드 Repository URL")
@@ -66,6 +69,9 @@ public class PostResponseDto {
         this.recruitmentMember = post.getRecruitmentMember();
         this.endDate = post.getEndDate().toLocalDate();
         this.startDate = post.getStartDate().toLocalDate();
+        Period period = Period.between(post.getStartDate().toLocalDate(), post.getEndDate().toLocalDate());
+        int days = period.getDays();
+        this.period = ((days - 1) / 7 + 1) + "주";
         this.projectStatus = post.getProjectStatus().getProjectStatus();
         this.frontUrl = post.getFrontUrl();
         this.backUrl = post.getBackUrl();
@@ -84,13 +90,16 @@ public class PostResponseDto {
         List<TechStack> techStackList = new ArrayList<>(post.getTechStackList());
         techStackList.sort(Comparator.comparing(TechStack::getTech));
         for (TechStack stack : techStackList) {
-                this.techStack.add(stack.getTech().getTech());
+            this.techStack.add(stack.getTech().getTech());
         }
         this.totalMember = post.getTotalMember();
         this.recruitmentMember = post.getRecruitmentMember();
         this.bookmarkChecked = bookmarkChecked;
         this.endDate = post.getEndDate().toLocalDate();
         this.startDate = post.getStartDate().toLocalDate();
+        Period period = Period.between(post.getStartDate().toLocalDate(), post.getEndDate().toLocalDate());
+        int days = period.getDays();
+        this.period = ((days - 1) / 7 + 1) + "주";
         this.projectStatus = post.getProjectStatus().getProjectStatus();
         this.frontUrl = post.getFrontUrl();
         this.backUrl = post.getBackUrl();
@@ -115,6 +124,9 @@ public class PostResponseDto {
         this.bookmarkChecked = bookmarkChecked;
         this.endDate = post.getEndDate().toLocalDate();
         this.startDate = post.getStartDate().toLocalDate();
+        Period period = Period.between(post.getStartDate().toLocalDate(), post.getEndDate().toLocalDate());
+        int days = period.getDays();
+        this.period = ((days - 1) / 7 + 1) + "주";
         this.projectStatus = post.getProjectStatus().getProjectStatus();
         this.frontUrl = post.getFrontUrl();
         this.backUrl = post.getBackUrl();
@@ -123,8 +135,8 @@ public class PostResponseDto {
         this.userId = post.getUser().getId();
         this.memberIdAndAssessment = new HashMap<>();
         List<Team> memberIdList = post.getTeamList();
-        for(Team member : memberIdList){
-            this.memberIdAndAssessment.put(member.getUser().getId(),member.isAssessment());
+        for (Team member : memberIdList) {
+            this.memberIdAndAssessment.put(member.getUser().getId(), member.isAssessment());
         }
         this.writerEquals = post.getUser().getSnsId().equals(snsId);
     }
