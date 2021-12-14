@@ -25,7 +25,6 @@ public class AuthenticationController {
     public String recEmailCode(@Parameter(description = "인증 코드", in = ParameterIn.QUERY) @RequestParam String code,
                                @Parameter(description = "이메일", in = ParameterIn.QUERY) @RequestParam String email,
                                @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long userId, Model model) {
-        log.info("[{}], 이메일 인증 코드 확인, GET, api/user/email/auth/{}, code={}, email={}", MDC.get("UUID"), userId, code, email);
         String msg = mailService.emailAuthCodeCheck(code, userId, email);
         model.addAttribute("msg", msg);
         return "responsePage";

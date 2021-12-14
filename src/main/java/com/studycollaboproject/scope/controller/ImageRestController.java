@@ -26,7 +26,6 @@ public class ImageRestController {
     @Operation(summary = "이미지 등록")
     @PostMapping("/api/image")
     public ResponseEntity<Object> saveImage(@RequestBody String image) {
-        log.info("[{}], 이미지 등록, POST, /api/image", MDC.get("UUID"));
         String fileName = imageService.saveImageData(image);
         log.info("fileName : {}", fileName);
         Map<String, String> responseMap = new HashMap<>();

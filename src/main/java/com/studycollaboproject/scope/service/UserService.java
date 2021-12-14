@@ -69,7 +69,7 @@ public class UserService {
 
     //닉네임 중복 체크
     public boolean nicknameCheckByNickname(String nickname) {
-        if (nickname.length()<2||nickname.length()>5){
+        if (nickname.length() < 2 || nickname.length() > 5) {
             throw new BadRequestException(ErrorCode.INVALID_INPUT_ERROR);
         }
         userRepository.findByNickname(nickname).ifPresent(user -> {
@@ -86,7 +86,7 @@ public class UserService {
         if (user == null) {
             return new ResponseDto("추가 정보 작성이 필요한 사용자입니다.", new SnsInfoDto(id));
         } else {
-            LoginReponseDto loginReponseDto = new LoginReponseDto(jwtTokenProvider.createToken(id),  user.getNickname(), user.getId());
+            LoginReponseDto loginReponseDto = new LoginReponseDto(jwtTokenProvider.createToken(id), user.getNickname(), user.getId());
             return new ResponseDto("로그인이 완료되었습니다", loginReponseDto);
         }
     }
