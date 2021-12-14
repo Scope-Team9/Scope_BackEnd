@@ -37,7 +37,7 @@ public class IpBanService {
             ip = request.getRemoteAddr();
         }
 
-        log.info("[{}],Result : IP Address : {}", MDC.get("UUID"),ip);
+        log.info("[{}], Result : IP Address : {}", MDC.get("UUID"),ip);
 
         return ip;
     }

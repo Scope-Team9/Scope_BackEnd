@@ -35,7 +35,6 @@ public class SnsLoginRestController {
     @Operation(summary = "카카오 로그인")
     @GetMapping("/api/login/kakao")
     public ResponseEntity<Object> kakaoLogin(@Parameter(description = "코드 값", in = ParameterIn.QUERY) @RequestParam String code, HttpServletRequest servletRequest) throws JsonProcessingException {
-        log.info("[{}], 카카오 로그인, GET, /api/login/kakao, code={}", MDC.get("UUID"), code);
         SnsInfoDto snsInfoDto = kakaoUserService.kakaoLogin(code);
         servletRequest.getSession();
         int count = userCounter.getCount();
@@ -51,7 +50,6 @@ public class SnsLoginRestController {
     @Operation(summary = "Github 로그인")
     @GetMapping("/api/login/github")
     public ResponseEntity<Object> githubLogin(@Parameter(description = "코드 값", in = ParameterIn.QUERY) @RequestParam String code, HttpServletRequest servletRequest) throws JsonProcessingException {
-        log.info("[{}], Github 로그인, GET, /api/login/github, code={}", MDC.get("UUID"), code);
         SnsInfoDto snsInfoDto = githubUserService.githubLogin(code);
         servletRequest.getSession();
         int count = userCounter.getCount();

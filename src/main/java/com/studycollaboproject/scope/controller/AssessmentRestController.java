@@ -43,7 +43,6 @@ public class AssessmentRestController {
     public ResponseEntity<Object> assessmentMember(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
                                                    @RequestBody AssessmentRequestDto requestDto,
                                                    @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) throws MessagingException {
-        log.info("[{}], 팀원 평가, POST, /api/assessment/{}, userIds={}", MDC.get("UUID"), postId, requestDto.getUserIds().toString());
         // [예외처리] 로그인 정보가 없을 때
         String snsId = Optional.ofNullable(userDetails).orElseThrow(
                 () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)

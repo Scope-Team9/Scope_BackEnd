@@ -21,7 +21,6 @@ public class PricingPlanService {
     }
 
     private Bucket newBucket(String apiKey) {
-        log.info("[{}], Api : {}", MDC.get("UUID"),apiKey);
         return Bucket4j.builder()
                 // 10개의 클라이언트가 1초에 1000개씩 보낼 수 있는 대역폭
                 .addLimit(Bandwidth.simple(300, Duration.ofMinutes(1)))
