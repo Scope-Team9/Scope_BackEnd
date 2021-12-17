@@ -13,6 +13,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Rollback
 public class PostIntegrationTest {
 
     @Autowired
@@ -57,10 +59,10 @@ public class PostIntegrationTest {
         String[] type2 = {"F", "F", "L", "H", "H", "H", "P", "P", "P"};
         List<String> userPropensityType = Arrays.stream(type1).collect(Collectors.toList());
         List<String> memberPropensityType = Arrays.stream(type2).collect(Collectors.toList());
-        tech.add("String");
+        tech.add("Spring");
         tech.add("React");
-        String snsId = "snsId2";
-        String nickname = "nickname2";
+        String snsId = "snsId5";
+        String nickname = "nickname5";
         SignupRequestDto signupRequestDto = new SignupRequestDto(
                 snsId, nickname, tech, userPropensityType, memberPropensityType);
 
@@ -127,8 +129,8 @@ public class PostIntegrationTest {
         Assertions.assertThat(this.post.getContents()).isEqualTo(editContents);
         Assertions.assertThat(this.post.getProjectStatus()).isEqualTo(ProjectStatus.projectStatusOf(editProjectStatus));
         Assertions.assertThat(this.post.getTotalMember()).isEqualTo(editTotalMember);
-        Assertions.assertThat(this.post.getStartDate()).isEqualTo(startDate.toLocalDateTime());
-        Assertions.assertThat(this.post.getEndDate()).isEqualTo(endDate.toLocalDateTime());
+        Assertions.assertThat(this.post.getStartDate()).isEqualTo(editStartDate.toLocalDateTime());
+        Assertions.assertThat(this.post.getEndDate()).isEqualTo(editEndDate.toLocalDateTime());
         Assertions.assertThat(this.post.getRecruitmentMember()).isEqualTo(1);
         Assertions.assertThat(this.post.getChatUrl()).isEqualTo(chatUrl);
     }

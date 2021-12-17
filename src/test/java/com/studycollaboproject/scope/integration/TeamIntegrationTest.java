@@ -3,9 +3,7 @@ package com.studycollaboproject.scope.integration;
 import com.studycollaboproject.scope.dto.MemberListResponseDto;
 import com.studycollaboproject.scope.dto.PostRequestDto;
 import com.studycollaboproject.scope.dto.SignupRequestDto;
-import com.studycollaboproject.scope.dto.UserResponseDto;
 import com.studycollaboproject.scope.exception.BadRequestException;
-import com.studycollaboproject.scope.exception.RestApiException;
 import com.studycollaboproject.scope.model.Applicant;
 import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.User;
@@ -14,10 +12,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.annotation.Rollback;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,6 +24,7 @@ import java.util.stream.Collectors;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Rollback
 public class TeamIntegrationTest {
 
     @Autowired
