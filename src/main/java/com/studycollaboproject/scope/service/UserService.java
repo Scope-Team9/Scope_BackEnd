@@ -61,21 +61,13 @@ public class UserService {
     }
 
     //email 중복 체크
-    public void emailCheckByEmail(String email) {
-        userRepository.findByEmail(email).ifPresent(user -> {
-            throw new BadRequestException(ErrorCode.ALREADY_EMAIL_ERROR);
-        });
+    public boolean emailCheckByEmail(String email) {
+        return userRepository.existsByEmail(email);
     }
 
     //닉네임 중복 체크
     public boolean nicknameCheckByNickname(String nickname) {
-        if (nickname.length() < 2 || nickname.length() > 5) {
-            throw new BadRequestException(ErrorCode.INVALID_INPUT_ERROR);
-        }
-        userRepository.findByNickname(nickname).ifPresent(user -> {
-            throw new BadRequestException(ErrorCode.ALREADY_NICKNAME_ERROR);
-        });
-        return true;
+        return userRepository.existsByNickname(nickname);
     }
 
     //sns 로그인 시 기존 회원 여부 판단
