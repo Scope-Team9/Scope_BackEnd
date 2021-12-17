@@ -2,9 +2,6 @@ package com.studycollaboproject.scope.integration;
 
 import com.studycollaboproject.scope.dto.SignupRequestDto;
 import com.studycollaboproject.scope.dto.UserResponseDto;
-import com.studycollaboproject.scope.exception.BadRequestException;
-import com.studycollaboproject.scope.exception.ErrorCode;
-import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.service.PostService;
 import com.studycollaboproject.scope.service.TestService;
@@ -12,7 +9,6 @@ import com.studycollaboproject.scope.service.UserService;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -25,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@Rollback
+@Transactional
 public class UserIntegrationTest {
 
     @Autowired
@@ -47,7 +43,7 @@ public class UserIntegrationTest {
     String email = "user1@mail.com";
     String nickname = "nickname1";
 
-    @BeforeAll
+    @BeforeEach
     public void init() {
         String[] type1 = {"L", "L", "L", "H", "H", "H", "G", "G", "G"};
         String[] type2 = {"F", "F", "L", "H", "H", "H", "P", "P", "P"};
@@ -108,6 +104,12 @@ public class UserIntegrationTest {
     @Order(5)
     @DisplayName("닉네임 중복 확인 - 중복")
     public void 닉네임중복() {
+        SignupRequestDto signupRequestDto = new SignupRequestDto(
+                snsId, nickname, tech, userPropensityType, memberPropensityType);
+
+        this.user1 = new User(signupRequestDto, userTestResult, memberTestResult);
+        userService.saveUser(this.tech, this.user1);
+
         boolean result = userService.nicknameCheckByNickname(nickname);
         assertThat(result).isTrue();
     }
@@ -115,8 +117,12 @@ public class UserIntegrationTest {
     @Test
     @Order(6)
     @DisplayName("회원 조회 - SNS ID")
-    @Transactional
     public void 회원조회_snsId() {
+        SignupRequestDto signupRequestDto = new SignupRequestDto(
+                snsId, nickname, tech, userPropensityType, memberPropensityType);
+
+        this.user1 = new User(signupRequestDto, userTestResult, memberTestResult);
+        userService.saveUser(this.tech, this.user1);
         User user = userService.loadUserBySnsId(snsId);
 
         assertThat(user.getSnsId()).isEqualTo(snsId);

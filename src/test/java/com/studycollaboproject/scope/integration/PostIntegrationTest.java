@@ -13,7 +13,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@Rollback
+@Transactional
 public class PostIntegrationTest {
 
     @Autowired
@@ -50,19 +50,16 @@ public class PostIntegrationTest {
 
     Post post;
 
-    @Test
-    @Order(1)
-    @DisplayName("Post 저장")
-    void writePost() {
-        //given
+    @BeforeEach
+    void init() {
         String[] type1 = {"L", "L", "L", "H", "H", "H", "G", "G", "G"};
         String[] type2 = {"F", "F", "L", "H", "H", "H", "P", "P", "P"};
         List<String> userPropensityType = Arrays.stream(type1).collect(Collectors.toList());
         List<String> memberPropensityType = Arrays.stream(type2).collect(Collectors.toList());
         tech.add("Spring");
         tech.add("React");
-        String snsId = "snsId5";
-        String nickname = "nickname5";
+        String snsId = "snsId2";
+        String nickname = "nickname2";
         SignupRequestDto signupRequestDto = new SignupRequestDto(
                 snsId, nickname, tech, userPropensityType, memberPropensityType);
 
@@ -70,6 +67,13 @@ public class PostIntegrationTest {
         String memberTestResult = testService.testResult(memberPropensityType);
         this.user1 = new User(signupRequestDto, userTestResult, memberTestResult);
         userService.saveUser(tech, this.user1);
+    }
+
+    @Test
+    @Order(1)
+    @DisplayName("Post 저장")
+    void writePost() {
+        //given
 
         //when
         PostRequestDto postRequestDto = new PostRequestDto(title, contents, totalMember, projectStatus, startDate, endDate, tech, chatUrl);
@@ -87,9 +91,13 @@ public class PostIntegrationTest {
     @Order(2)
     @DisplayName("Post 읽어오기")
     void readPost() {
+        //given
+        PostRequestDto postRequestDto = new PostRequestDto(title, contents, totalMember, projectStatus, startDate, endDate, tech, chatUrl);
+        this.post = postService.writePost(postRequestDto, this.user1.getSnsId());
+        //when
         List<PostResponseDto> createdAt = postService.readPost("", "createdAt", "", "");
-        user1 = userService.loadUserBySnsId(user1.getSnsId());
-
+        this.user1 = userService.loadUserBySnsId(user1.getSnsId());
+        //then
         Assertions.assertThat(createdAt.size()).isEqualTo(1);
         Assertions.assertThat(createdAt.get(0).getTitle()).isEqualTo(title);
         Assertions.assertThat(createdAt.get(0).getContents()).isEqualTo(contents);
@@ -114,17 +122,21 @@ public class PostIntegrationTest {
     @Order(3)
     @DisplayName("Post 수정하기")
     void editPost() {
+        //given
+        PostRequestDto postRequestDto = new PostRequestDto(title, contents, totalMember, projectStatus, startDate, endDate, tech, chatUrl);
+        this.post = postService.writePost(postRequestDto, this.user1.getSnsId());
+        //when
         String editTitle = "수정된 제목입니다.";
         String editContents = "수정된 내용입니다.";
         int editTotalMember = 4;
         String editProjectStatus = "진행중";
         Timestamp editStartDate = Timestamp.valueOf(LocalDateTime.now().plusDays(5));
         Timestamp editEndDate = Timestamp.valueOf(LocalDateTime.now().plusDays(19));
-        tech.add("Java");
-        PostRequestDto postRequestDto = new PostRequestDto(editTitle, editContents, editTotalMember, editProjectStatus, editStartDate, editEndDate, tech, chatUrl);
+        this.tech.add("Java");
+        postRequestDto = new PostRequestDto(editTitle, editContents, editTotalMember, editProjectStatus, editStartDate, editEndDate, tech, chatUrl);
         postService.editPost(this.post.getId(), postRequestDto, user1.getSnsId());
         this.post = postService.loadPostByPostId(post.getId());
-
+        //then
         Assertions.assertThat(this.post.getTitle()).isEqualTo(editTitle);
         Assertions.assertThat(this.post.getContents()).isEqualTo(editContents);
         Assertions.assertThat(this.post.getProjectStatus()).isEqualTo(ProjectStatus.projectStatusOf(editProjectStatus));

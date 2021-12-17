@@ -12,7 +12,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@Rollback
+@Transactional
 public class TeamIntegrationTest {
 
     @Autowired
@@ -47,10 +47,8 @@ public class TeamIntegrationTest {
     User user3;
     Post post;
 
-    @Test
-    @Order(1)
-    @DisplayName("회원가입, 프로젝트 작성")
-    public void init() {
+    @BeforeEach
+    void init() {
         String[] type1 = {"L", "L", "L", "H", "H", "H", "G", "G", "G"};
         String[] type2 = {"F", "F", "L", "H", "H", "H", "P", "P", "P"};
         List<String> userPropensityType = Arrays.stream(type1).collect(Collectors.toList());
@@ -104,7 +102,7 @@ public class TeamIntegrationTest {
     }
 
     @Test
-    @Order(2)
+    @Order(1)
     @DisplayName("모집 지원")
     void 모집지원() {
         //given
@@ -122,10 +120,13 @@ public class TeamIntegrationTest {
     }
 
     @Test
-    @Order(3)
+    @Order(2)
     @DisplayName("모집 지원 실패 - 중복 지원")
     void 모집지원실패() {
         //given
+        applicantService.applyPost(this.user1.getSnsId(), this.post.getId(), "comment1");
+        applicantService.applyPost(this.user2.getSnsId(), this.post.getId(), "comment2");
+
         //when
 
         //then
@@ -133,11 +134,12 @@ public class TeamIntegrationTest {
     }
 
     @Test
-    @Order(4)
+    @Order(3)
     @DisplayName("모집 지원 목록 조회")
     void 모집지원목록조회() {
         //given
-
+        applicantService.applyPost(this.user1.getSnsId(), this.post.getId(), "comment1");
+        applicantService.applyPost(this.user2.getSnsId(), this.post.getId(), "comment2");
         //when
         List<MemberListResponseDto> applicant = applicantService.getApplicant(this.post);
         System.out.println("Get applicant = " + applicant);
@@ -147,11 +149,12 @@ public class TeamIntegrationTest {
     }
 
     @Test
-    @Order(5)
+    @Order(4)
     @DisplayName("모집 지원 취소")
     void 모집지원취소() {
         //given
-
+        applicantService.applyPost(this.user1.getSnsId(), this.post.getId(), "comment1");
+        applicantService.applyPost(this.user2.getSnsId(), this.post.getId(), "comment2");
         //when
         applicantService.cancelApply(this.user1.getSnsId(), this.post.getId());
         //then
@@ -160,21 +163,19 @@ public class TeamIntegrationTest {
     }
 
     @Test
-    @Order(6)
+    @Order(5)
     @DisplayName("모집 지원 승인")
     void 모집지원승인() {
+        //given
+        applicantService.applyPost(this.user1.getSnsId(), this.post.getId(), "comment1");
+        applicantService.applyPost(this.user2.getSnsId(), this.post.getId(), "comment2");
+        //when
         teamService.acceptMember(this.post, this.user2, true);
         List<MemberListResponseDto> applicant = applicantService.getApplicant(this.post);
-        //지원 목록 비워져있어야함.
-        Assertions.assertThat(applicant).isEmpty();
-    }
-
-    @Test
-    @Order(7)
-    @DisplayName("팀원 조회")
-    void 팀원조회() {
         List<MemberListResponseDto> result = teamService.getMember(this.post.getId());
-
+        //then
+        //지원 목록 비워져있어야함.
+        Assertions.assertThat(applicant.size()).isEqualTo(1);
         Assertions.assertThat(result.size()).isEqualTo(2);
     }
 }
