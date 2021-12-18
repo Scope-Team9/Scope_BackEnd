@@ -20,6 +20,9 @@ public class AmazonS3Config {
     @Value("${cloud.aws.region.static}")
     private String region;
 
+    /*
+    AWS S3 사용을 위한 Bean 등록.
+     */
     @Bean
     public AmazonS3Client amazonS3Client() {
         BasicAWSCredentials awsCreds = new BasicAWSCredentials(accessKey, secretKey);

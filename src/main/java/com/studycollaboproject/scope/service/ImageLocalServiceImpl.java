@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 @Slf4j
-@Service
+//@Service
 public class ImageLocalServiceImpl implements ImageService{
 
     @Value("${serverUrl}")

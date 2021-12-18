@@ -18,7 +18,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
-//@Service
+
+@Service
 @RequiredArgsConstructor
 @Slf4j
 public class ImageS3ServiceImpl implements ImageService {
@@ -29,6 +30,7 @@ public class ImageS3ServiceImpl implements ImageService {
 
     @Override
     public String saveImageData(String snsId, String image) {
+        // base64 인코딩 된 String -> 이미지 파일로 Local에 저장
         String fileName = "images/" + snsId + "-" + UUID.randomUUID() + ".png";
         try {
             String data = image.split(",")[1];
@@ -41,12 +43,15 @@ public class ImageS3ServiceImpl implements ImageService {
                 log.info("이미지 파일 저장 경로 에러");
                 throw new BadRequestException(ErrorCode.IMAGE_SAVE_ERROR);
             }
+            //S3 서버에 이미지 업로드
             amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, file).withCannedAcl(CannedAccessControlList.PublicRead));
+            // Local 에 저장된 이미지 제거
             file.delete();
         } catch (ArrayIndexOutOfBoundsException e) {
             log.info("이미지 파일 데이터 형식 에러");
             throw new BadRequestException(ErrorCode.IMAGE_SAVE_ERROR);
         }
+        // 이미지 링크 반환
         return amazonS3Client.getUrl(bucket, fileName).toString();
     }
 }
