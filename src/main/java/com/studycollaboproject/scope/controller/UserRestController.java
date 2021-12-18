@@ -1,6 +1,7 @@
 package com.studycollaboproject.scope.controller;
 
 import com.studycollaboproject.scope.dto.*;
+import com.studycollaboproject.scope.exception.BadRequestException;
 import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.ForbiddenException;
 import com.studycollaboproject.scope.exception.NoAuthException;
@@ -16,7 +17,6 @@ import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.MDC;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -97,7 +97,9 @@ public class UserRestController {
     @GetMapping("/api/login/email")
     public ResponseEntity<Object> emailCheck(@Parameter(description = "이메일", in = ParameterIn.QUERY) @RequestParam String email) {
 
-        userService.emailCheckByEmail(email);
+        if (userService.emailCheckByEmail(email)) {
+            throw new BadRequestException(ErrorCode.ALREADY_EMAIL_ERROR);
+        }
         return new ResponseEntity<>(
                 new ResponseDto("사용 가능한 메일입니다.", ""),
                 HttpStatus.OK
@@ -107,7 +109,12 @@ public class UserRestController {
     @Operation(summary = "닉네임 중복 확인")
     @GetMapping("/api/login/nickname")
     public ResponseEntity<Object> nicknameCheck(@Parameter(description = "닉네임", in = ParameterIn.QUERY) @RequestParam String nickname) {
-        userService.nicknameCheckByNickname(nickname);
+        if (nickname.length() < 2 || nickname.length() > 5) {
+            throw new BadRequestException(ErrorCode.INVALID_INPUT_ERROR);
+        }
+        if (userService.nicknameCheckByNickname(nickname)) {
+            throw new BadRequestException(ErrorCode.ALREADY_NICKNAME_ERROR);
+        }
         return new ResponseEntity<>(
                 new ResponseDto("사용가능한 닉네임입니다.", ""),
                 HttpStatus.OK
@@ -144,7 +151,7 @@ public class UserRestController {
         );
     }
 
-    @CacheEvict(value = "Post", allEntries=true)
+    @CacheEvict(value = "Post", allEntries = true)
     @Operation(summary = "회원 탈퇴")
     @DeleteMapping("api/user/{userId}")
     public ResponseEntity<Object> deleteUser(@Parameter(description = "탈퇴하려는 회원 ID", in = ParameterIn.PATH) @PathVariable Long userId,

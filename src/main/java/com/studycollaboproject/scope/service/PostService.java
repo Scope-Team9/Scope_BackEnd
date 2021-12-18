@@ -32,7 +32,7 @@ public class PostService {
     private final TotalResultRepository totalResultRepository;
 
     @Transactional
-    public PostResponseDto writePost(PostRequestDto postRequestDto, String snsId) {
+    public Post writePost(PostRequestDto postRequestDto, String snsId) {
         User user = userRepository.findBySnsId(snsId).orElseThrow(() ->
                 new BadRequestException(ErrorCode.NO_USER_ERROR));
         vaildationDate(postRequestDto.getStartDate(),postRequestDto.getEndDate());
@@ -42,8 +42,7 @@ public class PostService {
         teamRepository.save(new Team(user, post));
         techStackRepository.saveAll(techStackList);
         post.updateTechStack(techStackList);
-        Post savedPost = postRepository.save(post);
-        return new PostResponseDto(savedPost);
+        return postRepository.save(post);
     }
 
     private void vaildationDate(Timestamp start, Timestamp end) {

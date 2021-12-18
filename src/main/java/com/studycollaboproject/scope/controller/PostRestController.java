@@ -50,9 +50,9 @@ public class PostRestController {
                 () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
         ).getSnsId();
 
-        PostResponseDto responseDto = postService.writePost(postRequestDto, snsId);
+        Post writePost = postService.writePost(postRequestDto, snsId);
         return new ResponseEntity<>(
-                new ResponseDto("게시물이 성공적으로 저장되었습니다.", responseDto),
+                new ResponseDto("게시물이 성공적으로 저장되었습니다.", new PostResponseDto(writePost)),
                 HttpStatus.CREATED
         );
 

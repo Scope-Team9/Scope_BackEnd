@@ -66,6 +66,9 @@ dependencies {
     compile group: 'org.ehcache', name: 'ehcache', version: '3.8.1'
     // https://mvnrepository.com/artifact/javax.cache/cache-api
     compile group: 'javax.cache', name: 'cache-api', version: '1.1.1'
+
+    //aws
+    implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 }
 //querydsl 추가 시작
 def querydslDir = "$buildDir/generated/querydsl"
