@@ -148,6 +148,8 @@ public class PostService {
             if ("deadline".equals(sort)) {
                 postIdList = postRepository.findAllPostIdListOrderByStartDate(pageRequest);
                 filterPosts = postRepository.findByInPostIdOrderByStartDate(postIdList);
+//                pageRequest = PageRequest.of(page, SIZE, Sort.by("ProjectStatus").descending().and(Sort.by("StartDate").ascending()));
+//                filterPosts = postRepository.findAll(pageRequest).getContent();
             } else {
                 postIdList = postRepository.findAllPostIdListOrderByModifiedAt(pageRequest);
                 filterPosts = postRepository.findByInPostIdOrderByModifiedAt(postIdList);

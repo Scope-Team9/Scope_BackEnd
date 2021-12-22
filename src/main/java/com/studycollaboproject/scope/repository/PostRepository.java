@@ -5,6 +5,8 @@ import com.studycollaboproject.scope.model.Post;
 import com.studycollaboproject.scope.model.ProjectStatus;
 import com.studycollaboproject.scope.model.Tech;
 import com.studycollaboproject.scope.model.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -26,4 +28,5 @@ public interface PostRepository extends JpaRepository<Post, Long>, PostRepositor
     List<Post> findAllByBookmarkList_User_SnsIdOrderByCreatedAtDesc(String snsId);
 
     List<Post> findAllByUser(User user);
+    Page<Post> findAll(Pageable pageable);
 }
