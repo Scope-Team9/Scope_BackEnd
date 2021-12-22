@@ -3,12 +3,13 @@ package com.studycollaboproject.scope.repository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.studycollaboproject.scope.model.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.studycollaboproject.scope.model.QPost.post;
 import static com.studycollaboproject.scope.model.QUser.user;
@@ -96,6 +97,80 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
     }
 
     @Override
+    public List<Post> findByInPostIdOrderByModifiedAt(List<Long> postId) {
+        return queryFactory.selectFrom(post)
+                .where(post.id.in(postId))
+                .leftJoin(post.user, user).fetchJoin()
+                .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .orderBy(post.projectStatus.desc())
+                .orderBy(post.modifiedAt.desc())
+                .distinct()
+                .fetch();
+    }
+
+    @Override
+    public List<Post> findByInPostIdOrderByStartDate(List<Long> postId) {
+        return queryFactory.selectFrom(post)
+                .where(post.id.in(postId))
+                .leftJoin(post.user, user).fetchJoin()
+                .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .orderBy(post.projectStatus.desc())
+                .orderBy(post.startDate.asc())
+                .distinct()
+                .fetch();
+    }
+
+    @Override
+    public List<Long> findAllPostIdListByPropensityType(String propensity, List<Tech> techList, String snsId, Pageable pageable) {
+        List<Post> fetch = queryFactory.selectFrom(post)
+                .where(post.user.snsId.notEqualsIgnoreCase("unknown")
+                        .and(post.user.snsId.notEqualsIgnoreCase(snsId))
+                        .and(post.projectStatus.eq(ProjectStatus.PROJECT_STATUS_RECRUITMENT))
+                        .and(post.techStackList.any().tech.in(techList))
+                        .and(post.user.userPropensityType.eq(propensity)))
+                .orderBy(post.modifiedAt.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+        return fetch.stream().map(Post::getId).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Long> findAllPostIdListByBookmark(String snsId, Pageable pageable) {
+        List<Post> fetch = queryFactory.selectFrom(post)
+                .where(post.bookmarkList.any().user.snsId.equalsIgnoreCase(snsId))
+                .orderBy(post.projectStatus.desc())
+                .orderBy(post.modifiedAt.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+        return fetch.stream().map(Post::getId).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Long> findAllPostIdListOrderByStartDate(Pageable pageable) {
+        List<Post> fetch = queryFactory.selectFrom(post)
+                .where(post.startDate.goe(LocalDate.now().atStartOfDay()))
+                .orderBy(post.projectStatus.desc())
+                .orderBy(post.startDate.asc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+        return fetch.stream().map(Post::getId).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Long> findAllPostIdListOrderByModifiedAt(Pageable pageable) {
+        List<Post> fetch = queryFactory.selectFrom(post)
+                .orderBy(post.projectStatus.desc())
+                .orderBy(post.modifiedAt.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+        return fetch.stream().map(Post::getId).collect(Collectors.toList());
+    }
+
+    @Override
     public List<Post> findAllByPropensityTypeOrderByStartDate(String propensity, List<Tech> techList, String snsId) {
         return queryFactory.selectFrom(post)
                 .where(post.user.snsId.notEqualsIgnoreCase("unknown")
@@ -106,6 +181,7 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
                         .and(post.user.userPropensityType.eq(propensity)))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .orderBy(post.projectStatus.desc())
                 .orderBy(post.startDate.asc())
                 .distinct()
                 .fetch();
@@ -121,6 +197,7 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
                         .and(post.user.userPropensityType.eq(propensity)))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .orderBy(post.projectStatus.desc())
                 .orderBy(post.modifiedAt.desc())
                 .distinct()
                 .fetch();
@@ -133,6 +210,7 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
                 .leftJoin(post.teamList, QTeam.team).fetchJoin()
+                .orderBy(post.projectStatus.desc())
                 .orderBy(post.modifiedAt.desc())
                 .distinct()
                 .fetch();
@@ -145,6 +223,7 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
                 .leftJoin(post.teamList, QTeam.team).fetchJoin()
+                .orderBy(post.projectStatus.desc())
                 .orderBy(post.modifiedAt.desc())
                 .distinct()
                 .fetch();
@@ -157,6 +236,7 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
                 .leftJoin(post.teamList, QTeam.team).fetchJoin()
+                .orderBy(post.projectStatus.desc())
                 .orderBy(post.modifiedAt.desc())
                 .distinct()
                 .fetch();
@@ -169,6 +249,7 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
                         .or(post.contents.contains(keyword)))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .orderBy(post.projectStatus.desc())
                 .orderBy(post.modifiedAt.desc())
                 .distinct()
                 .fetch();
@@ -182,6 +263,7 @@ public class PostRepositoryExtensionImpl implements PostRepositoryExtension {
                 .where(post.startDate.goe(LocalDateTime.now()))
                 .leftJoin(post.user, user).fetchJoin()
                 .leftJoin(post.techStackList, QTechStack.techStack).fetchJoin()
+                .orderBy(post.projectStatus.desc())
                 .orderBy(post.startDate.asc())
                 .distinct()
                 .fetch();
