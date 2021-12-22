@@ -80,6 +80,29 @@ public class PostRestController {
 
     }
 
+    @Operation(summary = "프로젝트 페이지 조회")
+    @GetMapping("/api/post-page")
+    public ResponseEntity<Object> readPostPage(@Parameter(description = "필터", in = ParameterIn.QUERY, example = ";;;;;;;;;;;;;;") @RequestParam String filter,
+                                           @Parameter(description = "정렬 기준", in = ParameterIn.QUERY, example = "createdAt") @RequestParam String sort,
+                                           @Parameter(description = "페이지 번호", in = ParameterIn.QUERY, example = "1") @RequestParam int page,
+                                           @Parameter(description = "북마크 / 추천", in = ParameterIn.QUERY, example = "bookmark", allowEmptyValue = true) @RequestParam String bookmarkRecommend,
+                                           @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        String snsId = "";
+
+        if (bookmarkRecommend.equals("recommend") || bookmarkRecommend.equals("bookmark")) {
+            snsId = Optional.ofNullable(userDetails).orElseThrow(
+                    () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
+            ).getSnsId();
+        }
+
+        List<PostResponseDto> postResponseDtos = postService.readPostPage(filter, sort, page - 1, snsId, bookmarkRecommend);
+        return new ResponseEntity<>(
+                new ResponseDto("프로젝트 조회 성공", postResponseDtos),
+                HttpStatus.OK
+        );
+
+    }
+
     @Operation(summary = "프로젝트 수정")
     @PostMapping("/api/post/{postId}")
     @CacheEvict(value = "Post", allEntries=true)
