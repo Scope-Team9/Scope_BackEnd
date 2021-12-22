@@ -3,6 +3,7 @@ package com.studycollaboproject.scope.model;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,7 +20,6 @@ public class TechStack {
     private Tech tech;
 
     @ManyToOne(fetch = FetchType.LAZY)
-
     @JoinColumn(name = "post_id")
     private Post post;
 
@@ -28,13 +28,13 @@ public class TechStack {
 
     private User user;
 
-    public TechStack(Tech tech,User user){
+    public TechStack(Tech tech, User user) {
         this.tech = tech;
         this.user = user;
         user.getTechStackList().add(this);
     }
 
-    public TechStack(Tech tech,Post post){
+    public TechStack(Tech tech, Post post) {
         this.tech = tech;
         this.post = post;
         post.getTechStackList().add(this);

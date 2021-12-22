@@ -17,11 +17,14 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,17 +42,17 @@ public class PostRestController {
 
     @Operation(summary = "프로젝트 작성")
     @PostMapping("/api/post")
-    public ResponseEntity<Object> writePost(@RequestBody PostRequestDto postRequestDto,
+    @CacheEvict(value = "Post", allEntries=true)
+    public ResponseEntity<Object> writePost(@Valid @RequestBody PostRequestDto postRequestDto,
                                             @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        log.info("POST, [{}], /api/post, requestDto={}", MDC.get("UUID"), postRequestDto.toString());
         // [예외처리] 로그인 정보가 없을 때
         String snsId = Optional.ofNullable(userDetails).orElseThrow(
                 () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
         ).getSnsId();
 
-        PostResponseDto responseDto = postService.writePost(postRequestDto, snsId);
+        Post writePost = postService.writePost(postRequestDto, snsId);
         return new ResponseEntity<>(
-                new ResponseDto("게시물이 성공적으로 저장되었습니다.", responseDto),
+                new ResponseDto("게시물이 성공적으로 저장되었습니다.", new PostResponseDto(writePost)),
                 HttpStatus.CREATED
         );
 
@@ -61,7 +64,6 @@ public class PostRestController {
                                            @Parameter(description = "정렬 기준", in = ParameterIn.QUERY, example = "createdAt") @RequestParam String sort,
                                            @Parameter(description = "북마크 / 추천", in = ParameterIn.QUERY, example = "bookmark", allowEmptyValue = true) @RequestParam String bookmarkRecommend,
                                            @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        log.info("GET, [{}], /api/post, filter={}, sort={}, bookmarkRecommend={}", MDC.get("UUID"), filter, sort, bookmarkRecommend);
         String snsId = "";
 
         if (bookmarkRecommend.equals("recommend") || bookmarkRecommend.equals("bookmark")) {
@@ -80,12 +82,12 @@ public class PostRestController {
 
     @Operation(summary = "프로젝트 수정")
     @PostMapping("/api/post/{postId}")
+    @CacheEvict(value = "Post", allEntries=true)
     public ResponseEntity<Object> editPost(
             @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
             @RequestBody PostRequestDto postRequestDto,
             @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails
     ) {
-        log.info("POST, [{}], /api/post/{}, requestDto={}", MDC.get("UUID"), postId, postRequestDto.toString());
         // [예외처리] 로그인 정보가 없을 때
         String snsId = Optional.ofNullable(userDetails).orElseThrow(
                 () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
@@ -100,12 +102,11 @@ public class PostRestController {
 
     @Operation(summary = "프로젝트 삭제")
     @DeleteMapping("/api/post/{postId}")
+    @CacheEvict(value = "Post", allEntries=true)
     public ResponseEntity<Object> deletePost(
             @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
             @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails
     ) {
-        log.info("DELETE, [{}], /api/post/{}", MDC.get("UUID"), postId);
-
         String snsId = Optional.ofNullable(userDetails).orElseThrow(
                 () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
         ).getSnsId();
@@ -121,11 +122,10 @@ public class PostRestController {
 
     @Operation(summary = "프로젝트 상태 변경")
     @PostMapping("/api/post/{postId}/status")
+    @CacheEvict(value = "Post", allEntries=true)
     public ResponseEntity<Object> updatePostStatus(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
                                                    @RequestBody ProjectStatusRequestDto requestDto,
                                                    @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        log.info("POST, [{}], /api/post/{}/status, projectStatus={}", MDC.get("UUID"), postId, requestDto.getProjectStatus());
-
         String snsId = Optional.ofNullable(userDetails).orElseThrow(
                 () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
         ).getSnsId();
@@ -135,15 +135,12 @@ public class PostRestController {
                 new ResponseDto("프로젝트 상태가 성공적으로 수정되었습니다.", responseDto),
                 HttpStatus.OK
         );
-
     }
 
     @Operation(summary = "프로젝트 상세 조회")
     @GetMapping("/api/post/{postId}")
     public ResponseEntity<Object> getPost(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
                                           @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        log.info("GET, [{}], /api/post/{}", MDC.get("UUID"), postId);
-
         List<MemberListResponseDto> member = teamService.getMember(postId);
 
         boolean isBookmarkChecked = false;
@@ -154,14 +151,14 @@ public class PostRestController {
             User user = userDetails.getUser();
             if (postService.isTeamStarter(post, user.getSnsId())) {
                 userStatus = UserStatus.USER_STATUS_TEAM_STARTER.getUserStatus();
-            } else if (teamService.isMemeber(post, user)) {
+            } else if (teamService.isMember(post, user)) {
                 userStatus = UserStatus.USER_STATUS_MEMBER.getUserStatus();
             } else if (applicantService.isApplicant(post, user)) {
                 userStatus = UserStatus.USER_STATUS_APPLICANT.getUserStatus();
             } else {
                 userStatus = UserStatus.USER_STATUS_USER.getUserStatus();
             }
-            isBookmarkChecked = postService.isBookmarkChecked(post, user);
+            isBookmarkChecked = postService.hasPostFromUserBookmarkList(post, user.getSnsId());
         } else {
             userStatus = UserStatus.USER_STATUS_ANONYMOUS.getUserStatus();
         }
@@ -172,14 +169,12 @@ public class PostRestController {
         );
     }
 
-
-    @Operation(summary = "프로젝트 git Repository URL 업데이트")
+    @Operation(summary = "프로젝트 Github URL 업데이트")
     @PostMapping("/api/post/{postId}/url")
+    @CacheEvict(value = "Post", allEntries=true)
     public ResponseEntity<Object> updateUrl(@Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails,
                                             @RequestBody UrlUpdateRequestDto requestDto,
                                             @Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId) {
-        log.info("POST, [{}], /api/post/{}/url, frontUrl={}, backUrl={}", MDC.get("UUID"), postId, requestDto.getFrontUrl(), requestDto.getBackUrl());
-
         String snsId = Optional.ofNullable(userDetails).orElseThrow(
                 () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
         ).getSnsId();
@@ -187,6 +182,21 @@ public class PostRestController {
         PostResponseDto responseDto = postService.updateUrl(requestDto.getBackUrl(), requestDto.getFrontUrl(), snsId, postId);
         return new ResponseEntity<>(
                 new ResponseDto("프로젝트 URL이 성공적으로 저장되었습니다.", responseDto),
+                HttpStatus.OK
+        );
+    }
+
+    @Operation(summary = "프로젝트 검색")
+    @GetMapping("/api/post/search")
+    public ResponseEntity<Object> searchPost(@Parameter(description = "키워드", in = ParameterIn.QUERY) @RequestParam String keyword,
+                                             @Parameter(description = "정렬", in = ParameterIn.QUERY, example = "createdAt") @RequestParam String sort,
+//                                             @Parameter(description = "정렬", in = ParameterIn.QUERY, example = "15") @RequestParam int displayNum,
+//                                             @Parameter(description = "정렬", in = ParameterIn.QUERY, example = "1") @RequestParam int page,
+                                             @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        String snsId = Optional.ofNullable(userDetails).map(UserDetailsImpl::getSnsId).orElse("");
+        List<PostResponseDto> postList = postService.searchPost(snsId, keyword, sort);
+        return new ResponseEntity<>(
+                new ResponseDto("프로젝트 검색 성공.", postList),
                 HttpStatus.OK
         );
     }

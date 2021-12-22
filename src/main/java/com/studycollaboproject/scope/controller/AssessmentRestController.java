@@ -43,7 +43,6 @@ public class AssessmentRestController {
     public ResponseEntity<Object> assessmentMember(@Parameter(description = "프로젝트 ID", in = ParameterIn.PATH) @PathVariable Long postId,
                                                    @RequestBody AssessmentRequestDto requestDto,
                                                    @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) throws MessagingException {
-        log.info("POST, [{}], /api/assessment/{}, userIds={}", MDC.get("UUID"), postId, requestDto.getUserIds().toString());
         // [예외처리] 로그인 정보가 없을 때
         String snsId = Optional.ofNullable(userDetails).orElseThrow(
                 () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
@@ -54,7 +53,6 @@ public class AssessmentRestController {
 
         //팀장을 제외한 팀원들에게 프로젝트 종료와 평가를 알리는 메일 보내기
         mailService.assessmentMailBuilder(mailDto);
-
         return new ResponseEntity<>(
                 new ResponseDto("팀원 평가 정보가 성공적으로 저장되었습니다.", ""),
                 HttpStatus.OK

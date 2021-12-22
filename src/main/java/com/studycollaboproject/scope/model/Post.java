@@ -8,9 +8,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Entity
@@ -25,14 +27,12 @@ public class Post extends Timestamped {
     @Column(nullable = false)
     private String title;
 
-    private LocalDate startDate;
+    private LocalDateTime startDate;
 
-    private LocalDate endDate;
+    private LocalDateTime endDate;
 
     @Column(nullable = false)
-    private String summary;
-
-    @Column(nullable = false, length = 10000)
+    @Lob
     private String contents;
 
     @Column(nullable = false)
@@ -49,6 +49,8 @@ public class Post extends Timestamped {
     @Column(nullable = false)
     private boolean recommendationAgree;
 
+    private String chatUrl;
+
     private String frontUrl;
 
     private String backUrl;
@@ -59,7 +61,7 @@ public class Post extends Timestamped {
 
     @OneToMany(mappedBy = "post")
     @JsonIgnore
-    private List<TechStack> techStackList = new ArrayList<>();
+    private Set<TechStack> techStackList = new HashSet<>();
 
     @OneToMany(mappedBy = "post")
     @JsonIgnore
@@ -75,11 +77,11 @@ public class Post extends Timestamped {
 
     public Post(PostRequestDto postRequestDto, User user) {
         this.title = postRequestDto.getTitle();
-        this.startDate = LocalDate.parse(postRequestDto.getStartDate().substring(0, 10));
-        this.endDate = LocalDate.parse(postRequestDto.getEndDate().substring(0, 10));
-        this.summary = postRequestDto.getSummary();
+        this.startDate = postRequestDto.getStartDate().toLocalDateTime();
+        this.endDate = postRequestDto.getEndDate().toLocalDateTime();
         this.contents = postRequestDto.getContents();
         this.totalMember = postRequestDto.getTotalMember();
+        this.chatUrl = postRequestDto.getChatUrl();
         this.user = user;
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
     }
@@ -87,12 +89,12 @@ public class Post extends Timestamped {
     public void update(PostRequestDto postRequestDto) {
 
         this.title = postRequestDto.getTitle();
-        this.startDate = LocalDate.parse(postRequestDto.getStartDate().substring(0, 10));
-        this.endDate = LocalDate.parse(postRequestDto.getEndDate().substring(0, 10));
-        this.summary = postRequestDto.getSummary();
+        this.startDate = postRequestDto.getStartDate().toLocalDateTime();
+        this.endDate = postRequestDto.getEndDate().toLocalDateTime();
         this.contents = postRequestDto.getContents();
         this.totalMember = postRequestDto.getTotalMember();
         this.projectStatus = ProjectStatus.projectStatusOf(postRequestDto.getProjectStatus());
+        this.chatUrl = postRequestDto.getChatUrl();
     }
 
     public void deleteUser(User user) {
@@ -112,7 +114,11 @@ public class Post extends Timestamped {
         this.recruitmentMember += 1;
     }
 
+    public void deleteMember() {
+        this.recruitmentMember -= 1;
+    }
+
     public void updateTechStack(List<TechStack> techStackList) {
-        this.techStackList = techStackList;
+        this.techStackList = new HashSet<>(techStackList);
     }
 }

@@ -26,9 +26,6 @@ public class GithubUserService {
     @Value("${github.client.id}")
     private String clientId;
 
-    @Value("${github.redirect.url}")
-    private String redirectUrl;
-
     public SnsInfoDto githubLogin(String code) throws JsonProcessingException {
         String accessToken = getAccessToken(code);
         return getGithubUserInfo(accessToken);
@@ -42,7 +39,6 @@ public class GithubUserService {
         // HTTP Body 생성
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("client_secret", clientSecret);
-        body.add("client_id", clientId);
         body.add("client_id", clientId);
         body.add("code", code);
 
@@ -86,8 +82,7 @@ public class GithubUserService {
         JsonNode jsonNode = objectMapper.readTree(responseBody);
         log.info("getGithubUserInfo responseBody = {}", responseBody);
         String id = jsonNode.get("id").asText();
-        String email = jsonNode.get("html_url").asText();
-        return new SnsInfoDto(email, id);
+        return new SnsInfoDto(id);
 
     }
 }

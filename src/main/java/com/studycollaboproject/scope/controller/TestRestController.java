@@ -38,8 +38,6 @@ public class TestRestController {
     public ResponseEntity<Object> updatePropensity(@RequestBody PropensityRequestDto requestDto,
                                                    @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails,
                                                    @Parameter(description = "수정하고자 하는 사용자의 ID", in = ParameterIn.PATH) @PathVariable Long userId) {
-        log.info("POST, [{}], /api/test, userPropensity={}, memberPropensity={}", MDC.get("UUID"),
-                requestDto.getUserPropensityType().toString(), requestDto.getMemberPropensityType().toString());
         // [예외처리] 로그인 정보가 없을 때
         User user = Optional.ofNullable(userDetails).orElseThrow(
                 () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)

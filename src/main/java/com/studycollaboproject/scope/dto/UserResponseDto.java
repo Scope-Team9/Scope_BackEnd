@@ -35,8 +35,12 @@ public class UserResponseDto {
         this.nickname = user.getNickname();
         this.techStackList = techStackList;
         this.userId = user.getId();
-        this.email = user.getEmail();
         this.isVerifiedEmail = user.getIsVerifiedEmail();
+        if(isVerifiedEmail){
+            this.email = user.getEmail();
+        } else {
+            this.email = "이메일 미인증";
+        }
 //        this.isVerifiedEmail = getIsVerifiedEmail();
     }
     public UserResponseDto(User user) {

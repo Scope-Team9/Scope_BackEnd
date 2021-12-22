@@ -67,10 +67,8 @@ public class JwtTokenProvider {
     // 토큰에 숨겨져 있는 회원의 정보를 추출해와 UserDetails 객체에 담은 후 UsernamePasswordAuthenticationToken 이용해서 Authentication에 담겨서
     // SecurityContextHolder.getContext에 최종적으로 담겨서 로그아웃 하기 전까지 계속 사용되어진다.
     public Authentication getAuthentication(String token) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
-        log.info("=============getAuthentication============");
-        log.info("[{}] snsId={}", MDC.get("UUID"), userDetails.getUsername());
-        log.info("=============getAuthentication============");
+        UserDetailsImpl userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
+        log.info("[{}], snsId={}, email={}, nickname={}", MDC.get("UUID"), userDetails.getSnsId(), userDetails.getUser().getEmail(), userDetails.getUser().getNickname());
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
@@ -103,7 +101,7 @@ public class JwtTokenProvider {
 
         } catch (ExpiredJwtException e) {
             log.info("만료된 토큰");
-            throw new BadRequestException(ErrorCode.TOKEN_EXPRIRATOION_ERROR);
+            throw new BadRequestException(ErrorCode.TOKEN_EXPIRATION_ERROR);
 
         } catch (Exception e) {
             log.info("정상적인 토큰이 아닙니다.");

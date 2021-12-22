@@ -46,8 +46,6 @@ public class ApplicantRestController {
     public ResponseEntity<Object> apply(@Parameter(in = ParameterIn.PATH, description = "프로젝트 ID") @PathVariable Long postId,
                                         @RequestBody ApplicantRequestDto requestDto,
                                         @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) throws MessagingException {
-        log.info("POST, [{}], /api/applicant/{}, comment={}", MDC.get("UUID"), postId, requestDto.getComment());
-
         String snsId = Optional.ofNullable(userDetails).orElseThrow(
                 () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
         ).getSnsId();
@@ -64,8 +62,6 @@ public class ApplicantRestController {
     @DeleteMapping("/api/applicant/{postId}")
     public ResponseEntity<Object> cancelApply(@Parameter(in = ParameterIn.PATH, description = "프로젝트 ID") @PathVariable Long postId,
                                               @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        log.info("DELETE, [{}], /api/applicant/{}", MDC.get("UUID"), postId);
-
         String snsId = Optional.ofNullable(userDetails).orElseThrow(
                 () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
         ).getSnsId();
@@ -82,8 +78,6 @@ public class ApplicantRestController {
     @GetMapping("/api/applicant/{postId}")
     public ResponseEntity<Object> getApplicant(@Parameter(in = ParameterIn.PATH, description = "프로젝트 ID") @PathVariable Long postId,
                                                @Parameter(hidden = true) @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        log.info("GET, [{}], /api/applicant/{}", MDC.get("UUID"), postId);
-
         String snsId = Optional.ofNullable(userDetails).orElseThrow(
                 () -> new NoAuthException(ErrorCode.NO_AUTHENTICATION_ERROR)
         ).getSnsId();

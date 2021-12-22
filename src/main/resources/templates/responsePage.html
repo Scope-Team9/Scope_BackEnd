@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns: lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Scope</title>
+    <script>
+        let responseMsg = `[[${msg}]]`;
+    </script>
+</head>
+<body>
+<div style="height:100%;text-align: center;">
+
+    <table id="m_-704073352182606375bodyTable"
+           style = "margin:50px auto auto auto; border : 1px  solid #e5e5e5; ">
+        <tbody>
+        <tr>
+            <td style="background-color:#fff;color:#5065df;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:17px;font-weight:400;line-height:28px;padding:0;padding-left:5%;padding-right:5%;vertical-align:top">
+
+                <table style="border-collapse:collapse;width:100%;max-width:500px;border-spacing:0;table-layout:fixed;vertical-align:top;margin: auto">
+                    <tbody>
+                    <tr>
+                        <td height="40"
+                            style="color:#5065df;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:0;font-weight:400;height:40px;line-height:0;padding:0;vertical-align:top">
+                        </td>
+                    </tr>
+
+                    <tr height="100">
+                        <div style="border: black"></div>
+                        <td style="padding-bottom:20px;"><img th:src="${logo}" style="max-width:80px"/>
+                        </td>
+                    </tr>
+                    <tr height="100">
+                        <td style="color:#2b2b2b;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:32px;line-height:42px;padding:0;vertical-align:top">
+                            이메일 주소 <span class="il">인증</span></td>
+                    </tr>
+                    <tr>
+
+                        <td style="color:#2b2b2b;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:20px;font-weight:800;line-height:28px;padding:0;vertical-align:top">
+
+                            <span th:text="${msg}">유효한 토큰값이 아닙니다.</span>
+                        </td>
+
+
+                    </tr>
+
+                    <td style="text-align: center">
+                        <br>
+                        <table
+                                style="border-collapse:collapse;width:100%">
+
+                            <!--                                                                이메일 인증하기 버튼-->
+                            <tbody>
+                            <td style="font-size:11px;font-family:LucidaGrande,tahoma,verdana,arial,sans-serif;background:#ffffff;display:block">
+                                <table
+                                        style="border-collapse:collapse;width:100%;text-align: center">
+                                    <tbody>
+                                    <td style="font-size:11px;background:#ffffff;border:solid 1px #e5e5e5;border-radius:4px;padding:15px 15px 30px 15px;display:block;width: auto;margin-bottom: 40px">
+                                        <!--                                                               페이스북 카드박스-->
+                                        <table
+                                                style="border-collapse:collapse;width:100%">
+                                            <!--                                                                프로필사진-->
+
+                                            <!--                                                                닉네임-->
+                                            <tr>
+                                                <div
+                                                        style="font-weight:bold;font-size:16px;color:#1c1e21;margin-bottom: 30px; ">
+                                                    <br>
+                                                    아래 버튼을 눌러서 메인 화면으로 이동해주세요!
+                                                    <br>
+                                                </div>
+                                            </tr>
+                                            <!--                                                                한줄코멘트-->
+
+                                            <tr>
+                                                <td
+                                                        height="60" align="center "
+                                                        style="margin-bottom:20px;color:#1b8b2b;font-family:'roboto','Noto Sans KR','AppleSDGothicNeo-Regular','Malgun Gothic',Arial,'sans-serif';font-size:17px;font-weight:400;line-height:28px;padding:0;vertical-align:top">
+                                                    <a href="https://scopewith.com/"
+                                                       style="background-color:#5065df;border-radius:2px;color:#fff;display:inline-block;padding-bottom:11px;padding-left:30px;padding-right:30px;padding-top:11px;text-align:center;text-decoration:none"
+                                                       target="_blank" data-saferedirecturl="">
+                                        <span style="color:#fff;font-family:sans-serif;font-size:17px;font-weight:600;line-height:28px;text-align:center">스코프로 <span
+                                                class="il">이동</span>하기</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </tbody>
+                                </table>
+                            </tbody>
+                        </table>
+                    </tbody>
+                </table>
+            </td>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

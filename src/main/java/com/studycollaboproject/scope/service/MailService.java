@@ -5,6 +5,7 @@ import com.studycollaboproject.scope.exception.ErrorCode;
 import com.studycollaboproject.scope.exception.BadRequestException;
 import com.studycollaboproject.scope.model.User;
 import com.studycollaboproject.scope.repository.UserRepository;
+import com.studycollaboproject.scope.util.EmailValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +20,8 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 
@@ -30,7 +33,22 @@ public class MailService {
     private final SpringTemplateEngine templateEngine;
     private final JavaMailSender javaMailSender;
     private final UserRepository userRepository;
+    private static final Map<String, String> propensityMatching = new HashMap<>() {
+        {
+            put("LVG", "호랑이");
+            put("LVP", "늑대");
+            put("LHG", "여우");
+            put("LHP", "곰");
+            put("FVG", "토끼");
+            put("FVP", "허스키");
+            put("FHG", "고양이");
+            put("FHP", "물개");
+            put("RHP", "너구리");
+        }
+    };
 
+    @Value("${serverUrl}")
+    private String url;
     @Value("${spring.mail.password}")
     private String pass;
     @Value("${spring.mail.username}")
@@ -58,18 +76,17 @@ public class MailService {
         mimeMessageHelper.setText(body, true);
         sendMail(mimeMessageHelper.getMimeMessage());
     }
+
     @Async
     public void applicantMailBuilder(MailDto mailDto) throws MessagingException {
-        try {
-            log.info("==================================================");
-            log.info("지원 알림 메일 발송");
-            Thread.sleep(5000);
-        }catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
+        log.info("==================================================");
+        log.info("지원 알림 메일 발송");
         String email = mailDto.getToEmail();
+        if(!EmailValidator.emailValidator(email)) throw new BadRequestException(ErrorCode.NO_EMAIL_PATTERN);
         Context context = new Context();
+        context.setVariable("logo", url + "/img/logo.png");
+        context.setVariable("comment", mailDto.getComment());
         context.setVariable("postTitle", mailDto.getPostTitle());
         context.setVariable("toNickname", mailDto.getToNickname());
         context.setVariable("fromNickname", mailDto.getFromNickname());
@@ -87,39 +104,39 @@ public class MailService {
 
     @Async
     public void acceptTeamMailBuilder(MailDto mailDto) throws MessagingException {
-        try {
-            log.info("==================================================");
-            log.info("프로젝트 매칭 알림 메일 발송");
-            Thread.sleep(5000);
-        }catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        log.info("==================================================");
+        log.info("프로젝트 매칭 알림 메일 발송");
+
         String email = mailDto.getToEmail();
+        if(!EmailValidator.emailValidator(email)) throw new BadRequestException(ErrorCode.NO_EMAIL_PATTERN);
         Context context = new Context();
+        context.setVariable("logo", url + "/img/logo.png");
         context.setVariable("title", mailDto.getPostTitle());
         context.setVariable("toNickname", mailDto.getToNickname());
         context.setVariable("fromNicckname", mailDto.getFromNickname());
-        context.setVariable("userId", mailDto.getToUserId());
+        context.setVariable("postId", mailDto.getPostId());
         String subject = "[scope]" + mailDto.getToNickname() + "님의 프로젝트 신청이 수락되었습니다!";
         String body = templateEngine.process("acceptTeamEmail", context);
 
         setMail(subject, body, email);
         log.info("==================================================");
     }
+
     @Async
     public void assessmentMailBuilder(MailDto mailDto) throws MessagingException {
-        try {
-            log.info("==================================================");
-            log.info("프로젝트 종료 알림 메일 발송");
-            Thread.sleep(5000);
-        }catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        log.info("==================================================");
+        log.info("프로젝트 종료 알림 메일 발송");
+
+
         for (User user : mailDto.getToUserList()) {
+            if(!user.getIsVerifiedEmail()) continue;
             Context context = new Context();
+            context.setVariable("logo", url + "/img/logo.png");
             context.setVariable("title", mailDto.getPostTitle());
             context.setVariable("nickname", user.getNickname());
-            context.setVariable("postId", mailDto.getPostId());
+            context.setVariable("userId", user.getId());
             String subject = "[scope]" + user.getNickname() + "님의 프로젝트가 종료되었습니다!";
             String body = templateEngine.process("applicationNoticeEmail", context);
             setMail(subject, body, user.getEmail());
@@ -127,27 +144,33 @@ public class MailService {
         }
     }
 
+    @Async
     public void authMailSender(String email, User user) throws MessagingException {
+        log.info("==================================================");
+        log.info("이메일 인증 메일 발송");
+        if(!EmailValidator.emailValidator(email)) throw new BadRequestException(ErrorCode.NO_EMAIL_PATTERN);
         Context context = new Context();
+        context.setVariable("logo", url + "/img/logo.png");
+        context.setVariable("propensityType", url + "/img/" + propensityMatching.get(user.getUserPropensityType()) + ".png");
         context.setVariable("userId", user.getId());
         context.setVariable("code", user.getMailAuthenticationCode());
         context.setVariable("nickname", user.getNickname());
+        context.setVariable("email", email);
         String subject = "[scope]" + user.getNickname() + "님! 이메일 인증을 완료해주세요.";
         String body = templateEngine.process("emailAuthentication", context);
         setMail(subject, body, email);
     }
 
     @Transactional
-    public void emailAuthCodeCheck(String code, Long userId) {
-        Optional<User> user = userRepository.findById(userId);
-        if (user.isPresent()) {
-            if (code.equals(user.get().getMailAuthenticationCode())) {
-                user.get().verifiedEmail();
-            } else {
-                throw new BadRequestException(ErrorCode.NO_TOKEN_ERROR);
-            }
+    public String emailAuthCodeCheck(String code, Long userId, String email) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new BadRequestException(ErrorCode.NO_USER_ERROR));
+
+        if (user.getMailAuthenticationCode().equals(code)) {
+            user.verifiedEmail(email);
+            return "이메일 인증이 완료되었습니다.";
         } else {
-            throw new BadRequestException(ErrorCode.NO_USER_ERROR);
+            return "유효한 토큰값이 아닙니다.";
         }
     }
+
 }

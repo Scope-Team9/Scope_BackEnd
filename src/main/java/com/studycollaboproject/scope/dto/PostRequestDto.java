@@ -7,6 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Getter
@@ -15,20 +18,28 @@ import java.util.List;
 @AllArgsConstructor
 public class PostRequestDto {
 
+    @NotBlank
     @Schema(description = "프로젝트 제목")
     private String title;
-    @Schema(description = "프로젝트 요약")
-    private String summary;
+    @NotBlank
     @Schema(description = "프로젝트 내용")
     private String contents;
+    @NotNull
     @Schema(description = "총 인원")
     private Integer totalMember;
+    @NotNull
     @Schema(description = "프로젝트 상태")
     private String projectStatus;
+    @NotNull
     @Schema(description = "시작 시간")
-    private String startDate;
+    private Timestamp startDate;
+    @NotNull
     @Schema(description = "종료 시간")
-    private String endDate;
+    private Timestamp endDate;
+    @NotNull
     @Schema(description = "글쓰기시 프로젝트 기술 스택")
     private List<String> techStackList;
+    @Schema(description = "채팅 url")
+    private String chatUrl;
+
 }

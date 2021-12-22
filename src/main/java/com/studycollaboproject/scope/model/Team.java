@@ -44,4 +44,10 @@ public class Team extends Timestamped {
     public void setUrl(String frontUrl, String backUrl){
         this.post.setUrl(frontUrl,backUrl);
     }
+
+    public void deleteTeam() {
+        this.post.deleteMember();
+        this.post.getTeamList().remove(this);
+        this.user.getTeamList().remove(this);
+    }
 }
