@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns: lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <meta charset="UTF-8">
+    <title>adminPropensityPage</title>
+    <script defer>
+        function allChecked(target){
+
+            if($(target).is(":checked")){
+                //체크박스 전체 체크
+                $(".chk").prop("checked", true);
+            }
+            else{
+                //체크박스 전체 해제
+                $(".chk").prop("checked", false);
+            }
+        }
+        // 전체 체크박스 체크
+        function cchkClicked(){
+
+            //체크박스 전체개수
+            var allCount = $("input:checkbox[name=cchk]").length;
+
+            //체크된 체크박스 전체개수
+            var checkedCount = $("input:checkbox[name=cchk]:checked").length;
+
+            //체크박스 전체개수와 체크된 체크박스 전체개수가 같으면 체크박스 전체 체크
+            if(allCount == checkedCount){
+                $(".chk").prop("checked", true);
+            }
+
+            //같지않으면 전체 체크박스 해제
+            else{
+                $("#allCheckBox").prop("checked", false);
+            }
+        }
+
+        function Delete(){
+
+            var UserIdArray = [];
+
+            $("input:checkbox[name=cchk]:checked").each(function(){
+                UserIdArray.push($(this).val());
+            });
+
+            console.log(UserIdArray);
+
+            if(UserIdArray == ""){
+                alert("삭제할 항목을 선택해주세요.");
+                return false;
+            }
+            var confirmAlert = confirm('정말로 삭제하시겠습니까?');
+
+            if(confirmAlert){
+
+                $.ajax({
+                    type : 'POST'
+                    ,url : '/admin/adminuserdelete'
+                    ,dataType : 'json'
+                    ,data : JSON.stringify(UserIdArray)
+                    ,contentType: "application/json; charset=utf-8"
+                    ,success : function(result) {
+                        alert("해당글이 정상적으로 삭제되었습니다.");
+                        location.reload();
+                    },
+                    error: function(request, status, error) {
+                    }
+                })
+            }
+        }
+    </script>
+</head>
+<body>
+<form name="userForm">
+    <h1>Propensity page</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="allCheckBox" class="chk" onclick="allChecked(this)">
+                </label>
+            </th>
+            <th scope="col"> </th>
+            <th scope="col">ID</th>
+            <th scope="col">이메일</th>
+            <th scope="col">닉네임</th>
+            <th scope="col">유저 타입</th>
+            <th scope="col">선호 유저 타입</th>
+            <th scope="col">자기소개</th>
+
+            <button onclick="Delete()" type="button" class="btn btn-sm btn-danger" >삭제</button>
+            </th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="user : ${userResponseDtos}">
+            <td>
+                <label class="checkbox-inline">
+                    <input type="checkbox" class="chk" name="cchk" onclick="cchkClicked()" th:value="${user.userId}">
+                </label>
+            <td>
+            <td th:text ="${user.userId}"></td>
+            <td th:text ="${user.email}"></td>
+            <td th:text ="${user.nickname}"></td>
+            <td th:text ="${user.userPropensityType}"></td>
+            <td th:text ="${user.memberPropensityType}"></td>
+            <td th:text ="${user.introduction}"></td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+</body>
+</html>

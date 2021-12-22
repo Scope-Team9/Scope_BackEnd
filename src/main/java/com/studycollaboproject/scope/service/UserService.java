@@ -11,10 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.*;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @RequiredArgsConstructor
 @Service
@@ -81,6 +79,16 @@ public class UserService {
             LoginReponseDto loginReponseDto = new LoginReponseDto(jwtTokenProvider.createToken(id), user.getNickname(), user.getId());
             return new ResponseDto("로그인이 완료되었습니다", loginReponseDto);
         }
+    }
+
+    public List<UserResponseDto> adminUserPropensityType(){
+        List<UserResponseDto> userResponseDtos = new ArrayList<>();
+        List<User> allUser = userRepository.findAll();
+        for (User user : allUser) {
+            UserResponseDto userResponseDto = new UserResponseDto(user);
+            userResponseDtos.add(userResponseDto);
+        }
+        return userResponseDtos;
     }
 
     //email, nickname, 기술스택 수정
